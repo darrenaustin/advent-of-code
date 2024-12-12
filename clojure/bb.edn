@@ -1,0 +1,18 @@
+{:paths ["scripts" "."]
+ :deps {advent-of-code-clojure/aoc {:local/root "."}}
+
+ :tasks
+ {clean       {:doc  "Clean all generated build artifacts."
+               :task (shell "rm -rf .cpcache target")}
+  day         {:doc "Execute the given day(s)."
+               :task (clojure "-M -m aoc.core" *command-line-args*)}
+  lint        {:doc  "Identify code issues in src and test directories."
+               :task (shell "clj-kondo --parallel --lint src:test")}
+  new-day     {:doc "Create skeleton src, test, input, and answer files for the given day."
+               :task (exec 'tasks/new-day)}
+  test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
+               :task (clojure "-M:test --skip-meta :slow")}
+  test-all    {:doc  "Run all tests."
+               :task (clojure "-M:test")}
+  update-days {:doc "Update the 'days.clj' file with the currently implemented days."
+               :task (exec 'tasks/update-days-file)}}}

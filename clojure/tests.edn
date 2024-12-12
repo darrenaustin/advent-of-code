@@ -1,0 +1,23 @@
+#kaocha/v1
+ {:tests [{:id :unit
+           :source-paths ["src"]
+           :test-paths ["test"]
+           :ns-patterns ["-test$"]}
+          {:id :2015 :test-paths ["test/aoc2015"]}
+        ;;   {:id :2016 :test-paths ["test/aoc2016"]}
+        ;;   {:id :2017 :test-paths ["test/aoc2017"]}
+          {:id :2018 :test-paths ["test/aoc2018"]}
+        ;;   {:id :2019 :test-paths ["test/aoc2019"]}
+        ;;   {:id :2020 :test-paths ["test/aoc2020"]}
+        ;;   {:id :2021 :test-paths ["test/aoc2021"]}
+        ;;   {:id :2022 :test-paths ["test/aoc2022"]}
+        ;;   {:id :2023 :test-paths ["test/aoc2023"]}
+          {:id :2024 :test-paths ["test/aoc2024"]}]
+  :plugins [:kaocha.plugin/print-invocations
+            ;; :kaocha.plugin/profiling
+            ]
+  :capture-output? true
+  :color? true
+;;   :kaocha.plugin.profiling/count 10
+;;   :kaocha.plugin.profiling/profiling? true
+  }

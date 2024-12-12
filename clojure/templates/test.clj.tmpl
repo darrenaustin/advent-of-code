@@ -1,0 +1,27 @@
+;; Test for aoc{{year}}.day{{day}}
+(ns aoc{{year}}.day{{day}}-test
+  (:require [aoc.day :refer [day-answers]]
+            [aoc{{year}}.day{{day}} :as d]
+            [clojure.test :refer :all]))
+
+(def example-input
+  "")
+
+(deftest part1-example
+  (is (= nil (d/part1 example-input))))
+
+(deftest part1-examples
+  (are [expected input] (= expected (d/part1 input))
+    nil ""))
+
+(deftest part2-example
+  (is (= nil (d/part2 example-input))))
+
+(deftest part2-examples
+  (are [expected input] (= expected (d/part2 input))
+    nil ""))
+
+(deftest correct-answers
+  (let [{:keys [answer1 answer2]} (day-answers {{year}} {{day}})]
+    (is (= answer1 (d/part1 d/input)))
+    (is (= answer2 (d/part2 d/input)))))
