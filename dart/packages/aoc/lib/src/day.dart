@@ -58,7 +58,7 @@ abstract class AdventDay {
   static const lastStarSolution = '🎄 Got em all! 🎉';
 
   static final inputRepoBase = String.fromEnvironment('INPUT_REPO',
-      defaultValue: '../../../advent_of_code_input');
+      defaultValue: '../../../inputs');
 
   String get _inputFileName =>
       '$inputRepoBase/$year/${day.toString().padLeft(2, '0')}_input.txt';
