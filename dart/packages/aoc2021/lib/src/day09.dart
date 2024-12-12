@@ -28,7 +28,7 @@ class Day09 extends AdventDay {
     return grid
         .locations()
         .map((p) => lowPoint(grid, p) ? basinSizeFor(grid, p) : null)
-        .whereNotNull()
+        .nonNulls
         .sorted(numMaxComparator)
         .take(3)
         .product;

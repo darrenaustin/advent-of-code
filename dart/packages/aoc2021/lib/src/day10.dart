@@ -18,11 +18,11 @@ class Day10 extends AdventDay {
 
   @override
   dynamic part1(String input) =>
-      input.lines.map(corruptedScore).whereNotNull().sum;
+      input.lines.map(corruptedScore).nonNulls.sum;
 
   @override
   dynamic part2(String input) {
-    final scores = input.lines.map(incompleteScore).whereNotNull().toList()
+    final scores = input.lines.map(incompleteScore).nonNulls.toList()
       ..sort();
     return scores[scores.length ~/ 2];
   }

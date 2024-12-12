@@ -63,7 +63,7 @@ class Day06 extends AdventDay {
             .where((b) => !visited.contains(b))
             .map((b) =>
                 cachedTransfers(b, to, connections, visited.union({from})))
-            .whereNotNull();
+            .nonNulls;
         return transfers.isNotEmpty ? 1 + transfers.min : null;
       }
 

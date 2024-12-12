@@ -99,6 +99,6 @@ class Day11 extends AdventDay {
       return seats.validLocation(closest) ? seats.value(closest) : null;
     }
 
-    return Vec.aroundDirs.map((p) => firstVisibleInDirection(p)).whereNotNull();
+    return Vec.aroundDirs.map((p) => firstVisibleInDirection(p)).nonNulls;
   }
 }

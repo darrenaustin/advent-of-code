@@ -21,7 +21,7 @@ class Day12 extends AdventDay {
     return heightmap
         .locationsWhereValue((p) => p == 'a')
         .map((s) => heightmap.leastStepsToGoal(s))
-        .whereNotNull()
+        .nonNulls
         .map((d) => d.toInt())
         .min;
   }

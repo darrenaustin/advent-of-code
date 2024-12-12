@@ -74,5 +74,5 @@ class Day04 extends AdventDay {
       winningGroups.any((g) => g.every((p) => board.value(p) == null));
 
   int score(Grid<int?> board, int winningNumber) =>
-      board.values().whereNotNull().sum * winningNumber;
+      board.values().nonNulls.sum * winningNumber;
 }

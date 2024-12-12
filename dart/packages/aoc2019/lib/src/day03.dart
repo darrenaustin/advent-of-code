@@ -21,7 +21,7 @@ class Day03 extends AdventDay {
     final intersections = <Vec>{};
     for (final s1 in wire1) {
       intersections
-          .addAll(wire2.map((s2) => s1.intersection(s2)).whereNotNull());
+          .addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
     }
     intersections.remove(origin);
     return intersections.map((v) => v.manhattanDistanceTo(origin)).min.toInt();
@@ -37,7 +37,7 @@ class Day03 extends AdventDay {
     final intersections = <Vec>{};
     for (final s1 in wire1) {
       intersections
-          .addAll(wire2.map((s2) => s1.intersection(s2)).whereNotNull());
+          .addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
     }
     intersections.remove(origin);
     return intersections

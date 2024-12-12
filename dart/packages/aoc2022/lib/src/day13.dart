@@ -19,7 +19,7 @@ class Day13 extends AdventDay {
         .map((pair) => pair.map(parsePacket))
         .mapIndexed((index, pair) =>
             comparePackets(pair.first, pair.last) == -1 ? index + 1 : null)
-        .whereNotNull()
+        .nonNulls
         .sum;
   }
 

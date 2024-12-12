@@ -15,7 +15,7 @@ class Day16 extends AdventDay {
         .map(parseAuntItems)
         .mapIndexed(
             (i, auntItems) => auntHasCompounds(auntItems) ? i + 1 : null)
-        .whereNotNull()
+        .nonNulls
         .first;
   }
 
@@ -27,7 +27,7 @@ class Day16 extends AdventDay {
         .map(parseAuntItems)
         .mapIndexed((i, auntItems) =>
             auntHasCompounds(auntItems, greaterThan, lessThan) ? i + 1 : null)
-        .whereNotNull()
+        .nonNulls
         .first;
   }
 

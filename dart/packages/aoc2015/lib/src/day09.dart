@@ -4,7 +4,6 @@ import 'package:aoc/aoc.dart';
 import 'package:aoc/util/collection.dart';
 import 'package:aoc/util/comparison.dart';
 import 'package:aoc/util/string.dart';
-import 'package:collection/collection.dart';
 
 main() => Day09().solve();
 
@@ -35,14 +34,14 @@ class Day09 extends AdventDay {
                   : null;
             }
           })
-          .whereNotNull()
+          .nonNulls
           .minBy(comparator);
     }
 
     final locations = routes.keys.toSet();
     return locations
         .map((loc) => shortestFrom(loc, locations.difference(<String>{loc})))
-        .whereNotNull()
+        .nonNulls
         .minBy(comparator);
   }
 
