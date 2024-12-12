@@ -3,7 +3,7 @@
             [clojure.string :as string]))
 
 ;; TODO: add a way to override this with an env var.
-(defn input-repo-dir [] "../advent_of_code_input")
+(defn input-repo-dir [] "../inputs")
 
 (defn input-file-name [year day-num]
   (format "%s/%04d/%02d_input.txt" (input-repo-dir) year day-num))

@@ -23,7 +23,7 @@
 (defn- test-dir    [y]   (str "test/aoc" y))
 (defn- test-path   [y d] (format "%s/day%02d_test.clj" (test-dir y) d))
 ;; TODO: add a way to override this with an env var.
-(defn- input-dir   [y]   (str "../advent_of_code_input/" y))
+(defn- input-dir   [y]   (str "../inputs/" y))
 (defn- input-path  [y d] (format "%s/%02d_input.txt" (input-dir y) d))
 (defn- answer-path [y d] (format "%s/%02d_answer.json" (input-dir y) d))
 
