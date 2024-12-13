@@ -1,0 +1,3 @@
+.lsp/
+.clj-kondo/.cache/
+.clj-kondo/imports/
