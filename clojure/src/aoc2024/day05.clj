@@ -10,7 +10,7 @@
 
 (defn parse-input [input]
   (->> (str/split input #"\n\n")
-       (map #(map s/parse-nums (str/split-lines %)))))
+       (map #(map s/parse-ints (str/split-lines %)))))
 
 (defn follows-rules? [order rules]
   (let [order-map (into {} (map-indexed (fn [i e] [e i]) order))]

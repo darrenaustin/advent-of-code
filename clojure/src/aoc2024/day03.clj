@@ -8,7 +8,7 @@
 (def input (d/day-input 2024 3))
 
 (defn mult-instruction [instruction]
-  (apply * (s/parse-nums instruction)))
+  (apply * (s/parse-ints instruction)))
 
 (defn part1 [input]
   (m/sum (map mult-instruction (re-seq #"mul\(\d+,\d+\)" input))))

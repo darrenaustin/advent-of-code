@@ -8,9 +8,7 @@
 (def input (d/day-input 2024 2))
 
 (defn parse-reports [input]
-  (->> input
-       str/split-lines
-       (map s/parse-nums)))
+  (map s/parse-ints (str/split-lines input)))
 
 (defn safe [report]
   (let [diffs (map - report (rest report))]
@@ -18,15 +16,15 @@
              (every? neg? diffs))
          (every? #(<= 1 (abs %) 3) diffs))))
 
-(defn part1 [input]
-  (count (filter safe (parse-reports input))))
-
 (defn missing-one [report]
   (for [idx (range (count report))]
     (concat (take idx report) (drop (inc idx) report))))
 
 (defn safe-ish [report]
   (some safe (missing-one report)))
+
+(defn part1 [input]
+  (count (filter safe (parse-reports input))))
 
 (defn part2 [input]
   (count (filter safe-ish (parse-reports input))))

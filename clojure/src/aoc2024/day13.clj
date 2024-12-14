@@ -4,16 +4,12 @@
     [aoc.day :as d]
     [aoc.util.grid :refer :all]
     [aoc.util.math :as m]
-    [aoc.util.string :as s]
-    [clojure.string :as str]))
+    [aoc.util.string :as s]))
 
 (def input (d/day-input 2024 13))
 
 (defn parse [input]
-  (let [games-data (map s/parse-nums (str/split input #"\n\n"))]
-    (map (fn [[ax ay bx by px py]]
-           [[ax ay] [bx by] [px py]])
-         games-data)))
+  (partition 3 (partition 2 (s/parse-ints input))))
 
 ;; a * Ax + b * Bx = Px => a * Ax = Px - b * Bx => a = (Px - b * Bx) / Ax
 ;; a * Ay + b * By = Py => ((Px - b * Bx) / Ax) * Ay + b * By = Py
@@ -24,8 +20,8 @@
 ;; b = (Py - (Px * Ay) / Ax) / (By - (Bx Ay)/Ax)
 
 (defn button-presses [[[ax ay] [bx by] [px py]]]
-  (let [b (/ (-' py (/ (*' px ay) ax)) (-' by (/ (*' bx ay) ax)))
-        a (/ (-' px (*' b bx)) ax)]
+  (let [b (/ (- py (/ (* px ay) ax)) (- by (/ (* bx ay) ax)))
+        a (/ (- px (* b bx)) ax)]
     [a b]))
 
 (defn cost-of [[ac bc]]

@@ -10,9 +10,7 @@
 (def input (d/day-input 2024 7))
 
 (defn parse-equations [input]
-  (->> input
-       str/split-lines
-       (map s/parse-nums)))
+  (map s/parse-ints (str/split-lines input)))
 
 (defn possible-equation? [[goal & nums] ops]
   (loop [values [(first nums)] nums (rest nums)]

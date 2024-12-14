@@ -4,16 +4,12 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (def input (d/day-input 2024 1))
 
 (defn parse-locations [input]
-  (->> input
-       str/split-lines
-       (map s/parse-nums)
-       c/transpose))
+  (c/transpose (partition 2 (s/parse-ints input))))
 
 (defn part1 [input]
   (let [[left right] (map sort (parse-locations input))]

@@ -22,7 +22,7 @@
                  (stone-count-for (dec blinks) (* 2024 num))))))))
 
 (defn blink [input blinks]
-  (transduce (map (partial stone-count-for blinks)) + (s/parse-nums input)))
+  (transduce (map (partial stone-count-for blinks)) + (s/parse-ints input)))
 
 (defn part1 [input] (blink input 25))
 

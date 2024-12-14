@@ -3,15 +3,12 @@
   (:require
    [aoc.day :as d]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (def input (d/day-input 2015 2))
 
 (defn parse-boxes [input]
-  (->> input
-       str/split-lines
-       (map s/parse-nums)))
+  (partition 3 (s/parse-ints input)))
 
 (defn paper-for [[l w h]]
   (let [[s1 s2 s3] [(* l w) (* l h) (* w h)]]

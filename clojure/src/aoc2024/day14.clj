@@ -10,7 +10,7 @@
 (defn parse-robots [input]
   (reduce (fn [[pos vel] [p v]] [(conj pos p) (conj vel v)])
           [[] []]
-          (partition 2 (partition 2 (s/parse-full-nums input)))))
+          (partition 2 (partition 2 (s/parse-ints input)))))
 
 (defn move [bounds pos vel]
   (mapv mod (vec+ pos vel) bounds))
