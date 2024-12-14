@@ -10,4 +10,4 @@
 
 
 (defn digit [chr]
-  (Character/getNumericValue chr))
+  (^[char] Character/getNumericValue chr))

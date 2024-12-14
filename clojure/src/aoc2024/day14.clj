@@ -1,7 +1,6 @@
 ;; https://adventofcode.com/2024/day/14
 (ns aoc2024.day14
   (:require
-    [aoc.util.collection :as c]
     [aoc.day :as d]
     [aoc.util.grid :refer :all]
     [aoc.util.string :as s]))
