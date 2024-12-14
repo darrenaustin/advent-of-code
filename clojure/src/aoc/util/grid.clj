@@ -57,6 +57,10 @@
 (defn bounds [grid]
   (area-bounds (keys grid)))
 
+(defn in-bounds? [[[min-x min-y] [max-x max-y]] [x y]]
+  (and (< min-x x max-x)
+       (< min-y y max-y)))
+
 (defn grid->str-vec
   ([grid] (grid->str-vec grid \space))
   ([grid empty-value]

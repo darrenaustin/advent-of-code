@@ -5,5 +5,9 @@
 (defn parse-nums [str]
   (map edn/read-string (re-seq #"\d+" str)))
 
+(defn parse-full-nums [str]
+  (map edn/read-string (re-seq #"[-+]?\d+" str)))
+
+
 (defn digit [chr]
   (Character/getNumericValue chr))
