@@ -12,20 +12,18 @@
           [[] []]
           (partition 2 (partition 2 (s/parse-ints input)))))
 
-(defn move [bounds pos vel]
-  (mapv mod (vec+ pos vel) bounds))
-
-(defn simulate [bounds velocities robots]
-  (map (partial move bounds) robots velocities))
+(defn simulate [robots velocities bounds seconds]
+  (map (fn [r v]
+         (mapv mod (vec+ r (vec-n* seconds v)) bounds))
+       robots velocities))
 
 (defn seconds-until-tree [[robots velocities] bounds]
   ;; It appears the best way to check this is to see
   ;; if no robots are at the same location.
-  (loop [robots robots seconds 0]
-    (if (not= (count robots) (count (set robots)))
-      (recur (simulate bounds velocities robots)
-             (inc seconds))
-      seconds)))
+  (first (filter
+           (fn [sec] (let [locs (simulate robots velocities bounds sec)]
+                     (= (count locs) (count (set locs)))))
+           (range (apply * bounds)))))
 
 (defn quadrants [bounds]
   (let [[bx by] bounds
@@ -45,7 +43,7 @@
   ([input] (part1 input [101 103]))
   ([input bounds]
    (let [[robots velocities] (parse-robots input)]
-     (safety (nth (iterate (partial simulate bounds velocities) robots) 100)
+     (safety (simulate robots velocities bounds 100)
              (quadrants bounds)))))
 
 (defn part2
