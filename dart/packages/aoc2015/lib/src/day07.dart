@@ -6,7 +6,7 @@ import 'package:aoc/util/string.dart';
 main() => Day07().solve();
 
 class Day07 extends AdventDay {
-  Day07() : super(2015, 7, name: 'Some Assembly Required');
+  Day07() : super(2015, 7);
 
   @override
   dynamic part1(String input) => signal('a', circuit(input));

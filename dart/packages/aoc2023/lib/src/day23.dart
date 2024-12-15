@@ -10,7 +10,7 @@ main() => Day23().solve();
 typedef DistanceGraph = Map<Vec, List<(Vec, int)>>;
 
 class Day23 extends AdventDay {
-  Day23() : super(2023, 23, name: 'A Long Walk');
+  Day23() : super(2023, 23);
 
   @override
   dynamic part1(String input) {

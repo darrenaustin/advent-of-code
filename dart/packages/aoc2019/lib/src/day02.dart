@@ -7,7 +7,7 @@ import 'intcode.dart';
 main() => Day02().solve();
 
 class Day02 extends AdventDay {
-  Day02() : super(2019, 2, name: '1202 Program Alarm');
+  Day02() : super(2019, 2);
 
   @override
   dynamic part1(String input) => executeProgram(input, 12, 2);

@@ -6,7 +6,7 @@ import 'package:aoc/util/string.dart';
 main() => Day06().solve();
 
 class Day06 extends AdventDay {
-  Day06() : super(2023, 6, name: 'Wait For It');
+  Day06() : super(2023, 6);
 
   static final numRegex = RegExp(r'\d+');
 

@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 main() => Day11().solve();
 
 class Day11 extends AdventDay {
-  Day11() : super(2016, 11, name: 'Radioisotope Thermoelectric Generators');
+  Day11() : super(2016, 11);
 
   @override
   dynamic part1(String input) {

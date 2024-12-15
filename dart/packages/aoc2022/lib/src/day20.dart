@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day20().solve();
 
 class Day20 extends AdventDay {
-  Day20() : super(2022, 20, name: 'Grove Positioning System');
+  Day20() : super(2022, 20);
 
   @override
   dynamic part1(String input) => coordinateSum(mix(parseNumbers(input)));

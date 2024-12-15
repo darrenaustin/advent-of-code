@@ -8,7 +8,7 @@ import 'assembunny.dart';
 main() => Day23().solve();
 
 class Day23 extends AdventDay {
-  Day23() : super(2016, 23, name: 'Safe Cracking');
+  Day23() : super(2016, 23);
 
   @override
   dynamic part1(String input) => sendPassword(input, 7);

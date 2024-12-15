@@ -8,7 +8,7 @@ import 'assembunny.dart';
 main() => Day12().solve();
 
 class Day12 extends AdventDay {
-  Day12() : super(2016, 12, name: "Leonardo's Monorail");
+  Day12() : super(2016, 12);
 
   @override
   dynamic part1(String input) => runProgram(input);

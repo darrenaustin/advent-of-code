@@ -15,7 +15,7 @@ const int paddle = 3;
 const int ball = 4;
 
 class Day13 extends AdventDay {
-  Day13() : super(2019, 13, name: 'Care Package');
+  Day13() : super(2019, 13);
 
   @override
   dynamic part1(String input) {

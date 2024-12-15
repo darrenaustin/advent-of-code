@@ -7,7 +7,7 @@ import 'intcode.dart';
 main() => Day05().solve();
 
 class Day05 extends AdventDay {
-  Day05() : super(2019, 5, name: 'Cryostasis');
+  Day05() : super(2019, 5);
 
   @override
   dynamic part1(String input) => diagnosticCode(1, input);

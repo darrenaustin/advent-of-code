@@ -7,7 +7,7 @@ main() => Day04().solve();
 typedef FieldValidator = bool Function(String);
 
 class Day04 extends AdventDay {
-  Day04() : super(2020, 4, name: 'Passport Processing');
+  Day04() : super(2020, 4);
 
   @override
   dynamic part1(String input) =>

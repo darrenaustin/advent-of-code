@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 main() => Day12().solve();
 
 class Day12 extends AdventDay {
-  Day12() : super(2022, 12, name: 'Hill Climbing Algorithm');
+  Day12() : super(2022, 12);
 
   @override
   dynamic part1(String input) => Heightmap.from(input.lines).leastStepsToGoal();

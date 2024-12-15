@@ -10,7 +10,7 @@ main() => Day13().solve();
 typedef Rules = Map<String, Map<String, int>>;
 
 class Day13 extends AdventDay {
-  Day13() : super(2015, 13, name: 'Knights of the Dinner Table');
+  Day13() : super(2015, 13);
 
   @override
   dynamic part1(String input) {

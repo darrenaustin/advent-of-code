@@ -6,7 +6,7 @@ import 'package:collection/collection.dart';
 main() => Day01().solve();
 
 class Day01 extends AdventDay {
-  Day01() : super(2018, 1, name: 'Chronal Calibration');
+  Day01() : super(2018, 1);
 
   @override
   dynamic part1(String input) => frequencies(input).sum;

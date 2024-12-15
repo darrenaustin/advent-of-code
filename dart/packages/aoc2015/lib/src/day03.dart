@@ -7,7 +7,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day03().solve();
 
 class Day03 extends AdventDay {
-  Day03() : super(2015, 3, name: 'Perfectly Spherical Houses in a Vacuum');
+  Day03() : super(2015, 3);
 
   @override
   dynamic part1(String input) {

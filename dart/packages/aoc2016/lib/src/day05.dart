@@ -8,7 +8,7 @@ import 'package:crypto/crypto.dart';
 main() => Day05().solve();
 
 class Day05 extends AdventDay {
-  Day05() : super(2016, 5, name: 'How About a Nice Game of Chess?');
+  Day05() : super(2016, 5);
 
   // These are still super slow, but I think this is as fast as I can
   // get using the standard md5 support in the crypto package.

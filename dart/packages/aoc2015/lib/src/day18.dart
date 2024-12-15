@@ -9,7 +9,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day18().solve();
 
 class Day18 extends AdventDay {
-  Day18() : super(2015, 18, name: 'Like a GIF For Your Yard');
+  Day18() : super(2015, 18);
 
   @override
   dynamic part1(String input, [int steps = 100]) =>

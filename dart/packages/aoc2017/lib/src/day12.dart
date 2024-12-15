@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day12().solve();
 
 class Day12 extends AdventDay {
-  Day12() : super(2017, 12, name: 'Digital Plumber');
+  Day12() : super(2017, 12);
 
   @override
   dynamic part1(String input) => connectedTo(0, parsePipes(input)).length;

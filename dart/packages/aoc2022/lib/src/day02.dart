@@ -53,7 +53,7 @@ enum Result {
 }
 
 class Day02 extends AdventDay {
-  Day02() : super(2022, 2, name: 'Rock Paper Scissors');
+  Day02() : super(2022, 2);
 
   @override
   dynamic part1(String input) {

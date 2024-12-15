@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day03().solve();
 
 class Day03 extends AdventDay {
-  Day03() : super(2016, 3, name: 'Squares With Three Sides');
+  Day03() : super(2016, 3);
 
   @override
   dynamic part1(String input) => triangles(input).where(validTriangle).length;

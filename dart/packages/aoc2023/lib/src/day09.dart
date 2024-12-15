@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day09().solve();
 
 class Day09 extends AdventDay {
-  Day09() : super(2023, 9, name: 'Mirage Maintenance');
+  Day09() : super(2023, 9);
 
   @override
   dynamic part1(String input) => parseHistories(input).map(extrapolateNext).sum;

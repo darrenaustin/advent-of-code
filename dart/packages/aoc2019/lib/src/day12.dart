@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 main() => Day12().solve();
 
 class Day12 extends AdventDay {
-  Day12() : super(2019, 12, name: 'The N-Body Problem');
+  Day12() : super(2019, 12);
 
   @override
   dynamic part1(String input, [int steps = 1000]) {

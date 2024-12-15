@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 main() => Day01().solve();
 
 class Day01 extends AdventDay {
-  Day01() : super(2020, 1, name: 'Report Repair');
+  Day01() : super(2020, 1);
 
   @override
   dynamic part1(String input) => pairs(expenseReport(input))

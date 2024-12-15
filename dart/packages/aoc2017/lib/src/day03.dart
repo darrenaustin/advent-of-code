@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 main() => Day03().solve();
 
 class Day03 extends AdventDay {
-  Day03() : super(2017, 3, name: 'Spiral Memory');
+  Day03() : super(2017, 3);
 
   @override
   dynamic part1(String input) => spiralPositions()

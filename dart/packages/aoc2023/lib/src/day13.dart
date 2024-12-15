@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 main() => Day13().solve();
 
 class Day13 extends AdventDay {
-  Day13() : super(2023, 13, name: 'Point of Incidence');
+  Day13() : super(2023, 13);
 
   @override
   dynamic part1(String input) => parseGrids(input).map(findMirrorValue).sum;

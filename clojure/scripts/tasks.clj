@@ -82,8 +82,8 @@
         answers      (if (fs/exists? answers-file)
                        (json/parse-string (slurp answers-file) true)
                        {})
-        problem (:body (curl/get (problem-url year day) headers))
-        name (second (re-find #"--- Day \d+: (.*) ---" problem))]
+        problem      (:body (curl/get (problem-url year day) headers))
+        name         (second (re-find #"--- Day \d+: (.*) ---" problem))]
     (fs/create-dirs (input-dir year))
     (spit answers-file (json/generate-string (assoc answers :name name)
                                              {:pretty true}))))

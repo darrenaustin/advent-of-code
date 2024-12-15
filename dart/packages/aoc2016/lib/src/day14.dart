@@ -8,7 +8,7 @@ import 'package:crypto/crypto.dart';
 main() => Day14().solve();
 
 class Day14 extends AdventDay {
-  Day14() : super(2016, 14, name: '');
+  Day14() : super(2016, 14);
 
   @override
   dynamic part1(String input) => indexOfKey(MD5Stream(input), 64);

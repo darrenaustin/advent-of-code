@@ -8,7 +8,7 @@ import 'package:aoc/util/string.dart';
 main() => Day09().solve();
 
 class Day09 extends AdventDay {
-  Day09() : super(2015, 9, name: 'All in a Single Night');
+  Day09() : super(2015, 9);
 
   @override
   dynamic part1(String input) => minDistanceBy(parseRoutes(input));

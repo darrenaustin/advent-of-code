@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 main() => Day08().solve();
 
 class Day08 extends AdventDay {
-  Day08() : super(2021, 8, name: 'Seven Segment Search');
+  Day08() : super(2021, 8);
 
   @override
   dynamic part1(String input) => input.lines.map(Entry.parse).map((entry) {

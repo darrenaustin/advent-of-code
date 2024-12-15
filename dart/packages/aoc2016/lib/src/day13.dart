@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 main() => Day13().solve();
 
 class Day13 extends AdventDay {
-  Day13() : super(2016, 13, name: 'A Maze of Twisty Little Cubicles');
+  Day13() : super(2016, 13);
 
   static const Vec _defaultGoal = Vec(31, 39);
 

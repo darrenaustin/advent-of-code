@@ -5,7 +5,7 @@ import 'package:aoc/aoc.dart';
 main() => Day09().solve();
 
 class Day09 extends AdventDay {
-  Day09() : super(2016, 9, name: 'Explosives in Cyberspace');
+  Day09() : super(2016, 9);
 
   @override
   dynamic part1(String input) => decompressedLength(input);

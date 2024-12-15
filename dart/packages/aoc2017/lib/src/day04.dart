@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day04().solve();
 
 class Day04 extends AdventDay {
-  Day04() : super(2017, 4, name: 'High-Entropy Passphrases');
+  Day04() : super(2017, 4);
 
   @override
   dynamic part1(String input) => input.lines.where(validPassphrase).length;

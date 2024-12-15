@@ -8,7 +8,7 @@ import 'package:crypto/crypto.dart';
 main() => Day04().solve();
 
 class Day04 extends AdventDay {
-  Day04() : super(2015, 4, name: 'The Ideal Stocking Stuffer');
+  Day04() : super(2015, 4);
 
   @override
   dynamic part1(String input) => searchMD5(input, '00000');

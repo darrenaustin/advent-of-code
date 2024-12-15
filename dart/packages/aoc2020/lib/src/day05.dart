@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day05().solve();
 
 class Day05 extends AdventDay {
-  Day05() : super(2020, 5, name: 'Binary Boarding');
+  Day05() : super(2020, 5);
 
   @override
   dynamic part1(String input) => input.lines.map(seatId).max;

@@ -7,7 +7,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day10().solve();
 
 class Day10 extends AdventDay {
-  Day10() : super(2023, 10, name: 'Pipe Maze');
+  Day10() : super(2023, 10);
 
   @override
   dynamic part1(String input) => findPath(Grid.parse(input)).length / 2;

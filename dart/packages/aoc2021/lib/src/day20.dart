@@ -8,7 +8,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day20().solve();
 
 class Day20 extends AdventDay {
-  Day20() : super(2021, 20, name: 'Trench Map');
+  Day20() : super(2021, 20);
 
   @override
   dynamic part1(String input) => _litAfterEnhancement(input, 2);

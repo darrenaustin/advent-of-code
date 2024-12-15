@@ -9,7 +9,7 @@ import 'package:collection/collection.dart';
 main() => Day14().solve();
 
 class Day14 extends AdventDay {
-  Day14() : super(2020, 14, name: 'Docking Data');
+  Day14() : super(2020, 14);
 
   @override
   dynamic part1(String input) =>

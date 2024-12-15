@@ -7,7 +7,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day25().solve();
 
 class Day25 extends AdventDay {
-  Day25() : super(2021, 25, name: 'Sea Cucumber');
+  Day25() : super(2021, 25);
 
   @override
   dynamic part1(String input) {

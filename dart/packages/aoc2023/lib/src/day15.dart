@@ -6,7 +6,7 @@ import 'package:collection/collection.dart';
 main() => Day15().solve();
 
 class Day15 extends AdventDay {
-  Day15() : super(2023, 15, name: 'Lens Library');
+  Day15() : super(2023, 15);
 
   @override
   dynamic part1(String input) => input.split(',').map(hash).sum;

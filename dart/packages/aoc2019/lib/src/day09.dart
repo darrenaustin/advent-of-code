@@ -7,7 +7,7 @@ import 'intcode.dart';
 main() => Day09().solve();
 
 class Day09 extends AdventDay {
-  Day09() : super(2019, 9, name: 'Sensor Boost');
+  Day09() : super(2019, 9);
 
   @override
   dynamic part1(String input) => keycode(input, 1);

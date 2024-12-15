@@ -11,7 +11,7 @@ import 'package:collection/collection.dart';
 main() => Day24().solve();
 
 class Day24 extends AdventDay {
-  Day24() : super(2016, 24, name: 'Air Duct Spelunking');
+  Day24() : super(2016, 24);
 
   @override
   dynamic part1(String input) => shortestPath(input);

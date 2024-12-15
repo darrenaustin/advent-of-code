@@ -8,7 +8,7 @@ import 'assembunny.dart';
 main() => Day25().solve();
 
 class Day25 extends AdventDay {
-  Day25() : super(2016, 25, name: 'Clock Signal');
+  Day25() : super(2016, 25);
 
   @override
   dynamic part1(String input) {

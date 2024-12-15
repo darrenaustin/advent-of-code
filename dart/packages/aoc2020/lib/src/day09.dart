@@ -6,7 +6,7 @@ import 'package:aoc/util/string.dart';
 main() => Day09().solve();
 
 class Day09 extends AdventDay {
-  Day09() : super(2020, 9, name: 'Encoding Error');
+  Day09() : super(2020, 9);
 
   @override
   dynamic part1(String input, [int preambleLength = 25]) =>

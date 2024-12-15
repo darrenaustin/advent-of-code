@@ -24,7 +24,7 @@ import 'package:collection/collection.dart';
 main() => Day16().solve();
 
 class Day16 extends AdventDay {
-  Day16() : super(2022, 16, name: 'Proboscidea Volcanium');
+  Day16() : super(2022, 16);
 
   @override
   dynamic part1(String input) => Volcano(input.lines, 'AA', 30).maxPressure();

@@ -7,7 +7,7 @@ import 'package:aoc/util/string.dart';
 main() => Day10().solve();
 
 class Day10 extends AdventDay {
-  Day10() : super(2017, 10, name: 'Knot Hash');
+  Day10() : super(2017, 10);
 
   @override
   dynamic part1(String input, [int numElements = 256]) {

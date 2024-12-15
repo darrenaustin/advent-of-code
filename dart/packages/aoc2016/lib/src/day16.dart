@@ -5,7 +5,7 @@ import 'package:aoc/aoc.dart';
 main() => Day16().solve();
 
 class Day16 extends AdventDay {
-  Day16() : super(2016, 16, name: 'Dragon Checksum');
+  Day16() : super(2016, 16);
 
   @override
   dynamic part1(String input, [int length = 272]) =>

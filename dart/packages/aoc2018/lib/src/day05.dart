@@ -9,7 +9,7 @@ import 'package:aoc/util/string.dart';
 main() => Day05().solve();
 
 class Day05 extends AdventDay {
-  Day05() : super(2018, 5, name: 'Alchemical Reduction');
+  Day05() : super(2018, 5);
 
   @override
   dynamic part1(String input) => fullyReact(input).length;

@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day07().solve();
 
 class Day07 extends AdventDay {
-  Day07() : super(2022, 7, name: 'No Space Left On Device');
+  Day07() : super(2022, 7);
 
   @override
   dynamic part1(String input) => fileSystem(input)

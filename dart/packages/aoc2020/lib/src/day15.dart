@@ -6,7 +6,7 @@ import 'package:aoc/util/collection.dart';
 main() => Day15().solve();
 
 class Day15 extends AdventDay {
-  Day15() : super(2020, 15, name: 'Rambunctious Recitation');
+  Day15() : super(2020, 15);
 
   @override
   dynamic part1(String input) => numberSpoken(parseNumbers(input), 2020);

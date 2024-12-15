@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 main() => Day14().solve();
 
 class Day14 extends AdventDay {
-  Day14() : super(2023, 14, name: 'Parabolic Reflector Dish');
+  Day14() : super(2023, 14);
 
   @override
   dynamic part1(String input) {

@@ -9,7 +9,7 @@ import 'package:aoc/util/vec.dart';
 main() => Day15().solve();
 
 class Day15 extends AdventDay {
-  Day15() : super(2021, 15, name: 'Chiton');
+  Day15() : super(2021, 15);
 
   @override
   dynamic part1(String input) => _lowestRisk(parseGrid(input));

@@ -5,7 +5,7 @@ import 'package:aoc/aoc.dart';
 main() => Day25().solve();
 
 class Day25 extends AdventDay {
-  Day25() : super(2015, 25, name: 'Let It Snow');
+  Day25() : super(2015, 25);
 
   @override
   dynamic part1(String input) =>

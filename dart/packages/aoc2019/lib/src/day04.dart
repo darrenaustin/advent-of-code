@@ -8,7 +8,7 @@ import 'package:aoc/util/range.dart';
 main() => Day04().solve();
 
 class Day04 extends AdventDay {
-  Day04() : super(2019, 4, name: 'Secure Container');
+  Day04() : super(2019, 4);
 
   @override
   dynamic part1(String input) {

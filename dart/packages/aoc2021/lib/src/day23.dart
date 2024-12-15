@@ -5,7 +5,7 @@ import 'package:aoc/aoc.dart';
 main() => Day23().solve();
 
 class Day23 extends AdventDay {
-  Day23() : super(2021, 23, name: 'Amphipod');
+  Day23() : super(2021, 23);
 
   static const A = 1;
   static const B = 10;

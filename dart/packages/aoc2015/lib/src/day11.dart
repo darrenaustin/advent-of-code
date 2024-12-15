@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 main() => Day11().solve();
 
 class Day11 extends AdventDay {
-  Day11() : super(2015, 11, name: 'Corporate Policy');
+  Day11() : super(2015, 11);
 
   @override
   dynamic part1(String input) => nextValidPassword('hxbxwxba');

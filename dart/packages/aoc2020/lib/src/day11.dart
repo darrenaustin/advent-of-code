@@ -11,7 +11,7 @@ main() => Day11().solve();
 typedef SeatRules = Grid<String> Function(Grid<String>);
 
 class Day11 extends AdventDay {
-  Day11() : super(2020, 11, name: 'Seating System');
+  Day11() : super(2020, 11);
 
   @override
   dynamic part1(String input) =>
