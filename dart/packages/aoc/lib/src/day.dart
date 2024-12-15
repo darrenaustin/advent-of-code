@@ -5,13 +5,13 @@ import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 
 abstract class AdventDay {
-  AdventDay(this.year, this.day, {this.name});
+  AdventDay(this.year, this.day);
 
   final int year;
   final int day;
-  final String? name;
 
   late final Map<String, dynamic> _answers = _loadAnswers(year, day);
+  dynamic get name => _answers['name'];
   dynamic get answer1 => _answers['answer1'];
   dynamic get answer2 => _answers['answer2'];
 
