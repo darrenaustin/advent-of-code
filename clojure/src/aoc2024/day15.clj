@@ -31,9 +31,8 @@
 
 (defn move-cells [grid locs dir]
   (let [cells (map grid locs)]
-    (apply assoc grid
-           (concat (mapcat vector locs (repeat \.))
-                   (mapcat vector (map vec+ locs (repeat dir)) cells)))))
+    (into grid (concat (map vector locs (repeat \.))
+                       (map vector (map vec+ locs (repeat dir)) cells)))))
 
 (defn moveable-in-dir [grid loc dir]
   (loop [blocks #{loc} check [loc]]
@@ -54,23 +53,17 @@
                  (recur (conj blocks loc pair-loc) (conj check' loc pair-loc))))))
       blocks)))
 
-(defn move-robot2 [grid dir]
+(defn move-robot [grid dir]
   (let [robot (loc-where grid #{\@})]
     (if-let [blocks (moveable-in-dir grid robot dir)]
       (move-cells grid blocks dir)
       grid)))
 
-(defn follow-directions [grid dirs move-fn]
-  (reduce (fn [g d] (move-fn g d)) grid dirs))
-
-(defn gps-coord [[x y]]
-  (+ (* 100 y) x))
-
 (defn solve [input box grid-fn]
   (let [[grid dirs] (parse input grid-fn)]
     (m/sum
-      (map gps-coord
-           (locs-where (follow-directions grid dirs move-robot2)
+      (map (fn [[x y]] (+ (* 100 y) x))
+           (locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
                        #{box})))))
 
 ;; TODO: speed up
