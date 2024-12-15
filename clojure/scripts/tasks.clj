@@ -1,38 +1,53 @@
 (ns tasks
   (:require
-   [babashka.fs :as fs]
-   [clojure.string :as str]
-   [selmer.parser :refer [render-file]]))
+    [babashka.curl :as curl]
+    [babashka.fs :as fs]
+    [cheshire.core :as json]
+    [clojure.string :as str]
+    [selmer.parser :refer [render-file]]))
 
-(def now          (java.time.LocalDate/now))
+(def now (java.time.LocalDate/now))
 (def current-year (.getYear now))
-(def current-day  (if (== current-year 2024)
-                    ;; 2024 started a day early.
-                    (inc (.getDayOfMonth now))
-                    (.getDayOfMonth now)))
+(def current-day (if (== current-year 2024)
+                   ;; 2024 started a day early.
+                   (inc (.getDayOfMonth now))
+                   (.getDayOfMonth now)))
 
 (def today {:year current-year :day current-day})
 
 (def aoc-url "https://adventofcode.com")
 
 (defn- problem-url [y d] (str aoc-url "/" y "/day/" d))
-(defn- input-url   [y d] (str (problem-url y d) "/input"))
+(defn- input-url [y d] (str (problem-url y d) "/input"))
 
-(defn- source-dir  [y]   (str "src/aoc" y))
+(defn- source-dir [y] (str "src/aoc" y))
 (defn- source-path [y d] (format "%s/day%02d.clj" (source-dir y) d))
-(defn- test-dir    [y]   (str "test/aoc" y))
-(defn- test-path   [y d] (format "%s/day%02d_test.clj" (test-dir y) d))
+(defn- test-dir [y] (str "test/aoc" y))
+(defn- test-path [y d] (format "%s/day%02d_test.clj" (test-dir y) d))
 ;; TODO: add a way to override this with an env var.
-(defn- input-dir   [y]   (str "../inputs/" y))
-(defn- input-path  [y d] (format "%s/%02d_input.txt" (input-dir y) d))
+(defn- input-dir [y] (str "../inputs/" y))
+(defn- input-path [y d] (format "%s/%02d_input.txt" (input-dir y) d))
 (defn- answer-path [y d] (format "%s/%02d_answer.json" (input-dir y) d))
 
 (def days-file "src/aoc/days.clj")
 
+(defn load-session []
+  (try
+    (str/trim (slurp "../.session"))
+    (catch Exception _ nil)))
+
+(defn aoc-headers []
+  (let [session (load-session)
+        headers {:headers
+                 {"UserAgent" (str "git@github.com:darrenaustin/advent-of-code.git by Darren Austin")}}]
+    (if session
+      (update-in headers [:headers] assoc "Cookie" (str "session=" session))
+      headers)))
+
 (defn- parse-day-spec [s]
   (if-let [[_ year _ day] (re-find #"(\d+)(\.(\d+))?" s)]
     {:year (when year (Integer/parseInt year))
-     :day  (when day  (Integer/parseInt day))}
+     :day  (when day (Integer/parseInt day))}
     (throw (Exception. (format "Invalid year.day argument: %s" s)))))
 
 (defn- file-empty? [file]
@@ -51,16 +66,27 @@
        sort
        (map (fn [[_ year day]]
               {:year (Integer/parseInt year)
-               :day (Integer/parseInt day)}))))
+               :day  (Integer/parseInt day)}))))
 
 (defn- create-day-files [{:keys [year day] :as date}]
   (fs/create-dirs (source-dir year))
   (create-file (source-path year day) "templates/src.clj.tmpl" date)
   (fs/create-dirs (test-dir year))
-  (create-file (test-path   year day) "templates/test.clj.tmpl" date)
+  (create-file (test-path year day) "templates/test.clj.tmpl" date)
   (fs/create-dirs (input-dir year))
-  (create-file (input-path  year day) "templates/input.txt.tmpl" date)
+  (create-file (input-path year day) "templates/input.txt.tmpl" date)
   (create-file (answer-path year day) "templates/answer.json.tmpl" date))
+
+(defn- update-day-name [year day headers]
+  (let [answers-file (answer-path year day)
+        answers      (if (fs/exists? answers-file)
+                       (json/parse-string (slurp answers-file) true)
+                       {})
+        problem (:body (curl/get (problem-url year day) headers))
+        name (second (re-find #"--- Day \d+: (.*) ---" problem))]
+    (fs/create-dirs (input-dir year))
+    (spit answers-file (json/generate-string (assoc answers :name name)
+                                             {:pretty true}))))
 
 (defn- days-require-str [dates]
   ;; Due to a lack of whitespace control in the `for`
@@ -92,3 +118,18 @@
         (create-day-files (assoc date :day day))))
 
     (update-days-file)))
+
+(defn fetch-day [& _]
+  (if (not= 1 (count *command-line-args*))
+    (println "Can only fetch one day specified with YYYY.DD")
+    (let [{:keys [year day]} (parse-day-spec (first *command-line-args*))
+          input-file (input-path year day)
+          headers    (aoc-headers)]
+      (fs/create-dirs (input-dir year))
+      (if (get-in headers [:headers "Cookie"])
+        (if (file-empty? input-file)
+          (do
+            (spit input-file (:body (curl/get (input-url year day) headers)))
+            (update-day-name year day headers))
+          (println (format "Fetching '%s' failed, file already exists." input-file)))
+        (println (format "Fetching '%s' failed, unable to load session file." input-file))))))

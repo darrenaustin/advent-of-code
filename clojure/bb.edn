@@ -10,6 +10,8 @@
                :task (shell "clj-kondo --parallel --lint src:test")}
   new-day     {:doc "Create skeleton src, test, input, and answer files for the given day."
                :task (exec 'tasks/new-day)}
+  fetch-day   {:doc "Download the input and name for the day."
+               :task (exec 'tasks/fetch-day)}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
                :task (clojure "-M:test --skip-meta :slow")}
   test-all    {:doc  "Run all tests."
