@@ -47,7 +47,7 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^")
     618 example-small
     9021 example))
 
-(deftest correct-answers
+(deftest ^:slow correct-answers
   (let [{:keys [answer1 answer2]} (day-answers 2024 15)]
     (is (= answer1 (d/part1 d/input)))
     (is (= answer2 (d/part2 d/input)))))
