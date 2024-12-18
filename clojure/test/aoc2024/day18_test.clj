@@ -37,7 +37,7 @@
 (deftest part2-example
   (is (= "6,1" (d/part2 example 12 [6 6]))))
 
-(deftest ^:slow correct-answers
+(deftest correct-answers
   (let [{:keys [answer1 answer2]} (day-answers 2024 18)]
     (is (= answer1 (d/part1 d/input)))
     (is (= answer2 (d/part2 d/input)))))
