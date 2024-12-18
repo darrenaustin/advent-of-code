@@ -16,6 +16,7 @@
 (def today {:year current-year :day current-day})
 
 (def aoc-url "https://adventofcode.com")
+;;(def aoc-url "https://darrenaustin.org")
 
 (defn- problem-url [y d] (str aoc-url "/" y "/day/" d))
 (defn- input-url [y d] (str (problem-url y d) "/input"))
@@ -39,7 +40,8 @@
 (defn aoc-headers []
   (let [session (load-session)
         headers {:headers
-                 {"UserAgent" (str "git@github.com:darrenaustin/advent-of-code.git by Darren Austin")}}]
+                 {"UserAgent" (str "git@github.com:darrenaustin/advent-of-code.git by Darren Austin")}
+                 :throw false}]
     (if session
       (update-in headers [:headers] assoc "Cookie" (str "session=" session))
       headers)))
@@ -82,11 +84,16 @@
         answers      (if (fs/exists? answers-file)
                        (json/parse-string (slurp answers-file) true)
                        {})
-        problem      (:body (curl/get (problem-url year day) headers))
-        name         (second (re-find #"--- Day \d+: (.*) ---" problem))]
-    (fs/create-dirs (input-dir year))
-    (spit answers-file (json/generate-string (assoc answers :name name)
-                                             {:pretty true}))))
+        response     (curl/get (problem-url year day) headers)
+        body         (:body (curl/get (problem-url year day) headers))
+        name         (second (re-find #"--- Day \d+: (.*) ---" body))]
+    (if (= (:status response) 200)
+      (do
+        (fs/create-dirs (input-dir year))
+        (spit answers-file (str (json/generate-string (assoc answers :name name)
+                                                      {:pretty true})
+                                "\n")))
+      (println "Error:" body))))
 
 (defn- days-require-str [dates]
   ;; Due to a lack of whitespace control in the `for`
@@ -128,8 +135,10 @@
       (fs/create-dirs (input-dir year))
       (if (get-in headers [:headers "Cookie"])
         (if (file-empty? input-file)
-          (do
-            (spit input-file (:body (curl/get (input-url year day) headers)))
-            (update-day-name year day headers))
+          (let [response (curl/get (input-url year day) headers)]
+            (if (= (:status response) 200)
+              (do (spit input-file (:body response))
+                  (update-day-name year day headers))
+              (println "Error:" (:body response))))
           (println (format "Fetching '%s' failed, file already exists." input-file)))
         (println (format "Fetching '%s' failed, unable to load session file." input-file))))))
