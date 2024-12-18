@@ -55,6 +55,9 @@
                  y (range (count lines))]
              [[x y] (value-fn (get-in lines [y x]))])))))
 
+(defn init-grid [locs default]
+  (into {} (for [loc locs] [loc default])))
+
 (defn area-bounds [locs]
   (reduce (fn [[min-loc max-loc] loc]
             [(map min min-loc loc) (map max max-loc loc)])
