@@ -14,7 +14,7 @@
   (let [[_ min-coords]
         (reduce
          (fn [[min-dist min-coords] coord]
-           (let [dist (m/manhatten-distance pos coord)]
+           (let [dist (m/manhattan-distance pos coord)]
              (cond
                (< dist min-dist) [dist [coord]]
                (= dist min-dist) [dist (conj min-coords coord)]
@@ -66,7 +66,7 @@
 
 (defn within-dist? [pos coords dist]
   (reduce (fn [dist-sum coord]
-            (let [coord-dist (m/manhatten-distance pos coord)
+            (let [coord-dist (m/manhattan-distance pos coord)
                   new-sum (+ dist-sum coord-dist)]
               (if (< new-sum dist)
                 new-sum

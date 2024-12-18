@@ -7,5 +7,16 @@
 (defn distance [x y]
   (abs (- x y)))
 
-(defn manhatten-distance [pos-a pos-b]
+(defn manhattan-distance [pos-a pos-b]
   (apply + (map distance pos-a pos-b)))
+
+(defn mins-by [n-fn coll]
+  (reduce (fn [[mn mins] e]
+            (let [n (n-fn e)]
+              (case (compare mn n)
+                -1 [mn mins]
+                0 [mn (conj mins e)]
+                1 [n [e]]
+                )))
+          [Integer/MAX_VALUE []]
+          coll))
