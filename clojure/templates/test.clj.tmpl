@@ -4,21 +4,23 @@
             [aoc{{year}}.day{{day}} :as d]
             [clojure.test :refer :all]))
 
-(def example-input
+(def example
   "")
 
 (deftest part1-example
-  (is (= nil (d/part1 example-input))))
+  (is (= nil (d/part1 example))))
 
 (deftest part1-examples
-  (are [expected input] (= expected (d/part1 input))
+  (are [expected input]
+    (= expected (d/part1 input))
     nil ""))
 
 (deftest part2-example
-  (is (= nil (d/part2 example-input))))
+  (is (= nil (d/part2 example))))
 
 (deftest part2-examples
-  (are [expected input] (= expected (d/part2 input))
+  (are [expected input]
+    (= expected (d/part2 input))
     nil ""))
 
 (deftest correct-answers
