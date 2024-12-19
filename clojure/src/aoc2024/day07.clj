@@ -7,7 +7,7 @@
    [clojure.edn :as edn]
    [clojure.string :as str]))
 
-(def input (d/day-input 2024 7))
+(defn input [] (d/day-input 2024 7))
 
 (defn parse-equations [input]
   (map s/parse-ints (str/split-lines input)))

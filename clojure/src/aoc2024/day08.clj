@@ -5,7 +5,7 @@
    [aoc.util.grid :refer [parse-grid vec+ vec-]]
    [clojure.math.combinatorics :as combo]))
 
-(def input (d/day-input 2024 8))
+(defn input [] (d/day-input 2024 8))
 
 (defn antennas [grid]
   (map keys (map val (dissoc (group-by val grid) \.))))

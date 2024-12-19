@@ -4,7 +4,7 @@
    [aoc.day :as d]
    [aoc.util.grid :refer :all]))
 
-(def input (d/day-input 2015 3))
+(defn input [] (d/day-input 2015 3))
 
 (def dirs {\^ dir-up
            \v dir-down

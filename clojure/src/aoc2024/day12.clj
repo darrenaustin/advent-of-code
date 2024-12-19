@@ -5,7 +5,7 @@
     [aoc.util.grid :refer :all]
     [aoc.util.math :as m]))
 
-(def input (d/day-input 2024 12))
+(defn input [] (d/day-input 2024 12))
 
 (defn edge-perimeter [region]
   (m/sum (map #(count (filter (fn [l] (not (region l))) (orthogonal-from %)))

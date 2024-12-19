@@ -6,7 +6,7 @@
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
-(def input (d/day-input 2024 5))
+(defn input [] (d/day-input 2024 5))
 
 (defn parse-input [input]
   (->> (str/split input #"\n\n")

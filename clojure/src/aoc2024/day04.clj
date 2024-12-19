@@ -6,7 +6,7 @@
    [aoc.util.grid :refer :all]
    [aoc.util.math :as m]))
 
-(def input (d/day-input 2024 4))
+(defn input [] (d/day-input 2024 4))
 
 (def xmas (c/indexed "XMAS"))
 

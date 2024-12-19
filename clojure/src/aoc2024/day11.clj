@@ -6,7 +6,7 @@
    [aoc.util.string :as s]
    [clojure.math :as math]))
 
-(def input (d/day-input 2024 11))
+(defn input [] (d/day-input 2024 11))
 
 (def stone-count-for
   (memoize

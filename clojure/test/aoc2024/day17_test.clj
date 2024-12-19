@@ -46,6 +46,6 @@ Program: 0,3,5,4,3,0")
   (is (= 117440 (d/part2 example2))))
 
 (deftest ^:slow correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 17)]
-    (is (= answer1 (d/part1 d/input)))
-    (is (= answer2 (d/part2 d/input)))))
+  (let [{:keys [answer1 answer2]} (day-answers 2024 17) input (d/input)]
+    (is (= answer1 (d/part1 input)))
+    (is (= answer2 (d/part2 input)))))

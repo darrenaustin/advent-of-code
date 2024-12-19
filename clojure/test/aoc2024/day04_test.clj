@@ -22,6 +22,6 @@ MXMXAXMASX")
   (is (= 9 (d/part2 example-input))))
 
 (deftest correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 4)]
-    (is (= answer1 (d/part1 d/input)))
-    (is (= answer2 (d/part2 d/input)))))
+  (let [{:keys [answer1 answer2]} (day-answers 2024 4) input (d/input)]
+    (is (= answer1 (d/part1 input)))
+    (is (= answer2 (d/part2 input)))))

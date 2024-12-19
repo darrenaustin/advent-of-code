@@ -4,7 +4,7 @@
    [aoc.day :as d]
    [aoc.util.grid :refer :all]))
 
-(def input (d/day-input 2024 6))
+(defn input [] (d/day-input 2024 6))
 
 (def right-turn
   {dir-up dir-right

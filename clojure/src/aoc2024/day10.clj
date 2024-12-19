@@ -7,7 +7,7 @@
    [aoc.util.math :as m]
    [aoc.util.string :as s]))
 
-(def input (d/day-input 2024 10))
+(defn input [] (d/day-input 2024 10))
 
 (defn update-summits-from [grid summits loc]
   (let [target (dec (grid loc))

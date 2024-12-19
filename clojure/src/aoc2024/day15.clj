@@ -6,7 +6,7 @@
     [aoc.util.math :as m]
     [clojure.string :as str]))
 
-(def input (d/day-input 2024 15))
+(defn input [] (d/day-input 2024 15))
 
 (def robot-dirs
   {\^ dir-up

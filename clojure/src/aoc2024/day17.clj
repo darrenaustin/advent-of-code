@@ -5,7 +5,7 @@
     [aoc.util.string :as s]
     [clojure.string :as str]))
 
-(def input (d/day-input 2024 17))
+(defn input [] (d/day-input 2024 17))
 
 (defn parse-machine [input]
   (let [[a b c & code] (s/parse-ints input)]

@@ -51,7 +51,7 @@
     (println (format "%s, %s%s" answer correct time-desc))))
 
 (defn execute [year day-num]
-  (let [input (or (day-val year day-num "input") "")
+  (let [input (or ((day-val year day-num "input")) "")
         answers (day-answers year day-num)
         name (or (:name answers) "<UNKNOWN>")
         part1 (day-var year day-num "part1")

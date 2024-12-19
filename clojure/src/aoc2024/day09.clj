@@ -5,7 +5,7 @@
    [aoc.util.collection :as c]
    [aoc.util.math :as m]))
 
-(def input (d/day-input 2024 9))
+(defn input [] (d/day-input 2024 9))
 
 (defn expand-file-map [input]
   (vec (apply concat (map-indexed

@@ -5,7 +5,7 @@
     [aoc.util.grid :refer :all]
     [aoc.util.string :as s]))
 
-(def input (d/day-input 2024 14))
+(defn input [] (d/day-input 2024 14))
 
 (defn parse-robots [input]
   (reduce (fn [[pos vel] [p v]] [(conj pos p) (conj vel v)])

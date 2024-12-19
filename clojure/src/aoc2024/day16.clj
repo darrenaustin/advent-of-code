@@ -5,7 +5,7 @@
     [aoc.util.grid :refer :all]
     [aoc.util.pathfinding :as path]))
 
-(def input (d/day-input 2024 16))
+(defn input [] (d/day-input 2024 16))
 
 (defn parse [input]
   (let [grid  (parse-grid input)

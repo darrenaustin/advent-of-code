@@ -5,7 +5,7 @@
    [aoc.util.math :as m]
    [aoc.util.string :as s]))
 
-(def input (d/day-input 2018 6))
+(defn input [] (d/day-input 2018 6))
 
 (defn parse-coords [input]
   (partition 2 (s/parse-ints input)))

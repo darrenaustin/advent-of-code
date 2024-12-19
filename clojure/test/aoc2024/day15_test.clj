@@ -48,6 +48,6 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^")
     9021 example))
 
 (deftest ^:slow correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 15)]
-    (is (= answer1 (d/part1 d/input)))
-    (is (= answer2 (d/part2 d/input)))))
+  (let [{:keys [answer1 answer2]} (day-answers 2024 15) input (d/input)]
+    (is (= answer1 (d/part1 input)))
+    (is (= answer2 (d/part2 input)))))

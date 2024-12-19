@@ -10,6 +10,6 @@
   (is (= 48 (d/part2 "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"))))
 
 (deftest correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 3)]
-    (is (= answer1 (d/part1 d/input)))
-    (is (= answer2 (d/part2 d/input)))))
+  (let [{:keys [answer1 answer2]} (day-answers 2024 3) input (d/input)]
+    (is (= answer1 (d/part1 input)))
+    (is (= answer2 (d/part2 input)))))
