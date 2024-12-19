@@ -13,7 +13,7 @@
 
 (defn day-input [year day-num]
   (try
-    (string/trimr (slurp (input-file-name year day-num)))
+    (string/trim (slurp (input-file-name year day-num)))
     (catch Exception _ "")))
 
 (defn day-answers [year day-num]
