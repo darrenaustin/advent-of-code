@@ -3,12 +3,13 @@
 (defn num-digits [n] (count (str n)))
 
 (defn sum [l] (reduce + l))
+(defn product [l] (reduce * l))
 
 (defn distance [x y]
   (abs (- x y)))
 
 (defn manhattan-distance [pos-a pos-b]
-  (apply + (map distance pos-a pos-b)))
+  (sum (map distance pos-a pos-b)))
 
 (defn mins-by [n-fn coll]
   (reduce (fn [[mn mins] e]
