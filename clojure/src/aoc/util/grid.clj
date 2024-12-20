@@ -91,3 +91,14 @@
 
 (defn loc-where [grid pred]
   (first (locs-where grid pred)))
+
+(defn diamond-around [min-radius max-radius [x y]]
+  (into #{}
+        (for [radius (range min-radius (inc max-radius))
+              ry     (range (inc radius))
+              :let [rx (- radius ry)]
+              n      [[(+ x rx) (+ y ry)]
+                      [(+ x rx) (- y ry)]
+                      [(- x rx) (+ y ry)]
+                      [(- x rx) (- y ry)]]]
+          n)))
