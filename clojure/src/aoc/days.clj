@@ -28,5 +28,6 @@
    [aoc2024.day17]
    [aoc2024.day18]
    [aoc2024.day19]
-   [aoc2024.day20]))
+   [aoc2024.day20]
+   [aoc2024.day21]))
 

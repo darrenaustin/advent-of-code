@@ -8,3 +8,6 @@
 
 (defn group-by-value [m]
   (reduce (fn [m [k v]] (update m v conj k)) {} m))
+
+(defn val->key [m]
+  (into {} (for [[k v] m] [v k])))
