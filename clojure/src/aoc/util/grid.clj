@@ -93,12 +93,15 @@
   (first (locs-where grid pred)))
 
 (defn diamond-around [min-radius max-radius [x y]]
-  (into #{}
-        (for [radius (range min-radius (inc max-radius))
-              ry     (range (inc radius))
-              :let [rx (- radius ry)]
-              n      [[(+ x rx) (+ y ry)]
-                      [(+ x rx) (- y ry)]
-                      [(- x rx) (+ y ry)]
-                      [(- x rx) (- y ry)]]]
-          n)))
+  (for [radius (range min-radius (inc max-radius))
+        ry     (range (inc radius))
+        :let [rx (- radius ry)]
+        n      (cond
+                 (= 0 rx ry) [[x y]]
+                 (zero? rx) [[x (+ y ry)] [x (- y ry)]]
+                 (zero? ry) [[(+ x rx) y] [(- x rx) y]]
+                 :else [[(+ x rx) (+ y ry)]
+                        [(+ x rx) (- y ry)]
+                        [(- x rx) (+ y ry)]
+                        [(- x rx) (- y ry)]])]
+    n))

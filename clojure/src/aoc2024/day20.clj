@@ -20,7 +20,8 @@
     (loop [head start dist 1 dists {start 0}]
       (if (= head end)
         dists
-        (let [step (first (filter #(and (path %) (not (dists %))) (orthogonal-from head)))]
+        (let [step (first (filter #(and (path %) (not (dists %)))
+                                  (orthogonal-from head)))]
           (recur step (inc dist) (assoc dists step dist)))))))
 
 
