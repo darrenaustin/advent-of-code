@@ -1,7 +1,7 @@
 (ns aoc2015.day03-test
   (:require [aoc.day :refer [day-answers]]
             [aoc2015.day03 :as d]
-            [clojure.test :refer [deftest are is]]))
+            [clojure.test :refer :all]))
 
 (deftest part1-example
   (are [expected input] (= expected (d/part1 input))
