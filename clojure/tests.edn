@@ -13,11 +13,7 @@
         ;;   {:id :2022 :test-paths ["test/aoc2022"]}
         ;;   {:id :2023 :test-paths ["test/aoc2023"]}
           {:id :2024 :test-paths ["test/aoc2024"]}]
-  :plugins [:kaocha.plugin/print-invocations
-            ;; :kaocha.plugin/profiling
-            ]
+  :plugins [:kaocha.plugin/print-invocations]
   :capture-output? true
   :color? true
-;;   :kaocha.plugin.profiling/count 10
-;;   :kaocha.plugin.profiling/profiling? true
   }
