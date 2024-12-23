@@ -1,11 +1,14 @@
 ;; https://adventofcode.com/2024/day/23
 (ns aoc2024.day23
   (:require [aoc.day :as d]
-            [clojure.math.combinatorics :as combo]
+            [aoc.util.string :as s]
             [clojure.set :as set]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 23))
+
+(defn parse-edges [input]
+  (map #(str/split % #"-") (str/split-lines input)))
 
 (defn parse-graph [input]
   (reduce (fn [graph [v1 v2]]
@@ -13,7 +16,7 @@
               v1 (conj (get graph v1 #{}) v2)
               v2 (conj (get graph v2 #{}) v1)))
           {}
-          (map #(str/split % #"-") (str/split-lines input))))
+          (parse-edges input)))
 
 (defn mutual? [graph n node-set]
   (or (node-set n) (empty? (set/difference node-set (graph n)))))
@@ -30,18 +33,17 @@
 (defn cliques [graph]
   (set (mapv #(clique-for graph %) (keys graph))))
 
-(defn connected? [graph [a b c]]
-  (and
-    (contains? (graph a) b)
-    (contains? (graph a) c)
-    (contains? (graph b) c)))
-
 (defn connected-triples [graph including]
   (let [possible (filter (fn [i] (<= 2 (count (graph i)))) (keys graph))]
-    (filter #(and
-               (some including %)
-               (connected? graph %))
-            (combo/combinations possible 3))))
+    (for [a possible
+          b possible :when (s/string< a b)
+          c possible :when (s/string< a b c)
+          :let [triplet [a b c]]
+          :when (and (some including triplet)
+                         ((graph a) b)
+                         ((graph a) c)
+                         ((graph b) c))]
+          triplet)))
 
 (defn part1 [input]
   (let [graph   (parse-graph input)
