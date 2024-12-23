@@ -9,6 +9,7 @@
             [aoc2015.day03]
             [aoc2018.day06]
             [aoc2018.day07]
+            [aoc2018.day08]
             [aoc2024.day01]
             [aoc2024.day02]
             [aoc2024.day03]
