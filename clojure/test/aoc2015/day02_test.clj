@@ -4,12 +4,14 @@
             [clojure.test :refer :all]))
 
 (deftest part1-examples
-  (are [expected input] (= expected (d/part1 input))
+  (are [expected input]
+    (= expected (d/part1 input))
     58 "2x3x4"
     43 "1x1x10"))
 
 (deftest part2-examples
-  (are [expected input] (= expected (d/part2 input))
+  (are [expected input]
+    (= expected (d/part2 input))
     34 "2x3x4"
     14 "1x1x10"))
 

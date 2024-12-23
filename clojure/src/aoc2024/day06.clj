@@ -1,16 +1,15 @@
 ;; https://adventofcode.com/2024/day/6
 (ns aoc2024.day06
-  (:require
-   [aoc.day :as d]
-   [aoc.util.grid :refer :all]))
+  (:require [aoc.day :as d]
+            [aoc.util.grid :refer :all]))
 
 (defn input [] (d/day-input 2024 6))
 
 (def right-turn
-  {dir-up dir-right
+  {dir-up    dir-right
    dir-right dir-down
-   dir-down dir-left
-   dir-left dir-up})
+   dir-down  dir-left
+   dir-left  dir-up})
 
 (defn walk-guard [grid guard]
   (loop [guard guard dir dir-up visited #{guard}]
@@ -47,7 +46,7 @@
   (loc-where grid (partial = \^)))
 
 (defn part1 [input]
-  (let [grid (parse-grid input)
+  (let [grid  (parse-grid input)
         guard (guard-location grid)]
     (count (walk-guard grid guard))))
 
@@ -57,8 +56,8 @@
 ;; Only need to put obstacles in the path from part 1 as the guard
 ;; won't run into the others.
 (defn part2 [input]
-  (let [grid (parse-grid input)
-        guard (guard-location grid)
+  (let [grid       (parse-grid input)
+        guard      (guard-location grid)
         guard-path (disj (walk-guard grid guard) guard)]
     (count (filter #(looping-guard? (place-obstruction grid %) guard)
                    guard-path))))

@@ -1,9 +1,8 @@
 ;; https://adventofcode.com/2024/day/14
 (ns aoc2024.day14
-  (:require
-    [aoc.day :as d]
-    [aoc.util.grid :refer :all]
-    [aoc.util.string :as s]))
+  (:require [aoc.day :as d]
+            [aoc.util.grid :refer :all]
+            [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2024 14))
 
@@ -22,7 +21,7 @@
   ;; if no robots are at the same location.
   (first (filter
            (fn [sec] (let [locs (simulate robots velocities bounds sec)]
-                     (= (count locs) (count (set locs)))))
+                       (= (count locs) (count (set locs)))))
            (range (apply * bounds)))))
 
 (defn quadrants [bounds]

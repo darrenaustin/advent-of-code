@@ -1,9 +1,8 @@
 ;; https://adventofcode.com/2024/day/20
 (ns aoc2024.day20
-  (:require
-    [aoc.day :as d]
-    [aoc.util.grid :refer :all]
-    [aoc.util.math :as m]))
+  (:require [aoc.day :as d]
+            [aoc.util.grid :refer :all]
+            [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2024 20))
 

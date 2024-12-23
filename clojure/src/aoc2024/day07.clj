@@ -1,11 +1,10 @@
 ;; https://adventofcode.com/2024/day/7
 (ns aoc2024.day07
-  (:require
-   [aoc.day :as d]
-   [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.edn :as edn]
-   [clojure.string :as str]))
+  (:require [aoc.day :as d]
+            [aoc.util.math :as m]
+            [aoc.util.string :as s]
+            [clojure.edn :as edn]
+            [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 7))
 
@@ -36,7 +35,7 @@
 ;; TODO: speed up
 (defn part2 [input]
   (->> input
-      parse-equations
-      (filter #(possible-equation? % [+ * ||]))
-      (map first)
-      m/sum))
+       parse-equations
+       (filter #(possible-equation? % [+ * ||]))
+       (map first)
+       m/sum))

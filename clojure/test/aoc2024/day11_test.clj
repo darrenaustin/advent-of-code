@@ -5,14 +5,15 @@
             [clojure.test :refer :all]))
 
 (deftest example
-  (are [expected input] (= expected (d/blink "125 17" input))
-    2     0
-    3     1
-    4     2
-    5     3
-    9     4
-    13    5
-    22    6
+  (are [expected input]
+    (= expected (d/blink "125 17" input))
+    2 0
+    3 1
+    4 2
+    5 3
+    9 4
+    13 5
+    22 6
     55312 25))
 
 (deftest correct-answers

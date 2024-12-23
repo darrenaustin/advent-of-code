@@ -1,9 +1,8 @@
 ;; https://adventofcode.com/2018/day/6
 (ns aoc2018.day06
-  (:require
-   [aoc.day :as d]
-   [aoc.util.math :as m]
-   [aoc.util.string :as s]))
+  (:require [aoc.day :as d]
+            [aoc.util.math :as m]
+            [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 6))
 
@@ -13,23 +12,23 @@
 (defn closest-to [pos coords]
   (let [[_ min-coords]
         (reduce
-         (fn [[min-dist min-coords] coord]
-           (let [dist (m/manhattan-distance pos coord)]
-             (cond
-               (< dist min-dist) [dist [coord]]
-               (= dist min-dist) [dist (conj min-coords coord)]
-               :else [min-dist min-coords])))
-         [Integer/MAX_VALUE nil]
-         coords)]
+          (fn [[min-dist min-coords] coord]
+            (let [dist (m/manhattan-distance pos coord)]
+              (cond
+                (< dist min-dist) [dist [coord]]
+                (= dist min-dist) [dist (conj min-coords coord)]
+                :else [min-dist min-coords])))
+          [Integer/MAX_VALUE nil]
+          coords)]
     (when (= 1 (count min-coords))
       (first min-coords))))
 
 (defn map-bounds [coords]
   (reduce
-   (fn [[min-x min-y max-x max-y] [x y]]
-     [(min min-x x) (min min-y y) (max max-x x) (max max-y y)])
-   [Integer/MAX_VALUE Integer/MAX_VALUE 0 0]
-   coords))
+    (fn [[min-x min-y max-x max-y] [x y]]
+      [(min min-x x) (min min-y y) (max max-x x) (max max-y y)])
+    [Integer/MAX_VALUE Integer/MAX_VALUE 0 0]
+    coords))
 
 (defn map-positions [[min-x min-y max-x max-y]]
   (for [x (range min-x (inc max-x))
@@ -38,15 +37,15 @@
 
 (defn area-map [coords bounds]
   (reduce
-   (fn [closest pos]
-     (if-let [coord (closest-to pos coords)]
-       (update closest coord conj pos)
-       closest))
-   {}
-   (map-positions bounds)))
+    (fn [closest pos]
+      (if-let [coord (closest-to pos coords)]
+        (update closest coord conj pos)
+        closest))
+    {}
+    (map-positions bounds)))
 
 (defn on-edge? [[x y] [min-x min-y max-x max-y]]
-   (or (= x min-x) (= x max-x)
+  (or (= x min-x) (= x max-x)
       (= y min-y) (= y max-y)))
 
 (defn infinite-area? [area-pos bounds]
@@ -60,13 +59,13 @@
 (defn part1 [input]
   (let [coords (parse-coords input)
         bounds (map-bounds coords)
-        areas (finite-areas (area-map coords bounds) bounds)]
+        areas  (finite-areas (area-map coords bounds) bounds)]
     (apply max (map count (vals areas)))))
 
 (defn within-dist? [pos coords dist]
   (reduce (fn [dist-sum coord]
             (let [coord-dist (m/manhattan-distance pos coord)
-                  new-sum (+ dist-sum coord-dist)]
+                  new-sum    (+ dist-sum coord-dist)]
               (if (< new-sum dist)
                 new-sum
                 (reduced nil))))

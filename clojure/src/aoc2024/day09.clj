@@ -1,20 +1,19 @@
 ;; https://adventofcode.com/2024/day/9
 (ns aoc2024.day09
-  (:require
-   [aoc.day :as d]
-   [aoc.util.collection :as c]
-   [aoc.util.math :as m]))
+  (:require [aoc.day :as d]
+            [aoc.util.collection :as c]
+            [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2024 9))
 
 (defn expand-file-map [input]
-  (vec (apply concat (map-indexed
-                      (fn [i [f e]]
-                        (concat (repeat f i) (when e (repeat e nil))))
-                      (partition-all 2 (map #(read-string (str %)) input))))))
+  (vec (apply concat
+              (map-indexed
+                (fn [i [f e]] (concat (repeat f i) (when e (repeat e nil))))
+                (partition-all 2 (map #(read-string (str %)) input))))))
 
 (defn defrag-blocks [file-map]
-  (let [open-indices (filter identity (map-indexed (fn [i e] (when (nil? e) i)) file-map))
+  (let [open-indices  (filter identity (map-indexed (fn [i e] (when (nil? e) i)) file-map))
         value-indices (reverse (filter identity (map-indexed (fn [i e] (when e i)) file-map)))]
     (reduce (fn [fm [oi vi]]
               (if (< vi (count value-indices))
@@ -39,10 +38,10 @@
 (defn move-file [block-groups file-idx open-idx]
   (let [[file-val file-sz] (get block-groups file-idx)
         [_ space-sz] (get block-groups open-idx)
-        extra-space (- space-sz file-sz)
+        extra-space       (- space-sz file-sz)
         file-moved-groups (assoc block-groups
-                                 file-idx [nil file-sz]
-                                 open-idx [file-val file-sz])]
+                            file-idx [nil file-sz]
+                            open-idx [file-val file-sz])]
     (if (zero? extra-space)
       file-moved-groups
       (coll-insert file-moved-groups (inc open-idx) [nil extra-space]))))
@@ -67,7 +66,7 @@
         (vec (mapcat (fn [[v sz]] (repeat sz v)) block-groups))))))
 
 (defn checksum [file-map]
- (m/sum (map-indexed (fn [i e] (if e (* i e) 0)) file-map)))
+  (m/sum (map-indexed (fn [i e] (if e (* i e) 0)) file-map)))
 
 ;; TODO: clean up and speed up!
 (defn part1 [input]

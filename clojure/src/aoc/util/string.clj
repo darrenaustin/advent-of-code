@@ -2,7 +2,7 @@
   (:require [clojure.string :as str]))
 
 (defn- read-int [s]
-  ;; read-string treats a leading '0' as an octal number
+  ;; read-string treats a leading '0' as an octal number. Sigh.
   (read-string (cond
                  (= s "0") s
                  (str/starts-with? s "0") (subs s 1)

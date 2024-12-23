@@ -1,9 +1,8 @@
 ;; https://adventofcode.com/2024/day/17
 (ns aoc2024.day17
-  (:require
-    [aoc.day :as d]
-    [aoc.util.string :as s]
-    [clojure.string :as str]))
+  (:require [aoc.day :as d]
+            [aoc.util.string :as s]
+            [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 17))
 
@@ -22,7 +21,7 @@
     (if (>= pc (count code))
       m
       (let [pc' (+ pc 2)
-            m' (assoc m :pc pc')
+            m'  (assoc m :pc pc')
             [op arg] (subvec code pc pc')]
         (case op
           ;; adv
@@ -55,8 +54,8 @@
   (str/join "," (:output (execute (parse-machine input)))))
 
 (defn part2 [input]
-  (let [machine (parse-machine input)
-        code (:code machine)
+  (let [machine    (parse-machine input)
+        code       (:code machine)
         last-digit (dec (count code))]
     (loop [a 0 digit 0]
       (let [output (:output (execute (assoc machine :a a)))]

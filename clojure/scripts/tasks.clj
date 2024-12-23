@@ -105,8 +105,8 @@
   ;; require form here and pass it into the template.
   (->> dates
        (map (fn [{:keys [year day]}]
-              (format "   [aoc%d.day%02d]" year day)))
-       (str/join "\n")))
+              (format "[aoc%d.day%02d]" year day)))
+       (str/join "\n            ")))
 
 (defn update-days-file [& _]
   (let [dates (days-require-str (find-implemented-dates))]

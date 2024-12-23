@@ -1,10 +1,9 @@
 ;; https://adventofcode.com/2024/day/15
 (ns aoc2024.day15
-  (:require
-    [aoc.day :as d]
-    [aoc.util.grid :refer :all]
-    [aoc.util.math :as m]
-    [clojure.string :as str]))
+  (:require [aoc.day :as d]
+            [aoc.util.grid :refer :all]
+            [aoc.util.math :as m]
+            [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 15))
 

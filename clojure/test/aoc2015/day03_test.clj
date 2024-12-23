@@ -4,15 +4,17 @@
             [clojure.test :refer :all]))
 
 (deftest part1-example
-  (are [expected input] (= expected (d/part1 input))
+  (are [expected input]
+    (= expected (d/part1 input))
     2 ">"
     4 "^>v<"
     2 "^v^v^v^v^v"))
 
 (deftest part2-example
-  (are [expected input] (= expected (d/part2 input))
-    3  "^v"
-    3  "^>v<"
+  (are [expected input]
+    (= expected (d/part2 input))
+    3 "^v"
+    3 "^>v<"
     11 "^v^v^v^v^v"))
 
 (deftest correct-answers

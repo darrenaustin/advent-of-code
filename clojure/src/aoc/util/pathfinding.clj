@@ -1,7 +1,6 @@
 (ns aoc.util.pathfinding
-  (:require
-    [aoc.util.math :as m]
-    [clojure.data.priority-map :refer [priority-map priority-map-keyfn]]))
+  (:require [aoc.util.math :as m]
+            [clojure.data.priority-map :refer [priority-map priority-map-keyfn]]))
 
 ;; Modified from a blog post with an elegant Dijkstra implementation:
 ;; https://ummels.de/2014/06/08/dijkstra-in-clojure/

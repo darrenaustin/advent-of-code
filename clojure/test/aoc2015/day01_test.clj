@@ -4,19 +4,21 @@
             [clojure.test :refer :all]))
 
 (deftest part1-examples
-  (are [expected input] (= expected (d/part1 input))
-    0  "(())"
-    0  "()()"
-    3  "((("
-    3  "(()(()("
-    3  "))((((("
+  (are [expected input]
+    (= expected (d/part1 input))
+    0 "(())"
+    0 "()()"
+    3 "((("
+    3 "(()(()("
+    3 "))((((("
     -1 "())"
     -1 "))("
     -3 ")))"
     -3 ")())())"))
 
 (deftest part2-example
-  (are [expected input] (= expected (d/part2 input))
+  (are [expected input]
+    (= expected (d/part2 input))
     1 ")"
     5 "()())"))
 

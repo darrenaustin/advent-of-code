@@ -1,6 +1,5 @@
 (ns aoc.util.grid
-  (:require
-    [clojure.string :as str :refer [join]]))
+  (:require [clojure.string :as str]))
 
 (def origin [0 0])
 
@@ -82,9 +81,9 @@
 
 (defn grid->str
   ([grid]
-   (join "\n" (grid->str-vec grid)))
+   (str/join "\n" (grid->str-vec grid)))
   ([grid empty-value]
-   (join "\n" (grid->str-vec grid empty-value))))
+   (str/join "\n" (grid->str-vec grid empty-value))))
 
 (defn locs-where [grid pred]
   (map key (filter #(pred (val %)) grid)))
