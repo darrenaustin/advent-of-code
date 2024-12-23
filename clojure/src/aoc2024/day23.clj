@@ -44,74 +44,14 @@
             (combo/combinations possible 3))))
 
 (defn part1 [input]
-  (let [graph       (parse-graph input)
-        t-nodes     (filter #(str/starts-with? % "t") (keys graph))]
+  (let [graph   (parse-graph input)
+        t-nodes (filter #(str/starts-with? % "t") (keys graph))]
     (count (connected-triples graph (set t-nodes)))))
 
 (defn part2 [input]
-  (str/join "," (sort (apply max-key count (cliques (parse-graph input))))))
-
-(def t "kh-tc
-qp-kh
-de-cg
-ka-co
-yn-aq
-qp-ub
-cg-tb
-vc-aq
-tb-ka
-wh-tc
-yn-cg
-kh-ub
-ta-co
-de-co
-tc-td
-tb-wq
-wh-td
-ta-ka
-td-qp
-aq-cg
-wq-ub
-ub-vc
-de-ta
-wq-aq
-wq-vc
-wh-yn
-ka-de
-kh-ta
-co-tc
-wh-qp
-tb-vc
-td-yn")
-
-(def trips "
-aq,cg,yn
-aq,vc,wq
-co,de,ka
-co,de,ta
-co,ka,ta
-de,ka,ta
-kh,qp,ub
-qp,td,wh
-tb,vc,wq
-tc,td,wh
-td,wh,yn
-ub,vc,wq")
-
-(def g
-  {'A' ['B', 'C', 'D' 'E'],
-   'B' ['A', 'C', 'D'],
-   'C' ['A', 'B', 'D'],
-   'D' ['A', 'B', 'C'],
-   'E' ['F' 'A'],
-   'F' ['E']})
-
-(def foo
-  #{#{"co" "de" "ta"}
-    #{"co" "ka" "ta"}
-    #{"de" "ka" "ta"}
-    #{"qp" "td" "wh"}
-    #{"tb" "vc" "wq"}
-    #{"tc" "td" "wh"}
-    #{"td" "wh" "yn"}
-    })
+  (->> input
+       parse-graph
+       cliques
+       (apply max-key count)
+       sort
+       (str/join ",")))
