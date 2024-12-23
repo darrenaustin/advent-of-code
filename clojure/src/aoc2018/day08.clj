@@ -23,8 +23,8 @@
       :metadata (take num-meta ns')}
      (drop num-meta ns')]))
 
-(defn parse-tree [ns]
-  (first (parse-node ns)))
+(defn parse-tree [input]
+  (first (parse-node (s/parse-ints input))))
 
 (defn metadata [t]
   (concat (mapcat metadata (:children t)) (:metadata t)))
@@ -37,9 +37,7 @@
                         (get (:children t) (dec m)))))))
 
 (defn part1 [input]
-  (m/sum (metadata (parse-tree (s/parse-ints input)))))
+  (-> input parse-tree metadata m/sum))
 
 (defn part2 [input]
-  (value (parse-tree (s/parse-ints input))))
-
-(def t "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")
+  (-> input parse-tree value))
