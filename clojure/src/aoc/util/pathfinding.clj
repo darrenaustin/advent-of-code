@@ -10,7 +10,7 @@
   (into {} (for [[k v] m] [k (f v)])))
 
 (defn- remove-keys [m pred]
-  (select-keys m (filter (complement pred) (keys m))))
+  (select-keys m (remove pred (keys m))))
 
 (defn dijkstra-distance [start neighbors-fn goal-fn?]
   (loop [q (priority-map start 0) r {}]
@@ -24,8 +24,8 @@
   (let [[a-d a-paths] a [b-d b-paths] b]
     (case (compare a-d b-d)
       -1 [a-d a-paths]
-       0 [a-d (concat a-paths b-paths)]
-       1 [b-d b-paths])))
+      0 [a-d (concat a-paths b-paths)]
+      1 [b-d b-paths])))
 
 (defn dijkstra-paths-map [start neighbors-fn]
   (loop [q (priority-map-keyfn first start [0 []]) r {}]
@@ -44,6 +44,6 @@
 
 (defn dijkstra-paths [start neighbors-fn goal-fn?]
   (let [paths-map (dijkstra-paths-map start neighbors-fn)
-        goals     (filter #(goal-fn? %) (keys paths-map))
+        goals     (filter goal-fn? (keys paths-map))
         min-goals (second (m/mins-by #(first (paths-map %)) goals))]
     (mapcat #(paths-from paths-map % start) min-goals)))

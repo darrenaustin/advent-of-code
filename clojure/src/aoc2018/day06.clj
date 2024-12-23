@@ -39,10 +39,9 @@
 (defn area-map [coords bounds]
   (reduce
    (fn [closest pos]
-     (let [coord (closest-to pos coords)]
-       (if coord
-         (update closest coord conj pos)
-         closest)))
+     (if-let [coord (closest-to pos coords)]
+       (update closest coord conj pos)
+       closest))
    {}
    (map-positions bounds)))
 

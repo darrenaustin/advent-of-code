@@ -15,7 +15,7 @@
   (if (seq input)
     (let [location (map + (first locations) (dirs (first input)))]
       (recur (rest input)
-             (conj (into [] (rest locations)) location)
+             (conj (vec (rest locations)) location)
              (conj packages location)))
     packages))
 

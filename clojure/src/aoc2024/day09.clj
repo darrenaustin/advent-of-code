@@ -17,7 +17,6 @@
   (let [open-indices (filter identity (map-indexed (fn [i e] (when (nil? e) i)) file-map))
         value-indices (reverse (filter identity (map-indexed (fn [i e] (when e i)) file-map)))]
     (reduce (fn [fm [oi vi]]
-              ;; (println "Swaping " oi "(" (fm oi) ") with" vi "(" (fm vi) ")")
               (if (< vi (count value-indices))
                 (reduced fm)
                 (assoc fm oi (fm vi) vi nil)))
@@ -65,8 +64,7 @@
           [file-idx open-idx] (find-moveable-file indexed-groups)]
       (if open-idx
         (recur (move-file block-groups file-idx open-idx))
-        (vec (apply concat (map (fn [[v sz]] (repeat sz v))
-                                block-groups)))))))
+        (vec (mapcat (fn [[v sz]] (repeat sz v)) block-groups))))))
 
 (defn checksum [file-map]
  (m/sum (map-indexed (fn [i e] (if e (* i e) 0)) file-map)))

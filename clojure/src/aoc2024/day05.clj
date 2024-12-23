@@ -9,8 +9,8 @@
 (defn input [] (d/day-input 2024 5))
 
 (defn parse-input [input]
-  (->> (str/split input #"\n\n")
-       (map #(map s/parse-ints (str/split-lines %)))))
+  (map #(map s/parse-ints (str/split-lines %))
+       (str/split input #"\\n\\n")))
 
 (defn follows-rules? [order rules]
   (let [order-map (into {} (map-indexed (fn [i e] [e i]) order))]

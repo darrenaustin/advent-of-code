@@ -8,8 +8,7 @@
 (defn input [] (d/day-input 2024 12))
 
 (defn edge-perimeter [region]
-  (m/sum (map #(count (filter (fn [l] (not (region l))) (orthogonal-from %)))
-              region)))
+  (m/sum (map #(count (remove region (orthogonal-from %1))) region)))
 
 (defn fence-cost [region]
   (* (count region) (edge-perimeter region)))
@@ -61,14 +60,13 @@
       region)))
 
 (defn regions [grid]
-  (let [locs (into #{} (keys grid))]
-    (loop [rs   []
-           locs (into #{} locs)]
-      (if-let [loc (first locs)]
-        (let [connected (connected-to grid loc)]
-          (recur (conj rs connected)
-                 (apply disj locs connected)))
-        rs))))
+  (loop [rs   []
+         locs (set (keys grid))]
+    (if-let [loc (first locs)]
+      (let [connected (connected-to grid loc)]
+        (recur (conj rs connected)
+               (apply disj locs connected)))
+      rs)))
 
 (defn solve [input cost-fn]
   (->> input

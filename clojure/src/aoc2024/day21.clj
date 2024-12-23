@@ -29,7 +29,7 @@
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]
              [[a b]
-              (mapv (fn [p] (apply str (map dir->arrow (vec-diffs p))))
+              (mapv (fn [p] (str/join (map dir->arrow (vec-diffs p))))
                     (p/dijkstra-paths (coord-map a)
                                       (neighbors key-map)
                                       #{(coord-map b)}))])))

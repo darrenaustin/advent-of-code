@@ -1,6 +1,7 @@
 (ns aoc.day
   (:require [clojure.data.json :as json]
-            [clojure.string :as string]))
+            [clojure.string :as str])
+  (:import (java.io StringWriter)))
 
 ;; TODO: add a way to override this with an env var.
 (defn input-repo-dir [] "../inputs")
@@ -13,7 +14,7 @@
 
 (defn day-input [year day-num]
   (try
-    (string/trim (slurp (input-file-name year day-num)))
+    (str/trim (slurp (input-file-name year day-num)))
     (catch Exception _ "")))
 
 (defn day-answers [year day-num]
@@ -25,25 +26,22 @@
   (find-var (symbol (format "aoc%d.day%02d/%s" year day-num var-name))))
 
 (defn day-val [year day-num var-name]
-  (let [var (day-var year day-num var-name)]
-    (when var
-      (var-get var))))
+  (when-let [var (day-var year day-num var-name)]
+    (var-get var)))
 
 ;; From https://stackoverflow.com/questions/62724497/how-can-i-record-time-for-function-call-in-clojure
 (defmacro time-execution
   [& body]
-  `(let [s# (new java.io.StringWriter)]
+  `(let [s# (StringWriter.)]
      (binding [*out* s#]
-       (hash-map :return (time ~@body)
-                 :time   (int
-                          (Double/parseDouble
-                           (.replaceAll (str s#) "[^0-9\\.]" "")))))))
+       {:return (time ~@body)
+        :time   (int (read-string (str/replace (str s#) #"[^0-9\\.]" "")))})))
 
 (defn result [answer expected time]
-  (let [correct (cond
-                  (nil? expected) ""
-                  (= answer expected) "correct, "
-                  :else "INCORRECT, ")
+  (let [correct   (cond
+                    (nil? expected) ""
+                    (= answer expected) "correct, "
+                    :else "INCORRECT, ")
         [secs ms] [(quot time 1000) (rem time 1000)]
         time-desc (if (zero? secs)
                     (str ms "ms")
@@ -51,11 +49,11 @@
     (println (format "%s, %s%s" answer correct time-desc))))
 
 (defn execute [year day-num]
-  (let [input (or ((day-val year day-num "input")) "")
+  (let [input   (or ((day-val year day-num "input")) "")
         answers (day-answers year day-num)
-        name (or (:name answers) "<UNKNOWN>")
-        part1 (day-var year day-num "part1")
-        part2 (day-var year day-num "part2")]
+        name    (or (:name answers) "<UNKNOWN>")
+        part1   (day-var year day-num "part1")
+        part2   (day-var year day-num "part2")]
     (println (format "%d Day %d: %s" year, day-num name))
     (let [p1 (time-execution (part1 input))]
       (print "  part 1: ")

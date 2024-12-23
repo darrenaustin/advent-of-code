@@ -25,7 +25,7 @@
     [a b]))
 
 (defn cost-of [[ac bc]]
-  (if (not (or (ratio? ac) (ratio? bc)))
+  (if-not (or (ratio? ac) (ratio? bc))
     (+ (* 3 ac) bc)
     0))
 

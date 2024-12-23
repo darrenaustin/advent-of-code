@@ -16,7 +16,7 @@
      :end   end}))
 
 (defn distance-map [{:keys [grid start end]}]
-  (let [path (into #{} (locs-where grid #{\.}))]
+  (let [path (set (locs-where grid #{\.}))]
     (loop [head start dist 1 dists {start 0}]
       (if (= head end)
         dists

@@ -76,9 +76,9 @@
   ([grid] (grid->str-vec grid \space))
   ([grid empty-value]
    (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
-     (into [] (for [y (range min-y (inc max-y))]
-                (apply str (for [x (range min-x (inc max-x))]
-                             (grid [x y] empty-value))))))))
+     (vec (for [y (range min-y (inc max-y))]
+            (str/join (for [x (range min-x (inc max-x))]
+                        (grid [x y] empty-value))))))))
 
 (defn grid->str
   ([grid]

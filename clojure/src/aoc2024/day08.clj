@@ -27,9 +27,8 @@
   (let [grid (parse-grid input)
         valid-loc? (partial contains? grid)
         antennas (antennas grid)
-        anitnode-finder (partial antinode-fn valid-loc?)]
-    (count
-     (into #{} (mapcat #(find-nodes anitnode-finder %) antennas)))))
+        antinode-finder (partial antinode-fn valid-loc?)]
+    (count (set (mapcat #(find-nodes antinode-finder %) antennas)))))
 
 (defn part1 [input]
   (num-antinodes input antinodes))

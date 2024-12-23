@@ -21,13 +21,13 @@
     [grid dirs]))
 
 (defn double-grid [data]
-  (apply str
-         (reduce (fn [s [p v]] (str/replace s p v))
-                 data
-                 {#"#"  "##"
-                  #"O"  "[]"
-                  #"\." ".."
-                  #"@"  "@."})))
+  (str/join
+    (reduce (fn [s [p v]] (str/replace s p v))
+            data
+            {#"#"  "##"
+             #"O"  "[]"
+             #"\." ".."
+             #"@"  "@."})))
 
 (defn move-cells [grid locs dir]
   (let [cells (map grid locs)]

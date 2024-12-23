@@ -7,5 +7,8 @@
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps  {lambdaisland/kaocha {:mvn/version "1.91.1392"}}
                   :main-opts   ["-m" "kaocha.runner"]}
+           :splint {:extra-deps {io.github.noahtheduke/splint {:mvn/version "1.19.0"}
+                                           org.clojure/clojure {:mvn/version "1.11.1"}}
+                              :main-opts ["-m" "noahtheduke.splint"]}
            :uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.4.0"}}
                      :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/aoc-0.1.0.jar"]}}}

@@ -16,7 +16,7 @@
     (fn [stops dir]
       (let [[floor idx] (peek stops)
             [floor idx] [(+ floor (floor-dirs dir)) (inc idx)]]
-        (if (< floor 0)
+        (if (neg? floor)
           (reduced idx)
           (conj stops [floor idx]))))
     [[0 0]]
