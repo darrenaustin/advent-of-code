@@ -6,25 +6,25 @@
 
 (defn input [] (d/day-input 2018 8))
 
-(declare parse-node)
+(declare parse-tree)
 
 (defn- parse-children [num-children ns]
-  (reduce
-    (fn [[cs ns] _]
-      (let [[c ns'] (parse-node ns)]
-        [(conj cs c) ns']))
-    [[] ns]
-    (range num-children)))
+  (loop [num-children num-children ns ns children []]
+    (if (zero? num-children)
+      children
+      (let [child (parse-tree ns)]
+        (recur (dec num-children)
+               (drop (:size child) ns)
+               (conj children child))))))
 
-(defn- parse-node [ns]
-  (let [[num-child num-meta & rest] ns
-        [cs ns'] (parse-children num-child rest)]
-    [{:children cs
-      :metadata (take num-meta ns')}
-     (drop num-meta ns')]))
-
-(defn parse-tree [input]
-  (first (parse-node (s/parse-ints input))))
+(defn parse-tree [ns]
+  (let [[num-child num-meta & payload] ns
+        cs      (parse-children num-child payload)
+        cs-size (m/sum (map :size cs))
+        size    (+ 2 cs-size num-meta)]
+    {:size     size
+     :children cs
+     :metadata (take num-meta (drop cs-size payload))}))
 
 (defn metadata [t]
   (concat (mapcat metadata (:children t)) (:metadata t)))
@@ -32,12 +32,11 @@
 (defn value [t]
   (if (empty? (:children t))
     (m/sum (:metadata t))
-    (m/sum (map value (for [m (:metadata t)
-                            :when (<= 1 m (count (:children t)))]
-                        (get (:children t) (dec m)))))))
+    (m/sum (map value (for [m (:metadata t)]
+                        (get (:children t) (dec m) 0))))))
 
 (defn part1 [input]
-  (-> input parse-tree metadata m/sum))
+  (-> input s/parse-ints parse-tree metadata m/sum))
 
 (defn part2 [input]
-  (-> input parse-tree value))
+  (-> input s/parse-ints parse-tree value))
