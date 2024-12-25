@@ -11,15 +11,14 @@
        (c/transpose (str/split-lines grid))))
 
 (defn parse [input]
-  (let [grids  (str/split input #"\n\n")
-        groups (group-by first grids)]
+  (let [groups (group-by first (str/split input #"\n\n"))]
     (map #(map grid->pins %) [(groups \#) (groups \.)])))
 
-(defn fit? [lock key]
-  (every? identity (map (fn [l k] (<= (+ l k) 5)) lock key)))
+(defn fit? [[lock key]]
+  (every? #(<= % 5) (map + lock key)))
 
 (defn part1 [input]
   (let [[locks keys] (parse input)]
-    (count (for [l locks k keys :when (fit? l k)] 1))))
+    (count (filter fit? (for [l locks k keys] [l k])))))
 
 (defn part2 [_] "🎄 Got em all! 🎉")
