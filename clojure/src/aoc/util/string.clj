@@ -10,10 +10,10 @@
                  :else s)))
 
 (defn parse-ints [str]
-  (map read-int (re-seq #"-?\d+" str)))
+  (mapv read-int (re-seq #"-?\d+" str)))
 
 (defn parse-pos-ints [str]
-  (map read-int (re-seq #"\d+" str)))
+  (mapv read-int (re-seq #"\d+" str)))
 
 (defn digit [chr]
   (^[char] Character/getNumericValue chr))
