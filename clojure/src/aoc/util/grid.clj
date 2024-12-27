@@ -71,6 +71,9 @@
   (and (< min-x x max-x)
        (< min-y y max-y)))
 
+(defn sub-grid [grid bounds]
+  (into {} (filter #(in-bounds? bounds (first %))) grid))
+
 (defn grid->str-vec
   ([grid] (grid->str-vec grid \space))
   ([grid empty-value]

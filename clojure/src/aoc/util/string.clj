@@ -37,3 +37,7 @@
        (recur y (first more) (next more))
        (string> y (first more)))
      false)))
+
+(defn ->hex [n] (format "%x" n))
+
+(defn byte->hex [b] (format "%02x" b))
