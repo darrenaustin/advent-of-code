@@ -9,10 +9,10 @@
 Generator B starts with 8921
 ")
 
-(deftest part1-example
+(deftest ^:slow part1-example
   (is (= 588 (d/part1 example))))
 
-(deftest part2-example
+(deftest ^:slow part2-example
   (is (= 309 (d/part2 example))))
 
 (deftest ^:slow correct-answers

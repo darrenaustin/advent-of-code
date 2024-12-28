@@ -6,10 +6,10 @@
 
 (def example "flqrgnkx")
 
-(deftest part1-example
+(deftest ^:slow part1-example
   (is (= 8108 (d/part1 example))))
 
-(deftest part2-example
+(deftest ^:slow part2-example
   (is (= 1242 (d/part2 example))))
 
 (deftest ^:slow correct-answers
