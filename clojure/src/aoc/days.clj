@@ -13,6 +13,7 @@
             [aoc2017.day15]
             [aoc2017.day16]
             [aoc2017.day17]
+            [aoc2017.day18]
             [aoc2018.day06]
             [aoc2018.day07]
             [aoc2018.day08]
