@@ -12,10 +12,13 @@
 (defn answer-file-name [year day-num]
   (format "%s/%04d/%02d_answer.json" (input-repo-dir) year day-num))
 
-(defn day-input [year day-num]
-  (try
-    (str/trim (slurp (input-file-name year day-num)))
-    (catch Exception _ "")))
+(defn day-input
+  ([year day-num] (day-input year day-num true))
+  ([year day-num trim?]
+   (try
+     (let [content (slurp (input-file-name year day-num))]
+       (if trim? (str/trim content) content))
+     (catch Exception _ ""))))
 
 (defn day-answers [year day-num]
   (try
