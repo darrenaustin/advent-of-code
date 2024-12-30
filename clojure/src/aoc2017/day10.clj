@@ -1,8 +1,8 @@
 ;; https://adventofcode.com/2017/day/10
 (ns aoc2017.day10
   (:require [aoc.day :as d]
-            [aoc2017.knot-hash :refer [knot-hash sparse-hash]]
-            [aoc.util.string :refer [parse-ints]]))
+            [aoc.util.string :refer [parse-ints]]
+            [aoc2017.knot-hash :refer [knot-hash sparse-hash]]))
 
 (defn input [] (d/day-input 2017 10))
 

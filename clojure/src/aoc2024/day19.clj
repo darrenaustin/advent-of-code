@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2024/day/19
 (ns aoc2024.day19
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [count-where]]
             [aoc.util.math :refer [sum]]
             [clojure.string :as str]))
 
@@ -24,7 +25,7 @@
     (map #(ways-to-make towels %) designs)))
 
 (defn part1 [input]
-  (count (filter #(not= 0 %) (solve input))))
+  (count-where #(not= 0 %) (solve input)))
 
 (defn part2 [input]
   (sum (solve input)))

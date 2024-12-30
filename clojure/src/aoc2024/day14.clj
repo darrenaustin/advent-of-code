@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2024/day/14
 (ns aoc2024.day14
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [first-where]]
             [aoc.util.grid :refer :all]
             [aoc.util.string :as s]))
 
@@ -19,10 +20,9 @@
 (defn seconds-until-tree [[robots velocities] bounds]
   ;; It appears the best way to check this is to see
   ;; if no robots are at the same location.
-  (first (filter
-           (fn [sec] (let [locs (simulate robots velocities bounds sec)]
-                       (= (count locs) (count (set locs)))))
-           (range (apply * bounds)))))
+  (first-where (fn [sec] (let [locs (simulate robots velocities bounds sec)]
+                          (= (count locs) (count (set locs)))))
+               (range (apply * bounds))))
 
 (defn quadrants [bounds]
   (let [[bx by] bounds
@@ -33,7 +33,7 @@
      [[mx my] [bx by]]]))
 
 (defn robot-quadrant [robot quadrants]
-  (first (filter (fn [quadrant] (in-bounds? quadrant robot)) quadrants)))
+  (first-where (fn [quadrant] (in-bounds? quadrant robot)) quadrants))
 
 (defn safety [robots quadrants]
   (apply * (vals (frequencies (keep #(robot-quadrant % quadrants) robots)))))

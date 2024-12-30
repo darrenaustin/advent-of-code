@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2024/day/2
 (ns aoc2024.day02
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [count-where]]
             [aoc.util.string :as s]
             [clojure.string :as str]))
 
@@ -23,7 +24,7 @@
   (some safe (missing-one report)))
 
 (defn part1 [input]
-  (count (filter safe (parse-reports input))))
+  (count-where safe (parse-reports input)))
 
 (defn part2 [input]
-  (count (filter safe-ish (parse-reports input))))
+  (count-where safe-ish (parse-reports input)))

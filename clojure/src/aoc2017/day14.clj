@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2017/day/14
 (ns aoc2017.day14
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [count-where]]
             [aoc.util.grid :refer :all]
             [aoc2017.knot-hash :refer [knot-hash]]
             [clojure.pprint :refer [cl-format]]
@@ -10,7 +11,7 @@
 
 (defn binary [hex]
   (str/join (map #(cl-format nil "~16,'0b"
-                             (read-string (str "16r" (apply str %))))
+                             (read-string (str "16r" (str/join %))))
                  (partition 4 hex))))
 
 (defn knot-hashs [input]
@@ -20,7 +21,7 @@
   (loop [[l & ls] #{loc} region #{}]
     (if (nil? l)
       region
-      (let [neighbors (filter #(not (region %)) (adjacent-fn l))]
+      (let [neighbors (remove region (adjacent-fn l))]
         (recur (set (concat ls neighbors)) (conj region l))))))
 
 (defn flood-fill [seeds adjacent-fn]
@@ -38,7 +39,7 @@
   (parse-grid (str/join "\n" (knot-hashs input))))
 
 (defn part1 [input]
-  (reduce (fn [s row] (+ s (count (filter #{\1} row))))
+  (reduce (fn [s row] (+ s (count-where #{\1} row)))
           0
           (knot-hashs input)))
 

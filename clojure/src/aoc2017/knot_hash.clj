@@ -1,5 +1,6 @@
 (ns aoc2017.knot-hash
-  (:require [aoc.util.string :refer [byte->hex]]))
+  (:require [aoc.util.string :refer [byte->hex]]
+            [clojure.string :as str]))
 
 
 (defn- pinch-twist [xs start length]
@@ -20,7 +21,7 @@
 (def ^:private suffix [17 31 73 47 23])
 
 (defn knot-hash [text]
-  (apply str
+  (str/join
          (map byte->hex
               (->> (apply concat (repeat 64 (concat (map int text) suffix)))
                    (sparse-hash (vec (range 256)))

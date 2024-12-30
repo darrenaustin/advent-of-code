@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2017/day/13
 (ns aoc2017.day13
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [first-where]]
             [aoc.util.math :as m]
             [aoc.util.string :as s]
             [clojure.string :as str]))
@@ -24,7 +25,7 @@
   (every? #(not (caught? time %)) firewall))
 
 (defn safe-delay [firewall]
-  (first (filter #(safe? % firewall) (range))))
+  (first-where #(safe? % firewall) (range)))
 
 (defn part1 [input] (severity 0 (parse input)))
 

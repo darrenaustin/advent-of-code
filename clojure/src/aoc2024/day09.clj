@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2024/day/9
 (ns aoc2024.day09
   (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
+            [aoc.util.collection :refer [first-where indexed]]
             [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2024 9))
@@ -25,7 +25,7 @@
 (defn find-moveable-file [indexed-blocks]
   (loop [files (reverse (filter (fn [[_ [v _]]] v) indexed-blocks))]
     (when-let [[file-idx [_ file-sz]] (first files)]
-      (if-let [[open-idx _] (first (filter (fn [[_ [v open-sz]]] (and (nil? v) (<= file-sz open-sz))) indexed-blocks))]
+      (if-let [[open-idx _] (first-where (fn [[_ [v open-sz]]] (and (nil? v) (<= file-sz open-sz))) indexed-blocks)]
         (if (> file-idx open-idx)
           [file-idx open-idx]
           (recur (rest files)))
@@ -49,17 +49,17 @@
 (defn next-index
   ([coll pred] (next-index coll pred -1))
   ([coll pred from-index]
-   (first (filter #(pred (get coll %)) (range (inc from-index) (count coll))))))
+   (first-where #(pred (get coll %)) (range (inc from-index) (count coll)))))
 
 (defn prev-index
   ([coll pred] (prev-index coll pred (count coll)))
   ([coll pred from-index]
-   (first (filter #(pred (get coll %)) (range (dec from-index) 0 -1)))))
+   (first-where #(pred (get coll %)) (range (dec from-index) 0 -1))))
 
 (defn defrag-files [file-map]
   (loop [block-groups (mapv (fn [g] [(first g) (count g)])
                             (partition-by identity file-map))]
-    (let [indexed-groups (c/indexed block-groups)
+    (let [indexed-groups (indexed block-groups)
           [file-idx open-idx] (find-moveable-file indexed-groups)]
       (if open-idx
         (recur (move-file block-groups file-idx open-idx))

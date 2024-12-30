@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2018/day/7
 (ns aoc2018.day07
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [first-where]]
             [clojure.set :as set]
             [clojure.string :as str]))
 
@@ -18,7 +19,7 @@
   (let [{:keys [prereqs steps]} (parse-rules input)]
     (loop [order [] prereqs prereqs steps steps]
       (if (seq steps)
-        (let [step (first (filter #(empty? (prereqs %)) steps))]
+        (let [step (first-where #(empty? (prereqs %)) steps)]
           (recur (conj order step)
                  (into {} (map (fn [[k v]] [k (disj v step)]) prereqs))
                  (remove #{step} steps)))

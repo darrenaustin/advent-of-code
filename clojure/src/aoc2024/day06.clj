@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2024/day/6
 (ns aoc2024.day06
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [count-where]]
             [aoc.util.grid :refer :all]))
 
 (defn input [] (d/day-input 2024 6))
@@ -59,5 +60,5 @@
   (let [grid       (parse-grid input)
         guard      (guard-location grid)
         guard-path (disj (walk-guard grid guard) guard)]
-    (count (filter #(looping-guard? (place-obstruction grid %) guard)
-                   guard-path))))
+    (count-where #(looping-guard? (place-obstruction grid %) guard)
+                 guard-path)))

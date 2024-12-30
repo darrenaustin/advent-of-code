@@ -1,13 +1,13 @@
 ;; https://adventofcode.com/2024/day/4
 (ns aoc2024.day04
   (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
+            [aoc.util.collection :refer [count-where indexed]]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2024 4))
 
-(def xmas (c/indexed "XMAS"))
+(def xmas (indexed "XMAS"))
 
 (defn xmas-in-dir? [grid loc dir]
   (every?
@@ -16,7 +16,7 @@
     xmas))
 
 (defn count-xmas-at [grid pos]
-  (count (filter #(xmas-in-dir? grid pos %) cardinal-dirs)))
+  (count-where #(xmas-in-dir? grid pos %) cardinal-dirs))
 
 (defn xmas-in [grid]
   (m/sum (map #(count-xmas-at grid %) (keys grid))))
@@ -32,6 +32,6 @@
     (= #{\M \S} (set [left-up right-down]) (set [left-down right-up]))))
 
 (defn x-mas-in [grid]
-  (count (filter #(x-mas-at? grid %) (locs-where grid #{\A}))))
+  (count-where #(x-mas-at? grid %) (locs-where grid #{\A})))
 
 (defn part2 [input] (x-mas-in (parse-grid input)))

@@ -12,7 +12,7 @@
     (str (subs dancers start) (subs dancers 0 start))))
 
 (defn partner [[a b] dancers]
-  (apply str (replace {a b, b a} dancers)))
+  (str/join (replace {a b, b a} dancers)))
 
 (defn exchange [[a b] dancers]
   (partner [(nth dancers a) (nth dancers b)] dancers))

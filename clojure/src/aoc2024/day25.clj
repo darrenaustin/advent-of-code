@@ -1,14 +1,14 @@
 ;; https://adventofcode.com/2024/day/25
 (ns aoc2024.day25
   (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
+            [aoc.util.collection :refer [count-where transpose]]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 25))
 
 (defn grid->pins [grid]
-  (map #(- 6 (count (filter #{\.} %)))
-       (c/transpose (str/split-lines grid))))
+  (map #(- 6 (count-where #{\.} %))
+       (transpose (str/split-lines grid))))
 
 (defn parse [input]
   (let [groups (group-by first (str/split input #"\n\n"))]
@@ -19,6 +19,6 @@
 
 (defn part1 [input]
   (let [[locks keys] (parse input)]
-    (count (filter fit? (for [l locks k keys] [l k])))))
+    (count-where fit? (for [l locks k keys] [l k]))))
 
 (defn part2 [_] "🎄 Got em all! 🎉")

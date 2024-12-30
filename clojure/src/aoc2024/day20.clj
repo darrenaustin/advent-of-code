@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2024/day/20
 (ns aoc2024.day20
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [first-where]]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]))
 
@@ -19,8 +20,8 @@
     (loop [head start dist 1 dists {start 0}]
       (if (= head end)
         dists
-        (let [step (first (filter #(and (path %) (not (dists %)))
-                                  (orthogonal-from head)))]
+        (let [step (first-where #(and (path %) (not (dists %)))
+                                (orthogonal-from head))]
           (recur step (inc dist) (assoc dists step dist)))))))
 
 

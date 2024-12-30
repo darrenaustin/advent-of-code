@@ -1,6 +1,7 @@
 ;; https://adventofcode.com/2018/day/6
 (ns aoc2018.day06
   (:require [aoc.day :as d]
+            [aoc.util.collection :refer [count-where]]
             [aoc.util.math :as m]
             [aoc.util.string :as s]))
 
@@ -77,4 +78,4 @@
   ([input dist]
    (let [coords (parse-coords input)
          bounds (map-bounds coords)]
-     (count (filter #(within-dist? % coords dist) (map-positions bounds))))))
+     (count-where #(within-dist? % coords dist) (map-positions bounds)))))
