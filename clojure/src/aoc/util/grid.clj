@@ -25,6 +25,8 @@
 (def orthogonal-dirs
   [dir-up dir-right dir-down dir-left])
 
+(def origin3 [0 0 0])
+
 (defn vec+
   ([a] a)
   ([a b] (mapv + a b))
@@ -35,7 +37,7 @@
   ([a b] (mapv - a b))
   ([a b & more] (reduce vec- (mapv - a b) more)))
 
-(defn vec-n* [n v] (mapv #(* n %) v))
+(defn vec-n* [n v] (mapv (partial * n) v))
 
 (defn orthogonal-from [[x y]]
   [[x (dec y)] [(inc x) y] [x (inc y)] [(dec x) y]])
