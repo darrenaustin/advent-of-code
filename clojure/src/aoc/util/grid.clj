@@ -1,6 +1,18 @@
 (ns aoc.util.grid
   (:require [clojure.string :as str]))
 
+(defn vec+
+  ([a] a)
+  ([a b] (mapv + a b))
+  ([a b & more] (reduce vec+ (mapv + a b) more)))
+
+(defn vec-
+  ([[x y]] [(- x) (- y)])
+  ([a b] (mapv - a b))
+  ([a b & more] (reduce vec- (mapv - a b) more)))
+
+(defn vec-n* [n v] (mapv (partial * n) v))
+
 (def origin [0 0])
 
 (def dir-nw [-1 -1])
@@ -25,19 +37,17 @@
 (def orthogonal-dirs
   [dir-up dir-right dir-down dir-left])
 
+(def ortho-turn-left
+  {dir-up dir-left
+   dir-left dir-down
+   dir-down dir-right
+   dir-right dir-up})
+
+(def ortho-turn-right (into {} (map (comp vec reverse) ortho-turn-left)))
+
+(defn opposite-dir [dir] (vec- dir))
+
 (def origin3 [0 0 0])
-
-(defn vec+
-  ([a] a)
-  ([a b] (mapv + a b))
-  ([a b & more] (reduce vec+ (mapv + a b) more)))
-
-(defn vec-
-  ([[x y]] [(- x) (- y)])
-  ([a b] (mapv - a b))
-  ([a b & more] (reduce vec- (mapv - a b) more)))
-
-(defn vec-n* [n v] (mapv (partial * n) v))
 
 (defn orthogonal-from [[x y]]
   [[x (dec y)] [(inc x) y] [x (inc y)] [(dec x) y]])
@@ -68,12 +78,25 @@
            [Integer/MIN_VALUE Integer/MIN_VALUE]]
           locs))
 
+
 (defn bounds [grid]
   (area-bounds (keys grid)))
 
 (defn in-bounds? [[[min-x min-y] [max-x max-y]] [x y]]
   (and (< min-x x max-x)
        (< min-y y max-y)))
+
+(defn size [grid]
+  (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
+    [(- max-x min-x) (- max-y min-y)]))
+
+(defn width [grid]
+  (let [[[min-x _] [max-x _]] (bounds grid)]
+    (- max-x min-x)))
+
+(defn height [grid]
+ (let [[[_ min-y] [_ max-y]] (bounds grid)]
+    (- max-y min-y)))
 
 (defn sub-grid [grid bounds]
   (into {} (filter #(in-bounds? bounds (first %))) grid))
