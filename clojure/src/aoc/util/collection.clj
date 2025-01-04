@@ -1,8 +1,5 @@
 (ns aoc.util.collection)
 
-(defn transpose [coll]
-  (apply map vector coll))
-
 (defn indexed [coll]
   (map-indexed vector coll))
 
@@ -17,3 +14,14 @@
 
 (defn val->key [m]
   (into {} (for [[k v] m] [v k])))
+
+(defn transpose [coll]
+  (apply mapv vector coll))
+
+(defn flip-horizontal [coll]
+  (mapv (comp vec reverse) coll))
+
+(defn rotate-right [coll]
+  ((comp flip-horizontal transpose) coll))
+
+(defn x-nth [n coll] (nth coll n))

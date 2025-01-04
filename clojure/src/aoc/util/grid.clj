@@ -50,6 +50,8 @@
 (defn parse-grid
   ([input] (parse-grid input identity))
   ([input value-fn]
+   (when-not (string? input)
+     (throw (Exception. (format "Need a string: %s" input))))
    (let [lines (str/split-lines input)]
      (into {}
            (for [x (range (count (first lines)))
