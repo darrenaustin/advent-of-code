@@ -14,6 +14,8 @@
                :task (exec 'tasks/new-day)}
   fetch-day   {:doc  "Download the input and name for the day."
                :task (exec 'tasks/fetch-day)}
+  old-day     {:doc  "Setup new day and immediately fetch the input for it."
+               :depends [new-day fetch-day]}
   splint      {:doc  "Identify common idiomatic code issues with splint."
                :task (clojure "-M:splint")}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
