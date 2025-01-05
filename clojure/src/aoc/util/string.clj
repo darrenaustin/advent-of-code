@@ -1,7 +1,7 @@
 (ns aoc.util.string
   (:require [clojure.string :as str]))
 
-(defn parse-int [s]
+(defn- read-int [s]
   ;; read-string treats a leading '0' as an octal number. Sigh.
   (read-string (cond
                  (= s "0") s
@@ -10,10 +10,13 @@
                  :else s)))
 
 (defn parse-ints [str]
-  (mapv parse-int (re-seq #"-?\d+" str)))
+  (mapv read-int (re-seq #"-?\d+" str)))
+
+(defn parse-int [str]
+  (first (parse-ints str)))
 
 (defn parse-pos-ints [str]
-  (mapv parse-int (re-seq #"\d+" str)))
+  (mapv read-int (re-seq #"\d+" str)))
 
 (defn digit [chr]
   (^[char] Character/getNumericValue chr))
