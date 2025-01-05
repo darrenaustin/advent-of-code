@@ -23,6 +23,17 @@
           [Integer/MAX_VALUE []]
           coll))
 
+(defn maxes-by [n-fn coll]
+  (reduce (fn [[mx maxes] e]
+            (let [n (n-fn e)]
+              (case (compare mx n)
+                -1 [n [e]]
+                0 [mx (conj maxes e)]
+                1 [mx maxes]
+                )))
+          [Integer/MIN_VALUE []]
+          coll))
+
 (defn quadratic-roots [a b c]
   (cond
     (= 0 a b c) :any
