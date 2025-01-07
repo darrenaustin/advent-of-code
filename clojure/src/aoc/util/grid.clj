@@ -38,9 +38,9 @@
   [dir-up dir-right dir-down dir-left])
 
 (def ortho-turn-left
-  {dir-up dir-left
-   dir-left dir-down
-   dir-down dir-right
+  {dir-up    dir-left
+   dir-left  dir-down
+   dir-down  dir-right
    dir-right dir-up})
 
 (def ortho-turn-right (into {} (map (comp vec reverse) ortho-turn-left)))
@@ -95,25 +95,25 @@
     (- max-x min-x)))
 
 (defn height [grid]
- (let [[[_ min-y] [_ max-y]] (bounds grid)]
+  (let [[[_ min-y] [_ max-y]] (bounds grid)]
     (- max-y min-y)))
 
 (defn sub-grid [grid bounds]
   (into {} (filter #(in-bounds? bounds (first %))) grid))
 
 (defn grid->str-vec
-  ([grid] (grid->str-vec grid \space))
-  ([grid empty-value]
+  ([grid] (grid->str-vec grid \space ""))
+  ([grid empty-value separator]
    (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
      (vec (for [y (range min-y (inc max-y))]
-            (str/join (for [x (range min-x (inc max-x))]
+            (str/join separator
+                      (for [x (range min-x (inc max-x))]
                         (grid [x y] empty-value))))))))
 
 (defn grid->str
-  ([grid]
-   (str/join "\n" (grid->str-vec grid)))
-  ([grid empty-value]
-   (str/join "\n" (grid->str-vec grid empty-value))))
+  ([grid] (grid->str grid \space ""))
+  ([grid empty-value separator]
+   (str/join "\n" (grid->str-vec grid empty-value separator))))
 
 (defn locs-where [grid pred]
   (map key (filter #(pred (val %)) grid)))
