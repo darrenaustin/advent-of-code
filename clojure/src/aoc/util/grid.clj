@@ -72,12 +72,15 @@
   (into {} (for [loc locs] [loc default])))
 
 (defn area-bounds [locs]
-  (reduce (fn [[min-loc max-loc] loc]
-            [(map min min-loc loc) (map max max-loc loc)])
-          [[Integer/MAX_VALUE Integer/MAX_VALUE]
-           [Integer/MIN_VALUE Integer/MIN_VALUE]]
-          locs))
-
+  (loop [min-x nil min-y nil max-x nil max-y nil locs locs]
+    (if (empty? locs)
+      [[min-x min-y] [max-x max-y]]
+      (let [[x y] (first locs)]
+        (recur (min (or min-x x) x)
+               (min (or min-y y) y)
+               (max (or max-x x) x)
+               (max (or max-y y) y)
+               (rest locs))))))
 
 (defn bounds [grid]
   (area-bounds (keys grid)))
