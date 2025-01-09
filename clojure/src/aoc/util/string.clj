@@ -21,6 +21,9 @@
 (defn digit [chr]
   (^[char] Character/getNumericValue chr))
 
+(defn digits [n]
+  (mapv digit (str n)))
+
 (defn string<
   ([_] true)
   ([x y] (neg? (compare x y)))
