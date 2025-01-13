@@ -32,6 +32,7 @@
             [aoc2018.day14]
             [aoc2018.day15]
             [aoc2018.day16]
+            [aoc2018.day17]
             [aoc2024.day01]
             [aoc2024.day02]
             [aoc2024.day03]

@@ -101,6 +101,14 @@
   (let [[[_ min-y] [_ max-y]] (bounds grid)]
     (- max-y min-y)))
 
+(defn top [grid]
+  (let [[[_ min-y] _] (bounds grid)]
+    min-y))
+
+(defn bottom [grid]
+  (let [[_ [_ max-y]] (bounds grid)]
+    max-y))
+
 (defn sub-grid [grid bounds]
   (into {} (filter #(in-bounds? bounds (first %))) grid))
 
