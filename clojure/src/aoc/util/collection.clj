@@ -9,6 +9,14 @@
 (defn count-where [pred coll]
   (count (filter pred coll)))
 
+(defn iteration-with-cycle [iteration f x]
+  (loop [x x, iter 0, seen {}]
+    (if (contains? seen x)
+      (let [offset (seen x), period (- iter offset)
+            cycled-iter (+ offset (rem (- iteration offset) period))]
+        (first (first-where (fn [[_ v]] (= v cycled-iter)) seen)))
+      (recur (f x) (inc iter) (assoc seen x iter)))))
+
 (defn group-by-value [m]
   (reduce (fn [m [k v]] (update m v conj k)) {} m))
 
@@ -23,5 +31,3 @@
 
 (defn rotate-right [coll]
   ((comp flip-horizontal transpose) coll))
-
-(defn x-nth [n coll] (nth coll n))
