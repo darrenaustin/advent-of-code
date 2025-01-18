@@ -3,6 +3,9 @@
 
 (defn num-digits [n] (count (str n)))
 
+(defn div? [n d]
+  (zero? (rem n d)))
+
 (defn sum [l] (reduce + l))
 (defn product [l] (reduce * l))
 
@@ -48,3 +51,7 @@
               (zero? discriminant) [(/ neg-b two-a)]))))
 
 (defn eq-pos-int? [x] (and (== (int x) x) (pos? x)))
+
+(defn divisors [n]
+  ;; TODO: this is slow, probably should have a prime factorization instead.
+  (filter (partial div? n) (range 1 (inc n))))
