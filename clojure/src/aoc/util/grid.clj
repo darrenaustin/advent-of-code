@@ -71,6 +71,11 @@
 (defn init-grid [locs default]
   (into {} (for [loc locs] [loc default])))
 
+(defn area-locs [[start-x start-y] [end-x end-y]]
+  (for [y (range start-y (inc end-y))
+        x (range start-x (inc end-x))]
+    [x y]))
+
 (defn area-bounds [locs]
   (loop [min-x nil min-y nil max-x nil max-y nil locs locs]
     (if (empty? locs)
