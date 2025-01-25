@@ -1,4 +1,5 @@
-(ns aoc.util.collection)
+(ns aoc.util.collection
+  (:import (clojure.lang Util)))
 
 (defn indexed [coll]
   (map-indexed vector coll))
@@ -31,3 +32,17 @@
 
 (defn rotate-right [coll]
   ((comp flip-horizontal transpose) coll))
+
+;; Allow (sort (by :surname asc :age desc) coll)
+;;
+;; from: https://www.reddit.com/r/Clojure/comments/ufa8e0/comment/i6s7zt5/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+(defn asc [a b] (Util/compare a b))
+(defn desc [a b] (Util/compare b a))
+
+(defn by [& keys-orderings]
+  (fn [a b]
+    (loop [[key ordering & keys-orderings] keys-orderings]
+      (let [order (ordering (key a) (key b))]
+        (if (and (zero? order) keys-orderings)
+          (recur keys-orderings)
+          order)))))
