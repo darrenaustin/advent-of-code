@@ -47,7 +47,11 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^")
     618 example-small
     9021 example))
 
-(deftest ^:slow correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 15) input (d/input)]
-    (is (= answer1 (d/part1 input)))
-    (is (= answer2 (d/part2 input)))))
+(def answers (delay (day-answers 2024 15)))
+(def input (delay (d/input)))
+
+(deftest ^:slow part1-correct
+  (is (= (:answer1 @answers) (d/part1 @input))))
+
+(deftest ^:slow part2-correct
+  (is (= (:answer2 @answers) (d/part2 @input))))

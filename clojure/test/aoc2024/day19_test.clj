@@ -22,7 +22,11 @@ bbrgwb")
 (deftest part2-example
   (is (= 16 (d/part2 example))))
 
-(deftest correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 19) input (d/input)]
-    (is (= answer1 (d/part1 input)))
-    (is (= answer2 (d/part2 input)))))
+(def answers (delay (day-answers 2024 19)))
+(def input (delay (d/input)))
+
+(deftest part1-correct
+  (is (= (:answer1 @answers) (d/part1 @input))))
+
+(deftest part2-correct
+  (is (= (:answer2 @answers) (d/part2 @input))))

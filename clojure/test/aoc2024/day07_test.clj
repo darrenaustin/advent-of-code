@@ -20,7 +20,11 @@
 (deftest part2-test-example
   (is (= 11387 (d/part2 example-input))))
 
-(deftest ^:slow correct-answers
-  (let [{:keys [answer1 answer2]} (day-answers 2024 7) input (d/input)]
-    (is (= answer1 (d/part1 input)))
-    (is (= answer2 (d/part2 input)))))
+(def answers (delay (day-answers 2024 7)))
+(def input (delay (d/input)))
+
+(deftest part1-correct
+  (is (= (:answer1 @answers) (d/part1 @input))))
+
+(deftest ^:slow part2-correct
+  (is (= (:answer2 @answers) (d/part2 @input))))

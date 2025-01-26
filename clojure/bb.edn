@@ -23,4 +23,6 @@
   test-all    {:doc  "Run all tests."
                :task (clojure "-M:test")}
   update-days {:doc  "Update the 'days.clj' file with the currently implemented days."
-               :task (exec 'tasks/update-days-file)}}}
+               :task (exec 'tasks/update-days-file)}
+  update-tests {:doc  "Update the 'days.clj' file with the currently implemented days."
+               :task (exec 'tasks/update-test-files)}}}

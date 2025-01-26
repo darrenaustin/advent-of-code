@@ -142,3 +142,15 @@
               (println "Error:" (:body response))))
           (println (format "Fetching '%s' failed, file already exists." input-file)))
         (println (format "Fetching '%s' failed, unable to load session file." input-file))))))
+
+(defn update-test-file [{:keys [year day] :as date}]
+  (let [path     (test-path year day)
+        contents (slurp path)
+        slow?    (re-find #"\^:slow correct-answers" contents)
+        updated  (str/replace contents #"(?s)\(deftest( \^:slow)? correct-answers.*" "")
+        args     (assoc date :slow (if slow? " ^:slow" ""))]
+    (spit path (str updated (render-file "templates/test_update.clj.tmpl" args)))))
+
+(defn update-test-files [& _]
+  (doseq [date (find-implemented-dates)]
+    (update-test-file date)))
