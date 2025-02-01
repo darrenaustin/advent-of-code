@@ -9,6 +9,11 @@
 (defn sum [l] (reduce + l))
 (defn product [l] (reduce * l))
 
+(defn ceil-div [n d]
+  (if (zero? (rem n d))
+    (quot n d)
+    (inc (quot n d))))
+
 (defn distance [x y]
   (abs (- x y)))
 
