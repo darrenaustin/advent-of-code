@@ -43,6 +43,7 @@
             [aoc2018.day25]
             [aoc2019.day02]
             [aoc2019.day05]
+            [aoc2019.day09]
             [aoc2019.day14]
             [aoc2024.day01]
             [aoc2024.day02]

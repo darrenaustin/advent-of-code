@@ -4,7 +4,7 @@
 
 (deftest execute-day02-examples
   (are [expected input]
-    (= expected (:mem (i/execute input)))
+    (= expected (i/mem->vec (i/execute input)))
     [3500 9 10 70 2 3 11 0 99 30 40 50] [1 9 10 3 2 3 11 0 99 30 40 50]
     [2 0 0 0 99] [1 0 0 0 99]
     [2 3 0 6 99] [2 3 0 3 99]
@@ -12,13 +12,13 @@
     [30 1 1 4 2 5 6 0 99] [1 1 1 4 99 5 6 0 99]))
 
 (deftest immediate-mode-test
-  (is (= [1002 4 3 4 99] (:mem (i/execute [1002 4 3 4 33])))))
+  (is (= [1002 4 3 4 99] (i/mem->vec (i/execute [1002 4 3 4 33])))))
 
 (deftest negative-params-test
-  (is (= [1101 100 -1 4 99] (:mem (i/execute [1101 100 -1 4 0])))))
+  (is (= [1101 100 -1 4 99] (i/mem->vec (i/execute [1101 100 -1 4 0])))))
 
 (deftest input-test
-  (is (= [3 7 3 8 3 9 99 1 2 3] (:mem (i/execute [3 7 3 8 3 9 99 0 0 0] '(1 2 3) nil)))))
+  (is (= [3 7 3 8 3 9 99 1 2 3] (i/mem->vec (i/execute [3 7 3 8 3 9 99 0 0 0] '(1 2 3) nil)))))
 
 (deftest output-test
   (is (= [1 2 3 104] (:output (i/execute [104 1 104 2 104 3 4 0 99])))))
@@ -32,14 +32,14 @@
   (is (= 9 (:pc (i/execute [1106 0 9 99 0 0 0 0 0 99])))))
 
 (deftest less-than-test
-  (is (= [1107 1 9 5 99 1] (:mem (i/execute [1107 1 9 5 99 0]))))
-  (is (= [1107 9 9 5 99 0] (:mem (i/execute [1107 9 9 5 99 0]))))
-  (is (= [1107 9 1 5 99 0] (:mem (i/execute [1107 9 1 5 99 0])))))
+  (is (= [1107 1 9 5 99 1] (i/mem->vec (i/execute [1107 1 9 5 99 0]))))
+  (is (= [1107 9 9 5 99 0] (i/mem->vec (i/execute [1107 9 9 5 99 0]))))
+  (is (= [1107 9 1 5 99 0] (i/mem->vec (i/execute [1107 9 1 5 99 0])))))
 
 (deftest equals-test
-  (is (= [1108 1 9 5 99 0] (:mem (i/execute [1108 1 9 5 99 0]))))
-  (is (= [1108 9 9 5 99 1] (:mem (i/execute [1108 9 9 5 99 0]))))
-  (is (= [1108 9 1 5 99 0] (:mem (i/execute [1108 9 1 5 99 0])))))
+  (is (= [1108 1 9 5 99 0] (i/mem->vec (i/execute [1108 1 9 5 99 0]))))
+  (is (= [1108 9 9 5 99 1] (i/mem->vec (i/execute [1108 9 9 5 99 0]))))
+  (is (= [1108 9 1 5 99 0] (i/mem->vec (i/execute [1108 9 1 5 99 0])))))
 
 (deftest compare-8-test
   ; position mode equals
@@ -69,3 +69,19 @@
     (is (= [999] (:output (i/execute program '(4) []))))
     (is (= [1000] (:output (i/execute program '(8) []))))
     (is (= [1001] (:output (i/execute program '(42) []))))))
+
+(deftest adjust-relative-base-test
+  (is (= 4242 (:relative-base (i/execute [109 4242 99]))))
+  (is (= 100 (:relative-base (i/execute [109 4242 109 -4142 99])))))
+
+(deftest relative-base-test
+  (is (= [42] (:output (i/execute [109 -1 204 6 99 42 -10]))))
+  (is (= 42 ((:mem (i/execute [109 -1 21102 7 6 101 99])) 100))))
+
+(deftest copy-itself-test
+  (let [program [109 1 204 -1 1001 100 1 100 1008 100 16 101 1006 101 0 99]]
+    (is (= program (:output (i/execute program))))))
+
+(deftest large-nums-test
+  (is (= [1219070632396864] (:output (i/execute [1102 34915192 34915192 7 4 7 99 0]))))
+  (is (= [1125899906842624] (:output (i/execute [104 1125899906842624 99])))))
