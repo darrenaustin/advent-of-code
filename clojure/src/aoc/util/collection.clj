@@ -46,3 +46,9 @@
         (if (and (zero? order) keys-orderings)
           (recur keys-orderings)
           order)))))
+
+(defn pad-left [coll n val]
+  (let [padding (- n (count coll))]
+    (if (pos? padding)
+      (concat (repeat padding val) coll)
+      coll)))
