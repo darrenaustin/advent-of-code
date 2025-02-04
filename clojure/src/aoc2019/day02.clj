@@ -6,7 +6,7 @@
 (defn input [] (d/day-input 2019 2))
 
 (defn result [program & inputs]
-  ((:mem (i/execute (apply assoc program inputs))) 0))
+  ((:mem (i/run (apply assoc program inputs))) 0))
 
 (defn part1 [input]
   (result (i/parse input) 1 12, 2 2))

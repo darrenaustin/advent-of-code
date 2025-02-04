@@ -120,11 +120,13 @@
 (defn grid->str-vec
   ([grid] (grid->str-vec grid \space ""))
   ([grid empty-value separator]
-   (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
-     (vec (for [y (range min-y (inc max-y))]
-            (str/join separator
-                      (for [x (range min-x (inc max-x))]
-                        (grid [x y] empty-value))))))))
+   (if (empty? grid)
+     ""
+     (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
+       (vec (for [y (range min-y (inc max-y))]
+              (str/join separator
+                        (for [x (range min-x (inc max-x))]
+                          (grid [x y] empty-value)))))))))
 
 (defn grid->str
   ([grid] (grid->str grid \space ""))

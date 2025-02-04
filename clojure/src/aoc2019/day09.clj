@@ -6,7 +6,7 @@
 (defn input [] (d/day-input 2019 9))
 
 (defn part1 [input]
-  (first (:output (i/execute (i/parse input) '(1) []))))
+  (first (:output (i/run (i/parse input) '(1) []))))
 
 (defn part2 [input]
-  (first (:output (i/execute (i/parse input) '(2) []))))
+  (first (:output (i/run (i/parse input) '(2) []))))

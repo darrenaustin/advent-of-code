@@ -45,6 +45,7 @@
             [aoc2019.day05]
             [aoc2019.day09]
             [aoc2019.day14]
+            [aoc2019.day15]
             [aoc2024.day01]
             [aoc2024.day02]
             [aoc2024.day03]
