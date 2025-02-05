@@ -10,6 +10,12 @@
 (defn count-where [pred coll]
   (count (filter pred coll)))
 
+(defn iterate-n [f x n]
+  (loop [x x, i 0]
+    (if (< i n)
+      (recur (f x) (inc i))
+      x)))
+
 (defn iteration-with-cycle [iteration f x]
   (loop [x x, iter 0, seen {}]
     (if (contains? seen x)
