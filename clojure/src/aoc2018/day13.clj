@@ -64,9 +64,9 @@
                           (collision (:loc cart') to-move))]
           (if collide
             (recur
-              (remove-carts collide to-move)
-              (remove-carts collide moved)
-              (conj collisions collide))
+             (remove-carts collide to-move)
+             (remove-carts collide moved)
+             (conj collisions collide))
             (recur to-move (conj moved cart') collisions)))))))
 
 (defn solve [input finished-fn]

@@ -6,7 +6,7 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     3 "^WNE$"
     10 "^ENWWW(NEEE|SSE(EE|N))$"
     18 "^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$"

@@ -14,7 +14,7 @@
 (defn part2 [input]
   (let [program (i/parse input)
         [noun verb] (first
-                      (for [noun (range 100) verb (range 100)
-                            :when (= 19690720 (result program 1 noun, 2 verb))]
-                        [noun verb]))]
+                     (for [noun (range 100) verb (range 100)
+                           :when (= 19690720 (result program 1 noun, 2 verb))]
+                       [noun verb]))]
     (+ (* 100 noun) verb)))

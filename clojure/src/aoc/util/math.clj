@@ -26,8 +26,7 @@
               (case (compare mn n)
                 -1 [mn mins]
                 0 [mn (conj mins e)]
-                1 [n [e]]
-                )))
+                1 [n [e]])))
           [Integer/MAX_VALUE []]
           coll))
 
@@ -37,8 +36,7 @@
               (case (compare mx n)
                 -1 [n [e]]
                 0 [mx (conj maxes e)]
-                1 [mx maxes]
-                )))
+                1 [mx maxes])))
           [Integer/MIN_VALUE []]
           coll))
 

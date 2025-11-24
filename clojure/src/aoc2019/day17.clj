@@ -30,9 +30,9 @@
 
 (defn sum-intersections [grid]
   (m/sum
-    (map m/product (filter #(and (= \# (grid %))
-                                 (every? #{\#} (map grid (orthogonal-from %))))
-                           (keys grid)))))
+   (map m/product (filter #(and (= \# (grid %))
+                                (every? #{\#} (map grid (orthogonal-from %))))
+                          (keys grid)))))
 
 (defn find-path [{:keys [grid robot]}]
   (loop [loc (:loc robot), dir (:dir robot), steps 0, path []]
@@ -40,7 +40,7 @@
       (if (= \# (grid forward))
         (recur forward dir (inc steps) path)
         (if-let [turn (c/first-where #(= \# (grid (vec+ loc %)))
-                                  [(ortho-turn-left dir) (ortho-turn-right dir)])]
+                                     [(ortho-turn-left dir) (ortho-turn-right dir)])]
           (if (zero? steps)
             (recur loc turn steps (conj path (turns [dir turn])))
             (recur loc turn 0 (conj path steps (turns [dir turn]))))
@@ -70,10 +70,10 @@
 
 (defn update-routines [fns move]
   (or
-    (some #(when (= (fns %) move) (update fns :main conj %)) [:A :B :C])
-    (some #(when (nil? (fns %)) (-> fns
-                                    (assoc % move)
-                                    (update :main conj %))) [:A :B :C])))
+   (some #(when (= (fns %) move) (update fns :main conj %)) [:A :B :C])
+   (some #(when (nil? (fns %)) (-> fns
+                                   (assoc % move)
+                                   (update :main conj %))) [:A :B :C])))
 
 (defn movement-routines [path]
   (let [movements (movements-available-for path)
@@ -100,10 +100,10 @@
         fns     (movement-routines path)
         program (assoc (i/parse input) 0 2)
         input   (ascii-list
-                  (str/join "\n"
-                            [(str/join "," (map name (:main fns)))
-                             (str/join "," (:A fns))
-                             (str/join "," (:B fns))
-                             (str/join "," (:C fns))
-                             "n" ""]))]
+                 (str/join "\n"
+                           [(str/join "," (map name (:main fns)))
+                            (str/join "," (:A fns))
+                            (str/join "," (:B fns))
+                            (str/join "," (:C fns))
+                            "n" ""]))]
     (last (:output (i/run program input [])))))

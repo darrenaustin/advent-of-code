@@ -45,6 +45,6 @@
                             (assoc seen ds i)))
                         {}
                         (c/indexed dances))]
-      (nth dances (mod 1000000000 (- c2 c1)))))
+    (nth dances (mod 1000000000 (- c2 c1)))))
 
 (def t "s1,x3/4,pe/b")

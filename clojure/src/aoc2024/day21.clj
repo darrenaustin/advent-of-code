@@ -68,15 +68,15 @@
 (declare min-length-dir-pad)
 (def min-length-dir-pad
   (memoize
-    (fn [code num-robots]
-      (if (zero? num-robots)
-        (count code)
-        (loop [min-count 0 curr \A code code]
-          (if-let [c (first code)]
-            (let [paths (map str (or (dir-pad-paths [curr c]) [""]) (repeat \A))]
-              (recur (+ min-count (apply min (map #(min-length-dir-pad % (dec num-robots)) paths)))
-                     c (rest code)))
-            min-count))))))
+   (fn [code num-robots]
+     (if (zero? num-robots)
+       (count code)
+       (loop [min-count 0 curr \A code code]
+         (if-let [c (first code)]
+           (let [paths (map str (or (dir-pad-paths [curr c]) [""]) (repeat \A))]
+             (recur (+ min-count (apply min (map #(min-length-dir-pad % (dec num-robots)) paths)))
+                    c (rest code)))
+           min-count))))))
 
 (defn min-presses [code num-robots]
   (let [num-pad-paths (paths-for number-pad-paths \A code)]

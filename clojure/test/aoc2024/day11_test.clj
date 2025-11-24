@@ -6,7 +6,7 @@
 
 (deftest example
   (are [expected input]
-    (= expected (d/blink "125 17" input))
+       (= expected (d/blink "125 17" input))
     2 0
     3 1
     4 2

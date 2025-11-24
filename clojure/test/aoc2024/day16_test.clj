@@ -42,13 +42,13 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     7036 example1
     11048 example2))
 
 (deftest part2-examples
   (are [expected input]
-    (= expected (d/part2 input))
+       (= expected (d/part2 input))
     45 example1
     64 example2))
 

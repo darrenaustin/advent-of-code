@@ -46,14 +46,14 @@ AAAAAA")
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     140 example-input1
     772 example-input2
     1930 example-input3))
 
 (deftest part2-examples
   (are [expected input]
-    (= expected (d/part2 input))
+       (= expected (d/part2 input))
     80 example-input1
     436 example-input2
     1206 example-input3

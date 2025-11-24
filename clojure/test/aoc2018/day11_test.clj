@@ -6,7 +6,7 @@
 
 (deftest power-test
   (are [expected coords serial]
-    (= expected (d/power serial coords))
+       (= expected (d/power serial coords))
     4 [3 5] 8
     -5 [122 79] 57
     0 [217 196] 39
@@ -14,13 +14,13 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     "33,45" "18"
     "21,61" "42"))
 
 (deftest ^:slow part2-examples
   (are [expected input]
-    (= expected (d/part2 input))
+       (= expected (d/part2 input))
     "90,269,16" "18"
     "232,251,12" "42"))
 

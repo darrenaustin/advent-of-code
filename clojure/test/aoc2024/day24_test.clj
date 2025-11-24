@@ -67,7 +67,7 @@ tnw OR pbm -> gnj")
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     4 example1
     2024 example2))
 

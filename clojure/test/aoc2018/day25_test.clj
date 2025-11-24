@@ -52,7 +52,7 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     2 example1
     4 example2
     3 example3

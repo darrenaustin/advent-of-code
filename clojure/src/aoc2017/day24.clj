@@ -18,12 +18,12 @@
      (if (empty? options)
        [[]]
        (mapcat
-         (fn [component]
-           (let [[port1 port2] component
-                 start' (if (= port1 start) port2 port1)]
-             (map #(concat [component] %)
-                  (bridges start' (conj visited component) components))))
-         options)))))
+        (fn [component]
+          (let [[port1 port2] component
+                start' (if (= port1 start) port2 port1)]
+            (map #(concat [component] %)
+                 (bridges start' (conj visited component) components))))
+        options)))))
 
 (defn strength [bridge]
   (m/sum (flatten bridge)))

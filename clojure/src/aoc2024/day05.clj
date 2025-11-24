@@ -14,12 +14,12 @@
 (defn follows-rules? [order rules]
   (let [order-map (into {} (map-indexed (fn [i e] [e i]) order))]
     (every?
-      (fn [[before after]]
-        (let [before-order (order-map before)
-              after-order  (order-map after)]
-          (or (nil? before-order) (nil? after-order)
-              (< before-order after-order))))
-      rules)))
+     (fn [[before after]]
+       (let [before-order (order-map before)
+             after-order  (order-map after)]
+         (or (nil? before-order) (nil? after-order)
+             (< before-order after-order))))
+     rules)))
 
 (defn middle [order]
   (nth (vec order) (int (/ (count order) 2))))

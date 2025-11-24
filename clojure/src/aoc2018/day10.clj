@@ -20,9 +20,9 @@
 ;; was only 9 lights high, so we can just search for that.
 (defn message [input]
   (c/first-where
-    (fn [[_ grid]] (= 9 (height grid)))
-    (c/indexed (map light-grid
-                    (iterate #(map advance %) (parse input))))))
+   (fn [[_ grid]] (= 9 (height grid)))
+   (c/indexed (map light-grid
+                   (iterate #(map advance %) (parse input))))))
 
 (defn part1 [_]
   ;(grid->str (second (message input))))

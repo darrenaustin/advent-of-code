@@ -14,11 +14,11 @@
 
 (def ways-to-make
   (memoize
-    (fn [towels design]
-      (if (empty? design)
-        1
-        (sum (map #(ways-to-make towels (subs design (count %)))
-                  (filter #(str/starts-with? design %) towels)))))))
+   (fn [towels design]
+     (if (empty? design)
+       1
+       (sum (map #(ways-to-make towels (subs design (count %)))
+                 (filter #(str/starts-with? design %) towels)))))))
 
 (defn solve [input]
   (let [[towels designs] (parse input)]

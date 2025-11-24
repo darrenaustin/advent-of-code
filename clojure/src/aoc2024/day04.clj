@@ -11,9 +11,9 @@
 
 (defn xmas-in-dir? [grid loc dir]
   (every?
-    (fn [[idx letter]]
-      (= (grid (vec+ loc (vec-n* idx dir))) letter))
-    xmas))
+   (fn [[idx letter]]
+     (= (grid (vec+ loc (vec-n* idx dir))) letter))
+   xmas))
 
 (defn count-xmas-at [grid pos]
   (count-where #(xmas-in-dir? grid pos %) cardinal-dirs))

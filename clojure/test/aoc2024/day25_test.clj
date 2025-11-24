@@ -47,7 +47,7 @@
 
 (deftest fit?-examples
   (are [expected lock-key]
-    (= expected (d/fit? lock-key))
+       (= expected (d/fit? lock-key))
     false [[0 5 3 4 3] [5 0 2 1 3]]
     false [[0 5 3 4 3] [4 3 4 0 2]]
     true  [[0 5 3 4 3] [3 0 2 0 1]]

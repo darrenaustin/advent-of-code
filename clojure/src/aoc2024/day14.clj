@@ -21,7 +21,7 @@
   ;; It appears the best way to check this is to see
   ;; if no robots are at the same location.
   (first-where (fn [sec] (let [locs (simulate robots velocities bounds sec)]
-                          (= (count locs) (count (set locs)))))
+                           (= (count locs) (count (set locs)))))
                (range (apply * bounds))))
 
 (defn quadrants [bounds]

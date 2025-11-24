@@ -39,9 +39,9 @@
 
 (defn part1 [input]
   (first
-    (apply min-key second
-           (indexed (map (fn [[_ _ a]] (origin-distance a))
-                         (parse input))))))
+   (apply min-key second
+          (indexed (map (fn [[_ _ a]] (origin-distance a))
+                        (parse input))))))
 
 ;; A much faster solution to part 2 that just runs the simulation looking for
 ;; collisions. However, it stops at an arbitrary step which works for

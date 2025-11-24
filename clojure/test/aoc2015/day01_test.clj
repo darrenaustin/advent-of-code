@@ -5,7 +5,7 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     0 "(())"
     0 "()()"
     3 "((("
@@ -18,7 +18,7 @@
 
 (deftest part2-example
   (are [expected input]
-    (= expected (d/part2 input))
+       (= expected (d/part2 input))
     1 ")"
     5 "()())"))
 

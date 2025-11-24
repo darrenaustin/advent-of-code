@@ -6,7 +6,7 @@
 
 (deftest part1-examples
   (are [expected input]
-    (= expected (d/part1 input))
+       (= expected (d/part1 input))
     "5158916779" "9"
     "0124515891" "5"
     "9251071085" "18"
@@ -14,7 +14,7 @@
 
 (deftest part2-examples
   (are [expected input]
-    (= expected (d/part2 input))
+       (= expected (d/part2 input))
     9 "51589"
     5 "01245"
     18 "92510"

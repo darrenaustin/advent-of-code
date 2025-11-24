@@ -28,7 +28,7 @@
 (defn sub-divide [grid]
   (let [sub-size (if (even? (count grid)) 2 3)]
     (map #(map c/transpose (partition sub-size (c/transpose %)))
-          (partition sub-size grid))))
+         (partition sub-size grid))))
 
 (defn super-grid [grid]
   (mapcat #(map flatten (c/transpose %)) grid))

@@ -4,7 +4,7 @@
 
 (deftest run-day02-examples
   (are [expected input]
-    (= expected (i/mem->vec (i/run input)))
+       (= expected (i/mem->vec (i/run input)))
     [3500 9 10 70 2 3 11 0 99 30 40 50] [1 9 10 3 2 3 11 0 99 30 40 50]
     [2 0 0 0 99] [1 0 0 0 99]
     [2 3 0 6 99] [2 3 0 3 99]

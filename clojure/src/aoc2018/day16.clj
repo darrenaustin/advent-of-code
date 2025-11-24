@@ -55,8 +55,7 @@
         (let [[code os] (first (filter (fn [[_ ps]] (= (count ps) 1)) possible))
               possible' (dissoc possible code)]
           (recur (assoc ops code (first os))
-                 (into {} (for [[op s] possible'] [op (disj s (first os))])))
-          )))))
+                 (into {} (for [[op s] possible'] [op (disj s (first os))]))))))))
 
 (defn execute [ops program]
   (reduce (fn [rs [op a b c]] ((ops op) a b c rs)) [0 0 0 0] program))

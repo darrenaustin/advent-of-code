@@ -21,12 +21,12 @@
 
 (def diff-hash
   (memoize
-    (fn [[d1 d2 d3 d4]]
-      (bit-or
-        (bit-shift-left (+ d1 9) 15)
-        (bit-shift-left (+ d2 9) 10)
-        (bit-shift-left (+ d3 9) 5)
-        (+ d4 9)))))
+   (fn [[d1 d2 d3 d4]]
+     (bit-or
+      (bit-shift-left (+ d1 9) 15)
+      (bit-shift-left (+ d2 9) 10)
+      (bit-shift-left (+ d3 9) 5)
+      (+ d4 9)))))
 
 (defn part1 [input]
   (m/sum (map #(last (secret-nums %)) (s/parse-ints input))))

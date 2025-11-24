@@ -25,7 +25,7 @@
 (deftest cheat-saves-examples
   (let [dists (d/distance-map (d/parse-track example))]
     (are [expected cheat-locs]
-      (= expected (apply d/cheat-saves dists cheat-locs))
+         (= expected (apply d/cheat-saves dists cheat-locs))
       ;; Part 1 examples
       12 [[7 1] [9 1]]
       20 [[9 7] [11 7]]
@@ -37,7 +37,7 @@
 (deftest num-cheats-examples1
   (let [cheats (frequencies (d/num-cheats example #(diamond-around 2 2 %) 0))]
     (are [expected num]
-      (= expected (cheats num))
+         (= expected (cheats num))
       14 2
       14 4
       2 6
@@ -53,7 +53,7 @@
 (deftest num-cheats-examples2
   (let [cheats (frequencies (d/num-cheats example #(diamond-around 2 20 %) 50))]
     (are [expected num]
-      (= expected (cheats num))
+         (= expected (cheats num))
       32 50
       31 52
       29 54

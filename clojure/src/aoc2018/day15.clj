@@ -67,9 +67,9 @@
 
 (defn attack-targets [{:keys [grid units]} unit]
   (sort-units
-    (map units
-         (filter #(= (grid %) (enemy-of (:type unit)))
-                 (orthogonal-from (:loc unit))))))
+   (map units
+        (filter #(= (grid %) (enemy-of (:type unit)))
+                (orthogonal-from (:loc unit))))))
 
 (defn move-unit [field unit loc]
   (-> field

@@ -9,16 +9,16 @@
 
 (def stone-count-for
   (memoize
-    (fn [blinks num]
-      (cond
-        (zero? blinks) 1
-        (zero? num) (stone-count-for (dec blinks) 1)
-        :else (let [digits (m/num-digits num)]
-                (if (even? digits)
-                  (let [d (int (math/pow 10 (/ digits 2)))]
-                    (+ (stone-count-for (dec blinks) (quot num d))
-                       (stone-count-for (dec blinks) (rem num d))))
-                  (stone-count-for (dec blinks) (* 2024 num))))))))
+   (fn [blinks num]
+     (cond
+       (zero? blinks) 1
+       (zero? num) (stone-count-for (dec blinks) 1)
+       :else (let [digits (m/num-digits num)]
+               (if (even? digits)
+                 (let [d (int (math/pow 10 (/ digits 2)))]
+                   (+ (stone-count-for (dec blinks) (quot num d))
+                      (stone-count-for (dec blinks) (rem num d))))
+                 (stone-count-for (dec blinks) (* 2024 num))))))))
 
 (defn blink [input blinks]
   (transduce (map (partial stone-count-for blinks)) + (s/parse-ints input)))

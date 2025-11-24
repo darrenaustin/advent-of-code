@@ -5,22 +5,22 @@
 
 (defn all-days []
   (sort
-    (transduce
-      (comp (map ns-name)
-            (map name)
-            (map #(re-find #"aoc(\d+).day(\d+)$" %))
-            (remove nil?)
-            (map (fn [[_ ys ds]] [(Integer/parseInt ys) (Integer/parseInt ds)])))
-      conj
-      (all-ns))))
+   (transduce
+    (comp (map ns-name)
+          (map name)
+          (map #(re-find #"aoc(\d+).day(\d+)$" %))
+          (remove nil?)
+          (map (fn [[_ ys ds]] [(Integer/parseInt ys) (Integer/parseInt ds)])))
+    conj
+    (all-ns))))
 
 (defn matching-day? [[year day-num] specs]
   (some
-    (fn [[spec-year spec-day-num]]
-      (and (= year spec-year)
-           (or (= day-num spec-day-num)
-               (nil? spec-day-num))))
-    specs))
+   (fn [[spec-year spec-day-num]]
+     (and (= year spec-year)
+          (or (= day-num spec-day-num)
+              (nil? spec-day-num))))
+   specs))
 
 (defn specified-days [specs days]
   (if (seq specs)

@@ -16,8 +16,8 @@
 (defn super-antinodes [valid-loc? [a b]]
   (let [dir (vec- b a)]
     (concat
-      (take-while valid-loc? (iterate #(vec- % dir) a))
-      (take-while valid-loc? (iterate #(vec+ % dir) b)))))
+     (take-while valid-loc? (iterate #(vec- % dir) a))
+     (take-while valid-loc? (iterate #(vec+ % dir) b)))))
 
 (defn find-nodes [finder-fn locs]
   (mapcat finder-fn (combo/combinations locs 2)))

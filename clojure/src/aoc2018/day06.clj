@@ -13,23 +13,23 @@
 (defn closest-to [pos coords]
   (let [[_ min-coords]
         (reduce
-          (fn [[min-dist min-coords] coord]
-            (let [dist (m/manhattan-distance pos coord)]
-              (cond
-                (< dist min-dist) [dist [coord]]
-                (= dist min-dist) [dist (conj min-coords coord)]
-                :else [min-dist min-coords])))
-          [Integer/MAX_VALUE nil]
-          coords)]
+         (fn [[min-dist min-coords] coord]
+           (let [dist (m/manhattan-distance pos coord)]
+             (cond
+               (< dist min-dist) [dist [coord]]
+               (= dist min-dist) [dist (conj min-coords coord)]
+               :else [min-dist min-coords])))
+         [Integer/MAX_VALUE nil]
+         coords)]
     (when (= 1 (count min-coords))
       (first min-coords))))
 
 (defn map-bounds [coords]
   (reduce
-    (fn [[min-x min-y max-x max-y] [x y]]
-      [(min min-x x) (min min-y y) (max max-x x) (max max-y y)])
-    [Integer/MAX_VALUE Integer/MAX_VALUE 0 0]
-    coords))
+   (fn [[min-x min-y max-x max-y] [x y]]
+     [(min min-x x) (min min-y y) (max max-x x) (max max-y y)])
+   [Integer/MAX_VALUE Integer/MAX_VALUE 0 0]
+   coords))
 
 (defn map-positions [[min-x min-y max-x max-y]]
   (for [x (range min-x (inc max-x))
@@ -38,12 +38,12 @@
 
 (defn area-map [coords bounds]
   (reduce
-    (fn [closest pos]
-      (if-let [coord (closest-to pos coords)]
-        (update closest coord conj pos)
-        closest))
-    {}
-    (map-positions bounds)))
+   (fn [closest pos]
+     (if-let [coord (closest-to pos coords)]
+       (update closest coord conj pos)
+       closest))
+   {}
+   (map-positions bounds)))
 
 (defn on-edge? [[x y] [min-x min-y max-x max-y]]
   (or (= x min-x) (= x max-x)

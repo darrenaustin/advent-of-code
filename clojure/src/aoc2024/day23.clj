@@ -13,8 +13,8 @@
 (defn parse-graph [input]
   (reduce (fn [graph [v1 v2]]
             (assoc graph
-              v1 (conj (get graph v1 #{}) v2)
-              v2 (conj (get graph v2 #{}) v1)))
+                   v1 (conj (get graph v1 #{}) v2)
+                   v2 (conj (get graph v2 #{}) v1)))
           {}
           (parse-edges input)))
 
@@ -40,10 +40,10 @@
           c possible :when (s/string< a b c)
           :let [triplet [a b c]]
           :when (and (some including triplet)
-                         ((graph a) b)
-                         ((graph a) c)
-                         ((graph b) c))]
-          triplet)))
+                     ((graph a) b)
+                     ((graph a) c)
+                     ((graph b) c))]
+      triplet)))
 
 (defn part1 [input]
   (let [graph   (parse-graph input)

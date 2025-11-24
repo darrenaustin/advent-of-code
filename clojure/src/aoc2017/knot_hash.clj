@@ -8,9 +8,9 @@
         indices (mapv #(mod % size) (range start (+ start length)))
         swaps   (map vector indices (take (quot length 2) (reverse indices)))]
     (persistent!
-      (reduce (fn [xs [k v]] (assoc! xs k (xs v) v (xs k)))
-              (transient xs)
-              swaps))))
+     (reduce (fn [xs [k v]] (assoc! xs k (xs v) v (xs k)))
+             (transient xs)
+             swaps))))
 
 (defn sparse-hash [xs lengths]
   (loop [xs xs start 0 skip 0 [l & ls] lengths]
@@ -22,8 +22,8 @@
 
 (defn knot-hash [text]
   (str/join
-         (map byte->hex
-              (->> (apply concat (repeat 64 (concat (map int text) suffix)))
-                   (sparse-hash (vec (range 256)))
-                   (partition 16)
-                   (map #(reduce bit-xor %))))))
+   (map byte->hex
+        (->> (apply concat (repeat 64 (concat (map int text) suffix)))
+             (sparse-hash (vec (range 256)))
+             (partition 16)
+             (map #(reduce bit-xor %))))))

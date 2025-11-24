@@ -12,11 +12,11 @@
 
 (defn part2 [input]
   (reduce
-    (fn [stops dir]
-      (let [[floor idx] (peek stops)
-            [floor idx] [(+ floor (floor-dirs dir)) (inc idx)]]
-        (if (neg? floor)
-          (reduced idx)
-          (conj stops [floor idx]))))
-    [[0 0]]
-    input))
+   (fn [stops dir]
+     (let [[floor idx] (peek stops)
+           [floor idx] [(+ floor (floor-dirs dir)) (inc idx)]]
+       (if (neg? floor)
+         (reduced idx)
+         (conj stops [floor idx]))))
+   [[0 0]]
+   input))

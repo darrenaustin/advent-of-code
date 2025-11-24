@@ -21,12 +21,12 @@
 
 (defn double-grid [data]
   (str/join
-    (reduce (fn [s [p v]] (str/replace s p v))
-            data
-            {#"#"  "##"
-             #"O"  "[]"
-             #"\." ".."
-             #"@"  "@."})))
+   (reduce (fn [s [p v]] (str/replace s p v))
+           data
+           {#"#"  "##"
+            #"O"  "[]"
+            #"\." ".."
+            #"@"  "@."})))
 
 (defn move-cells [grid locs dir]
   (let [cells (map grid locs)]
@@ -61,9 +61,9 @@
 (defn solve [input box grid-fn]
   (let [[grid dirs] (parse input grid-fn)]
     (m/sum
-      (map (fn [[x y]] (+ (* 100 y) x))
-           (locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
-                       #{box})))))
+     (map (fn [[x y]] (+ (* 100 y) x))
+          (locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
+                      #{box})))))
 
 ;; TODO: speed up
 (defn part1 [input] (solve input \O identity))

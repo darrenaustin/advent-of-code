@@ -17,14 +17,14 @@
 ; https://en.wikipedia.org/wiki/Summed-area_table
 (defn summed-area-grid [[[min-x min-y] [max-x max-y]] val-fn]
   (reduce
-    (fn [m [x y]]
-      (assoc m [x y]
-               (+ (val-fn [x y])
-                  (or (m [x (dec y)]) 0)
-                  (or (m [(dec x) y]) 0)
-                  (- (or (m [(dec x) (dec y)]) 0)))))
-    {}
-    (for [x (range min-x (inc max-x)) y (range min-y (inc max-y))] [x y])))
+   (fn [m [x y]]
+     (assoc m [x y]
+            (+ (val-fn [x y])
+               (or (m [x (dec y)]) 0)
+               (or (m [(dec x) y]) 0)
+               (- (or (m [(dec x) (dec y)]) 0)))))
+   {}
+   (for [x (range min-x (inc max-x)) y (range min-y (inc max-y))] [x y])))
 
 (defn square-power [summed-grid [x y] size]
   (let [x0 (dec x) y0 (dec y)
@@ -53,14 +53,14 @@
 
 (defn part1 [input]
   (str/join "," (take 2 (second
-                          (max-3x3
-                            (summed-area-grid
-                              [[1 1] [300 300]]
-                              (partial power (s/parse-int input))))))))
+                         (max-3x3
+                          (summed-area-grid
+                           [[1 1] [300 300]]
+                           (partial power (s/parse-int input))))))))
 
 (defn part2 [input]
   (str/join "," (second
-                  (max-any-square
-                    (summed-area-grid
-                      [[1 1] [300 300]]
-                      (partial power (s/parse-int input)))))))
+                 (max-any-square
+                  (summed-area-grid
+                   [[1 1] [300 300]]
+                   (partial power (s/parse-int input)))))))

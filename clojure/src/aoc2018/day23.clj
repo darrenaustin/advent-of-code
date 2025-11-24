@@ -18,13 +18,13 @@
 
 (defn box-intersect? [[box-min box-max] [bot-center bot-radius]]
   (<= (quot (m/sum
-              (for [a [0 1 2]
-                    :let [low  (box-min a)
-                          high (dec (box-max a))]]
-                (+ (abs (- (bot-center a) low))
-                   (abs (- (bot-center a) high))
-                   (- high)
-                   low)))
+             (for [a [0 1 2]
+                   :let [low  (box-min a)
+                         high (dec (box-max a))]]
+               (+ (abs (- (bot-center a) low))
+                  (abs (- (bot-center a) high))
+                  (- high)
+                  low)))
             2)
       bot-radius))
 

@@ -9,8 +9,8 @@
 (defn expand-file-map [input]
   (vec (apply concat
               (map-indexed
-                (fn [i [f e]] (concat (repeat f i) (when e (repeat e nil))))
-                (partition-all 2 (map #(read-string (str %)) input))))))
+               (fn [i [f e]] (concat (repeat f i) (when e (repeat e nil))))
+               (partition-all 2 (map #(read-string (str %)) input))))))
 
 (defn defrag-blocks [file-map]
   (let [open-indices  (filter identity (map-indexed (fn [i e] (when (nil? e) i)) file-map))
@@ -40,8 +40,8 @@
         [_ space-sz] (get block-groups open-idx)
         extra-space       (- space-sz file-sz)
         file-moved-groups (assoc block-groups
-                            file-idx [nil file-sz]
-                            open-idx [file-val file-sz])]
+                                 file-idx [nil file-sz]
+                                 open-idx [file-val file-sz])]
     (if (zero? extra-space)
       file-moved-groups
       (coll-insert file-moved-groups (inc open-idx) [nil extra-space]))))

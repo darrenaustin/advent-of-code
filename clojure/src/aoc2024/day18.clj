@@ -15,8 +15,8 @@
 (defn neighbors [grid]
   (fn [loc]
     (init-grid
-      (filter grid (orthogonal-from loc))
-      1)))
+     (filter grid (orthogonal-from loc))
+     1)))
 
 (defn min-distance [grid bytes goal]
   (let [grid' (set/difference grid (set bytes))]
