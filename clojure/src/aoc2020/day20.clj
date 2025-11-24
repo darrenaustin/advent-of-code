@@ -4,6 +4,7 @@
     [aoc.day :as d]
     [aoc.util.grid2 :as g]
     [aoc.util.string :as s]
+    [clojure.math :as math]
     [clojure.string :as str]))
 
 (defn input [] (d/day-input 2020 20))
@@ -42,7 +43,7 @@
 
 (defn arrange-tiles
   ([tile-permutations-map]
-   (let [square-size (int (Math/sqrt (count tile-permutations-map)))
+   (let [square-size (int (math/sqrt (count tile-permutations-map)))
          positions (for [row (range square-size) col (range square-size)] [row col])]
      (arrange-tiles tile-permutations-map {} (set (keys tile-permutations-map)) positions)))
 
@@ -64,7 +65,7 @@
 
 (defn part1 [input]
   (let [arrangement (-> input parse-grid-tiles tile-permutations arrange-tiles)
-        square-edge (dec (int (Math/sqrt (count arrangement))))]
+        square-edge (dec (int (math/sqrt (count arrangement))))]
     (reduce * (map #(get-in arrangement [% :id])
                    [[0 0]
                     [0 square-edge]
@@ -75,7 +76,7 @@
   (g/sub-grid grid [1 1] [(- (g/width grid) 2) (- (g/height grid) 2)]))
 
 (defn assemble-image [tile-arrangement]
-  (let [width-in-tiles (int (Math/sqrt (count tile-arrangement)))
+  (let [width-in-tiles (int (math/sqrt (count tile-arrangement)))
         tile-size (- (g/width (get-in tile-arrangement [[0 0] :grid])) 2)
         image-size (* width-in-tiles tile-size)]
     (loop [grid (g/make-grid image-size image-size)
