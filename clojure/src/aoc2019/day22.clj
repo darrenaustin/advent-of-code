@@ -7,12 +7,12 @@
 
 (defn input [] (d/day-input 2019 22))
 
-;; linear coefficients [a b deck-size] are used to describe the linear
-;; transformation `f(x) = (a*x + b) % deck-size` that represents a shuffle
-;; operation, where x is the original index of a card, and f(x) is the new
-;; index after the shuffle. These can be composed to represent multiple shuffle
-;; operations.
-(defn coefficients-for-composed-shuffles [initial-coefficients shuffles deck-size]
+(defn coefficients-for-composed-shuffles
+  "Computes linear coefficients [a b] representing the composition of multiple
+   shuffle operations. Each shuffle is represented as `f(x) = (a*x + b) % deck-size`.
+   Where `x` is the original card index and `f(x)` is the new index of the card
+   after the shuffles."
+  [initial-coefficients shuffles deck-size]
   (reduce (fn [[a b] shuffle]
             (cond
               (= shuffle "deal into new stack")
@@ -33,12 +33,18 @@
           (reverse shuffles)))
 
 (defn inverse-coefficients
+  "Given coefficients [a b] for f(x) = (a*x + b) % deck-size,
+   returns coefficients [a' b'] for the inverse function g(y) = (a'*y + b') % deck-size
+   such that g(f(x)) = x."
   [[a b] deck-size]
   (let [a-inv (m/mod-inverse a deck-size)]
     [a-inv (mod (* (- a-inv) b) deck-size)]))
 
-(defn polynomial-mod [[a b] n m]
-  ;; Process (ax+b)^n % m
+(defn polynomial-mod
+  "Efficiently computes the nth power of linear transformation (ax+b) mod m.
+   Uses binary exponentiation to avoid computing large intermediate values.
+   Returns coefficients [a' b'] representing (ax+b)^n mod m."
+  [[a b] n m]
   (if (zero? n)
     [1 0]
     (if (even? n)
@@ -50,10 +56,14 @@
         [(mod (* a c) m)
          (mod (+ (* a d) b) m)]))))
 
-(defn card-at-index [index [a b] deck-size]
+(defn card-at-index
+  "Given an index position, returns which card ends up at that position
+   after applying the shuffle transformation represented by coefficients [a b]."
+  [index [a b] deck-size]
   (long (mod (+ (* a index) b) deck-size)))
 
 (defn index-for-card
+  "Given a card value, returns where that card ends up in the shuffled deck."
   [card [a b] deck-size]
   (let [[a-inv b-inv] (inverse-coefficients [a b] deck-size)]
     (mod (+ (* a-inv card) b-inv) deck-size)))
