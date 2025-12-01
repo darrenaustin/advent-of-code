@@ -14,11 +14,16 @@
            (* direction distance)))
        (str/split-lines input)))
 
-(defn rotate [pos rotation]
-  (mod (+ pos rotation) 100))
-
 (defn part1 [input]
-  (count (filter zero? (reductions rotate 50 (parse-rotations input)))))
+  (loop [pos 50 zero-hits 0 rotations (parse-rotations input)]
+    (if (empty? rotations)
+      zero-hits
+      (let [new-pos (mod (+ pos (first rotations)) 100)]
+        (recur new-pos
+               (if (zero? new-pos)
+                 (inc zero-hits)
+                 zero-hits)
+               (rest rotations))))))
 
 (defn part2 [input]
   (loop [pos 50 zero-crossings 0 rotations (parse-rotations input)]
