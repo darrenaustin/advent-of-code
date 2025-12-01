@@ -58,3 +58,22 @@
 (defn divisors [n]
   ;; TODO: this is slow, probably should have a prime factorization instead.
   (filter (partial div? n) (range 1 (inc n))))
+
+(defn- extended-gcd [a b]
+  (loop [old-r a, r b
+         old-s 1, s 0
+         old-t 0, t 1]
+    (if (zero? r)
+      [old-r old-s old-t]
+      (let [quotient (quot old-r r)]
+        (recur r (- old-r (* quotient r))
+               s (- old-s (* quotient s))
+               t (- old-t (* quotient t)))))))
+
+(defn mod-inverse [a m]
+  (let [m (abs m)
+        a (if (neg? a) (mod a m) a)
+        [g x _] (extended-gcd a m)]
+    (if (= g 1)
+      (mod x m)
+      (throw (ex-info "Modular inverse does not exist" {:a a :m m})))))  ; Return nil if no inverse exists
