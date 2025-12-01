@@ -76,4 +76,5 @@
             [aoc2024.day22]
             [aoc2024.day23]
             [aoc2024.day24]
-            [aoc2024.day25]))
+            [aoc2024.day25]
+            [aoc2025.day01]))
