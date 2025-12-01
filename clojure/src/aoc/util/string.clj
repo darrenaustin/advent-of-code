@@ -1,6 +1,9 @@
 (ns aoc.util.string
   (:require [clojure.string :as str]))
 
+(defn split-blocks [s]
+  (str/split s #"\n\s*\n"))
+
 (defn- read-int [s]
   ;; read-string treats a leading '0' as an octal number. Sigh.
   (read-string (cond
