@@ -8,8 +8,6 @@
 
 (defn input [] (d/day-input 2020 24))
 
-(def origin [0 0 0])
-
 ;; Using cube coordinates for the hex grid:
 ;; https://www.redblobgames.com/grids/hexagons/
 (def dirs->cube {"e"  [+1 -1 +0]
@@ -35,7 +33,7 @@
   (map #(re-seq #"e|se|sw|w|nw|ne" %) (str/split-lines input)))
 
 (defn parse-tile-coords [input]
-  (map #(reduce vec+ origin (map dirs->cube %)) (parse-tile-dir-paths input)))
+  (map #(reduce vec+ (map dirs->cube %)) (parse-tile-dir-paths input)))
 
 (defn flip-tile [black-tiles tile]
   (if (contains? black-tiles tile)
