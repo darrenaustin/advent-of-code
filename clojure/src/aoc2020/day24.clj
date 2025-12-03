@@ -24,7 +24,7 @@
   (filter black-tiles (adjacent-tiles tile)))
 
 (defn white-adjacent [black-tiles tile]
-  (filter (complement black-tiles) (adjacent-tiles tile)))
+  (remove black-tiles (adjacent-tiles tile)))
 
 (defn white-tiles-around [black-tiles]
   (set (apply concat (keep #(white-adjacent black-tiles %) black-tiles))))
