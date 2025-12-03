@@ -1,5 +1,7 @@
 (ns aoc.util.math
-  (:require [clojure.math :as math]))
+  (:require
+   [aoc.util.collection :as c]
+   [clojure.math :as math]))
 
 (defn num-digits [n] (count (str n)))
 
@@ -39,6 +41,15 @@
                 1 [mx maxes])))
           [Integer/MIN_VALUE []]
           coll))
+
+
+(defn indexed-min [coll]
+  (reduce (fn [[mi mv] [i v]] (if (< v mv) [i v] [mi mv]))
+          (c/indexed coll)))
+
+(defn indexed-max [coll]
+  (reduce (fn [[mi mv] [i v]] (if (> v mv) [i v] [mi mv]))
+          (c/indexed coll)))
 
 (defn quadratic-roots [a b c]
   (cond
