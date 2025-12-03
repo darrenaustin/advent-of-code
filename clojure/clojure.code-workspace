@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../inputs"
+		}
+	],
+	"settings": {
+		"calva.autoConnectRepl": true,
+		"calva.autoStartRepl": true,
+		"calva.autoOpenInspector": false,
+		"calva.autoOpenREPLWindow": false,
+		"calva.replConnectSequences": [
+			{
+				"projectType": "deps.edn",
+				"name": "Default deps.edn",
+				"autoSelectForConnect": true,
+				"autoSelectForJackIn": true,
+				"projectRootPath": [
+					"."
+				],
+				"cljsType": "none",
+				"menuSelections": {
+					"cljAliases": [
+						":dev"
+					]
+				}
+			}
+		],
+	},
+}

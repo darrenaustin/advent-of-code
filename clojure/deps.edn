@@ -4,9 +4,9 @@
            clj-http/clj-http              {:mvn/version "3.13.0"}
            org.clojure/math.combinatorics {:mvn/version "0.3.0"}
            org.clojure/data.priority-map  {:mvn/version "1.2.0"}
-           criterium/criterium            {:mvn/version "0.4.6"}
-           }
- :aliases {:test    {:extra-paths ["test"]
+           criterium/criterium            {:mvn/version "0.4.6"}}
+ :aliases {:dev     {:extra-paths ["test"]}
+           :test    {:extra-paths ["test"]
                      :extra-deps  {lambdaisland/kaocha {:mvn/version "1.91.1392"}}
                      :main-opts   ["-m" "kaocha.runner"]}
            :splint  {:extra-deps {io.github.noahtheduke/splint {:mvn/version "1.19.0"}

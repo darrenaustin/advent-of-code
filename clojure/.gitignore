@@ -17,7 +17,6 @@ pom.xml.asc
 .vscode/
 .clj-kondo/.cache/
 .clj-kondo/imports/
-*.code-workspace
 *.iml
 .idea/
 .session
