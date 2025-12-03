@@ -2,7 +2,6 @@
 (ns aoc2025.day03
   (:require
    [aoc.day :as d]
-   [aoc.util.collection :as c]
    [aoc.util.math :as m]
    [aoc.util.string :as s]))
 
@@ -11,21 +10,22 @@
 (defn parse-battery-banks [input]
   (map s/digits (s/parse-ints input)))
 
-(defn max-indexed-value [coll]
-  (reduce (fn [[mi mv] [i v]] (if (> v mv) [i v] [mi mv]))
-          (c/indexed coll)))
+(defn max-joltage [bank batteries]
+  (loop [bank bank b batteries max-jolt 0]
+    (if (zero? b)
+      max-jolt
+      (let [options (if (= b 1)
+                      bank
+                      (subvec bank 0 (inc (- (count bank) b))))
+            [max-idx max-battery] (m/indexed-max options)]
+        (recur (subvec bank (inc max-idx))
+               (dec b)
+               (+ (* max-jolt 10) max-battery))))))
 
-(defn max-power-n-batteries [bank n]
-  (if (= n 1)
-    (apply max bank)
-    (let [[index digit] (max-indexed-value (take (inc (- (count bank) n)) bank))
-          rest-num (max-power-n-batteries (subvec bank (inc index)) (dec n))]
-      (s/parse-int (str digit rest-num)))))
-
-(defn max-power-from-banks [input num-batteries]
-  (m/sum (map #(max-power-n-batteries % num-batteries)
+(defn max-joltage-from-banks [input num-batteries]
+  (m/sum (map #(max-joltage % num-batteries)
               (parse-battery-banks input))))
 
-(defn part1 [input] (max-power-from-banks input 2))
+(defn part1 [input] (max-joltage-from-banks input 2))
 
-(defn part2 [input] (max-power-from-banks input 12))
+(defn part2 [input] (max-joltage-from-banks input 12))
