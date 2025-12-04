@@ -53,7 +53,7 @@
 (defn neighbors-for [region target]
   (fn [[loc tool :as state]]
     (let [ns (into {} (for [n-loc (remove (fn [[x y]] (or (neg? x) (neg? y)))
-                                          (v/orthogonal-from loc))
+                                          (v/orthogonal-to loc))
                             :let [[dist tool] (distance-to [(region loc)
                                                             tool
                                                             (region n-loc)])]]

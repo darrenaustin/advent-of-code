@@ -16,7 +16,7 @@
 
 (defn update-area [area]
   (into {} (for [[l a] area]
-             [l (update-acre a (keep area (v/cardinal-from l)))])))
+             [l (update-acre a (keep area (v/adjacent-to l)))])))
 
 (defn resource-value [area]
   (* (count (g/locs-where area #{\|}))

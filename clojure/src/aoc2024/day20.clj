@@ -21,7 +21,7 @@
       (if (= head end)
         dists
         (let [step (first-where #(and (path %) (not (dists %)))
-                                (v/orthogonal-from head))]
+                                (v/orthogonal-to head))]
           (recur step (inc dist) (assoc dists step dist)))))))
 
 

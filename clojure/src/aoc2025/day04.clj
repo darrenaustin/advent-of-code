@@ -14,7 +14,7 @@
   ([grid candidate-locs] (filter #(roll? (grid %)) candidate-locs)))
 
 (defn removeable-rolls [grid]
-  (filter #(< (count (roll-locations grid (v/cardinal-from %))) 4)
+  (filter #(< (count (roll-locations grid (v/adjacent-to %))) 4)
           (roll-locations grid)))
 
 (defn remove-rolls [grid locs]

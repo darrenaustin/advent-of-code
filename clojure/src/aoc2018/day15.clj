@@ -58,7 +58,7 @@
   (remove #(= (:type unit) (:type %)) (vals (:units field))))
 
 (defn open-adjacent [{:keys [grid]} loc]
-  (filter #(= (grid %) \.) (v/orthogonal-from loc)))
+  (filter #(= (grid %) \.) (v/orthogonal-to loc)))
 
 (defn neighbors [field loc]
   (into {} (for [n (open-adjacent field loc)] [n 1])))
@@ -70,7 +70,7 @@
   (sort-units
    (map units
         (filter #(= (grid %) (enemy-of (:type unit)))
-                (v/orthogonal-from (:loc unit))))))
+                (v/orthogonal-to (:loc unit))))))
 
 (defn move-unit [field unit loc]
   (-> field

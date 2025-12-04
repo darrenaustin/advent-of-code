@@ -35,7 +35,7 @@
   (fn [loc]
     (into {} (map (fn [l] [l 1])
                   (filter #(#{\O \.} (grid %))
-                          (v/orthogonal-from loc))))))
+                          (v/orthogonal-to loc))))))
 
 (defn part1 [input]
   (let [grid (generate-grid input)]
@@ -48,6 +48,6 @@
         time
         (recur (inc time)
                (apply assoc grid
-                      (mapcat #(if (some #{\O} (map grid (v/orthogonal-from %)))
+                      (mapcat #(if (some #{\O} (map grid (v/orthogonal-to %)))
                                  [% \O]
                                  [% \.]) vacuum)))))))

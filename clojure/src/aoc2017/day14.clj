@@ -34,7 +34,7 @@
 
 (defn neighbors-fn [grid]
   (fn [loc]
-    (filter #(= \1 (grid %)) (v/orthogonal-from loc))))
+    (filter #(= \1 (grid %)) (v/orthogonal-to loc))))
 
 (defn hash-grid [input]
   (g/parse-grid (str/join "\n" (knot-hashs input))))

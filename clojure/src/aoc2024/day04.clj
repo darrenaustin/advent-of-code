@@ -17,7 +17,7 @@
    xmas))
 
 (defn count-xmas-at [grid pos]
-  (count-where #(xmas-in-dir? grid pos %) v/cardinal-dirs))
+  (count-where #(xmas-in-dir? grid pos %) v/adjacent-dirs))
 
 (defn xmas-in [grid]
   (m/sum (map #(count-xmas-at grid %) (keys grid))))

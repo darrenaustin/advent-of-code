@@ -32,7 +32,7 @@
 (defn sum-intersections [grid]
   (m/sum
    (map m/product (filter #(and (= \# (grid %))
-                                (every? #{\#} (map grid (v/orthogonal-from %))))
+                                (every? #{\#} (map grid (v/orthogonal-to %))))
                           (keys grid)))))
 
 (defn find-path [{:keys [grid robot]}]

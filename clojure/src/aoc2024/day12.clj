@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2024 12))
 
 (defn edge-perimeter [region]
-  (m/sum (map #(count (remove region (v/orthogonal-from %1))) region)))
+  (m/sum (map #(count (remove region (v/orthogonal-to %1))) region)))
 
 (defn fence-cost [region]
   (* (count region) (edge-perimeter region)))
@@ -47,7 +47,7 @@
 
 (defn like-neighbors [grid loc]
   (let [plant (grid loc)]
-    (filter #(= (grid %) plant) (v/orthogonal-from loc))))
+    (filter #(= (grid %) plant) (v/orthogonal-to loc))))
 
 (defn connected-to [grid loc]
   (loop [region #{loc}

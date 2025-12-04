@@ -24,7 +24,7 @@
   (map v/vec- (rest vs) vs))
 
 (defn neighbors [key-map]
-  (fn [loc] (g/init-grid (filter key-map (v/orthogonal-from loc)) 1)))
+  (fn [loc] (g/init-grid (filter key-map (v/orthogonal-to loc)) 1)))
 
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]
