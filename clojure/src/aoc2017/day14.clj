@@ -3,6 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [count-where]]
             [aoc.util.grid :refer :all]
+            [aoc.util.vec :refer :all]
             [aoc2017.knot-hash :refer [knot-hash]]
             [clojure.pprint :refer [cl-format]]
             [clojure.string :as str]))

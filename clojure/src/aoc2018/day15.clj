@@ -3,7 +3,8 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
-            [aoc.util.pathfinding :as p]))
+            [aoc.util.pathfinding :as p]
+            [aoc.util.vec :refer :all]))
 
 (defn input [] (d/day-input 2018 15))
 

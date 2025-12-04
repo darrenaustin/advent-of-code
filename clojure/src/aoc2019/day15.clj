@@ -3,6 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.pathfinding :as p]
+            [aoc.util.vec :refer :all]
             [aoc2019.intcode :as i])
   (:import (clojure.lang PersistentQueue)))
 

@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2015/day/3
 (ns aoc2015.day03
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]))
+            [aoc.util.vec :refer :all]))
 
 (defn input [] (d/day-input 2015 3))
 

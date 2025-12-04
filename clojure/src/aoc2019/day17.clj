@@ -4,6 +4,7 @@
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
+            [aoc.util.vec :refer :all]
             [aoc2019.intcode :as i]
             [clojure.string :as str]))
 

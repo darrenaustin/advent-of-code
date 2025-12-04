@@ -6,6 +6,7 @@
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
+            [aoc.util.vec :refer :all]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 21))

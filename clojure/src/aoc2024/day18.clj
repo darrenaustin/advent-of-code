@@ -4,6 +4,7 @@
             [aoc.util.grid :refer :all]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
+            [aoc.util.vec :refer :all]
             [clojure.set :as set]
             [clojure.string :as str]))
 

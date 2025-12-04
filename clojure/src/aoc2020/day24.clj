@@ -2,7 +2,7 @@
 (ns aoc2020.day24
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :refer [vec+]]
+   [aoc.util.vec :refer :all]
    [clojure.set :as set]
    [clojure.string :as str]))
 

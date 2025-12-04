@@ -2,7 +2,8 @@
 (ns aoc2017.day19
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [first-where]]
-            [aoc.util.grid :refer :all]))
+            [aoc.util.grid :refer :all]
+            [aoc.util.vec :refer :all]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.

@@ -3,6 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
+            [aoc.util.vec :refer :all]
             [clojure.string :as str]))
 
 ;; Need to ensure the input isn't trimmed as

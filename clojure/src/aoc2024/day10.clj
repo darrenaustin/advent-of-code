@@ -4,7 +4,8 @@
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
-            [aoc.util.string :as s]))
+            [aoc.util.string :as s]
+            [aoc.util.vec :refer :all]))
 
 (defn input [] (d/day-input 2024 10))
 

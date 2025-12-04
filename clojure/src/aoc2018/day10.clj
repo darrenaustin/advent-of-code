@@ -3,7 +3,8 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
-            [aoc.util.string :as s]))
+            [aoc.util.string :as s]
+            [aoc.util.vec :refer :all]))
 
 (defn input [] (d/day-input 2018 10))
 

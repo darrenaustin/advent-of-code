@@ -2,7 +2,6 @@
 (ns aoc2017.day20
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [indexed]]
-            [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
             [aoc.util.string :as s]
             [clojure.set :as set]))
@@ -13,7 +12,7 @@
   (mapv #(mapv vec (partition 3 %)) (partition 9 (s/parse-ints input))))
 
 (defn origin-distance [v]
-  (m/manhattan-distance origin3 v))
+  (m/manhattan-distance [0 0 0] v))
 
 ; Because this is not continuous the formula for position is:
 ; p(t) = p + v*t + a*(t*(t+1)/2) =>  p + (v + a/2)*t + (a/2)t^2

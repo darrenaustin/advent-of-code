@@ -3,6 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
+            [aoc.util.vec :refer :all]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 15))

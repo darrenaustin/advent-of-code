@@ -2,7 +2,8 @@
 (ns aoc2024.day16
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
-            [aoc.util.pathfinding :as path]))
+            [aoc.util.pathfinding :as path]
+            [aoc.util.vec :refer :all]))
 
 (defn input [] (d/day-input 2024 16))
 

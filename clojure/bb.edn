@@ -19,8 +19,8 @@
   splint      {:doc  "Identify common idiomatic code issues with splint."
                :task (clojure "-M:splint")}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
-               :task (clojure "-M:test --skip-meta :slow")}
+               :task (clojure (str "-M:test --skip-meta :slow " (str/join " " *command-line-args*)))}
   test-all    {:doc  "Run all tests."
-               :task (clojure "-M:test")}
+               :task (clojure (str "-M:test " (str/join " " *command-line-args*)))}
   update-days {:doc  "Update the 'days.clj' file with the currently implemented days."
                :task (exec 'tasks/update-days-file)}}}

@@ -5,6 +5,7 @@
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
             [aoc.util.string :as s]
+            [aoc.util.vec :refer :all]
             [clojure.data.priority-map :refer [priority-map]]))
 
 (defn input [] (d/day-input 2018 23))

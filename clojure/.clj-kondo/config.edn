@@ -2,7 +2,8 @@
  {:missing-docstring            {:level :off}
   :refer-all                    {:exclude [clojure.test
                                            clojure.core.logic
-                                           aoc.util.grid]}
+                                           aoc.util.grid
+                                           aoc.util.vec]}
   :unresolved-symbol            {:exclude [(clojure.core.logic/run*)
                                            (clojure.core.logic/run)
                                            lvar]}
