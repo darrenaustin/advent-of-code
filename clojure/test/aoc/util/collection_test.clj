@@ -13,8 +13,8 @@
 (deftest count-where-test
   (testing "count-where counts elements that satisfy the predicate"
     (is (= 3 (c/count-where even? [1 2 3 4 5 6])))
-    (is (= 0 (c/count-where even? [1 3 5 7])))
-    (is (= 0 (c/count-where pos? [])))
+    (is (zero? (c/count-where even? [1 3 5 7])))
+    (is (zero? (c/count-where pos? [])))
     (is (= 5 (c/count-where pos? [1 2 3 4 5])))
     (is (= 2 (c/count-where #(> % 10) [5 15 8 20 3])))))
 
@@ -63,7 +63,7 @@
     (let [cycle-fn #(mod (inc %) 3)]
       (is (= 1 (c/iteration-with-cycle 1 cycle-fn 0)))
       (is (= 2 (c/iteration-with-cycle 2 cycle-fn 0)))
-      (is (= 0 (c/iteration-with-cycle 3 cycle-fn 0)))
+      (is (zero? (c/iteration-with-cycle 3 cycle-fn 0)))
       (is (= 1 (c/iteration-with-cycle 4 cycle-fn 0)))
       (is (= 1 (c/iteration-with-cycle 1000000 cycle-fn 0))))
 
