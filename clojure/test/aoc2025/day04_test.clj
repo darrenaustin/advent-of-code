@@ -5,23 +5,22 @@
             [clojure.test :refer :all]))
 
 (def example
-  "")
+  "..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.")
 
 (deftest part1-example
-  (is (= nil (d/part1 example))))
-
-(deftest part1-examples
-  (are [expected input]
-    (= expected (d/part1 input))
-    nil ""))
+  (is (= 13 (d/part1 example))))
 
 (deftest part2-example
-  (is (= nil (d/part2 example))))
-
-(deftest part2-examples
-  (are [expected input]
-    (= expected (d/part2 input))
-    nil ""))
+  (is (= 43 (d/part2 example))))
 
 (def answers (delay (day-answers 2025 4)))
 (def input (delay (d/input)))
