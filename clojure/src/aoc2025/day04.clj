@@ -7,9 +7,11 @@
 
 (defn input [] (d/day-input 2025 4))
 
+(def roll? #{\@})
+
 (defn roll-locations
-  ([grid] (g/locs-where grid #{\@}))
-  ([grid candidate-locs] (keep #(#{\@} (grid %)) candidate-locs)))
+  ([grid] (g/locs-where grid roll?))
+  ([grid candidate-locs] (filter #(roll? (grid %)) candidate-locs)))
 
 (defn removeable-rolls [grid]
   (filter #(< (count (roll-locations grid (v/cardinal-from %))) 4)
