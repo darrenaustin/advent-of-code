@@ -3,7 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.string :as s]
-            [aoc.util.vec :refer :all]
+            [aoc.util.vec :as v]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2018 17))
@@ -30,15 +30,15 @@
 
 (defn drop-down [grid start bottom]
   (loop [end start]
-    (let [[_ y :as below] (vec+ end dir-down)]
+    (let [[_ y :as below] (v/vec+ end v/dir-down)]
       (if (or (> y bottom) (blocked? grid below))
         end
         (recur below)))))
 
 (defn floor-edge [grid start dir]
   (first (drop-while #(and (flows? grid %)
-                           (blocked? grid (vec+ % dir-down)))
-                     (iterate #(vec+ dir %) start))))
+                           (blocked? grid (v/vec+ % v/dir-down)))
+                     (iterate #(v/vec+ dir %) start))))
 
 (defn drop-water [grid]
   (let [[[_ top] [_ bottom]] (bounds grid)]
@@ -49,20 +49,20 @@
               drops' (disj drops drop)
               block  (drop-down grid drop bottom)
               grid'  (fill-rect grid drop block \|)]
-          (if (nil? (grid' (vec+ block dir-down)))
+          (if (nil? (grid' (v/vec+ block v/dir-down)))
             (recur grid' drops')
-            (let [left-floor       (floor-edge grid' block dir-left)
+            (let [left-floor       (floor-edge grid' block v/dir-left)
                   left-floor-open  (flows? grid' left-floor)
-                  right-floor      (floor-edge grid' block dir-right)
+                  right-floor      (floor-edge grid' block v/dir-right)
                   right-floor-open (flows? grid' right-floor)
                   closed           (and (not left-floor-open) (not right-floor-open))
                   both-open        (and left-floor-open right-floor-open)
                   grid'            (fill-rect grid'
-                                              (vec+ left-floor dir-right)
-                                              (vec+ right-floor dir-left)
+                                              (v/vec+ left-floor v/dir-right)
+                                              (v/vec+ right-floor v/dir-left)
                                               (if closed \~ \|))]
               (cond
-                closed (recur grid' (conj drops' (vec+ block dir-up)))
+                closed (recur grid' (conj drops' (v/vec+ block v/dir-up)))
                 both-open (recur grid' (conj drops' left-floor right-floor))
                 left-floor-open (recur grid' (conj drops' left-floor))
                 :else (recur grid' (conj drops' right-floor))))))))))

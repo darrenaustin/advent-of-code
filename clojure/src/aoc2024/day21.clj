@@ -6,7 +6,7 @@
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
-            [aoc.util.vec :refer :all]
+            [aoc.util.vec :as v]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 21))
@@ -14,17 +14,17 @@
 (defn parse-codes [input] (str/split-lines input))
 
 (def dir->arrow
-  {dir-up    "^"
-   dir-down  "v"
-   dir-left  "<"
-   dir-right ">"
-   origin    ""})
+  {v/dir-up    "^"
+   v/dir-down  "v"
+   v/dir-left  "<"
+   v/dir-right ">"
+   v/origin    ""})
 
 (defn vec-diffs [vs]
-  (map vec- (rest vs) vs))
+  (map v/vec- (rest vs) vs))
 
 (defn neighbors [key-map]
-  (fn [loc] (init-grid (filter key-map (orthogonal-from loc)) 1)))
+  (fn [loc] (init-grid (filter key-map (v/orthogonal-from loc)) 1)))
 
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]

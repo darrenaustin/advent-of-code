@@ -4,23 +4,23 @@
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
-            [aoc.util.vec :refer :all]
+            [aoc.util.vec :as v]
             [aoc2019.intcode :as i]
             [clojure.string :as str]))
 
 (defn input [] (d/day-input 2019 17))
 
-(def dirs {\^ dir-up, \v dir-down, \< dir-left, \> dir-right})
+(def dirs {\^ v/dir-up, \v v/dir-down, \< v/dir-left, \> v/dir-right})
 
 (def turns
-  {[dir-up dir-left]    \L
-   [dir-up dir-right]   \R
-   [dir-right dir-up]   \L
-   [dir-right dir-down] \R
-   [dir-down dir-right] \L
-   [dir-down dir-left]  \R
-   [dir-left dir-down]  \L
-   [dir-left dir-up]    \R})
+  {[v/dir-up v/dir-left]    \L
+   [v/dir-up v/dir-right]   \R
+   [v/dir-right v/dir-up]   \L
+   [v/dir-right v/dir-down] \R
+   [v/dir-down v/dir-right] \L
+   [v/dir-down v/dir-left]  \R
+   [v/dir-left v/dir-down]  \L
+   [v/dir-left v/dir-up]    \R})
 
 (defn parse [input]
   (let [grid      (parse-grid (str/join (map char (:output (i/run (i/parse input))))))
@@ -32,16 +32,16 @@
 (defn sum-intersections [grid]
   (m/sum
    (map m/product (filter #(and (= \# (grid %))
-                                (every? #{\#} (map grid (orthogonal-from %))))
+                                (every? #{\#} (map grid (v/orthogonal-from %))))
                           (keys grid)))))
 
 (defn find-path [{:keys [grid robot]}]
   (loop [loc (:loc robot), dir (:dir robot), steps 0, path []]
-    (let [forward (vec+ loc dir)]
+    (let [forward (v/vec+ loc dir)]
       (if (= \# (grid forward))
         (recur forward dir (inc steps) path)
-        (if-let [turn (c/first-where #(= \# (grid (vec+ loc %)))
-                                     [(ortho-turn-left dir) (ortho-turn-right dir)])]
+        (if-let [turn (c/first-where #(= \# (grid (v/vec+ loc %)))
+                                     [(v/ortho-turn-left dir) (v/ortho-turn-right dir)])]
           (if (zero? steps)
             (recur loc turn steps (conj path (turns [dir turn])))
             (recur loc turn 0 (conj path steps (turns [dir turn]))))

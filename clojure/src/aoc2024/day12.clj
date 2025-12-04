@@ -3,12 +3,12 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 12))
 
 (defn edge-perimeter [region]
-  (m/sum (map #(count (remove region (orthogonal-from %1))) region)))
+  (m/sum (map #(count (remove region (v/orthogonal-from %1))) region)))
 
 (defn fence-cost [region]
   (* (count region) (edge-perimeter region)))
@@ -47,7 +47,7 @@
 
 (defn like-neighbors [grid loc]
   (let [plant (grid loc)]
-    (filter #(= (grid %) plant) (orthogonal-from loc))))
+    (filter #(= (grid %) plant) (v/orthogonal-from loc))))
 
 (defn connected-to [grid loc]
   (loop [region #{loc}

@@ -3,7 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [count-where]]
             [aoc.util.grid :refer :all]
-            [aoc.util.vec :refer :all]
+            [aoc.util.vec :as v]
             [aoc2017.knot-hash :refer [knot-hash]]
             [clojure.pprint :refer [cl-format]]
             [clojure.string :as str]))
@@ -34,7 +34,7 @@
 
 (defn neighbors-fn [grid]
   (fn [loc]
-    (filter #(= \1 (grid %)) (orthogonal-from loc))))
+    (filter #(= \1 (grid %)) (v/orthogonal-from loc))))
 
 (defn hash-grid [input]
   (parse-grid (str/join "\n" (knot-hashs input))))

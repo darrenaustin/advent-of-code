@@ -3,7 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.grid :refer :all]
             [aoc.util.pathfinding :as path]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 16))
 
@@ -16,14 +16,14 @@
 (defn cost-from [from-dir to-dir]
   (cond
     (= from-dir to-dir) 1
-    (= from-dir (vec- to-dir)) 2001
+    (= from-dir (v/vec- to-dir)) 2001
     :else 1001))
 
 (defn neighbors-fn [grid]
   (fn [[loc dir]]
     (into {}
-          (for [d orthogonal-dirs
-                :let [l (vec+ loc d)]
+          (for [d v/orthogonal-dirs
+                :let [l (v/vec+ loc d)]
                 :when (not= (grid l) \#)]
             [[l d] (cost-from dir d)]))))
 
@@ -32,7 +32,7 @@
 
 (defn solve [input path-fn]
   (let [{:keys [grid start goal]} (parse input)]
-    (path-fn [start dir-e] (neighbors-fn grid) (goal? goal))))
+    (path-fn [start v/dir-e] (neighbors-fn grid) (goal? goal))))
 
 (defn part1 [input]
   (solve input path/dijkstra-distance))

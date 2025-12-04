@@ -4,11 +4,11 @@
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
             [aoc.util.pathfinding :as p]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 20))
 
-(def dirs {\N dir-n, \E dir-e, \S dir-s, \W dir-w})
+(def dirs {\N v/dir-n, \E v/dir-e, \S v/dir-s, \W v/dir-w})
 
 (defn parse [input]
   (loop [stack '(), pos [0 0], doors {}, xs input]
@@ -20,7 +20,7 @@
         \( (recur (conj stack pos) pos doors (rest xs))
         \| (recur stack (peek stack) doors (rest xs))
         \) (recur (pop stack) (peek stack) doors (rest xs))
-        (let [pos' (vec+ pos (dirs (first xs)))]
+        (let [pos' (v/vec+ pos (dirs (first xs)))]
           (recur stack pos'
                  (-> doors
                      (update pos conj pos')

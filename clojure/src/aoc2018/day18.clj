@@ -3,7 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 18))
 
@@ -16,7 +16,7 @@
 
 (defn update-area [area]
   (into {} (for [[l a] area]
-             [l (update-acre a (keep area (cardinal-from l)))])))
+             [l (update-acre a (keep area (v/cardinal-from l)))])))
 
 (defn resource-value [area]
   (* (count (locs-where area #{\|}))

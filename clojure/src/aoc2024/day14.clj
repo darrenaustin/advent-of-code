@@ -4,7 +4,7 @@
             [aoc.util.collection :refer [first-where]]
             [aoc.util.grid :refer :all]
             [aoc.util.string :as s]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 14))
 
@@ -15,7 +15,7 @@
 
 (defn simulate [robots velocities bounds seconds]
   (map (fn [r v]
-         (mapv mod (vec+ r (vec-n* seconds v)) bounds))
+         (mapv mod (v/vec+ r (v/vec-n* seconds v)) bounds))
        robots velocities))
 
 (defn seconds-until-tree [[robots velocities] bounds]

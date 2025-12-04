@@ -1,14 +1,14 @@
 ;; https://adventofcode.com/2015/day/3
 (ns aoc2015.day03
   (:require [aoc.day :as d]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2015 3))
 
-(def dirs {\^ dir-up
-           \v dir-down
-           \> dir-right
-           \< dir-left})
+(def dirs {\^ v/dir-up
+           \v v/dir-down
+           \> v/dir-right
+           \< v/dir-left})
 
 (defn packages-delivered [input locations packages]
   (if (seq input)

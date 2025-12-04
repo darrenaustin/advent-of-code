@@ -5,7 +5,7 @@
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 22))
 
@@ -53,7 +53,7 @@
 (defn neighbors-for [region target]
   (fn [[loc tool :as state]]
     (let [ns (into {} (for [n-loc (remove (fn [[x y]] (or (neg? x) (neg? y)))
-                                          (orthogonal-from loc))
+                                          (v/orthogonal-from loc))
                             :let [[dist tool] (distance-to [(region loc)
                                                             tool
                                                             (region n-loc)])]]

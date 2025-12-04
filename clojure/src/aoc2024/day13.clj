@@ -3,7 +3,7 @@
   (:require [aoc.day :as d]
             [aoc.util.math :as m]
             [aoc.util.string :as s]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 13))
 
@@ -41,4 +41,4 @@
   (solve input identity))
 
 (defn part2 [input]
-  (solve input #(vec+ [10000000000000 10000000000000] %)))
+  (solve input #(v/vec+ [10000000000000 10000000000000] %)))

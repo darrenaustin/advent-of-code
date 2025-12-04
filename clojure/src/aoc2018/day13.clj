@@ -1,41 +1,35 @@
 ;; https://adventofcode.com/2018/day/13
 (ns aoc2018.day13
   (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
             [aoc.util.grid :refer :all]
-            [aoc.util.vec :refer :all]
+            [aoc.util.vec :as v]
             [clojure.string :as str]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.
 (defn input [] (d/day-input 2018 13 false))
 
-(def cart-dir {\^ dir-up, \> dir-right, \v dir-down, \< dir-left})
+(def cart-dir {\^ v/dir-up, \> v/dir-right, \v v/dir-down, \< v/dir-left})
 
-(def cart-track {dir-up \|, dir-right \-, dir-down \|, dir-left \-})
-
-(def turn-right
-  {dir-up dir-right, dir-right dir-down, dir-down dir-left, dir-left dir-up})
-
-(def turn-left (c/val->key turn-right))
+(def cart-track {v/dir-up \|, v/dir-right \-, v/dir-down \|, v/dir-left \-})
 
 (def crossing-next-dir
-  {turn-left identity, identity turn-right, turn-right turn-left})
+  {v/ortho-turn-left identity, identity v/ortho-turn-right, v/ortho-turn-right v/ortho-turn-left})
 
 (def corner-turn
-  {[\/ dir-up]    dir-right
-   [\/ dir-right] dir-up
-   [\/ dir-down]  dir-left
-   [\/ dir-left]  dir-down
+  {[\/ v/dir-up]    v/dir-right
+   [\/ v/dir-right] v/dir-up
+   [\/ v/dir-down]  v/dir-left
+   [\/ v/dir-left]  v/dir-down
    ;
-   [\\ dir-up]    dir-left
-   [\\ dir-right] dir-down
-   [\\ dir-down]  dir-right
-   [\\ dir-left]  dir-up})
+   [\\ v/dir-up]    v/dir-left
+   [\\ v/dir-right] v/dir-down
+   [\\ v/dir-down]  v/dir-right
+   [\\ v/dir-left]  v/dir-up})
 
 (defn parse [input]
   (let [grid  (parse-grid input)
-        carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing turn-left})
+        carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing v/ortho-turn-left})
                    (locs-where grid #{\^ \> \v \<}))]
     {:carts  carts
      :tracks (reduce (fn [ts {:keys [loc dir]}] (assoc ts loc (cart-track dir)))
@@ -43,7 +37,7 @@
                      carts)}))
 
 (defn move [tracks {:keys [loc dir crossing] :as cart}]
-  (let [loc' (vec+ loc dir) track (tracks loc')]
+  (let [loc' (v/vec+ loc dir) track (tracks loc')]
     (cond
       (= track (cart-track dir)) (assoc cart :loc loc')
       (= track \+) {:loc loc' :dir (crossing dir) :crossing (crossing-next-dir crossing)}

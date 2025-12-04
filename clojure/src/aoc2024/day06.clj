@@ -3,34 +3,34 @@
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [count-where]]
             [aoc.util.grid :refer :all]
-            [aoc.util.vec :refer :all]))
+            [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 6))
 
 (defn walk-guard [grid guard]
-  (loop [guard guard dir dir-up visited #{guard}]
-    (let [next-loc (vec+ guard dir)]
+  (loop [guard guard dir v/dir-up visited #{guard}]
+    (let [next-loc (v/vec+ guard dir)]
       (cond
         ;; Walked off edge
         (not (contains? grid next-loc)) visited
 
         ;; Blocked, so turn right
-        (= \# (grid next-loc)) (recur guard (ortho-turn-right dir) visited)
+        (= \# (grid next-loc)) (recur guard (v/ortho-turn-right dir) visited)
 
         ;; Walk to the next position and add the current to visited
         :else (recur next-loc dir (conj visited next-loc))))))
 
 (defn looping-guard? [grid guard]
-  (loop [guard guard dir dir-up visited #{}]
+  (loop [guard guard dir v/dir-up visited #{}]
     (if (contains? visited [guard dir])
       true
-      (let [next-loc (vec+ guard dir)]
+      (let [next-loc (v/vec+ guard dir)]
         (cond
           ;; Walked off edge.
           (not (contains? grid next-loc)) false
 
           ;; Blocked, so turn right
-          (= \# (grid next-loc)) (recur guard (ortho-turn-right dir) visited)
+          (= \# (grid next-loc)) (recur guard (v/ortho-turn-right dir) visited)
 
           ;; Walk to the next position and add the current to visited
           :else (recur next-loc dir (conj visited [guard dir])))))))

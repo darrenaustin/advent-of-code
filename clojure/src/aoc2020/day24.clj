@@ -2,7 +2,7 @@
 (ns aoc2020.day24
   (:require
    [aoc.day :as d]
-   [aoc.util.vec :refer :all]
+   [aoc.util.vec :as v]
    [clojure.set :as set]
    [clojure.string :as str]))
 
@@ -18,7 +18,7 @@
                  "ne" [+1 +0 -1]})
 
 (defn adjacent-tiles [tile]
-  (map #(vec+ tile %) (vals dirs->cube)))
+  (map #(v/vec+ tile %) (vals dirs->cube)))
 
 (defn black-adjacent [black-tiles tile]
   (filter black-tiles (adjacent-tiles tile)))
@@ -33,7 +33,7 @@
   (map #(re-seq #"e|se|sw|w|nw|ne" %) (str/split-lines input)))
 
 (defn parse-tile-coords [input]
-  (map #(reduce vec+ (map dirs->cube %)) (parse-tile-dir-paths input)))
+  (map #(reduce v/vec+ (map dirs->cube %)) (parse-tile-dir-paths input)))
 
 (defn flip-tile [black-tiles tile]
   (if (contains? black-tiles tile)
