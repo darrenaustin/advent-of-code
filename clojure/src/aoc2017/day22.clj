@@ -1,14 +1,14 @@
 ;; https://adventofcode.com/2017/day/22
 (ns aoc2017.day22
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2017 22))
 
 (defn parse [input]
-  (let [grid (parse-grid input)
-        [width height] (size grid)]
+  (let [grid (g/parse-grid input)
+        [width height] (g/size grid)]
     {:grid             grid
      :virus-loc        [(quot width 2) (quot height 2)]
      :virus-dir        v/dir-up

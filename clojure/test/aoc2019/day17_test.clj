@@ -1,7 +1,7 @@
 ;; Test for aoc2019.day17
 (ns aoc2019.day17-test
   (:require [aoc.day :refer [day-answers]]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc2019.day17 :as d]
             [clojure.test :refer :all]))
 
@@ -15,7 +15,7 @@
 ..#####...^..")
 
 (deftest part1-example
-  (is (= 76 (d/sum-intersections (parse-grid example1-grid)))))
+  (is (= 76 (d/sum-intersections (g/parse-grid example1-grid)))))
 
 (def answers (delay (day-answers 2019 17)))
 (def input (delay (d/input)))

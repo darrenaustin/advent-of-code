@@ -2,7 +2,6 @@
 (ns aoc2018.day23
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
-            [aoc.util.grid :refer :all]
             [aoc.util.math :as m]
             [aoc.util.string :as s]
             [aoc.util.vec :as v]

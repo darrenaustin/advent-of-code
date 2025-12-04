@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2018/day/13
 (ns aoc2018.day13
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.vec :as v]
             [clojure.string :as str]))
 
@@ -28,9 +28,9 @@
    [\\ v/dir-left]  v/dir-up})
 
 (defn parse [input]
-  (let [grid  (parse-grid input)
+  (let [grid  (g/parse-grid input)
         carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing v/ortho-turn-left})
-                   (locs-where grid #{\^ \> \v \<}))]
+                   (g/locs-where grid #{\^ \> \v \<}))]
     {:carts  carts
      :tracks (reduce (fn [ts {:keys [loc dir]}] (assoc ts loc (cart-track dir)))
                      (into {} (remove #(#{\space} (second %)) grid))

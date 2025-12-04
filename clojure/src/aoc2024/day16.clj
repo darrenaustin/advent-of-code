@@ -1,16 +1,16 @@
 ;; https://adventofcode.com/2024/day/16
 (ns aoc2024.day16
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.pathfinding :as path]
             [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 16))
 
 (defn parse [input]
-  (let [grid  (parse-grid input)
-        start (loc-where grid #{\S})
-        goal  (loc-where grid #{\E})]
+  (let [grid  (g/parse-grid input)
+        start (g/loc-where grid #{\S})
+        goal  (g/loc-where grid #{\E})]
     {:grid (assoc grid goal \.) :start start :goal goal}))
 
 (defn cost-from [from-dir to-dir]

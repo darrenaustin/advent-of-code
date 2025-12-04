@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2024/day/15
 (ns aoc2024.day15
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.vec :as v]
             [clojure.string :as str]))
@@ -16,7 +16,7 @@
 
 (defn parse [input grid-fn]
   (let [[grid-data instructions] (str/split input #"\n\n")
-        grid (parse-grid (grid-fn grid-data))
+        grid (g/parse-grid (grid-fn grid-data))
         dirs (map robot-dirs (str/replace instructions #"\s" ""))]
     [grid dirs]))
 
@@ -54,7 +54,7 @@
       blocks)))
 
 (defn move-robot [grid dir]
-  (let [robot (loc-where grid #{\@})]
+  (let [robot (g/loc-where grid #{\@})]
     (if-let [blocks (moveable-in-dir grid robot dir)]
       (move-cells grid blocks dir)
       grid)))
@@ -63,8 +63,8 @@
   (let [[grid dirs] (parse input grid-fn)]
     (m/sum
      (map (fn [[x y]] (+ (* 100 y) x))
-          (locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
-                      #{box})))))
+          (g/locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
+                        #{box})))))
 
 ;; TODO: speed up
 (defn part1 [input] (solve input \O identity))

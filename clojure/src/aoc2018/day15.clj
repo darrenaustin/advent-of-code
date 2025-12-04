@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2018/day/15
 (ns aoc2018.day15
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.vec :as v]))
@@ -31,8 +31,8 @@
       (only-one-unit-type-left? field)))
 
 (defn parse [input]
-  (let [grid  (parse-grid input)
-        units (locs-where grid #{\E \G})]
+  (let [grid  (g/parse-grid input)
+        units (g/locs-where grid #{\E \G})]
     {:grid           grid
      :rounds         0
      :elf-deaths     0

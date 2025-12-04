@@ -2,7 +2,7 @@
 (ns aoc2024.day21
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
@@ -24,7 +24,7 @@
   (map v/vec- (rest vs) vs))
 
 (defn neighbors [key-map]
-  (fn [loc] (init-grid (filter key-map (v/orthogonal-from loc)) 1)))
+  (fn [loc] (g/init-grid (filter key-map (v/orthogonal-from loc)) 1)))
 
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]

@@ -2,7 +2,7 @@
 (ns aoc2017.day19
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [first-where]]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.vec :as v]))
 
 ;; Need to ensure the input isn't trimmed as
@@ -22,7 +22,7 @@
   (and cell (not= cell \space)))
 
 (defn walk-routes [input]
-  (let [grid  (parse-grid input)
+  (let [grid  (g/parse-grid input)
         start (first (first-where (fn [[[_ y] c]] (and (zero? y) (= c \|))) grid))]
     (loop [pos start dir v/dir-down path "" steps 1]
       (let [cell  (grid pos)

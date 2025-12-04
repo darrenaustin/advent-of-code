@@ -2,7 +2,7 @@
 (ns aoc2017.day14
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [count-where]]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.vec :as v]
             [aoc2017.knot-hash :refer [knot-hash]]
             [clojure.pprint :refer [cl-format]]
@@ -37,7 +37,7 @@
     (filter #(= \1 (grid %)) (v/orthogonal-from loc))))
 
 (defn hash-grid [input]
-  (parse-grid (str/join "\n" (knot-hashs input))))
+  (g/parse-grid (str/join "\n" (knot-hashs input))))
 
 (defn part1 [input]
   (reduce (fn [s row] (+ s (count-where #{\1} row)))
@@ -46,4 +46,4 @@
 
 (defn part2 [input]
   (let [grid (hash-grid input)]
-    (count (flood-fill (locs-where grid #{\1}) (neighbors-fn grid)))))
+    (count (flood-fill (g/locs-where grid #{\1}) (neighbors-fn grid)))))

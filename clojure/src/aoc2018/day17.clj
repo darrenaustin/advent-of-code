@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2018/day/17
 (ns aoc2018.day17
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.string :as s]
             [aoc.util.vec :as v]
             [clojure.string :as str]))
@@ -41,7 +41,7 @@
                      (iterate #(v/vec+ dir %) start))))
 
 (defn drop-water [grid]
-  (let [[[_ top] [_ bottom]] (bounds grid)]
+  (let [[[_ top] [_ bottom]] (g/bounds grid)]
     (loop [grid grid, drops #{[500 top]}]
       (if (empty? drops)
         grid
@@ -68,7 +68,7 @@
                 :else (recur grid' (conj drops' right-floor))))))))))
 
 (defn part1 [input]
-  (count (locs-where (drop-water (parse input)) #{\| \~})))
+  (count (g/locs-where (drop-water (parse input)) #{\| \~})))
 
 (defn part2 [input]
-  (count (locs-where (drop-water (parse input)) #{\~})))
+  (count (g/locs-where (drop-water (parse input)) #{\~})))

@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2018/day/22
 (ns aoc2018.day22
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
@@ -66,7 +66,7 @@
 (defn part1 [input]
   (let [[depth target] (parse input)
         region (region-for depth target)]
-    (m/sum (map region (area-locs [0 0] target)))))
+    (m/sum (map region (g/area-locs [0 0] target)))))
 
 (defn part2 [input]
   (let [[depth target] (parse input)

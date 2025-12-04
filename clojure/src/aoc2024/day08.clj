@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2024/day/8
   (ns aoc2024.day08
     (:require [aoc.day :as d]
-              [aoc.util.grid :refer :all]
+              [aoc.util.grid :as g]
               [aoc.util.vec :as v]
               [clojure.math.combinatorics :as combo]))
 
@@ -24,7 +24,7 @@
   (mapcat finder-fn (combo/combinations locs 2)))
 
 (defn num-antinodes [input antinode-fn]
-  (let [grid            (parse-grid input)
+  (let [grid            (g/parse-grid input)
         valid-loc?      (partial contains? grid)
         antennas        (antennas grid)
         antinode-finder (partial antinode-fn valid-loc?)]

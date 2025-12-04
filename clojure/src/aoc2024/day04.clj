@@ -2,7 +2,7 @@
 (ns aoc2024.day04
   (:require [aoc.day :as d]
             [aoc.util.collection :refer [count-where indexed]]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.vec :as v]))
 
@@ -22,7 +22,7 @@
 (defn xmas-in [grid]
   (m/sum (map #(count-xmas-at grid %) (keys grid))))
 
-(defn part1 [input] (xmas-in (parse-grid input)))
+(defn part1 [input] (xmas-in (g/parse-grid input)))
 
 (defn x-mas-at? [grid pos]
   ;; assumes there is an 'A' in the grid at pos.
@@ -33,6 +33,6 @@
     (= #{\M \S} (set [left-up right-down]) (set [left-down right-up]))))
 
 (defn x-mas-in [grid]
-  (count-where #(x-mas-at? grid %) (locs-where grid #{\A})))
+  (count-where #(x-mas-at? grid %) (g/locs-where grid #{\A})))
 
-(defn part2 [input] (x-mas-in (parse-grid input)))
+(defn part2 [input] (x-mas-in (g/parse-grid input)))

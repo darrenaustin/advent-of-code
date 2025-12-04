@@ -2,7 +2,7 @@
 (ns aoc2018.day10
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.string :as s]
             [aoc.util.vec :as v]))
 
@@ -21,7 +21,7 @@
 ;; was only 9 lights high, so we can just search for that.
 (defn message [input]
   (c/first-where
-   (fn [[_ grid]] (= 9 (height grid)))
+   (fn [[_ grid]] (= 9 (g/height grid)))
    (c/indexed (map light-grid
                    (iterate #(map advance %) (parse input))))))
 

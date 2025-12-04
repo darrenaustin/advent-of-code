@@ -2,7 +2,7 @@
 (ns aoc2019.day17
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.math :as m]
             [aoc.util.vec :as v]
             [aoc2019.intcode :as i]
@@ -23,8 +23,8 @@
    [v/dir-left v/dir-up]    \R})
 
 (defn parse [input]
-  (let [grid      (parse-grid (str/join (map char (:output (i/run (i/parse input))))))
-        robot-loc (loc-where grid #{\^ \v \< \>})
+  (let [grid      (g/parse-grid (str/join (map char (:output (i/run (i/parse input))))))
+        robot-loc (g/loc-where grid #{\^ \v \< \>})
         robot-dir (dirs (grid robot-loc))]
     {:grid  (assoc grid robot-dir \#)
      :robot {:loc robot-loc, :dir robot-dir}}))

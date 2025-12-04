@@ -2,7 +2,6 @@
 (ns aoc2018.day20
   (:require [aoc.day :as d]
             [aoc.util.collection :as c]
-            [aoc.util.grid :refer :all]
             [aoc.util.pathfinding :as p]
             [aoc.util.vec :as v]))
 

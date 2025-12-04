@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2019/day/15
 (ns aoc2019.day15
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.pathfinding :as p]
             [aoc.util.vec :as v]
             [aoc2019.intcode :as i])
@@ -43,7 +43,7 @@
 
 (defn part2 [input]
   (loop [time 0, grid (generate-grid input)]
-    (let [vacuum (locs-where grid #{\.})]
+    (let [vacuum (g/locs-where grid #{\.})]
       (if (empty? vacuum)
         time
         (recur (inc time)

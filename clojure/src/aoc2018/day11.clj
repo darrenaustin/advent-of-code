@@ -1,7 +1,6 @@
 ;; https://adventofcode.com/2018/day/11
 (ns aoc2018.day11
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
             [aoc.util.string :as s]
             [clojure.string :as str]))
 

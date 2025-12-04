@@ -1,7 +1,7 @@
 ;; https://adventofcode.com/2024/day/18
 (ns aoc2024.day18
   (:require [aoc.day :as d]
-            [aoc.util.grid :refer :all]
+            [aoc.util.grid :as g]
             [aoc.util.pathfinding :as p]
             [aoc.util.string :as s]
             [aoc.util.vec :as v]
@@ -15,7 +15,7 @@
 
 (defn neighbors [grid]
   (fn [loc]
-    (init-grid
+    (g/init-grid
      (filter grid (v/orthogonal-from loc))
      1)))
 
