@@ -38,4 +38,4 @@
 
 (defn part2 [input]
   (let [[ranges _] (parse-ingredients input)]
-    (m/sum (map range-size (collapse-ranges (sort-by first ranges))))))
+    (m/sum (map range-size (collapse-ranges (sort ranges))))))
