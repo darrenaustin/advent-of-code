@@ -14,23 +14,20 @@
         ingredients (s/parse-ints ingredients)]
     [ranges ingredients]))
 
-(defn in-range? [[start end] ingredient]
-  (and (<= start ingredient) (>= end ingredient)))
+(defn range-size [[start end]]
+  (inc (- end start)))
 
-(defn in-ranges? [rs ingredient]
-  (some #(in-range? % ingredient) rs))
+(defn in-ranges? [ranges ingredient]
+  (some (fn [[start end]] (<= start ingredient end)) ranges))
 
-(defn collapse-ranges [rs]
-  (loop [current (first rs) collapsed [] [next & rest] (rest rs)]
+(defn collapse-ranges [ranges]
+  (loop [current (first ranges) collapsed [] [next & rest] (rest ranges)]
     (if (nil? next)
       (conj collapsed current)
       (let [[cs ce] current [ns ne] next]
         (if (<= ns ce)
           (recur [cs (max ce ne)] collapsed rest)
           (recur next (conj collapsed current) rest))))))
-
-(defn range-size [[start end]]
-  (inc (- end start)))
 
 (defn part1 [input]
   (let [[ranges ingredients] (parse-ingredients input)]
