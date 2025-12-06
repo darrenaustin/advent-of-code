@@ -84,4 +84,5 @@
             [aoc2025.day02]
             [aoc2025.day03]
             [aoc2025.day04]
-            [aoc2025.day05]))
+            [aoc2025.day05]
+            [aoc2025.day06]))
