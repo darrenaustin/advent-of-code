@@ -10,20 +10,18 @@
 (defn input [] (d/day-input 2025 6))
 
 (defn solve [operator numbers]
-  (case operator
-    \+ (apply + numbers)
-    \* (apply * numbers)))
+  (apply ({\+ +, \* *} operator) numbers))
 
 (defn part1 [input]
   (let [lines (str/split-lines input)
         operators (remove #{\space} (last lines))
-        numbers (c/transpose (map s/parse-ints (butlast lines)))]
+        numbers (c/transpose (map s/parse-ints (drop-last lines)))]
     (m/sum (map solve operators numbers))))
 
 (defn part2 [input]
   (let [lines (str/split-lines input)
         operators (remove #{\space} (last lines))
         numbers (c/split (map #(s/parse-int (str/join %))
-                              (c/transpose (butlast lines)))
+                              (c/transpose (drop-last lines)))
                          nil?)]
     (m/sum (map solve operators numbers))))
