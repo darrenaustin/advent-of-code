@@ -12,6 +12,24 @@
   [pred coll]
   (count (filter pred coll)))
 
+(defn split
+  "Splits a collection into a lazy sequence of sequences, using the predicate
+   `seperator-fn` to identify delimiters. Delimiters are not included in the
+   result. Empty segments are omitted.
+
+   Example:
+     (split [1 2 0 3 4] zero?) => ((1 2) (3 4))
+     (split [1 2 0 0 3 4] zero?) => ((1 2) (3 4))
+     (split [1 2 0 0 3 4] odd?) => ((2 0 0) (4))"
+  [coll seperator-fn]
+  (let [coll (drop-while seperator-fn coll)]
+    (when (seq coll)
+      (let [not-seperator-fn (complement seperator-fn)
+            chunk (take-while not-seperator-fn coll)
+            remaining (drop-while not-seperator-fn coll)]
+        (lazy-seq
+         (cons chunk (split remaining seperator-fn)))))))
+
 (defn group-by-value
   "Groups keys by their values in a map.
    Example: (group-by-value {:a 1 :b 2 :c 1}) => {1 [:a :c], 2 [:b]}"
