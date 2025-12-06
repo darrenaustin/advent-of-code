@@ -15,16 +15,15 @@
     \* (apply * numbers)))
 
 (defn part1 [input]
-  (let [grid (mapv vec (str/split-lines input))
-        operators (remove #{\space} (last grid))
-        numbers (c/transpose (mapv #(s/parse-ints (str/join %)) (butlast grid)))]
+  (let [lines (str/split-lines input)
+        operators (remove #{\space} (last lines))
+        numbers (c/transpose (map s/parse-ints (butlast lines)))]
     (m/sum (map solve operators numbers))))
 
 (defn part2 [input]
-  (let [grid (mapv vec (str/split-lines input))
-        operators (remove #{\space} (last grid))
-        numbers (remove #{[nil]}
-                        (partition-by nil?
-                                      (mapv #(s/parse-int (str/join %))
-                                            (c/transpose (butlast grid)))))]
+  (let [lines (str/split-lines input)
+        operators (remove #{\space} (last lines))
+        numbers (c/split (map #(s/parse-int (str/join %))
+                              (c/transpose (butlast lines)))
+                         nil?)]
     (m/sum (map solve operators numbers))))
