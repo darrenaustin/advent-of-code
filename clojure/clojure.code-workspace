@@ -30,4 +30,10 @@
 			}
 		],
 	},
+	"extensions": {
+		"recommendations": [
+			"betterthantomorrow.calva",
+			"stiansivertsen.visualclojure"
+		]
+	},
 }
