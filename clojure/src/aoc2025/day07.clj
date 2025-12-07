@@ -2,42 +2,36 @@
  (ns aoc2025.day07
    (:require
     [aoc.day :as d]
-    [aoc.util.grid :as g]
-    [aoc.util.vec :as v]))
+    [aoc.util.math :as m]
+    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 7))
 
-(defn part1 [input]
-  (let [manifold (g/parse-grid input)
-        entrance (g/loc-where manifold #{\S})]
-    (loop [[beams splits] [[entrance] 0]]
-      (if (empty? beams)
-        splits
-        (recur (reduce (fn [[b s] beam]
-                         (let [down (v/vec+ beam v/dir-down)
-                               cell (manifold down)]
-                           (case cell
-                             nil [b s]
-                             \.  [(conj b down) s]
-                             \^ (let [new-beams [(v/vec+ down v/dir-left)
-                                                 (v/vec+ down v/dir-right)]]
-                                  [(apply conj b (remove #(nil? (manifold %)) new-beams))
-                                   (inc s)]))))
-                       [#{} splits] beams))))))
+;; I had a previous solution that worked well (see git history),
+;; but I really liked the solution that HexHowells posted on reddit:
+;;
+;; https://www.reddit.com/r/adventofcode/comments/1pg9w66/comment/nspzwt4
+;;
+;; This is my less concise Clojure version of it:
 
-(def num-quantum-timelines
-  (memoize
-   (fn [manifold start]
-     (if (manifold start)
-       (let [down (v/vec+ start v/dir-down)
-             cell (manifold down)]
-         (case cell
-           nil 1
-           \. (num-quantum-timelines manifold down)
-           \^ (+ (num-quantum-timelines manifold (v/vec+ down v/dir-left))
-                 (num-quantum-timelines manifold (v/vec+ down v/dir-right)))))
-       0))))
+(defn split-timelines [input]
+  (let [[line & lines] (str/split-lines input)
+        row (mapv #(if (= % \S) 1 0) line)]
+    (loop [row row splits 0 [line & lines] lines]
+      (if line
+        (let [splitters (filter #(and (= (get line %) \^)
+                                      (not= (get row %) 0))
+                                (range (count line)))
+              row' (reduce (fn [r s] (let [beam (get r s 0)]
+                                       (-> r
+                                           (assoc s 0)
+                                           (update-in [(dec s)] + beam)
+                                           (update-in [(inc s)] + beam))))
+                           row splitters)]
+          (recur row' (+ splits (count splitters)) lines))
+        ;; number of splits, number of timelines
+        [splits (m/sum row)]))))
 
-(defn part2 [input]
-  (let [manifold (g/parse-grid input)]
-    (num-quantum-timelines manifold (g/loc-where manifold #{\S}))))
+(defn part1 [input] (first (split-timelines input)))
+
+(defn part2 [input] (second (split-timelines input)))
