@@ -36,7 +36,7 @@
   [m]
   (reduce (fn [m [k v]] (update m v conj k)) {} m))
 
-(defn val->key
+(defn vals->keys
   "Inverts a map, swapping keys and values.
    Example: (val->key {:a 1 :b 2}) => {1 :a, 2 :b}"
   [m]
@@ -47,6 +47,17 @@
    Example: (indexed [:a :b :c]) => ([0 :a] [1 :b] [2 :c])"
   [coll]
   (map-indexed vector coll))
+
+(defn pairs
+  "Returns a lazy sequence of all unique pairs (combinations of size 2) from the collection.
+   Example: (pairs [1 2 3]) => ([1 2] [1 3] [2 3])"
+  [coll]
+  (lazy-seq
+   (when-let [s (seq coll)]
+     (let [h (first s)
+           t (rest s)]
+       (concat (map vector (repeat h) t)
+               (pairs t))))))
 
 (defn iterate-n
   "Applies function f to x exactly n times and returns the result.

@@ -46,12 +46,12 @@
 (deftest val->key-test
   (testing "val->key inverts a map"
     (is (= {1 :a, 2 :b}
-           (c/val->key {:a 1 :b 2})))
-    (is (= {} (c/val->key {})))
+           (c/vals->keys {:a 1 :b 2})))
+    (is (= {} (c/vals->keys {})))
     (is (= {"foo" :x, "bar" :y}
-           (c/val->key {:x "foo" :y "bar"})))
+           (c/vals->keys {:x "foo" :y "bar"})))
     ; For duplicate values, one key will win (implementation dependent)
-    (let [result (c/val->key {:a 1 :b 1})]
+    (let [result (c/vals->keys {:a 1 :b 1})]
       (is (= 1 (count result)))
       (is (contains? #{:a :b} (get result 1))))))
 
@@ -157,4 +157,12 @@
     (is (= [1 2 3] (c/pad-left [1 2 3] 2 0)))
     (is (= [:x :x :x :a :b] (vec (c/pad-left [:a :b] 5 :x))))
     (is (= [] (vec (c/pad-left [] 0 nil))))))
+
+(deftest pairs-test
+  (testing "pairs returns all unique combinations of size 2"
+    (is (= '([1 2] [1 3] [2 3]) (c/pairs [1 2 3])))
+    (is (= '([:a :b] [:a :c] [:a :d] [:b :c] [:b :d] [:c :d]) (c/pairs [:a :b :c :d])))
+    (is (empty? (c/pairs [1])))
+    (is (empty? (c/pairs [])))
+    (is (= '([1 1] [1 2] [1 2]) (c/pairs [1 1 2])) "Duplicates in input are treated as distinct elements")))
 

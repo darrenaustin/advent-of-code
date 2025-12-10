@@ -47,7 +47,7 @@
    \8 [1 0]
    \9 [2 0]})
 
-(def number-pad-paths (paths-map num-pad (c/val->key num-pad)))
+(def number-pad-paths (paths-map num-pad (c/vals->keys num-pad)))
 
 (def dir-pad-coords
   {\A [2 0]
@@ -56,7 +56,7 @@
    \v [1 1]
    \> [2 1]})
 
-(def dir-pad-paths (paths-map dir-pad-coords (c/val->key dir-pad-coords)))
+(def dir-pad-paths (paths-map dir-pad-coords (c/vals->keys dir-pad-coords)))
 
 (defn paths-for [pad-paths start code]
   (loop [pos start code code paths nil]
