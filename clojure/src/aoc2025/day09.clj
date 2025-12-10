@@ -1,9 +1,12 @@
 ;; https://adventofcode.com/2025/day/9
- (ns aoc2025.day09
-   (:require
-    [aoc.day :as d]
-    [aoc.util.string :as s]
-    [clojure.string :as str]))
+  (ns aoc2025.day09
+    (:require
+     [aoc.day :as d]
+     [aoc.util.collection :as c]
+     [aoc.util.grid2 :as g]
+     [aoc.util.string :as s]
+     [aoc.util.vec :as v]
+     [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 9))
 
@@ -15,64 +18,72 @@
 
 (defn part1 [input]
   (let [tiles (parse-tiles input)]
-    (apply max (for [t1 (range (dec (count tiles)))
-                     t2 (range (inc t1) (count tiles))
-                     :let [tile1 (nth tiles t1) tile2 (nth tiles t2)]]
-                 (area tile1 tile2)))))
+    (apply max (for [[t1 t2] (c/pairs tiles)]
+                 (area t1 t2)))))
 
-(defn vertical? [[[px1 _] [px2 _]]] (= px1 px2))
+(defn- make-coord-map [coords]
+  (let [sorted (apply sorted-set coords)
+        padded (concat [(dec (first sorted))] sorted [(inc (last sorted))])]
+    (into {} (map-indexed (fn [i n] [n i]) padded))))
 
-(defn on? [[px py :as p] [[lx1 ly1 :as l1] [lx2 ly2 :as l2] :as line]]
-  (if (vertical? line)
-    (and (= px lx1)
-         (<= (min ly1 ly2) py (max ly1 ly2)))
-    (and (= py ly1)
-         (<= (min lx1 lx2) px (max lx1 lx2)))))
+(defn compression-maps [coords]
+  [(make-coord-map (map first coords))
+   (make-coord-map (map second coords))])
 
-(defn point-in-poly? [lines [px py :as p]]
-  (loop [crossings 0, [[[lx1 ly1 :as l1] [_ ly2 :as l2] :as line] & lines] lines]
+(defn map-coords [[x-map y-map] [x y]] [(x-map x) (y-map y)])
+
+(defn draw-line [grid [[lx1 ly1 :as l1] [lx2 ly2 :as l2] :as line] value]
+  (reduce (fn [g p] (g/set-cell g p value))
+          grid
+          (for [x (range (min lx1 lx2) (inc (max lx1 lx2)))
+                y (range (min ly1 ly2) (inc (max ly1 ly2)))]
+            [x y])))
+
+(defn draw-lines [grid lines value]
+  (reduce (fn [g l] (draw-line g l value)) grid lines))
+
+(defn flood-fill [grid start value]
+  (loop [grid grid, [seed & more] #{start}]
     (cond
-      (nil? line) (odd? crossings)
-      (on? p line) true
-      (vertical? line) (if (and (< px lx1)
-                                (<= (min ly1 ly2) py (dec (max ly1 ly2))))
-                         (recur (inc crossings) lines)
-                         (recur crossings lines))
-      :else (recur crossings lines))))
+      (nil? seed) grid
+      (or (not (g/in-grid? grid seed)) (g/cell grid seed)) (recur grid more)
+      :else (recur (g/set-cell grid seed value)
+                   (apply conj more (v/orthogonal-to seed))))))
 
-;; TODO: this is very slow and messy
-(defn rect-valid? [lines tiles [x1 y1] [x2 y2]]
-  (let [min-x (min x1 x2) max-x (max x1 x2)
-        min-y (min y1 y2) max-y (max y1 y2)
-        c1 [x2 y1] c2 [x1 y2]
-        center [(/ (+ x1 x2) 2.0) (/ (+ y1 y2) 2.0)]]
-    (and (point-in-poly? lines c1)
-         (point-in-poly? lines c2)
-         (point-in-poly? lines center)
-         ;; No vertex strictly inside
-         (not-any? (fn [[vx vy]]
-                     (and (< min-x vx max-x)
-                          (< min-y vy max-y)))
-                   tiles)
-         ;; No edge strictly crosses
-         (not-any? (fn [[[lx1 ly1] [lx2 ly2] :as line]]
-                     (if (vertical? line)
-                       (and (< min-x lx1 max-x)
-                            (<= (min ly1 ly2) min-y)
-                            (>= (max ly1 ly2) max-y))
-                       ;; horizontal
-                       (and (< min-y ly1 max-y)
-                            (<= (min lx1 lx2) min-x)
-                            (>= (max lx1 lx2) max-x))))
-                   lines))))
+(defn build-sum-grid [grid]
+  (let [w (g/width grid), h (g/height grid)]
+    (loop [y 0, sums (transient (vec (repeat (inc h) (vec (repeat (inc w) 0)))))]
+      (if (= y h)
+        (persistent! sums)
+        (let [prev-row (nth sums y)
+              row (loop [x 0, sum 0, row (transient [0])]
+                    (if (= x w)
+                      (persistent! row)
+                      (let [row-sum (+ sum (g/cell grid [x y] 0))
+                            total-sum (+ (nth prev-row (inc x)) row-sum)]
+                        (recur (inc x) row-sum (conj! row total-sum)))))]
+          (recur (inc y) (assoc! sums (inc y) row)))))))
+
+(defn rect-sum [sum-grid [x1 y1] [x2 y2]]
+  (let [[x-low x-high] (if (< x1 x2) [x1 (inc x2)] [x2 (inc x1)])
+        [y-low y-high] (if (< y1 y2) [y1 (inc y2)] [y2 (inc y1)])]
+    (+ (g/cell sum-grid [x-high y-high])
+       (g/cell sum-grid [x-low y-low])
+       (- (g/cell sum-grid [x-low y-high]))
+       (- (g/cell sum-grid [x-high y-low])))))
 
 (defn part2 [input]
   (let [tiles (parse-tiles input)
-        lines (conj (map vector (drop-last tiles) (drop 1 tiles))
-                    [(last tiles) (first tiles)])]
-    (apply max (for [t1 (range (dec (count tiles)))
-                     t2 (range (inc t1)  (count tiles))
-                     :let [tile1 (nth tiles t1) tile2 (nth tiles t2)]]
-                 (if (rect-valid? lines tiles tile1 tile2)
-                   (area tile1 tile2)
-                   0)))))
+        [x-cmp y-cmp :as raw->cmp] (compression-maps tiles)
+        cmp->raw (map c/vals->keys raw->cmp)
+        verts (mapv #(map-coords raw->cmp %) tiles)
+        lines (conj (map vector (drop-last verts) (drop 1 verts))
+                    [(last verts) (first verts)])
+        grid (-> (g/make-grid (count x-cmp) (count y-cmp))
+                 (draw-lines lines 0)
+                 (flood-fill [0 0] 1))
+        sum-grid (build-sum-grid grid)]
+    (apply max (for [[vert1 vert2] (c/pairs verts)
+                     :when (zero? (rect-sum sum-grid vert1 vert2))]
+                 (area (map-coords cmp->raw vert1)
+                       (map-coords cmp->raw vert2))))))

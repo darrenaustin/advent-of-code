@@ -13,11 +13,6 @@
                                         row)))
                     grid)))
 
-(defn cell
-  ([grid [x y]] (get-in grid [y x]))
-  ([grid [x y] not-found] (get-in grid [y x] not-found)))
-
-(defn set-cell [grid [x y] value] (assoc-in grid [y x] value))
 
 (defn width [grid] (count (first grid)))
 
@@ -34,6 +29,16 @@
 (defn left-column [grid] (col grid 0))
 
 (defn right-column [grid] (col grid (dec (width grid))))
+
+(defn in-grid? [grid [x y]]
+  (and (< -1 x (width grid))
+       (< -1 y (height grid))))
+
+(defn cell
+  ([grid [x y]] (nth (nth grid y) x))
+  ([grid [x y] empty] (or (nth (nth grid y) x) empty)))
+
+(defn set-cell [grid [x y] value] (assoc-in grid [y x] value))
 
 (defn parse-grid
   ([input] (parse-grid input identity))
