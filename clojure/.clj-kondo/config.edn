@@ -6,4 +6,5 @@
                                            (clojure.core.logic/run)
                                            lvar]}
   :unsorted-required-namespaces {:level :warning}
-  :unused-binding               {:exclude-destructured-as true}}}
+  :unused-binding               {:exclude-destructured-as true}}
+ :hooks {:analyze-call {aoc.util.functions/let-memoized hooks.aoc.util.functions/let-memoized}}}

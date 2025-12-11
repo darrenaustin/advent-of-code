@@ -89,4 +89,5 @@
             [aoc2025.day07]
             [aoc2025.day08]
             [aoc2025.day09]
-            [aoc2025.day10]))
+            [aoc2025.day10]
+            [aoc2025.day11]))
