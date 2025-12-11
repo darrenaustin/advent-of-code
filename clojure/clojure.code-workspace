@@ -29,6 +29,7 @@
 				}
 			}
 		],
+		"clojure.trace.server": "verbose",
 	},
 	"extensions": {
 		"recommendations": [
