@@ -1,5 +1,5 @@
 (ns aoc2017.knot-hash
-  (:require [aoc.util.string :refer [byte->hex]]
+  (:require [aoc.util.string :as s]
             [clojure.string :as str]))
 
 
@@ -22,7 +22,7 @@
 
 (defn knot-hash [text]
   (str/join
-   (map byte->hex
+   (map #(s/->hex % 2)
         (->> (apply concat (repeat 64 (concat (map int text) suffix)))
              (sparse-hash (vec (range 256)))
              (partition 16)
