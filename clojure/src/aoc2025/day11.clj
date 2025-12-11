@@ -2,8 +2,8 @@
 (ns aoc2025.day11
   (:require
    [aoc.day :as d]
-   [aoc.util.functions :refer [let-memoized]]
    [aoc.util.math :as m]
+   [aoc.util.memoize :refer [let-memoized]]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 11))

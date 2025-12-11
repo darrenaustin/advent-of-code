@@ -1,4 +1,4 @@
-(ns aoc.util.functions)
+(ns aoc.util.memoize)
 
 (defmacro let-memoized
   "Defines a memoized function locally. The function can recursively call itself

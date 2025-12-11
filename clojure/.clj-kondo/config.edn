@@ -7,4 +7,4 @@
                                            lvar]}
   :unsorted-required-namespaces {:level :warning}
   :unused-binding               {:exclude-destructured-as true}}
- :hooks {:analyze-call {aoc.util.functions/let-memoized hooks.aoc.util.functions/let-memoized}}}
+ :hooks {:analyze-call {aoc.util.memoize/let-memoized hooks.aoc.util.memoize/let-memoized}}}
