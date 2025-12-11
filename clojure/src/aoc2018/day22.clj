@@ -1,11 +1,13 @@
 ;; https://adventofcode.com/2018/day/22
-(ns aoc2018.day22
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.math :as m]
-            [aoc.util.pathfinding :as p]
-            [aoc.util.string :as s]
-            [aoc.util.vec :as v]))
+ (ns aoc2018.day22
+   (:require
+    [aoc.day :as d]
+    [aoc.util.grid :as g]
+    [aoc.util.math :as m]
+    [aoc.util.memoize :refer [let-memoized]]
+    [aoc.util.pathfinding :as p]
+    [aoc.util.string :as s]
+    [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 22))
 
@@ -14,19 +16,18 @@
     [depth [tx ty]]))
 
 (defn erosion-for [depth target]
-  (let [erosion     (fn [mem-erosion [x y :as loc]]
-                      (letfn [(erosion [loc] (mem-erosion mem-erosion loc))]
-                        (mod (+ depth
-                                (cond
-                                  (= loc [0 0]) 0
-                                  (= loc target) 0
-                                  (zero? y) (* x 16807)
-                                  (zero? x) (* y 48271)
-                                  :else (* (erosion [(dec x) y])
-                                           (erosion [x (dec y)]))))
-                             20183)))
-        mem-erosion (memoize erosion)]
-    (partial mem-erosion mem-erosion)))
+  (let-memoized
+   [erosion (fn [[x y :as loc]]
+              (mod (+ depth
+                      (cond
+                        (= loc [0 0]) 0
+                        (= loc target) 0
+                        (zero? y) (* x 16807)
+                        (zero? x) (* y 48271)
+                        :else (* (erosion [(dec x) y])
+                                 (erosion [x (dec y)]))))
+                   20183))]
+   erosion))
 
 (defn region-for [depth target]
   (let [erosion (erosion-for depth target)]

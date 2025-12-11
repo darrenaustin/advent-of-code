@@ -66,7 +66,6 @@
                (str p np \A)))
       paths)))
 
-(declare min-length-dir-pad)
 (def min-length-dir-pad
   (memoize
    (fn [code num-robots]
