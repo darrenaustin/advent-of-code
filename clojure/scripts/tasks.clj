@@ -1,10 +1,10 @@
 (ns tasks
   (:require
-    [babashka.curl :as curl]
-    [babashka.fs :as fs]
-    [cheshire.core :as json]
-    [clojure.string :as str]
-    [selmer.parser :refer [render-file]]))
+   [babashka.curl :as curl]
+   [babashka.fs :as fs]
+   [cheshire.core :as json]
+   [clojure.string :as str]
+   [selmer.parser :refer [render-file]]))
 
 (def now (java.time.LocalDate/now))
 (def current-year (.getYear now))
@@ -16,7 +16,6 @@
 (def today {:year current-year :day current-day})
 
 (def aoc-url "https://adventofcode.com")
-;;(def aoc-url "https://darrenaustin.org")
 
 (defn- problem-url [y d] (str aoc-url "/" y "/day/" d))
 (defn- input-url [y d] (str (problem-url y d) "/input"))
@@ -40,7 +39,7 @@
 (defn aoc-headers []
   (let [session (load-session)
         headers {:headers
-                 {"UserAgent" (str "git@github.com:darrenaustin/advent-of-code.git by Darren Austin")}
+                 {"UserAgent" "git@github.com:darrenaustin/advent-of-code.git by Darren Austin"}
                  :throw false}]
     (if session
       (update-in headers [:headers] assoc "Cookie" (str "session=" session))
