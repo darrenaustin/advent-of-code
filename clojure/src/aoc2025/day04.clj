@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2025 4))
 
@@ -14,7 +14,7 @@
   ([grid candidate-locs] (filter #(roll? (grid %)) candidate-locs)))
 
 (defn removeable-rolls [grid]
-  (filter #(< (count (roll-locations grid (v/adjacent-to %))) 4)
+  (filter #(< (count (roll-locations grid (p/adjacent-to %))) 4)
           (roll-locations grid)))
 
 (defn remove-rolls [grid locs]

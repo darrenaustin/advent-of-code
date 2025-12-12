@@ -4,14 +4,14 @@
    [aoc.day :as d]
    [aoc.util.grid :as g]
    [aoc.util.pathfinding :as pf]
-   [aoc.util.vec :as v]
+   [aoc.util.pos :as p]
    [aoc2019.intcode :as i])
   (:import
    (clojure.lang PersistentQueue)))
 
 (defn input [] (d/day-input 2019 15))
 
-(def dirs {1 v/dir-n, 2 v/dir-s, 3 v/dir-w, 4 v/dir-e})
+(def dirs {1 p/dir-n, 2 p/dir-s, 3 p/dir-w, 4 p/dir-e})
 
 (defn generate-grid [input]
   (let [machine (i/init-machine (i/parse input))
@@ -19,7 +19,7 @@
                       (for [dir [1 2 3 4]] [machine dir [0 0]]))]
     (loop [queue queue, grid {[0 0] \.}]
       (if-let [[machine dir loc] (peek queue)]
-        (let [loc' (v/vec+ loc (dirs dir))]
+        (let [loc' (p/pos+ loc (dirs dir))]
           (if (grid loc')
             (recur (pop queue) grid)
             (let [machine' (-> machine (i/update-io [dir] []) (i/execute))
@@ -37,7 +37,7 @@
   (fn [loc]
     (into {} (map (fn [l] [l 1])
                   (filter #(#{\O \.} (grid %))
-                          (v/orthogonal-to loc))))))
+                          (p/orthogonal-to loc))))))
 
 (defn part1 [input]
   (let [grid (generate-grid input)]
@@ -50,6 +50,6 @@
         time
         (recur (inc time)
                (apply assoc grid
-                      (mapcat #(if (some #{\O} (map grid (v/orthogonal-to %)))
+                      (mapcat #(if (some #{\O} (map grid (p/orthogonal-to %)))
                                  [% \O]
                                  [% \.]) vacuum)))))))

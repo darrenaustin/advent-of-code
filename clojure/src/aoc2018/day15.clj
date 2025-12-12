@@ -5,7 +5,7 @@
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as pf]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2018 15))
 
@@ -59,7 +59,7 @@
   (remove #(= (:type unit) (:type %)) (vals (:units field))))
 
 (defn open-adjacent [{:keys [grid]} loc]
-  (filter #(= (grid %) \.) (v/orthogonal-to loc)))
+  (filter #(= (grid %) \.) (p/orthogonal-to loc)))
 
 (defn neighbors [field loc]
   (into {} (for [n (open-adjacent field loc)] [n 1])))
@@ -71,7 +71,7 @@
   (sort-units
    (map units
         (filter #(= (grid %) (enemy-of (:type unit)))
-                (v/orthogonal-to (:loc unit))))))
+                (p/orthogonal-to (:loc unit))))))
 
 (defn move-unit [field unit loc]
   (-> field

@@ -4,16 +4,16 @@
    [aoc.day :as d]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.vec :as v]
+   [aoc.util.pos :as p]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 15))
 
 (def robot-dirs
-  {\^ v/dir-up
-   \v v/dir-down
-   \< v/dir-left
-   \> v/dir-right})
+  {\^ p/dir-up
+   \v p/dir-down
+   \< p/dir-left
+   \> p/dir-right})
 
 (defn parse [input grid-fn]
   (let [[grid-data instructions] (str/split input #"\n\n")
@@ -33,23 +33,23 @@
 (defn move-cells [grid locs dir]
   (let [cells (map grid locs)]
     (into grid (concat (map vector locs (repeat \.))
-                       (map vector (map v/vec+ locs (repeat dir)) cells)))))
+                       (map vector (map p/pos+ locs (repeat dir)) cells)))))
 
 (defn moveable-in-dir [grid loc dir]
   (loop [blocks #{loc} check [loc]]
     (if (seq check)
-      (let [loc    (v/vec+ (first check) dir)
+      (let [loc    (p/pos+ (first check) dir)
             check' (subvec check 1)]
         (case (grid loc)
           \# (recur nil nil)
           \. (recur blocks check')
           \O (recur (conj blocks loc) (conj check' loc))
-          \[ (let [pair-loc (v/vec+ loc v/dir-right)]
-               (if (= dir v/dir-right)
+          \[ (let [pair-loc (p/pos+ loc p/dir-right)]
+               (if (= dir p/dir-right)
                  (recur (conj blocks loc pair-loc) (conj check' pair-loc))
                  (recur (conj blocks loc pair-loc) (conj check' loc pair-loc))))
-          \] (let [pair-loc (v/vec+ loc v/dir-left)]
-               (if (= dir v/dir-left)
+          \] (let [pair-loc (p/pos+ loc p/dir-left)]
+               (if (= dir p/dir-left)
                  (recur (conj blocks loc pair-loc) (conj check' pair-loc))
                  (recur (conj blocks loc pair-loc) (conj check' loc pair-loc))))))
       blocks)))

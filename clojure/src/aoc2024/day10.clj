@@ -6,7 +6,7 @@
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.string :as s]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 10))
 
@@ -16,7 +16,7 @@
     (reduce (fn [goals neighbor]
               (update goals neighbor concat loc-summits))
             summits
-            (filter #(= target (grid %)) (v/orthogonal-to loc)))))
+            (filter #(= target (grid %)) (p/orthogonal-to loc)))))
 
 (defn summits-reachable-map [grid]
   (let [num-locs (c/group-by-value grid)]

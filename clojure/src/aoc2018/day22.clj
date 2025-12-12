@@ -7,7 +7,7 @@
     [aoc.util.memoize :refer [let-memoized]]
     [aoc.util.pathfinding :as pf]
     [aoc.util.string :as s]
-    [aoc.util.vec :as v]))
+    [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2018 22))
 
@@ -54,7 +54,7 @@
 (defn neighbors-for [region target]
   (fn [[loc tool :as state]]
     (let [ns (into {} (for [n-loc (remove (fn [[x y]] (or (neg? x) (neg? y)))
-                                          (v/orthogonal-to loc))
+                                          (p/orthogonal-to loc))
                             :let [[dist tool] (distance-to [(region loc)
                                                             tool
                                                             (region n-loc)])]]

@@ -5,7 +5,7 @@
      [aoc.util.collection :as c]
      [aoc.util.grid2 :as g]
      [aoc.util.string :as s]
-     [aoc.util.vec :as v]
+     [aoc.util.pos :as p]
      [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 9))
@@ -48,7 +48,7 @@
       (nil? seed) grid
       (or (not (g/in-grid? grid seed)) (g/cell grid seed)) (recur grid more)
       :else (recur (g/set-cell grid seed value)
-                   (apply conj more (v/orthogonal-to seed))))))
+                   (apply conj more (p/orthogonal-to seed))))))
 
 (defn build-sum-grid [grid]
   (let [w (g/width grid), h (g/height grid)]

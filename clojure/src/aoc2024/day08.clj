@@ -3,7 +3,7 @@
     (:require
      [aoc.day :as d]
      [aoc.util.grid :as g]
-     [aoc.util.vec :as v]
+     [aoc.util.pos :as p]
      [clojure.math.combinatorics :as combo]))
 
 (defn input [] (d/day-input 2024 8))
@@ -12,14 +12,14 @@
   (map keys (map val (dissoc (group-by val grid) \.))))
 
 (defn antinodes [valid-pos? [a b]]
-  (let [dir (v/vec- b a)]
-    (filter valid-pos? [(v/vec- a dir) (v/vec+ b dir)])))
+  (let [dir (p/pos- b a)]
+    (filter valid-pos? [(p/pos- a dir) (p/pos+ b dir)])))
 
 (defn super-antinodes [valid-loc? [a b]]
-  (let [dir (v/vec- b a)]
+  (let [dir (p/pos- b a)]
     (concat
-     (take-while valid-loc? (iterate #(v/vec- % dir) a))
-     (take-while valid-loc? (iterate #(v/vec+ % dir) b)))))
+     (take-while valid-loc? (iterate #(p/pos- % dir) a))
+     (take-while valid-loc? (iterate #(p/pos+ % dir) b)))))
 
 (defn find-nodes [finder-fn locs]
   (mapcat finder-fn (combo/combinations locs 2)))

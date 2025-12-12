@@ -5,7 +5,7 @@
    [aoc.util.grid :as g]
    [aoc.util.pathfinding :as pf]
    [aoc.util.string :as s]
-   [aoc.util.vec :as v]
+   [aoc.util.pos :as p]
    [clojure.set :as set]
    [clojure.string :as str]))
 
@@ -17,7 +17,7 @@
 (defn neighbors [grid]
   (fn [loc]
     (g/init-grid
-     (filter grid (v/orthogonal-to loc))
+     (filter grid (p/orthogonal-to loc))
      1)))
 
 (defn min-distance [grid bytes goal]

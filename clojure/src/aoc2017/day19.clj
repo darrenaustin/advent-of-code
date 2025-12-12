@@ -4,17 +4,17 @@
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
    [aoc.util.grid :as g]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.
 (defn input [] (d/day-input 2017 19 false))
 
 (def turn-dirs
-  {v/dir-down  [v/dir-left v/dir-right]
-   v/dir-up    [v/dir-left v/dir-right]
-   v/dir-left  [v/dir-up v/dir-down]
-   v/dir-right [v/dir-up v/dir-down]})
+  {p/dir-down  [p/dir-left p/dir-right]
+   p/dir-up    [p/dir-left p/dir-right]
+   p/dir-left  [p/dir-up p/dir-down]
+   p/dir-right [p/dir-up p/dir-down]})
 
 (defn path-letter? [cell]
   (re-find #"[A-Z]" (str cell)))
@@ -25,16 +25,16 @@
 (defn walk-routes [input]
   (let [grid  (g/parse-grid input)
         start (first (first-where (fn [[[_ y] c]] (and (zero? y) (= c \|))) grid))]
-    (loop [pos start dir v/dir-down path "" steps 1]
+    (loop [pos start dir p/dir-down path "" steps 1]
       (let [cell  (grid pos)
             path' (if (path-letter? cell) (str path cell) path)
-            pos'  (v/vec+ pos dir)
+            pos'  (p/pos+ pos dir)
             cell' (grid pos')]
         (cond
           (continuing? cell') (recur pos' dir path' (inc steps))
           (not= cell \+) [path' steps]
-          :else (let [dir' (first-where #(continuing? (grid (v/vec+ pos %))) (turn-dirs dir))]
-                  (recur (v/vec+ pos dir') dir' path' (inc steps))))))))
+          :else (let [dir' (first-where #(continuing? (grid (p/pos+ pos %))) (turn-dirs dir))]
+                  (recur (p/pos+ pos dir') dir' path' (inc steps))))))))
 
 (defn part1 [input] (first (walk-routes input)))
 

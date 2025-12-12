@@ -2,14 +2,14 @@
 (ns aoc2015.day03
   (:require
    [aoc.day :as d]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2015 3))
 
-(def dirs {\^ v/dir-up
-           \v v/dir-down
-           \> v/dir-right
-           \< v/dir-left})
+(def dirs {\^ p/dir-up
+           \v p/dir-down
+           \> p/dir-right
+           \< p/dir-left})
 
 (defn packages-delivered [input locations packages]
   (if (seq input)

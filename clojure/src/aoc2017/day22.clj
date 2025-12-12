@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2017 22))
 
@@ -12,14 +12,14 @@
         [width height] (g/size grid)]
     {:grid             grid
      :virus-loc        [(quot width 2) (quot height 2)]
-     :virus-dir        v/dir-up
+     :virus-dir        p/dir-up
      :blast-infections 0}))
 
 (def turn-for
-  {\# v/ortho-turn-right
+  {\# p/turn-right
    \W identity
-   \. v/ortho-turn-left
-   \F v/opposite-dir})
+   \. p/turn-left
+   \F p/opposite-dir})
 
 (def cell-map
   {\# \.
@@ -36,7 +36,7 @@
         virus-dir' ((turn-for cell) virus-dir)
         cell'      (cell-map cell)]
     {:grid             (assoc grid virus-loc cell')
-     :virus-loc        (v/vec+ virus-loc virus-dir')
+     :virus-loc        (p/pos+ virus-loc virus-dir')
      :virus-dir        virus-dir'
      :blast-infections (+ blast-infections (if (#{\#} cell') 1 0))}))
 

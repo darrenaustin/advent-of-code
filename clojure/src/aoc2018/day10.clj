@@ -5,7 +5,7 @@
    [aoc.util.collection :as c]
    [aoc.util.grid :as g]
    [aoc.util.string :as s]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2018 10))
 
@@ -13,7 +13,7 @@
   (map #(partition 2 %) (partition 4 (s/parse-ints input))))
 
 (defn advance [[p v]]
-  [(v/vec+ p v) v])
+  [(p/pos+ p v) v])
 
 (defn light-grid [lights]
   (into {} (map (fn [l] [(vec (first l)) \#]) lights)))

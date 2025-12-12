@@ -3,34 +3,34 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.vec :as v]
+   [aoc.util.pos :as p]
    [clojure.string :as str]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.
 (defn input [] (d/day-input 2018 13 false))
 
-(def cart-dir {\^ v/dir-up, \> v/dir-right, \v v/dir-down, \< v/dir-left})
+(def cart-dir {\^ p/dir-up, \> p/dir-right, \v p/dir-down, \< p/dir-left})
 
-(def cart-track {v/dir-up \|, v/dir-right \-, v/dir-down \|, v/dir-left \-})
+(def cart-track {p/dir-up \|, p/dir-right \-, p/dir-down \|, p/dir-left \-})
 
 (def crossing-next-dir
-  {v/ortho-turn-left identity, identity v/ortho-turn-right, v/ortho-turn-right v/ortho-turn-left})
+  {p/turn-left identity, identity p/turn-right, p/turn-right p/turn-left})
 
 (def corner-turn
-  {[\/ v/dir-up]    v/dir-right
-   [\/ v/dir-right] v/dir-up
-   [\/ v/dir-down]  v/dir-left
-   [\/ v/dir-left]  v/dir-down
+  {[\/ p/dir-up]    p/dir-right
+   [\/ p/dir-right] p/dir-up
+   [\/ p/dir-down]  p/dir-left
+   [\/ p/dir-left]  p/dir-down
    ;
-   [\\ v/dir-up]    v/dir-left
-   [\\ v/dir-right] v/dir-down
-   [\\ v/dir-down]  v/dir-right
-   [\\ v/dir-left]  v/dir-up})
+   [\\ p/dir-up]    p/dir-left
+   [\\ p/dir-right] p/dir-down
+   [\\ p/dir-down]  p/dir-right
+   [\\ p/dir-left]  p/dir-up})
 
 (defn parse [input]
   (let [grid  (g/parse-grid input)
-        carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing v/ortho-turn-left})
+        carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing p/turn-left})
                    (g/locs-where grid #{\^ \> \v \<}))]
     {:carts  carts
      :tracks (reduce (fn [ts {:keys [loc dir]}] (assoc ts loc (cart-track dir)))
@@ -38,7 +38,7 @@
                      carts)}))
 
 (defn move [tracks {:keys [loc dir crossing] :as cart}]
-  (let [loc' (v/vec+ loc dir) track (tracks loc')]
+  (let [loc' (p/pos+ loc dir) track (tracks loc')]
     (cond
       (= track (cart-track dir)) (assoc cart :loc loc')
       (= track \+) {:loc loc' :dir (crossing dir) :crossing (crossing-next-dir crossing)}

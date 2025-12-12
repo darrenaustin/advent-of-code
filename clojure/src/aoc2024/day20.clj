@@ -5,7 +5,7 @@
    [aoc.util.collection :refer [first-where]]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.vec :as v])) (defn input [] (d/day-input 2024 20))
+   [aoc.util.pos :as p])) (defn input [] (d/day-input 2024 20))
 
 (defn parse-track [input]
   (let [grid  (g/parse-grid input)
@@ -21,7 +21,7 @@
       (if (= head end)
         dists
         (let [step (first-where #(and (path %) (not (dists %)))
-                                (v/orthogonal-to head))]
+                                (p/orthogonal-to head))]
           (recur step (inc dist) (assoc dists step dist)))))))
 
 (defn cheat-saves [dists loc cheat]

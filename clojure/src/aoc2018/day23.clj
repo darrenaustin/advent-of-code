@@ -5,7 +5,7 @@
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
    [aoc.util.string :as s]
-   [aoc.util.vec :as v]
+   [aoc.util.pos :as p]
    [clojure.data.priority-map :refer [priority-map]]))
 
 (defn input [] (d/day-input 2018 23))
@@ -37,8 +37,8 @@
     (if (zero? side)
       [[box-min (mapv inc box-min)]]
       (for [d [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
-            :let [box-min' (v/vec+ box-min (v/vec-n* side d))
-                  box-max' (v/vec+ box-min' [side side side])]]
+            :let [box-min' (p/pos+ box-min (p/pos*n side d))
+                  box-max' (p/pos+ box-min' [side side side])]]
         [box-min' box-max']))))
 
 (defn max-extent [bots]

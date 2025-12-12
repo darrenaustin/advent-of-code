@@ -5,7 +5,7 @@
    [aoc.util.collection :refer [count-where indexed]]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.vec :as v]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 4))
 
@@ -14,11 +14,11 @@
 (defn xmas-in-dir? [grid loc dir]
   (every?
    (fn [[idx letter]]
-     (= (grid (v/vec+ loc (v/vec-n* idx dir))) letter))
+     (= (grid (p/pos+ loc (p/pos*n idx dir))) letter))
    xmas))
 
 (defn count-xmas-at [grid pos]
-  (count-where #(xmas-in-dir? grid pos %) v/adjacent-dirs))
+  (count-where #(xmas-in-dir? grid pos %) p/adjacent-dirs))
 
 (defn xmas-in [grid]
   (m/sum (map #(count-xmas-at grid %) (keys grid))))
@@ -27,10 +27,10 @@
 
 (defn x-mas-at? [grid pos]
   ;; assumes there is an 'A' in the grid at pos.
-  (let [left-up    (grid (v/vec+ pos v/dir-nw))
-        left-down  (grid (v/vec+ pos v/dir-sw))
-        right-up   (grid (v/vec+ pos v/dir-ne))
-        right-down (grid (v/vec+ pos v/dir-se))]
+  (let [left-up    (grid (p/pos+ pos p/dir-nw))
+        left-down  (grid (p/pos+ pos p/dir-sw))
+        right-up   (grid (p/pos+ pos p/dir-ne))
+        right-down (grid (p/pos+ pos p/dir-se))]
     (= #{\M \S} (set [left-up right-down]) (set [left-down right-up]))))
 
 (defn x-mas-in [grid]
