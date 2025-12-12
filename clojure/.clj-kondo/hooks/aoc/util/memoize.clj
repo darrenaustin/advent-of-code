@@ -2,7 +2,7 @@
   (:require
    [clj-kondo.hooks-api :as api]))
 
-(defn let-memoized [{:keys [node]}]
+(defn letfn-mem [{:keys [node]}]
   (let [[bindings & body] (rest (:children node))
         [fn-name fn-def]  (:children bindings)]
     (if (and fn-name fn-def (api/list-node? fn-def))

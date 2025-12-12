@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.math :as m]
-   [aoc.util.memoize :refer [let-memoized]]
+   [aoc.util.memoize :refer [letfn-mem]]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 11))
@@ -16,7 +16,7 @@
 (defn count-paths
   ([start finish devices] (count-paths start finish nil devices))
   ([start finish mandatory devices]
-   (let-memoized
+   (letfn-mem
     [num-paths (fn [start seen]
                  (if (= start finish)
                    (if mandatory

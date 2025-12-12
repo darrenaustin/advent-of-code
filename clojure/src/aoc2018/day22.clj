@@ -4,7 +4,7 @@
     [aoc.day :as d]
     [aoc.util.grid :as g]
     [aoc.util.math :as m]
-    [aoc.util.memoize :refer [let-memoized]]
+    [aoc.util.memoize :refer [letfn-mem]]
     [aoc.util.pathfinding :as pf]
     [aoc.util.pos :as p]
     [aoc.util.string :as s]))
@@ -16,7 +16,7 @@
     [depth [tx ty]]))
 
 (defn erosion-for [depth target]
-  (let-memoized
+  (letfn-mem
    [erosion (fn [[x y :as loc]]
               (mod (+ depth
                       (cond
