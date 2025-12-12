@@ -2,7 +2,6 @@
   (:require [aoc.util.string :as s]
             [clojure.string :as str]))
 
-
 (defn- pinch-twist [xs start length]
   (let [size    (count xs)
         indices (mapv #(mod % size) (range start (+ start length)))

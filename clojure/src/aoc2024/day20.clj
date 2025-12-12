@@ -24,7 +24,6 @@
                                 (v/orthogonal-to head))]
           (recur step (inc dist) (assoc dists step dist)))))))
 
-
 (defn cheat-saves [dists loc cheat]
   (- (dists cheat) (dists loc) (m/manhattan-distance cheat loc)))
 

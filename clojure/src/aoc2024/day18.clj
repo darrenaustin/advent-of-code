@@ -33,7 +33,6 @@
                      [x y]))]
      (min-distance grid (take bytes (parse input)) goal))))
 
-
 (defn part2
   ([input] (part2 input 1024 [70 70]))
   ([input bytes goal]

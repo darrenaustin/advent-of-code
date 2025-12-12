@@ -13,7 +13,6 @@
                                         row)))
                     grid)))
 
-
 (defn width [grid] (count (first grid)))
 
 (defn height [grid] (count grid))

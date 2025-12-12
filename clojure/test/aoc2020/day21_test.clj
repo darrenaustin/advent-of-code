@@ -10,7 +10,6 @@ trh fvjkl sbzzf mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
 sqjhc mxmxvkd sbzzf (contains fish)")
 
-
 (deftest part1-example
   (is (= 5 (d/part1 example))))
 

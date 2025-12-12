@@ -42,7 +42,6 @@
           [Integer/MIN_VALUE []]
           coll))
 
-
 (defn indexed-min [coll]
   (reduce (fn [[mi mv] [i v]] (if (< v mv) [i v] [mi mv]))
           (c/indexed coll)))
