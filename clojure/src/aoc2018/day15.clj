@@ -1,10 +1,11 @@
 ;; https://adventofcode.com/2018/day/15
 (ns aoc2018.day15
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.math :as m]
-            [aoc.util.pathfinding :as p]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.grid :as g]
+   [aoc.util.math :as m]
+   [aoc.util.pathfinding :as p]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 15))
 

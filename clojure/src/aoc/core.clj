@@ -1,6 +1,7 @@
 (ns aoc.core
-  (:require [aoc.day :as d]
-            [aoc.days])
+  (:require
+   [aoc.day :as d]
+   [aoc.days])
   (:gen-class))
 
 (defn all-days []

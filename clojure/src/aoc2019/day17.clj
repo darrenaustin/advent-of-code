@@ -1,12 +1,13 @@
 ;; https://adventofcode.com/2019/day/17
 (ns aoc2019.day17
-  (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
-            [aoc.util.grid :as g]
-            [aoc.util.math :as m]
-            [aoc.util.vec :as v]
-            [aoc2019.intcode :as i]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :as c]
+   [aoc.util.grid :as g]
+   [aoc.util.math :as m]
+   [aoc.util.vec :as v]
+   [aoc2019.intcode :as i]
+   [clojure.string :as str]))
 
 (defn input [] (d/day-input 2019 17))
 

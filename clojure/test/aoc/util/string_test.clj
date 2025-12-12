@@ -1,6 +1,7 @@
 (ns aoc.util.string-test
-  (:require [aoc.util.string :as s]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.string :as s]
+   [clojure.test :refer :all]))
 
 (deftest split-blocks-test
   (testing "split-blocks splits on double newlines"

@@ -1,6 +1,7 @@
 (ns aoc.util.collection-test
-  (:require [aoc.util.collection :as c]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.collection :as c]
+   [clojure.test :refer :all]))
 
 (deftest first-where-test
   (testing "first-where finds the first element that satisfies the predicate"

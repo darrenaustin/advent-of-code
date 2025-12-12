@@ -1,6 +1,7 @@
 (ns aoc2017.knot-hash
-  (:require [aoc.util.string :as s]
-            [clojure.string :as str]))
+  (:require
+   [aoc.util.string :as s]
+   [clojure.string :as str]))
 
 (defn- pinch-twist [xs start length]
   (let [size    (count xs)

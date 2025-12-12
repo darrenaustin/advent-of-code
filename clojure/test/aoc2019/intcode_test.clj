@@ -1,6 +1,7 @@
 (ns aoc2019.intcode-test
-  (:require [aoc2019.intcode :as i]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc2019.intcode :as i]
+   [clojure.test :refer :all]))
 
 (deftest run-day02-examples
   (are [expected input]

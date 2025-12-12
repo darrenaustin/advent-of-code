@@ -1,8 +1,9 @@
 ;; Test for aoc2024.day17
 (ns aoc2024.day17-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2024.day17 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2024.day17 :as d]
+   [clojure.test :refer :all]))
 
 (defn machine [params]
   (merge {:a 0 :b 0 :c 0 :code [] :pc 0 :output []} params))

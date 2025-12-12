@@ -1,6 +1,7 @@
 (ns aoc.util.grid-test
-  (:require [aoc.util.grid :as g]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.grid :as g]
+   [clojure.test :refer :all]))
 
 (deftest diamond-around-test
   (is (= [[0 0]] (g/diamond-around 0 0 [0 0])))

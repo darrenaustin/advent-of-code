@@ -1,9 +1,10 @@
 ;; Test for aoc2018.day15
 (ns aoc2018.day15-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day15 :as d]
-            [clojure.string :as str]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day15 :as d]
+   [clojure.string :as str]
+   [clojure.test :refer :all]))
 
 (def example1
   (str/join

@@ -1,8 +1,9 @@
 ;; https://adventofcode.com/2018/day/12
 (ns aoc2018.day12
-  (:require [aoc.day :as d]
-            [aoc.util.math :as m]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.math :as m]
+   [clojure.string :as str]))
 
 (defn input [] (d/day-input 2018 12))
 

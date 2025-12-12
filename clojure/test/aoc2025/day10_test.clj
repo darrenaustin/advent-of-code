@@ -1,8 +1,9 @@
 ;; Test for aoc2025.day10
 (ns aoc2025.day10-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2025.day10 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2025.day10 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}

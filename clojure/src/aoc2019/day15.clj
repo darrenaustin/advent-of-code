@@ -1,11 +1,13 @@
 ;; https://adventofcode.com/2019/day/15
 (ns aoc2019.day15
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.pathfinding :as p]
-            [aoc.util.vec :as v]
-            [aoc2019.intcode :as i])
-  (:import (clojure.lang PersistentQueue)))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.grid :as g]
+   [aoc.util.pathfinding :as p]
+   [aoc.util.vec :as v]
+   [aoc2019.intcode :as i])
+  (:import
+   (clojure.lang PersistentQueue)))
 
 (defn input [] (d/day-input 2019 15))
 

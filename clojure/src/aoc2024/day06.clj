@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2024/day/6
 (ns aoc2024.day06
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [count-where]]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [count-where]]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 6))
 

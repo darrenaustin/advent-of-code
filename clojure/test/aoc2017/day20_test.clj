@@ -1,8 +1,9 @@
 ;; Test for aoc2017.day20
 (ns aoc2017.day20-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2017.day20 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2017.day20 :as d]
+   [clojure.test :refer :all]))
 
 (def example1
   "p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>

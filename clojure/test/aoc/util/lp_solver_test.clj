@@ -1,6 +1,7 @@
 (ns aoc.util.lp-solver-test
-  (:require [aoc.util.lp-solver :as lp]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.lp-solver :as lp]
+   [clojure.test :refer :all]))
 
 (defn approx= [a b]
   (if (vector? a)

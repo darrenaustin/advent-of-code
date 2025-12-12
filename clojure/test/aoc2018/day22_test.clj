@@ -1,8 +1,9 @@
 ;; Test for aoc2018.day22
 (ns aoc2018.day22-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day22 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day22 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "depth: 510

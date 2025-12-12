@@ -1,7 +1,9 @@
 (ns aoc.util.bounded-priority-map-test
-  (:require [aoc.util.bounded-priority-map :refer [bounded-priority-map bounded-priority-map-by]]
-            [clojure.data.priority-map :as pm]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.bounded-priority-map :refer [bounded-priority-map
+                                          bounded-priority-map-by]]
+   [clojure.data.priority-map :as pm]
+   [clojure.test :refer :all]))
 
 (deftest bounded-priority-map-test
   (testing "basic capacity enforcement"

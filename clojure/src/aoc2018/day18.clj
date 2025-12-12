@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2018/day/18
 (ns aoc2018.day18
-  (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :as c]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 18))
 

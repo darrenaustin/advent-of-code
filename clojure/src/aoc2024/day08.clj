@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2024/day/8
   (ns aoc2024.day08
-    (:require [aoc.day :as d]
-              [aoc.util.grid :as g]
-              [aoc.util.vec :as v]
-              [clojure.math.combinatorics :as combo]))
+    (:require
+     [aoc.day :as d]
+     [aoc.util.grid :as g]
+     [aoc.util.vec :as v]
+     [clojure.math.combinatorics :as combo]))
 
 (defn input [] (d/day-input 2024 8))
 

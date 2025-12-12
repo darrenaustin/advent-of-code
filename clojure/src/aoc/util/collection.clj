@@ -1,5 +1,6 @@
 (ns aoc.util.collection
-  (:import (clojure.lang Util)))
+  (:import
+   (clojure.lang Util)))
 
 (defn first-where
   "Returns the first element in the collection that satisfies the predicate.

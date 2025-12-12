@@ -1,5 +1,6 @@
 (ns hooks.aoc.util.memoize
-  (:require [clj-kondo.hooks-api :as api]))
+  (:require
+   [clj-kondo.hooks-api :as api]))
 
 (defn let-memoized [{:keys [node]}]
   (let [[bindings & body] (rest (:children node))

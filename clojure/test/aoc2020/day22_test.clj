@@ -1,8 +1,9 @@
 ;; Test for aoc2020.day22
 (ns aoc2020.day22-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2020.day22 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2020.day22 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "Player 1:

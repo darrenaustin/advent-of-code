@@ -1,12 +1,13 @@
 ;; https://adventofcode.com/2017/day/14
 (ns aoc2017.day14
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [count-where]]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]
-            [aoc2017.knot-hash :refer [knot-hash]]
-            [clojure.pprint :refer [cl-format]]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [count-where]]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]
+   [aoc2017.knot-hash :refer [knot-hash]]
+   [clojure.pprint :refer [cl-format]]
+   [clojure.string :as str]))
 
 (defn input [] (d/day-input 2017 14))
 

@@ -1,8 +1,9 @@
 ;; Test for aoc2018.day21
 (ns aoc2018.day21-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day21 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day21 :as d]
+   [clojure.test :refer :all]))
 
 (def answers (delay (day-answers 2018 21)))
 (def input (delay (d/input)))

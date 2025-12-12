@@ -1,8 +1,9 @@
 ;; https://adventofcode.com/2017/day/22
 (ns aoc2017.day22
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2017 22))
 

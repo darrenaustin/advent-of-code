@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2018/day/20
 (ns aoc2018.day20
-  (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
-            [aoc.util.pathfinding :as p]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :as c]
+   [aoc.util.pathfinding :as p]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 20))
 

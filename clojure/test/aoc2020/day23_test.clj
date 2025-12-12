@@ -1,8 +1,9 @@
 ;; Test for aoc2020.day23
 (ns aoc2020.day23-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2020.day23 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2020.day23 :as d]
+   [clojure.test :refer :all]))
 
 (deftest part1-example
   (is (= 92658374 (d/part1 "389125467" 10)))

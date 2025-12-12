@@ -1,13 +1,14 @@
 ;; https://adventofcode.com/2024/day/21
 (ns aoc2024.day21
-  (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
-            [aoc.util.grid :as g]
-            [aoc.util.math :as m]
-            [aoc.util.pathfinding :as p]
-            [aoc.util.string :as s]
-            [aoc.util.vec :as v]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :as c]
+   [aoc.util.grid :as g]
+   [aoc.util.math :as m]
+   [aoc.util.pathfinding :as p]
+   [aoc.util.string :as s]
+   [aoc.util.vec :as v]
+   [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 21))
 

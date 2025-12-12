@@ -1,9 +1,10 @@
 ;; Test for aoc2018.day13
 (ns aoc2018.day13-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day13 :as d]
-            [clojure.string :as str]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day13 :as d]
+   [clojure.string :as str]
+   [clojure.test :refer :all]))
 
 ;; Editor stripped ending spaces on lines,
 ;; so use "." and convert them to spaces

@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2024/day/16
 (ns aoc2024.day16
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.pathfinding :as path]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.grid :as g]
+   [aoc.util.pathfinding :as path]
+   [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2024 16))
 

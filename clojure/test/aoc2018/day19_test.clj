@@ -1,8 +1,9 @@
 ;; Test for aoc2018.day19
 (ns aoc2018.day19-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day19 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day19 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "#ip 0

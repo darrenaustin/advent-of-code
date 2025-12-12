@@ -1,8 +1,9 @@
 ;; Test for aoc2020.day20
 (ns aoc2020.day20-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2020.day20 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2020.day20 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "Tile 2311:

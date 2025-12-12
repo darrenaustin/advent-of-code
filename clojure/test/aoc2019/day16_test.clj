@@ -1,8 +1,9 @@
 ;; Test for aoc2019.day16
 (ns aoc2019.day16-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2019.day16 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2019.day16 :as d]
+   [clojure.test :refer :all]))
 
 (deftest part1-examples
   (are [expected input]

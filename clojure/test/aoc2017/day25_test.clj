@@ -1,8 +1,9 @@
 ;; Test for aoc2017.day25
 (ns aoc2017.day25-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2017.day25 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2017.day25 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "Begin in state A.

@@ -1,7 +1,9 @@
 (ns aoc.day
-  (:require [clojure.data.json :as json]
-            [clojure.string :as str])
-  (:import (java.io StringWriter)))
+  (:require
+   [clojure.data.json :as json]
+   [clojure.string :as str])
+  (:import
+   (java.io StringWriter)))
 
 ;; TODO: add a way to override this with an env var.
 (defn input-repo-dir [] "../inputs")

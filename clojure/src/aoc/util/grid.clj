@@ -1,5 +1,6 @@
 (ns aoc.util.grid
-  (:require [clojure.string :as str]))
+  (:require
+   [clojure.string :as str]))
 
 (defn parse-grid
   ([input] (parse-grid input identity))

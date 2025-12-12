@@ -1,7 +1,18 @@
 (ns aoc.util.bounded-priority-map
   {:clj-kondo/ignore [:unused-binding]}
-  (:require [clojure.data.priority-map :as pm])
-  (:import [clojure.lang IPersistentMap IPersistentCollection Seqable ILookup Associative Sorted MapEquivalence IHashEq IFn]))
+  (:require
+   [clojure.data.priority-map :as pm])
+  (:import
+   [clojure.lang
+    Associative
+    IFn
+    IHashEq
+    ILookup
+    IPersistentCollection
+    IPersistentMap
+    MapEquivalence
+    Seqable
+    Sorted]))
 
 #_{:splint/disable [lint lint/prefer-method-values]}
 

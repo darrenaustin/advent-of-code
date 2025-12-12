@@ -1,7 +1,8 @@
 (ns aoc2024.day05-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2024.day05 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2024.day05 :as d]
+   [clojure.test :refer :all]))
 
 (def example-input
   "47|53

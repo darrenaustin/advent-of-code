@@ -1,8 +1,9 @@
 ;; Test for aoc2024.day24
 (ns aoc2024.day24-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2024.day24 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2024.day24 :as d]
+   [clojure.test :refer :all]))
 
 (def example1
   "x00: 1

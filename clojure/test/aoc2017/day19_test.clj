@@ -1,9 +1,10 @@
 ;; Test for aoc2017.day19
 (ns aoc2017.day19-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2017.day19 :as d]
-            [clojure.string :as str]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2017.day19 :as d]
+   [clojure.string :as str]
+   [clojure.test :refer :all]))
 
 (def example
   ;; Editor stripped ending spaces on lines,

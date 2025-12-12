@@ -1,6 +1,7 @@
 (ns aoc.util.vec-test
-  (:require [aoc.util.vec :as v]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.vec :as v]
+   [clojure.test :refer :all]))
 
 (deftest vec+-test
   (testing "vec+ with single vector"

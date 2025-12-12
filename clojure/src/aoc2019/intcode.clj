@@ -1,6 +1,7 @@
 (ns aoc2019.intcode
-  (:require [aoc.util.collection :as c]
-            [aoc.util.string :as s]))
+  (:require
+   [aoc.util.collection :as c]
+   [aoc.util.string :as s]))
 
 (defn parse [input]
   (vec (s/parse-ints input)))

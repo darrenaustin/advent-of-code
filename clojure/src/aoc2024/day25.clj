@@ -1,8 +1,9 @@
 ;; https://adventofcode.com/2024/day/25
 (ns aoc2024.day25
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [count-where transpose]]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [count-where transpose]]
+   [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 25))
 

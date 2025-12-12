@@ -1,10 +1,11 @@
 ;; https://adventofcode.com/2017/day/20
 (ns aoc2017.day20
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [indexed]]
-            [aoc.util.math :as m]
-            [aoc.util.string :as s]
-            [clojure.set :as set]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [indexed]]
+   [aoc.util.math :as m]
+   [aoc.util.string :as s]
+   [clojure.set :as set]))
 
 (defn input [] (d/day-input 2017 20))
 

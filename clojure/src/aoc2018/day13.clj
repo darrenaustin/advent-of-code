@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2018/day/13
 (ns aoc2018.day13
-  (:require [aoc.day :as d]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]
-            [clojure.string :as str]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]
+   [clojure.string :as str]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.

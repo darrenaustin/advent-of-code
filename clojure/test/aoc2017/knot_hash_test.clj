@@ -1,6 +1,7 @@
 (ns aoc2017.knot-hash-test
-  (:require [aoc2017.knot-hash :refer [knot-hash]]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc2017.knot-hash :refer [knot-hash]]
+   [clojure.test :refer :all]))
 
 (deftest knot-hash-test
   (are [expected input]

@@ -1,8 +1,9 @@
 ;; https://adventofcode.com/2017/day/15
 (ns aoc2017.day15
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [count-where]]
-            [aoc.util.string :as s]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [count-where]]
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2017 15))
 

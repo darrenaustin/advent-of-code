@@ -1,8 +1,9 @@
 ;; Test for aoc2019.day14
 (ns aoc2019.day14-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2019.day14 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2019.day14 :as d]
+   [clojure.test :refer :all]))
 
 (def example1
   "10 ORE => 10 A

@@ -1,7 +1,8 @@
 ;; https://adventofcode.com/2015/day/1
 (ns aoc2015.day01
-  (:require [aoc.day :as d]
-            [aoc.util.math :as m]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2015 1))
 

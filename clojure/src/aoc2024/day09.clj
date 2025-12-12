@@ -1,8 +1,9 @@
 ;; https://adventofcode.com/2024/day/9
 (ns aoc2024.day09
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [first-where indexed]]
-            [aoc.util.math :as m]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [first-where indexed]]
+   [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2024 9))
 

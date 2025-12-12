@@ -1,8 +1,9 @@
 ;; Test for aoc2020.day21
 (ns aoc2020.day21-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2020.day21 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2020.day21 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "mxmxvkd kfcds sqjhc nhms (contains dairy, fish)

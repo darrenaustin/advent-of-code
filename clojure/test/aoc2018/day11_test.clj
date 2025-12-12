@@ -1,8 +1,9 @@
 ;; Test for aoc2018.day11
 (ns aoc2018.day11-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day11 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day11 :as d]
+   [clojure.test :refer :all]))
 
 (deftest power-test
   (are [expected coords serial]

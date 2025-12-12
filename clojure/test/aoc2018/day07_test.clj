@@ -1,8 +1,9 @@
 ;; Test for aoc2018.day7
 (ns aoc2018.day07-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2018.day07 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2018.day07 :as d]
+   [clojure.test :refer :all]))
 
 (def example
   "Step C must be finished before step A can begin.

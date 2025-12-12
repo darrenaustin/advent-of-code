@@ -1,8 +1,9 @@
 ;; Test for aoc2024.day13
 (ns aoc2024.day13-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2024.day13 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2024.day13 :as d]
+   [clojure.test :refer :all]))
 
 (def example-input
   "Button A: X+94, Y+34

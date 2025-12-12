@@ -1,9 +1,10 @@
 ;; https://adventofcode.com/2017/day/19
 (ns aoc2017.day19
-  (:require [aoc.day :as d]
-            [aoc.util.collection :refer [first-where]]
-            [aoc.util.grid :as g]
-            [aoc.util.vec :as v]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :refer [first-where]]
+   [aoc.util.grid :as g]
+   [aoc.util.vec :as v]))
 
 ;; Need to ensure the input isn't trimmed as
 ;; it will remove important spacing in the grid.

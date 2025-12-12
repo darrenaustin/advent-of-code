@@ -1,7 +1,8 @@
 (ns aoc2015.day03-test
-  (:require [aoc.day :refer [day-answers]]
-            [aoc2015.day03 :as d]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.day :refer [day-answers]]
+   [aoc2015.day03 :as d]
+   [clojure.test :refer :all]))
 
 (deftest part1-example
   (are [expected input]

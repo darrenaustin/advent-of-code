@@ -1,6 +1,7 @@
 (ns aoc.util.math-test
-  (:require [aoc.util.math :as m]
-            [clojure.test :refer :all]))
+  (:require
+   [aoc.util.math :as m]
+   [clojure.test :refer :all]))
 
 (defn num-set-equiv [ns1 ns2]
   (and (= (count ns1) (count ns2))

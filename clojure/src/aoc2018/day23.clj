@@ -1,11 +1,12 @@
 ;; https://adventofcode.com/2018/day/23
 (ns aoc2018.day23
-  (:require [aoc.day :as d]
-            [aoc.util.collection :as c]
-            [aoc.util.math :as m]
-            [aoc.util.string :as s]
-            [aoc.util.vec :as v]
-            [clojure.data.priority-map :refer [priority-map]]))
+  (:require
+   [aoc.day :as d]
+   [aoc.util.collection :as c]
+   [aoc.util.math :as m]
+   [aoc.util.string :as s]
+   [aoc.util.vec :as v]
+   [clojure.data.priority-map :refer [priority-map]]))
 
 (defn input [] (d/day-input 2018 23))
 
