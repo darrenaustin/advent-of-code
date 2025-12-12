@@ -23,9 +23,9 @@
 
 (defn presents-fit? [[[w h] quantities] presents]
   (let [available-space (* w h)
-        needed-space (m/sum (map-indexed (fn [i q] (* q (nth presents i))) quantities))
+        needed-space (m/sum (map * quantities presents))
         ;; Do the presents fit if we just stack them next to each other?
-        easy-fit-space (m/sum (map (fn [q] (* q 3 3)) quantities))]
+        easy-fit-space (m/sum (map #(* % 3 3) quantities))]
     (cond
       (<= easy-fit-space available-space) :yes
       (> needed-space available-space)    :no
@@ -34,10 +34,11 @@
 (defn part1 [input]
   (let [presents (parse-presents input)
         regions (parse-regions input)
-        fits (map #(presents-fit? % presents) regions)]
-    (if (zero? (c/count-where #{:maybe} fits))
+        fit-groups (group-by identity (map #(presents-fit? % presents) regions))
+        counts (reduce (fn [m k] (update m k count)) fit-groups [:yes :no :maybe])]
+    (if (zero? (:maybe counts))
       ;; No need to go further
-      (c/count-where #{:yes} fits)
+      (:yes counts)
       (throw (Exception. "Need to sort out non-obvious cases. He wasn't just trolling us!")))))
 
 (defn part2 [_] "🎄 Got em all! 🎉")
