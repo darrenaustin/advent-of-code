@@ -4,7 +4,7 @@
    [aoc.day :as d]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.pathfinding :as p]
+   [aoc.util.pathfinding :as pf]
    [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 15))
@@ -65,7 +65,7 @@
   (into {} (for [n (open-adjacent field loc)] [n 1])))
 
 (defn paths-to [field start goals]
-  (p/dijkstra-paths start (partial neighbors field) (set goals)))
+  (pf/dijkstra-paths start (partial neighbors field) (set goals)))
 
 (defn attack-targets [{:keys [grid units]} unit]
   (sort-units

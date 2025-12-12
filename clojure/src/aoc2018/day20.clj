@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.pathfinding :as p]
+   [aoc.util.pathfinding :as pf]
    [aoc.util.vec :as v]))
 
 (defn input [] (d/day-input 2018 20))
@@ -31,7 +31,7 @@
   (into {} (for [n (doors pos)] [n 1])))
 
 (defn distances-from [doors node]
-  (map (fn [[_ [d _]]] d) (p/dijkstra-paths-map node (partial neighbors doors))))
+  (map (fn [[_ [d _]]] d) (pf/dijkstra-paths-map node (partial neighbors doors))))
 
 (defn part1 [input]
   (apply max (distances-from (parse input) [0 0])))

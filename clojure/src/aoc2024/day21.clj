@@ -5,7 +5,7 @@
    [aoc.util.collection :as c]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.pathfinding :as p]
+   [aoc.util.pathfinding :as pf]
    [aoc.util.string :as s]
    [aoc.util.vec :as v]
    [clojure.string :as str]))
@@ -31,9 +31,9 @@
   (into {} (for [a (keys coord-map) b (keys coord-map)]
              [[a b]
               (mapv (fn [p] (str/join (map dir->arrow (vec-diffs p))))
-                    (p/dijkstra-paths (coord-map a)
-                                      (neighbors key-map)
-                                      #{(coord-map b)}))])))
+                    (pf/dijkstra-paths (coord-map a)
+                                       (neighbors key-map)
+                                       #{(coord-map b)}))])))
 
 (def num-pad
   {\A [2 3]

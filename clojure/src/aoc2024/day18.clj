@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.pathfinding :as p]
+   [aoc.util.pathfinding :as pf]
    [aoc.util.string :as s]
    [aoc.util.vec :as v]
    [clojure.set :as set]
@@ -22,9 +22,9 @@
 
 (defn min-distance [grid bytes goal]
   (let [grid' (set/difference grid (set bytes))]
-    (p/dijkstra-distance [0 0]
-                         (neighbors grid')
-                         #{goal})))
+    (pf/dijkstra-distance [0 0]
+                          (neighbors grid')
+                          #{goal})))
 
 (defn part1
   ([input] (part1 input 1024 [70 70]))

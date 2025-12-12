@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.pathfinding :as p]
+   [aoc.util.pathfinding :as pf]
    [aoc.util.vec :as v]
    [aoc2019.intcode :as i])
   (:import
@@ -41,7 +41,7 @@
 
 (defn part1 [input]
   (let [grid (generate-grid input)]
-    (p/dijkstra-distance [0 0] (neighbors grid) #(= \O (grid %)))))
+    (pf/dijkstra-distance [0 0] (neighbors grid) #(= \O (grid %)))))
 
 (defn part2 [input]
   (loop [time 0, grid (generate-grid input)]

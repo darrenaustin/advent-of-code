@@ -5,7 +5,7 @@
     [aoc.util.grid :as g]
     [aoc.util.math :as m]
     [aoc.util.memoize :refer [let-memoized]]
-    [aoc.util.pathfinding :as p]
+    [aoc.util.pathfinding :as pf]
     [aoc.util.string :as s]
     [aoc.util.vec :as v]))
 
@@ -72,4 +72,4 @@
 (defn part2 [input]
   (let [[depth target] (parse input)
         neighbors (neighbors-for (region-for depth target) target)]
-    (p/dijkstra-distance [[0 0] :torch] neighbors #{[target :torch]})))
+    (pf/dijkstra-distance [[0 0] :torch] neighbors #{[target :torch]})))
