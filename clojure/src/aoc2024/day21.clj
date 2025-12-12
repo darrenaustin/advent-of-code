@@ -6,8 +6,8 @@
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as pf]
-   [aoc.util.string :as s]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 21))

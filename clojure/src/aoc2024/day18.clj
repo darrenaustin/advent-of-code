@@ -4,8 +4,8 @@
    [aoc.day :as d]
    [aoc.util.grid :as g]
    [aoc.util.pathfinding :as pf]
-   [aoc.util.string :as s]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.set :as set]
    [clojure.string :as str]))
 

@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.grid :as g]
-   [aoc.util.string :as s]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2018 17))

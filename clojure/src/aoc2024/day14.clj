@@ -4,8 +4,8 @@
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
    [aoc.util.grid :as g]
-   [aoc.util.string :as s]
-   [aoc.util.pos :as p]))
+   [aoc.util.pos :as p]
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2024 14))
 

@@ -4,8 +4,8 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.data.priority-map :refer [priority-map]]))
 
 (defn input [] (d/day-input 2018 23))

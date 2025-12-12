@@ -6,8 +6,8 @@
     [aoc.util.math :as m]
     [aoc.util.memoize :refer [let-memoized]]
     [aoc.util.pathfinding :as pf]
-    [aoc.util.string :as s]
-    [aoc.util.pos :as p]))
+    [aoc.util.pos :as p]
+    [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 22))
 

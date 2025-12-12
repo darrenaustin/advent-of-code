@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [aoc.util.pos :as p]))
+   [aoc.util.pos :as p]
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2024 13))
 

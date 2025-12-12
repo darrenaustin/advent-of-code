@@ -4,8 +4,8 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.grid :as g]
-   [aoc.util.string :as s]
-   [aoc.util.pos :as p]))
+   [aoc.util.pos :as p]
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 10))
 
