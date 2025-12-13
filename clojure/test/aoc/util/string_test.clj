@@ -72,18 +72,18 @@
     (is (= " a" (s/to-hex 10 2 \space)))
     (is (= "__a" (s/to-hex 10 3 \_)))))
 
-(deftest to-bin-test
-  (testing "to-bin converts numbers to binary strings"
+(deftest to-binary-test
+  (testing "to-binary converts numbers to binary strings"
     (is (= "101" (s/to-binary 5)))
     (is (= "0" (s/to-binary 0)))
     (is (= "1111" (s/to-binary 15))))
 
-  (testing "to-bin supports padding"
+  (testing "to-binary supports padding"
     (is (= "0101" (s/to-binary 5 4)))
     (is (= "00000101" (s/to-binary 5 8)))
     (is (= "101" (s/to-binary 5 2))))
 
-  (testing "to-bin supports custom padding character"
+  (testing "to-binary supports custom padding character"
     (is (= " 101" (s/to-binary 5 4 \space)))
     (is (= "_101" (s/to-binary 5 4 \_)))))
 
