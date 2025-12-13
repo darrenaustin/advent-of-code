@@ -66,6 +66,15 @@
     (is (= [[0 1] [1 4] [2 9]]
            (c/indexed [1 4 9])))))
 
+(deftest index-test
+  (testing "index returns the index of the first occurrence of a value"
+    (is (= 1 (c/index [:a :b :c] :b)))
+    (is (zero? (c/index [:a :b :c] :a)))
+    (is (= 2 (c/index [:a :b :c] :c)))
+    (is (nil? (c/index [:a :b :c] :d)))
+    (is (nil? (c/index [] :a)))
+    (is (= 1 (c/index [1 2 3 2 1] 2)))))
+
 (deftest iterate-n-test
   (testing "iterate-n applies function n times"
     (is (= 8 (c/iterate-n inc 5 3)))

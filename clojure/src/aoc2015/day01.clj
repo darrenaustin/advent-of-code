@@ -2,22 +2,15 @@
 (ns aoc2015.day01
   (:require
    [aoc.day :as d]
+   [aoc.util.collection :as c]
    [aoc.util.math :as m]))
 
 (defn input [] (d/day-input 2015 1))
 
-(def floor-dirs {\( 1, \) -1})
+(def floor-delta {\( 1, \) -1})
 
 (defn part1 [input]
-  (m/sum (map floor-dirs input)))
+  (m/sum (map floor-delta input)))
 
 (defn part2 [input]
-  (reduce
-   (fn [stops dir]
-     (let [[floor idx] (peek stops)
-           [floor idx] [(+ floor (floor-dirs dir)) (inc idx)]]
-       (if (neg? floor)
-         (reduced idx)
-         (conj stops [floor idx]))))
-   [[0 0]]
-   input))
+  (inc (c/index (reductions + (map floor-delta input)) -1)))

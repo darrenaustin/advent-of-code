@@ -49,6 +49,17 @@
   [coll]
   (map-indexed vector coll))
 
+(defn index
+  "Returns the index of the first occurrence of `value` in `coll`.
+   Returns nil if not found.
+   Example: (index [:a :b :c] :b) => 1"
+  [coll value]
+  (loop [idx 0 [e & more] coll]
+    (if (= e value)
+      idx
+      (when more
+        (recur (inc idx) more)))))
+
 (defn pairs
   "Returns a lazy sequence of all unique pairs (combinations of size 2) from the collection.
    Example: (pairs [1 2 3]) => ([1 2] [1 3] [2 3])"
