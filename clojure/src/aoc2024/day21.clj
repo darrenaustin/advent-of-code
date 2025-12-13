@@ -12,7 +12,7 @@
 
 (defn input [] (d/day-input 2024 21))
 
-(defn parse-codes [input] (str/split-lines input))
+(defn parse-codes [input] (s/lines input))
 
 (def dir->arrow
   {p/dir-up    "^"
@@ -84,7 +84,7 @@
     (apply min (map #(min-length-dir-pad % num-robots) num-pad-paths))))
 
 (defn complexity [code num-robots]
-  (* (first (s/parse-ints code))
+  (* (first (s/ints code))
      (min-presses code num-robots)))
 
 (defn solve [input num-robots]

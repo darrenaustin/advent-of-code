@@ -4,13 +4,12 @@
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2017 13))
 
 (defn parse [input]
-  (mapv s/parse-ints (str/split-lines input)))
+  (mapv s/ints (s/lines input)))
 
 (defn caught? [time [depth range]]
   ; a scanner reaches the top (0) at multiples of 2*range - 1

@@ -3,31 +3,48 @@
    [aoc.util.string :as s]
    [clojure.test :refer :all]))
 
-(deftest split-blocks-test
-  (testing "split-blocks splits on double newlines"
-    (is (= ["a" "b"] (s/split-blocks "a\n\nb")))
-    (is (= ["a" "b"] (s/split-blocks "a\n  \nb")))
-    (is (= ["a" "b" "c"] (s/split-blocks "a\n\nb\n\nc")))))
+(deftest blocks-test
+  (testing "blocks splits on double newlines"
+    (is (= ["a" "b"] (s/blocks "a\n\nb")))
+    (is (= ["a" "b"] (s/blocks "a\n  \nb")))
+    (is (= ["a" "b" "c"] (s/blocks "a\n\nb\n\nc")))))
 
-(deftest parse-ints-test
-  (testing "parse-ints extracts all integers"
-    (is (= [1 2 3] (s/parse-ints "1 2 3")))
-    (is (= [-1 2 -3] (s/parse-ints "-1 2 -3")))
-    (is (= [10 20] (s/parse-ints "foo 10 bar 20")))
-    (is (= [0 1] (s/parse-ints "0 1")))
-    (is (= [0 1] (s/parse-ints "00 01")))))
+(deftest lines-test
+  (testing "lines splits on newlines"
+    (is (= ["a" "b"] (s/lines "a\nb")))
+    (is (= ["a" "b" "c"] (s/lines "a\nb\nc")))
+    (is (= ["a" "" "b"] (s/lines "a\n\nb")))))
 
-(deftest parse-int-test
-  (testing "parse-int extracts the first integer"
-    (is (= 1 (s/parse-int "1 2 3")))
-    (is (= -1 (s/parse-int "-1 2 3")))
-    (is (= 10 (s/parse-int "foo 10 bar 20")))))
+(deftest parse-blocks-test
+  (testing "parse-blocks applies parsers to blocks"
+    (let [input "10\n\n20\n\nfoo"]
+      (is (= {:a 10 :b 20 :c "foo"}
+             (s/parse-blocks input
+                             [[:a s/int]
+                              [:b s/int]
+                              [:c identity]]))))))
 
-(deftest parse-pos-ints-test
-  (testing "parse-pos-ints extracts only positive integers (digits)"
-    (is (= [1 2 3] (s/parse-pos-ints "1 2 3")))
-    (is (= [1 2 3] (s/parse-pos-ints "-1 2 -3"))) ;; Note: treats - as separator
-    (is (= [10 20] (s/parse-pos-ints "foo 10 bar 20")))))
+(deftest ints-test
+  (testing "ints extracts all integers from a string"
+    (is (= [1 2 3] (s/ints "1 2 3")))
+    (is (= [1 2 3] (s/ints "1, 2, 3")))
+    (is (= [-1 -2 -3] (s/ints "-1 -2 -3")))
+    (is (= [123 -456] (s/ints "foo 123 bar -456")))
+    (is (= [] (s/ints "no numbers here")))))
+
+(deftest int-test
+  (testing "int extracts the first integer from a string"
+    (is (= 123 (s/int "123")))
+    (is (= 123 (s/int "foo 123")))
+    (is (= -123 (s/int "-123")))
+    (is (nil? (s/int "no numbers here")))))
+
+(deftest pos-ints-test
+  (testing "pos-ints extracts all sequences of digits as integers"
+    (is (= [1 2 3] (s/pos-ints "1 2 3")))
+    (is (= [1 2 3] (s/pos-ints "-1 -2 -3")))
+    (is (= [123 456] (s/pos-ints "123-456")))
+    (is (= [] (s/pos-ints "no digits here")))))
 
 (deftest digit-test
   (testing "digit converts char to int"
@@ -40,35 +57,35 @@
     (is (= [1 2 3] (s/digits 123)))
     (is (= [1 2 3] (s/digits "123")))))
 
-(deftest ->hex-test
-  (testing "->hex converts numbers to hex strings"
-    (is (= "ff" (s/->hex 255)))
-    (is (= "0" (s/->hex 0)))
-    (is (= "a" (s/->hex 10))))
+(deftest to-hex-test
+  (testing "to-hex converts numbers to hex strings"
+    (is (= "ff" (s/to-hex 255)))
+    (is (= "0" (s/to-hex 0)))
+    (is (= "a" (s/to-hex 10))))
 
-  (testing "->hex supports padding"
-    (is (= "0a" (s/->hex 10 2)))
-    (is (= "00ff" (s/->hex 255 4)))
-    (is (= "ff" (s/->hex 255 2))))
+  (testing "to-hex supports padding"
+    (is (= "0a" (s/to-hex 10 2)))
+    (is (= "00ff" (s/to-hex 255 4)))
+    (is (= "ff" (s/to-hex 255 2))))
 
-  (testing "->hex supports custom padding character"
-    (is (= " a" (s/->hex 10 2 \space)))
-    (is (= "__a" (s/->hex 10 3 \_)))))
+  (testing "to-hex supports custom padding character"
+    (is (= " a" (s/to-hex 10 2 \space)))
+    (is (= "__a" (s/to-hex 10 3 \_)))))
 
-(deftest ->bin-test
-  (testing "->bin converts numbers to binary strings"
-    (is (= "101" (s/->bin 5)))
-    (is (= "0" (s/->bin 0)))
-    (is (= "1111" (s/->bin 15))))
+(deftest to-bin-test
+  (testing "to-bin converts numbers to binary strings"
+    (is (= "101" (s/to-binary 5)))
+    (is (= "0" (s/to-binary 0)))
+    (is (= "1111" (s/to-binary 15))))
 
-  (testing "->bin supports padding"
-    (is (= "0101" (s/->bin 5 4)))
-    (is (= "00000101" (s/->bin 5 8)))
-    (is (= "101" (s/->bin 5 2))))
+  (testing "to-bin supports padding"
+    (is (= "0101" (s/to-binary 5 4)))
+    (is (= "00000101" (s/to-binary 5 8)))
+    (is (= "101" (s/to-binary 5 2))))
 
-  (testing "->bin supports custom padding character"
-    (is (= " 101" (s/->bin 5 4 \space)))
-    (is (= "_101" (s/->bin 5 4 \_)))))
+  (testing "to-bin supports custom padding character"
+    (is (= " 101" (s/to-binary 5 4 \space)))
+    (is (= "_101" (s/to-binary 5 4 \_)))))
 
 (deftest string<-test
   (testing "string< checks for monotonically increasing order"

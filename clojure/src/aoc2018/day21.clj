@@ -10,8 +10,8 @@
 (defn parse [input]
   (letfn [(parse-instr [instr]
             (let [[op & args] (str/split instr #" ")]
-              (into [op] (mapv s/parse-int args))))]
-    (mapv parse-instr (str/split-lines input))))
+              (into [op] (mapv s/int args))))]
+    (mapv parse-instr (s/lines input))))
 
 (def operations
   {"addr" (fn [a b c reg] (assoc reg c (+ (reg a) (reg b))))

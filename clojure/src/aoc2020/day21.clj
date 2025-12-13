@@ -2,6 +2,7 @@
  (ns aoc2020.day21
    (:require
     [aoc.day :as d]
+    [aoc.util.string :as s]
     [clojure.set :as set]
     [clojure.string :as str]))
 
@@ -12,7 +13,7 @@
          (let [[_ ingredients allergens] (re-matches #"^(.*) \(contains (.*)\)$" line)]
            {:ingredients (set (str/split ingredients #"\s+"))
             :allergens (set (str/split allergens #", "))}))
-       (str/split-lines input)))
+       (s/lines input)))
 
 (defn remove-allergen-ingredient [foods allergen ingredient]
   (map (fn [food]

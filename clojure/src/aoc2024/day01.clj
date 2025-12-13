@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2024 1))
 
 (defn parse-locations [input]
-  (c/transpose (partition 2 (s/parse-ints input))))
+  (c/transpose (partition 2 (s/ints input))))
 
 (defn part1 [input]
   (let [[left right] (map sort (parse-locations input))]

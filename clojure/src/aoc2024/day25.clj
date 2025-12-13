@@ -3,13 +3,14 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [count-where transpose]]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 25))
 
 (defn grid->pins [grid]
   (map #(- 6 (count-where #{\.} %))
-       (transpose (str/split-lines grid))))
+       (transpose (s/lines grid))))
 
 (defn parse [input]
   (let [groups (group-by first (str/split input #"\n\n"))]

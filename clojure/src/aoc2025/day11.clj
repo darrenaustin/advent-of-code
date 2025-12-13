@@ -4,14 +4,14 @@
    [aoc.day :as d]
    [aoc.util.math :as m]
    [aoc.util.memoize :refer [letfn-mem]]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2025 11))
 
 (defn parse-devices [input]
   (into {} (map #(let [[name & connections] (re-seq #"\w+" %)]
                    [name connections])
-                (str/split-lines input))))
+                (s/lines input))))
 
 (defn count-paths
   ([start finish devices] (count-paths start finish nil devices))

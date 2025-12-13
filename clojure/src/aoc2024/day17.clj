@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2024 17))
 
 (defn parse-machine [input]
-  (let [[a b c & code] (s/parse-ints input)]
+  (let [[a b c & code] (s/ints input)]
     {:a a :b b :c c :code (vec code) :pc 0 :output []}))
 
 (defn combo [{:keys [a b c]} arg]

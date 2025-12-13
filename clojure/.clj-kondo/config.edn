@@ -1,4 +1,5 @@
-{:linters
+{:output {:exclude-files [".clj-kondo/imports"]}
+ :linters
  {:missing-docstring            {:level :off}
   :refer-all                    {:exclude [clojure.test
                                            clojure.core.logic]}

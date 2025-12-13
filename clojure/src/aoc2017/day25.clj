@@ -18,15 +18,15 @@
         [_ write0 move0 next0] (parse-steps zero-steps)
         [_ write1 move1 next1] (parse-steps one-steps)]
     [(subs state 9 10)
-     [{:write (s/parse-int write0) :move (dirs move0) :next next0}
-      {:write (s/parse-int write1) :move (dirs move1) :next next1}]]))
+     [{:write (s/int write0) :move (dirs move0) :next next0}
+      {:write (s/int write1) :move (dirs move1) :next next1}]]))
 
 (defn parse [input]
   (let [[init & states] (str/split input #"\n\n")]
     {:state  (subs init 15 16)
      :pos    0
      :tape   {}
-     :steps  (s/parse-int init)
+     :steps  (s/int init)
      :states (into {} (map parse-state states))}))
 
 (defn execute [{:keys [state pos tape steps states] :as machine}]

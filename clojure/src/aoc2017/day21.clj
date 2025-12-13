@@ -3,6 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2017 21))
@@ -19,7 +20,7 @@
 
 (defn parse [input]
   (->> input
-       str/split-lines
+       s/lines
        (map #(str/split % #" => "))
        (map #(map image->grid %))
        (reduce expand-rule {})))

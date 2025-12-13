@@ -10,7 +10,7 @@
 (defn parse [input]
   (reduce (fn [m c] (reduce (fn [m p] (assoc m p (conj (get m p #{}) c))) m c))
           {}
-          (partition 2 (s/parse-ints input))))
+          (partition 2 (s/ints input))))
 
 (defn bridges
   ([components] (bridges 0 #{} components))

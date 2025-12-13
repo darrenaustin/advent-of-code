@@ -4,13 +4,12 @@
    [aoc.day :as d]
    [aoc.util.math :as m]
    [aoc.util.string :as s]
-   [clojure.edn :as edn]
-   [clojure.string :as str]))
+   [clojure.edn :as edn]))
 
 (defn input [] (d/day-input 2024 7))
 
 (defn parse-equations [input]
-  (map s/parse-ints (str/split-lines input)))
+  (map s/ints (s/lines input)))
 
 (defn possible-equation? [[goal & nums] ops]
   (loop [values [(first nums)] nums (rest nums)]

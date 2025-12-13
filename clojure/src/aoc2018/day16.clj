@@ -11,13 +11,13 @@
 (defn parse-samples [input]
   (let [sample-data (first (str/split input #"\n\n\n"))]
     (for [sample (str/split sample-data #"\n\n")]
-      (let [nums (partition 4 (s/parse-ints sample))]
+      (let [nums (partition 4 (s/ints sample))]
         {:before      (vec (first nums))
          :instruction (second nums)
          :after       (vec (last nums))}))))
 
 (defn parse-program [input]
-  (partition 4 (s/parse-ints (second (str/split input #"\n\n\n")))))
+  (partition 4 (s/ints (second (str/split input #"\n\n\n")))))
 
 (defn sample-match? [{:keys [before instruction after]} op]
   (let [[_ a b c] instruction]

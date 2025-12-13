@@ -30,10 +30,10 @@
       (+ d4 9)))))
 
 (defn part1 [input]
-  (m/sum (map #(last (secret-nums %)) (s/parse-ints input))))
+  (m/sum (map #(last (secret-nums %)) (s/ints input))))
 
 (defn part2 [input]
-  (let [diffs (map #(price-diffs (secret-nums %)) (s/parse-ints input))]
+  (let [diffs (map #(price-diffs (secret-nums %)) (s/ints input))]
     (loop [diffs diffs bananas {}]
       (if-let [buyer-diff (first diffs)]
         (recur (rest diffs)

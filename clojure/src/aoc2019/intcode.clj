@@ -4,7 +4,7 @@
    [aoc.util.string :as s]))
 
 (defn parse [input]
-  (vec (s/parse-ints input)))
+  (vec (s/ints input)))
 
 (def tracing false)
 

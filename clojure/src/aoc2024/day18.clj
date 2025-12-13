@@ -12,7 +12,7 @@
 (defn input [] (d/day-input 2024 18))
 
 (defn parse [input]
-  (mapv #(vec (s/parse-ints %)) (str/split-lines input)))
+  (mapv #(vec (s/ints %)) (s/lines input)))
 
 (defn neighbors [grid]
   (fn [loc]

@@ -3,7 +3,7 @@
    (:require
     [aoc.day :as d]
     [aoc.util.math :as m]
-    [clojure.string :as str]))
+    [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2025 7))
 
@@ -15,7 +15,7 @@
 ;; This is my less concise Clojure version of it:
 
 (defn split-timelines [input]
-  (let [[line & lines] (str/split-lines input)
+  (let [[line & lines] (s/lines input)
         row (mapv #(if (= % \S) 1 0) line)]
     (loop [row row splits 0 [line & lines] lines]
       (if line

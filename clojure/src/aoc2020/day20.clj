@@ -12,8 +12,8 @@
 (defn parse-grid-tiles [input]
   (let [tile-blocks (str/split input #"\n\s*\n")]
     (mapv (fn [block]
-            (let [[header & grid-rows] (str/split-lines block)
-                  id (s/parse-int header)
+            (let [[header & grid-rows] (s/lines block)
+                  id (s/int header)
                   grid (g/parse-grid grid-rows)]
               {:id   id
                :grid grid}))

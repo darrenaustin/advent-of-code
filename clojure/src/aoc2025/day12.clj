@@ -4,22 +4,20 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2025 12))
 
-(defn parse-presents [input]
-  (let [blocks (drop-last (s/split-blocks input))]
-    ;; As this we are just being trolled, we only need the number
-    ;; of filled spaces for each present
-    (mapv (fn [block] (c/count-where #{\#} block)) blocks)))
-
-(defn parse-regions [input]
-  (mapv (fn [line]
-          (let [[w h & quantities] (s/parse-ints line)]
-            [[w h] quantities]))
-        (str/split-lines (last (s/split-blocks input)))))
+(defn parse [input]
+  (let [blocks (s/blocks input)
+        ;; As this we are just being trolled, we only need the number
+        ;; of filled spaces for each present
+        presents (mapv (fn [p] (c/count-where #{\#} p)) (pop blocks))
+        regions (mapv (fn [line]
+                        (let [[w h & quantities] (s/ints line)]
+                          [[w h] quantities]))
+                      (s/lines (peek blocks)))]
+    [presents regions]))
 
 (defn presents-fit? [[[w h] quantities] presents]
   (let [available-space (* w h)
@@ -32,8 +30,7 @@
       :else                               :maybe)))
 
 (defn part1 [input]
-  (let [presents (parse-presents input)
-        regions (parse-regions input)
+  (let [[presents regions] (parse input)
         fit-groups (group-by identity (map #(presents-fit? % presents) regions))
         counts (reduce (fn [m k] (update m k count)) fit-groups [:yes :no :maybe])]
     (if (zero? (:maybe counts))

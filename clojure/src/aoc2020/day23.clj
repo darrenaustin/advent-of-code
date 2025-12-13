@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2020 23))
 
 (defn parse-cups [input]
-  (let [labels (s/digits (s/parse-int input))
+  (let [labels (s/digits (s/int input))
         start (first labels)
         cup-map (loop [m {} [h & rest] labels]
                   (if h

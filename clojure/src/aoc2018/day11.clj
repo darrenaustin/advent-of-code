@@ -56,11 +56,11 @@
                          (max-3x3
                           (summed-area-grid
                            [[1 1] [300 300]]
-                           (partial power (s/parse-int input))))))))
+                           (partial power (s/int input))))))))
 
 (defn part2 [input]
   (str/join "," (second
                  (max-any-square
                   (summed-area-grid
                    [[1 1] [300 300]]
-                   (partial power (s/parse-int input)))))))
+                   (partial power (s/int input)))))))

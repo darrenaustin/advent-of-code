@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2018 6))
 
 (defn parse-coords [input]
-  (partition 2 (s/parse-ints input)))
+  (partition 2 (s/ints input)))
 
 (defn closest-to [pos coords]
   (let [[_ min-coords]

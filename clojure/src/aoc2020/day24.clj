@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.pos :as p]
-   [clojure.set :as set]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]
+   [clojure.set :as set]))
 
 (defn input [] (d/day-input 2020 24))
 
@@ -30,7 +30,7 @@
   (set (apply concat (keep #(white-adjacent black-tiles %) black-tiles))))
 
 (defn parse-tile-dir-paths [input]
-  (map #(re-seq #"e|se|sw|w|nw|ne" %) (str/split-lines input)))
+  (map #(re-seq #"e|se|sw|w|nw|ne" %) (s/lines input)))
 
 (defn parse-tile-coords [input]
   (map #(reduce p/pos+ (map dirs->cube %)) (parse-tile-dir-paths input)))

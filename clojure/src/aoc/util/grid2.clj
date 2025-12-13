@@ -1,5 +1,6 @@
 (ns aoc.util.grid2
   (:require
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn make-grid
@@ -44,7 +45,7 @@
   ([input value-fn]
    (when-not (or (string? input) (coll? input))
      (throw (Exception. (format "Need a string or collection: %s" input))))
-   (let [lines (if (string? input) (str/split-lines input) input)]
+   (let [lines (if (string? input) (s/lines input) input)]
      (mapv #(vec (map value-fn %)) lines))))
 
 (defn grid->str-vec

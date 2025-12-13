@@ -21,8 +21,8 @@
 (defn parse [input]
   (map (fn [step]
          (case (first step)
-           \s (partial spin (s/parse-int (subs step 1)))
-           \x (partial exchange (s/parse-ints (subs step 1)))
+           \s (partial spin (s/int (subs step 1)))
+           \x (partial exchange (s/ints (subs step 1)))
            \p (partial partner (map first (str/split (subs step 1) #"/")))))
        (str/split input #",")))
 
@@ -47,5 +47,3 @@
                         {}
                         (c/indexed dances))]
     (nth dances (mod 1000000000 (- c2 c1)))))
-
-(def t "s1,x3/4,pe/b")

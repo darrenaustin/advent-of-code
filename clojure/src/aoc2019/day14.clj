@@ -11,7 +11,7 @@
 
 (defn parse-chemical [input]
   (let [[amount name] (str/split input #" ")]
-    {name (s/parse-int amount)}))
+    {name (s/int amount)}))
 
 (defn parse-reaction [line]
   (let [[inputs output] (str/split line #" => ")]
@@ -19,7 +19,7 @@
      :inputs (reduce merge (map parse-chemical (str/split inputs #", ")))}))
 
 (defn parse [input]
-  (into {} (for [reaction (map parse-reaction (str/split-lines input))]
+  (into {} (for [reaction (map parse-reaction (s/lines input))]
              [(first (keys (:output reaction))) reaction])))
 
 (defn ore-for [reactions name amount]

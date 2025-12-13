@@ -3,15 +3,14 @@
    (:require
     [aoc.day :as d]
     [aoc.util.math :as m]
-    [aoc.util.string :as s]
-    [clojure.string :as str]))
+    [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2025 5))
 
 (defn parse-ingredients [input]
-  (let [[ranges ingredients] (s/split-blocks input)
-        ranges (map s/parse-pos-ints (str/split-lines ranges))
-        ingredients (s/parse-ints ingredients)]
+  (let [[ranges ingredients] (s/blocks input)
+        ranges (map s/pos-ints (s/lines ranges))
+        ingredients (s/ints ingredients)]
     [ranges ingredients]))
 
 (defn range-size [[start end]]

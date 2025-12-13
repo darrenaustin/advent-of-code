@@ -12,7 +12,7 @@
 (defn input [] (d/day-input 2018 22))
 
 (defn parse [input]
-  (let [[depth tx ty] (s/parse-ints input)]
+  (let [[depth tx ty] (s/ints input)]
     [depth [tx ty]]))
 
 (defn erosion-for [depth target]

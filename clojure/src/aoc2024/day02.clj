@@ -3,13 +3,12 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [count-where]]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2024 2))
 
 (defn parse-reports [input]
-  (map s/parse-ints (str/split-lines input)))
+  (map s/ints (s/lines input)))
 
 (defn safe [report]
   (let [diffs (map - report (rest report))]

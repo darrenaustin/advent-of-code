@@ -3,17 +3,16 @@
   (:require
    [aoc.day :as d]
    [aoc.util.math :as m]
-   [aoc.util.string :as s]
-   [clojure.string :as str]))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 19))
 
 (defn parse [input]
   (mapv (fn [line]
           (let [op     (subs line 0 4)
-                params (s/parse-ints line)]
+                params (s/ints line)]
             (into [op] params)))
-        (str/split-lines input)))
+        (s/lines input)))
 
 (def operations
   {"addr" (fn [a b c reg] (assoc reg c (+ (reg a) (reg b))))

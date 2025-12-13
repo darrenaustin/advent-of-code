@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2024 5))
 
 (defn parse-input [input]
-  (mapv #(mapv s/parse-ints (str/split-lines %))
+  (mapv #(mapv s/ints (s/lines %))
         (str/split input #"\n\n")))
 
 (defn follows-rules? [order rules]

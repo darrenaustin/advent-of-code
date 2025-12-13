@@ -47,16 +47,6 @@
       file-moved-groups
       (coll-insert file-moved-groups (inc open-idx) [nil extra-space]))))
 
-(defn next-index
-  ([coll pred] (next-index coll pred -1))
-  ([coll pred from-index]
-   (first-where #(pred (get coll %)) (range (inc from-index) (count coll)))))
-
-(defn prev-index
-  ([coll pred] (prev-index coll pred (count coll)))
-  ([coll pred from-index]
-   (first-where #(pred (get coll %)) (range (dec from-index) 0 -1))))
-
 (defn defrag-files [file-map]
   (loop [block-groups (mapv (fn [g] [(first g) (count g)])
                             (partition-by identity file-map))]

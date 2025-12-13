@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2018 14))
 
 (defn part1 [input]
-  (let [target-num    (s/parse-int input)
+  (let [target-num    (s/int input)
         target-length (+ target-num 10)]
     (loop [elf1 0 elf2 1 recipes [3 7]]
       (if (> (count recipes) target-length)

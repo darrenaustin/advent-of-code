@@ -18,7 +18,7 @@
     (reduce (fn [m a] (merge m (parse-attr a))) {} (str/split attrs #"; "))))
 
 (defn parse-group [army idx line]
-  (let [[units hp attack initiative] (s/parse-ints line)
+  (let [[units hp attack initiative] (s/ints line)
         [_ attack-type] (re-find #"does \d+ (\w+) damage.*" line)
         [_ attrs] (re-find #".*points \((.*)\)" line)]
     (merge {:id          (str army "-" (inc idx))
@@ -31,7 +31,7 @@
            (parse-attrs attrs))))
 
 (defn parse-army [input]
-  (let [[title & groups] (str/split-lines input)
+  (let [[title & groups] (s/lines input)
         name (if (str/starts-with? title "Immune") :immune :infection)]
     (into {} (for [g (map-indexed (partial parse-group name) groups)] [(:id g) g]))))
 

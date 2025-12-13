@@ -11,7 +11,7 @@
 (defn input [] (d/day-input 2018 23))
 
 (defn parse [input]
-  (for [[x y z r] (partition 4 (s/parse-ints input))]
+  (for [[x y z r] (partition 4 (s/ints input))]
     [[x y z] r]))
 
 (defn in-range? [[a r] [b _]]

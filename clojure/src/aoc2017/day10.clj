@@ -2,7 +2,7 @@
 (ns aoc2017.day10
   (:require
    [aoc.day :as d]
-   [aoc.util.string :refer [parse-ints]]
+   [aoc.util.string :as s]
    [aoc2017.knot-hash :refer [knot-hash sparse-hash]]))
 
 (defn input [] (d/day-input 2017 10))
@@ -11,7 +11,7 @@
   ([input] (part1 input 256))
   ([input list-size]
    (->> input
-        parse-ints
+        s/ints
         (sparse-hash (vec (range list-size)))
         (take 2)
         (apply *))))

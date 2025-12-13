@@ -4,6 +4,7 @@
    [aoc.day :as d]
    [aoc.util.collection :refer [count-where]]
    [aoc.util.math :refer [sum]]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 19))
@@ -11,7 +12,7 @@
 (defn parse [input]
   (let [[towels designs] (str/split input #"\n\n")]
     [(str/split towels #", ")
-     (str/split-lines designs)]))
+     (s/lines designs)]))
 
 (def ways-to-make
   (memoize

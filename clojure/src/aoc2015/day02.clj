@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2015 2))
 
 (defn parse-boxes [input]
-  (partition 3 (s/parse-ints input)))
+  (partition 3 (s/ints input)))
 
 (defn paper-for [[l w h]]
   (let [[s1 s2 s3] [(* l w) (* l h) (* w h)]]

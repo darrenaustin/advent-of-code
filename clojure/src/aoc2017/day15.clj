@@ -15,9 +15,9 @@
 
 ;; TODO: find a way to speed these up
 (defn part1 [input]
-  (let [[a b] (map generator [16807 48271] (s/parse-ints input))]
+  (let [[a b] (map generator [16807 48271] (s/ints input))]
     (count-where true? (take 40000000 (map #(= (bit-and 0xffff %1) (bit-and 0xffff %2)) a b)))))
 
 (defn part2 [input]
-  (let [[a b] (map generator2 [16807 48271] (s/parse-ints input) [4 8])]
+  (let [[a b] (map generator2 [16807 48271] (s/ints input) [4 8])]
     (count-where true? (take 5000000 (map #(= (bit-and 0xffff %1) (bit-and 0xffff %2)) a b)))))

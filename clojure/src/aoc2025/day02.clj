@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2025 2))
 
 (defn parse-ranges [input]
-  (map (fn [[_ start end]] [(s/parse-int start) (s/parse-int end)])
+  (map (fn [[_ start end]] [(s/int start) (s/int end)])
        (re-seq #"(\d+)-(\d+)" input)))
 
 (defn matches-in-range [regex [start end]]

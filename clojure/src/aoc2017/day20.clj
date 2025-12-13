@@ -10,7 +10,7 @@
 (defn input [] (d/day-input 2017 20))
 
 (defn parse [input]
-  (mapv #(mapv vec (partition 3 %)) (partition 9 (s/parse-ints input))))
+  (mapv #(mapv vec (partition 3 %)) (partition 9 (s/ints input))))
 
 (defn origin-distance [v]
   (m/manhattan-distance [0 0 0] v))

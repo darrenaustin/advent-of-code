@@ -10,9 +10,9 @@
 (defn parse-rotations [input]
   (map (fn [rotation]
          (let [direction (if (str/starts-with? rotation "L") -1 1)
-               distance  (s/parse-int rotation)]
+               distance  (s/int rotation)]
            (* direction distance)))
-       (str/split-lines input)))
+       (s/lines input)))
 
 (defn part1 [input]
   (loop [pos 50 zero-hits 0 rotations (parse-rotations input)]

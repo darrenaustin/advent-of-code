@@ -10,13 +10,13 @@
 (defn input [] (d/day-input 2018 17))
 
 (defn parse-line [line]
-  (let [[axis start end] (s/parse-ints line)]
+  (let [[axis start end] (s/ints line)]
     (if (str/starts-with? line "x")
       (into {} (for [y (range start (inc end))] [[axis y] \#]))
       (into {} (for [x (range start (inc end))] [[x axis] \#])))))
 
 (defn parse [input]
-  (reduce merge (map parse-line (str/split-lines input))))
+  (reduce merge (map parse-line (s/lines input))))
 
 (defn fill-rect [grid [from-x from-y] [to-x to-y] value]
   (into grid (for [x (range from-x (inc to-x)) y (range from-y (inc to-y))]

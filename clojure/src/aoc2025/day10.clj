@@ -16,10 +16,10 @@
 (defn parse-machines [input]
   (map (fn [line]
          (let [[[_ lights-str buttons-str joltage-str]] (re-seq machine-regex line)
-               buttons (mapv s/parse-ints (str/split buttons-str #" "))
-               joltages (s/parse-ints joltage-str)]
+               buttons (mapv s/ints (str/split buttons-str #" "))
+               joltages (s/ints joltage-str)]
            {:lights lights-str, :buttons buttons :joltages joltages}))
-       (str/split-lines input)))
+       (s/lines input)))
 
 (defn- button-mask [button mask-bits]
   (m/sum (map #(bit-shift-left 1 (- (dec mask-bits) %)) button)))

@@ -30,7 +30,7 @@
   (set-right! [_ right-node] (set! right right-node)))
 
 (defprotocol CircularListProtocol
-  (current [this])
+  ;; (current [this])
   (move-left! [this] [this n])
   (move-right! [this] [this n])
   (insert-after! [this value])
@@ -39,7 +39,7 @@
 #_{:splint/disable [style lint/prefer-method-values]}
 (deftype CircularList [^:unsynchronized-mutable ^Node current]
   CircularListProtocol
-  (current [this] (.-current this))
+  ;; (current [this] (.-current this))
   (move-left! [this] (set! current (left current)) this)
   (move-left! [this n] (set! current (nth (iterate left current) n)) this)
   (move-right! [this] (set! current (right current)) this)
@@ -79,9 +79,9 @@
             (recur (inc marble) (mod (inc player) players) scores)))))))
 
 (defn part1 [input]
-  (let [[players last-marble] (s/parse-ints input)]
+  (let [[players last-marble] (s/ints input)]
     (play-game players last-marble)))
 
 (defn part2 [input]
-  (let [[players last-marble] (s/parse-ints input)]
+  (let [[players last-marble] (s/ints input)]
     (play-game players (* 100 last-marble))))

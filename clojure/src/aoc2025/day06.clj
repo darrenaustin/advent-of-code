@@ -13,15 +13,15 @@
   (apply ({\+ +, \* *} operator) numbers))
 
 (defn part1 [input]
-  (let [lines (str/split-lines input)
+  (let [lines (s/lines input)
         operators (remove #{\space} (last lines))
-        numbers (c/transpose (map s/parse-ints (drop-last lines)))]
+        numbers (c/transpose (map s/ints (drop-last lines)))]
     (m/sum (map calculate operators numbers))))
 
 (defn part2 [input]
-  (let [lines (str/split-lines input)
+  (let [lines (s/lines input)
         operators (remove #{\space} (last lines))
-        numbers (c/split (map #(s/parse-int (str/join %))
+        numbers (c/split (map #(s/int (str/join %))
                               (c/transpose (drop-last lines)))
                          nil?)]
     (m/sum (map calculate operators numbers))))

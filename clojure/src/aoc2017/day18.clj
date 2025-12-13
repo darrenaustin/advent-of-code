@@ -7,13 +7,13 @@
 
 (defn input [] (d/day-input 2017 18))
 
-(defn parse [input] (vec (str/split-lines input)))
+(defn parse [input] (vec (s/lines input)))
 
 (defn next-pc [process]
   (update process :pc inc))
 
 (defn arg-val [process arg]
-  (if (re-find #"[a-z]" arg) (get (:reg process) arg 0) (s/parse-int arg)))
+  (if (re-find #"[a-z]" arg) (get (:reg process) arg 0) (s/int arg)))
 
 (defn op-set [process arg1 arg2]
   (-> process

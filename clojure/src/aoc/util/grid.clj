@@ -1,5 +1,6 @@
 (ns aoc.util.grid
   (:require
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn parse-grid
@@ -7,7 +8,7 @@
   ([input value-fn]
    (when-not (string? input)
      (throw (Exception. (format "Need a string: %s" input))))
-   (let [lines (str/split-lines input)]
+   (let [lines (s/lines input)]
      (into {}
            (for [x (range (count (first lines)))
                  y (range (count lines))]

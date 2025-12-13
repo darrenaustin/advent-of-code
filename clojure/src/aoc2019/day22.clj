@@ -20,11 +20,11 @@
               [(- a) (- deck-size b 1)]
 
               (str/starts-with? shuffle "cut ")
-              (let [n (s/parse-int shuffle)]
+              (let [n (s/int shuffle)]
                 [a (mod (+ b n) deck-size)])
 
               (str/starts-with? shuffle "deal with increment ")
-              (let [n (s/parse-int shuffle)
+              (let [n (s/int shuffle)
                     n-inv (m/mod-inverse n deck-size)]
                 [(mod (* a n-inv) deck-size)
                  (mod (* b n-inv) deck-size)])
@@ -71,14 +71,14 @@
 
 (defn part1 [input]
   (let [deck-size    10007
-        shuffles     (str/split-lines input)
+        shuffles     (s/lines input)
         coefficients (coefficients-for-composed-shuffles [1 0] shuffles deck-size)]
     (index-for-card 2019 coefficients deck-size)))
 
 (defn part2 [input]
   (let [deck-size    119315717514047N
         iterations   101741582076661N
-        shuffles     (str/split-lines input)
+        shuffles     (s/lines input)
         coefficients (-> [1 0]
                          ;; Find the linear transformation (a*x + b) mod deck-size
                          ;; that represents one full shuffle

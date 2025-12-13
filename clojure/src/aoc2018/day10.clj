@@ -10,7 +10,7 @@
 (defn input [] (d/day-input 2018 10))
 
 (defn parse [input]
-  (map #(partition 2 %) (partition 4 (s/parse-ints input))))
+  (map #(partition 2 %) (partition 4 (s/ints input))))
 
 (defn advance [[p v]]
   [(p/pos+ p v) v])

@@ -7,9 +7,9 @@
 (defn input [] (d/day-input 2020 22))
 
 (defn parse-decks [input]
-  (let [[player1 player2] (s/split-blocks input)]
-    [(rest (s/parse-ints player1))
-     (rest (s/parse-ints player2))]))
+  (let [[player1 player2] (s/blocks input)]
+    [(rest (s/ints player1))
+     (rest (s/ints player2))]))
 
 (defn play-round [[deck1 deck2]]
   (let [[card1 & deck1] deck1

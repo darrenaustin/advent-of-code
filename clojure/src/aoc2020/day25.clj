@@ -15,7 +15,7 @@
       (recur (transform subject n) (inc loops)))))
 
 (defn part1 [input]
-  (let [[key1 key2] (s/parse-ints input)
+  (let [[key1 key2] (s/ints input)
         loop-size1 (loop-size key1 7)]
     (nth (iterate (partial transform key2) 1) loop-size1)))
 

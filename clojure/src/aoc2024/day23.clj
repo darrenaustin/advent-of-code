@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2024 23))
 
 (defn parse-edges [input]
-  (map #(str/split % #"-") (str/split-lines input)))
+  (map #(str/split % #"-") (s/lines input)))
 
 (defn parse-graph [input]
   (reduce (fn [graph [v1 v2]]

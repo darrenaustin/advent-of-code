@@ -22,7 +22,7 @@
 
 (defn knot-hash [text]
   (str/join
-   (map #(s/->hex % 2)
+   (map #(s/to-hex % 2)
         (->> (apply concat (repeat 64 (concat (map int text) suffix)))
              (sparse-hash (vec (range 256)))
              (partition 16)

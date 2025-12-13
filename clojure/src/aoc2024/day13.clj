@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2024 13))
 
 (defn parse [input]
-  (partition 3 (partition 2 (s/parse-ints input))))
+  (partition 3 (partition 2 (s/ints input))))
 
 ;; a * Ax + b * Bx = Px => a * Ax = Px - b * Bx => a = (Px - b * Bx) / Ax
 ;; a * Ay + b * By = Py => ((Px - b * Bx) / Ax) * Ay + b * By = Py

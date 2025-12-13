@@ -3,6 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.math :as m]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2018 12))
@@ -29,7 +30,7 @@
 (defn parse [input]
   (let [[state rules] (str/split input #"\n\n")]
     [(parse-pots (second (str/split state #": ")))
-     (set (keep parse-rule (str/split-lines rules)))]))
+     (set (keep parse-rule (s/lines rules)))]))
 
 (defn mask-for [pots p]
   (loop [mask 0 cs (map pots (range (- p 2) (+ p 3)))]

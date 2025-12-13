@@ -12,7 +12,7 @@
 (defn parse-robots [input]
   (reduce (fn [[pos vel] [p v]] [(conj pos p) (conj vel v)])
           [[] []]
-          (partition 2 (partition 2 (s/parse-ints input)))))
+          (partition 2 (partition 2 (s/ints input)))))
 
 (defn simulate [robots velocities bounds seconds]
   (map (fn [r v]

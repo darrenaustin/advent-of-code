@@ -37,7 +37,7 @@
                         (get (:children t) (dec m) 0))))))
 
 (defn part1 [input]
-  (-> input s/parse-ints parse-tree metadata m/sum))
+  (-> input s/ints parse-tree metadata m/sum))
 
 (defn part2 [input]
-  (-> input s/parse-ints parse-tree value))
+  (-> input s/ints parse-tree value))

@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2018 25))
 
 (defn parse [input]
-  (partition 4 (s/parse-ints input)))
+  (partition 4 (s/ints input)))
 
 (defn connected? [star constellation]
   (some #(>= 3 (m/manhattan-distance star %)) constellation))

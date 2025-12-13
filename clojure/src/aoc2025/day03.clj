@@ -8,7 +8,7 @@
 (defn input [] (d/day-input 2025 3))
 
 (defn parse-battery-banks [input]
-  (map s/digits (s/parse-ints input)))
+  (map s/digits (s/ints input)))
 
 (defn max-joltage [bank batteries]
   (loop [bank bank b batteries max-jolt 0]

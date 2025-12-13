@@ -5,13 +5,12 @@
      [aoc.util.collection :as c]
      [aoc.util.grid2 :as g]
      [aoc.util.pos :as p]
-     [aoc.util.string :as s]
-     [clojure.string :as str]))
+     [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2025 9))
 
 (defn parse-tiles [input]
-  (mapv s/parse-ints (str/split-lines input)))
+  (mapv s/ints (s/lines input)))
 
 (defn area [[x1 y1] [x2 y2]]
   (* (inc (abs (- x1 x2))) (inc (abs (- y1 y2)))))

@@ -4,13 +4,12 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.string :as s]
-   [clojure.set :as set]
-   [clojure.string :as str]))
+   [clojure.set :as set]))
 
 (defn input [] (d/day-input 2025 8))
 
 (defn parse-boxes [input]
-  (mapv s/parse-ints (str/split-lines input)))
+  (mapv s/ints (s/lines input)))
 
 (defn sq-distance [[x1 y1 z1] [x2 y2 z2]]
   (let [dx (- x2 x1) dy (- y2 y1) dz (- z2 z1)]
