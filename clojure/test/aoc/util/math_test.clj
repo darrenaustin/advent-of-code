@@ -3,10 +3,6 @@
    [aoc.util.math :as m]
    [clojure.test :refer :all]))
 
-(defn num-set-equiv [ns1 ns2]
-  (and (= (count ns1) (count ns2))
-       (every? identity (map == (sort ns1) (sort ns2)))))
-
 (deftest indexed-min-test
   (is (= [2 1] (m/indexed-min [3 5 1 7 2])))
   (is (= [0 -5] (m/indexed-min [-5 3 1 0])))
@@ -22,17 +18,17 @@
   (is (= [0 10] (m/indexed-max [10 2 5 2 8]))))
 
 (deftest quadratic-roots-test
-  (is (num-set-equiv [5] (m/quadratic-roots 0 1 -5)))
-  (is (num-set-equiv [-7 7] (m/quadratic-roots -1 0 49)))
-  (is (num-set-equiv [-6 8] (m/quadratic-roots -1 2 48)))
-  (is (num-set-equiv [-7 2] (m/quadratic-roots 1 5 -14)))
-  (is (num-set-equiv [-7 -3] (m/quadratic-roots 1 10 21)))
-  (is (num-set-equiv [-1] (m/quadratic-roots 0 5 5)))
-  (is (num-set-equiv [-3.618033988749895 -1.381966011250105] (m/quadratic-roots 1 5 5)))
-  (is (num-set-equiv [] (m/quadratic-roots 9  5  5)))
-  (is (num-set-equiv [] (m/quadratic-roots 10 5 5)))
-  (is (num-set-equiv [-1] (m/quadratic-roots 5 10 5)))
-  (is (num-set-equiv [] (m/quadratic-roots 0 0 5)))
+  (is (= #{5} (set (m/quadratic-roots 0 1 -5))))
+  (is (= #{-7.0 7.0} (set (m/quadratic-roots -1 0 49))))
+  (is (= #{-6.0 8.0} (set (m/quadratic-roots -1 2 48))))
+  (is (= #{-7.0 2.0} (set (m/quadratic-roots 1 5 -14))))
+  (is (= #{-7.0 -3.0} (set (m/quadratic-roots 1 10 21))))
+  (is (= #{-1} (set (m/quadratic-roots 0 5 5))))
+  (is (= #{-3.618033988749895 -1.381966011250105} (set (m/quadratic-roots 1 5 5))))
+  (is (= #{} (set (m/quadratic-roots 9  5  5))))
+  (is (= #{} (set (m/quadratic-roots 10 5 5))))
+  (is (= #{-1} (set (m/quadratic-roots 5 10 5))))
+  (is (= #{} (set (m/quadratic-roots 0 0 5))))
   (is (= :any (m/quadratic-roots 0 0 0))))
 
 (deftest mod-inverse-test
@@ -41,7 +37,5 @@
     1969 42 2017
     0 40 1
     96 52 -217
-    121 -486 217)
-  (is (thrown-with-msg? Exception
-                        #"Modular inverse does not exist"
-                        (m/mod-inverse 40 2018))))
+    121 -486 217
+    nil 40 2018))
