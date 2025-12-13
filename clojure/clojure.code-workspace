@@ -1,9 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "clojure",
 			"path": "."
 		},
 		{
+			"name": "inputs",
 			"path": "../inputs"
 		}
 	],
