@@ -20,7 +20,7 @@
                (< dist min-dist) [dist [coord]]
                (= dist min-dist) [dist (conj min-coords coord)]
                :else [min-dist min-coords])))
-         [Integer/MAX_VALUE nil]
+         [m/max-int nil]
          coords)]
     (when (= 1 (count min-coords))
       (first min-coords))))
@@ -29,7 +29,7 @@
   (reduce
    (fn [[min-x min-y max-x max-y] [x y]]
      [(min min-x x) (min min-y y) (max max-x x) (max max-y y)])
-   [Integer/MAX_VALUE Integer/MAX_VALUE 0 0]
+   [m/max-int m/max-int 0 0]
    coords))
 
 (defn map-positions [[min-x min-y max-x max-y]]

@@ -3,6 +3,10 @@
    [aoc.util.collection :as c]
    [clojure.math :as math]))
 
+(def max-int Integer/MAX_VALUE)
+
+(def min-int Integer/MIN_VALUE)
+
 (defn num-digits [n] (count (str n)))
 
 (defn div? [n d]
@@ -29,7 +33,7 @@
                 -1 [mn mins]
                 0 [mn (conj mins e)]
                 1 [n [e]])))
-          [Integer/MAX_VALUE []]
+          [max-int []]
           coll))
 
 (defn maxes-by [n-fn coll]
@@ -39,7 +43,7 @@
                 -1 [n [e]]
                 0 [mx (conj maxes e)]
                 1 [mx maxes])))
-          [Integer/MIN_VALUE []]
+          [min-int []]
           coll))
 
 (defn indexed-min [coll]
@@ -84,6 +88,5 @@
   (let [m (abs m)
         a (if (neg? a) (mod a m) a)
         [g x _] (extended-gcd a m)]
-    (if (= g 1)
-      (mod x m)
-      (throw (ex-info "Modular inverse does not exist" {:a a :m m})))))  ; Return nil if no inverse exists
+    (when (= g 1)
+      (mod x m))))
