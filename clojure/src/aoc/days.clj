@@ -14,6 +14,7 @@
    [aoc2015.day07]
    [aoc2015.day08]
    [aoc2015.day09]
+   [aoc2015.day10]
    [aoc2017.day10]
    [aoc2017.day13]
    [aoc2017.day14]
