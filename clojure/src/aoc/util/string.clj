@@ -4,6 +4,9 @@
    [clojure.pprint :refer [cl-format]]
    [clojure.string :as str]))
 
+(def lower-alphabet "abcdefghijklmnopqrstuvwxyz")
+(def upper-alphabet (str/upper-case lower-alphabet))
+
 (defn blocks
   "Splits a string into blocks separated by double newlines (blank lines)."
   [s]
