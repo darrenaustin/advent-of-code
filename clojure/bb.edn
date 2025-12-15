@@ -25,8 +25,8 @@
   clean-ns    {:doc "Optimize and standarize the ns forms across src and test."
                :task (shell "clojure-lsp clean-ns")}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
-               :task (clojure (str "-M:test --skip-meta :slow " (str/join " " *command-line-args*)))}
+               :task (clojure (str "-M:test unit --skip-meta :slow " (str/join " " *command-line-args*)))}
   test-all    {:doc  "Run all tests."
-               :task (clojure (str "-M:test " (str/join " " *command-line-args*)))}
+               :task (clojure (str "-M:test unit " (str/join " " *command-line-args*)))}
   update-days {:doc  "Update the 'days.clj' file with the currently implemented days."
                :task (exec 'tasks/update-days-file)}}}
