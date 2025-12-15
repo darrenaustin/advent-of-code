@@ -71,6 +71,19 @@
        (concat (map vector (repeat h) t)
                (pairs t))))))
 
+(defn adjacent-pairs
+  "Returns a lazy sequence of adjacent pair elements of the collection.
+   Example: (adjacent-pairs [1 2 3]) => ((1 2) (2 3))"
+  [coll]
+  (partition 2 1 coll))
+
+(defn cyclic-adjacent-pairs
+  "Returns a lazy sequence of adjacent pairs elements of the collection,
+   treating the collection as circular.
+   Example: (adjacent-pairs-cyclic [1 2 3]) => ((1 2) (2 3) (3 1))"
+  [coll]
+  (partition 2 1 coll coll))
+
 (defn iterate-n
   "Applies function f to x exactly n times and returns the result.
    Example: (iterate-n inc 5 3) => 8"
@@ -118,6 +131,7 @@
    Returns negative, zero, or positive based on comparison of a and b."
   [a b]
   (Util/compare a b))
+
 (defn desc
   "Descending comparison function for use with sort and by.
    Returns positive, zero, or negative based on comparison of a and b."

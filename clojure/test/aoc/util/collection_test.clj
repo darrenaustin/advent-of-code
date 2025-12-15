@@ -75,6 +75,28 @@
     (is (nil? (c/index [] :a)))
     (is (= 1 (c/index [1 2 3 2 1] 2)))))
 
+(deftest pairs-test
+  (testing "pairs returns all unique combinations of size 2"
+    (is (= [[1 2] [1 3] [2 3]] (c/pairs [1 2 3])))
+    (is (= [[:a :b] [:a :c] [:a :d] [:b :c] [:b :d] [:c :d]] (c/pairs [:a :b :c :d])))
+    (is (empty? (c/pairs [1])))
+    (is (empty? (c/pairs [])))
+    (is (= [[1 1] [1 2] [1 2]] (c/pairs [1 1 2])) "Duplicates in input are treated as distinct elements")))
+
+(deftest adjacent-pairs-test
+  (testing "adjacent-pairs returns sliding window of pairs"
+    (is (= [[1 2] [2 3]] (c/adjacent-pairs [1 2 3])))
+    (is (= [[:a :b] [:b :c] [:c :d]] (c/adjacent-pairs [:a :b :c :d])))
+    (is (empty? (c/adjacent-pairs [1])))
+    (is (empty? (c/adjacent-pairs [])))))
+
+(deftest cyclic-adjacent-pairs-test
+  (testing "cyclic-adjacent-pairs returns sliding window of pairs with wrap-around"
+    (is (= [[1 2] [2 3] [3 1]] (c/cyclic-adjacent-pairs [1 2 3])))
+    (is (= [[:a :b] [:b :c] [:c :d] [:d :a]] (c/cyclic-adjacent-pairs [:a :b :c :d])))
+    (is (= [[1 1]] (c/cyclic-adjacent-pairs [1])))
+    (is (empty? (c/cyclic-adjacent-pairs [])))))
+
 (deftest iterate-n-test
   (testing "iterate-n applies function n times"
     (is (= 8 (c/iterate-n inc 5 3)))
@@ -167,12 +189,4 @@
     (is (= [1 2 3] (c/pad-left [1 2 3] 2 0)))
     (is (= [:x :x :x :a :b] (vec (c/pad-left [:a :b] 5 :x))))
     (is (= [] (vec (c/pad-left [] 0 nil))))))
-
-(deftest pairs-test
-  (testing "pairs returns all unique combinations of size 2"
-    (is (= '([1 2] [1 3] [2 3]) (c/pairs [1 2 3])))
-    (is (= '([:a :b] [:a :c] [:a :d] [:b :c] [:b :d] [:c :d]) (c/pairs [:a :b :c :d])))
-    (is (empty? (c/pairs [1])))
-    (is (empty? (c/pairs [])))
-    (is (= '([1 1] [1 2] [1 2]) (c/pairs [1 1 2])) "Duplicates in input are treated as distinct elements")))
 
