@@ -1,9 +1,7 @@
 (ns aoc.day
   (:require
    [clojure.data.json :as json]
-   [clojure.string :as str])
-  (:import
-   (java.io StringWriter)))
+   [clojure.string :as str]))
 
 ;; TODO: add a way to override this with an env var.
 (defn input-repo-dir [] "../inputs")
@@ -34,13 +32,13 @@
   (when-let [var (day-var year day-num var-name)]
     (var-get var)))
 
-;; From https://stackoverflow.com/questions/62724497/how-can-i-record-time-for-function-call-in-clojure
-(defmacro time-execution
-  [& body]
-  `(let [s# (StringWriter.)]
-     (binding [*out* s#]
-       {:return (time ~@body)
-        :time   (int (read-string (str/replace (str s#) #"[^0-9\\.]" "")))})))
+;; From https://stackoverflow.com/a/74292643
+(defmacro time-execution [body]
+  `(let [start# (System/currentTimeMillis)
+         return# ~body
+         end# (System/currentTimeMillis)]
+     {:return return#
+      :time (- end# start#)}))
 
 (defn result [answer expected time]
   (let [correct   (cond
