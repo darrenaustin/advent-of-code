@@ -13,7 +13,7 @@
            (partition-by identity s))))
 
 (defn length-after [input n]
-  (count (c/iterate-n look-and-say input n)))
+  (count (c/nth-iteration look-and-say input n)))
 
 (defn part1 [input] (length-after input 40))
 

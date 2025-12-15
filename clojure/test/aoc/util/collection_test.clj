@@ -97,13 +97,13 @@
     (is (= [[1 1]] (c/cyclic-adjacent-pairs [1])))
     (is (empty? (c/cyclic-adjacent-pairs [])))))
 
-(deftest iterate-n-test
-  (testing "iterate-n applies function n times"
-    (is (= 8 (c/iterate-n inc 5 3)))
-    (is (= 5 (c/iterate-n inc 5 0)))
-    (is (= 16 (c/iterate-n #(* % 2) 2 3)))
-    (is (= [1 1 2] (c/iterate-n #(conj % (count %)) [1] 2)))
-    (is (= "hello" (c/iterate-n identity "hello" 5)))))
+(deftest nth-iteration-test
+  (testing "nth-iteration applies function n times"
+    (is (= 8 (c/nth-iteration inc 5 3)))
+    (is (= 5 (c/nth-iteration inc 5 0)))
+    (is (= 16 (c/nth-iteration #(* % 2) 2 3)))
+    (is (= [1 1 2] (c/nth-iteration #(conj % (count %)) [1] 2)))
+    (is (= "hello" (c/nth-iteration identity "hello" 5)))))
 
 (deftest iteration-with-cycle-test
   (testing "iteration-with-cycle detects cycles and jumps ahead"

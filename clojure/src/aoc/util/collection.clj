@@ -84,7 +84,7 @@
   [coll]
   (partition 2 1 coll coll))
 
-(defn iterate-n
+(defn nth-iteration
   "Applies function f to x exactly n times and returns the result.
    Example: (iterate-n inc 5 3) => 8"
   [f x n]
