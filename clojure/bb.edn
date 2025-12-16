@@ -8,27 +8,25 @@
                :task (shell "rm -rf .cpcache target")}
   day         {:doc  "Execute the given day(s)."
                :task (clojure (str "-M -m aoc.core " (str/join " " *command-line-args*)))}
-  lint        {:doc  "Identify code issues in src and test directories."
-               :task (shell "clj-kondo --parallel --lint src:test")}
   new-day     {:doc  "Create skeleton src, test, input, and answer files for the given day."
                :task (exec 'tasks/new-day)}
   fetch-day   {:doc  "Download the input and name for the day."
                :task (exec 'tasks/fetch-day)}
   old-day     {:doc  "Setup new day and immediately fetch the input for it."
                :depends [new-day fetch-day]}
-  checkin     {:doc "Code checks to do before checking into the repo."
-               :depends [format clean-ns diagnostics splint test]}
-  format      {:doc "Format all the code in src and test."
-               :task (shell "clojure-lsp format")}
-  clean-ns    {:doc "Optimize and standarize the ns forms across src and test."
-               :task (shell "clojure-lsp clean-ns")}
-  diagnostics {:doc "Analyze the code base for warnings or other problems."
-               :task (shell "clojure-lsp diagnostics")}
-  splint      {:doc  "Identify common idiomatic code issues with splint."
-               :task (clojure "-M:splint")}
+  update-days {:doc  "Update the 'days.clj' file with the currently implemented days."
+               :task (exec 'tasks/update-days-file)}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
                :task (clojure (str "-M:test unit --skip-meta :slow " (str/join " " *command-line-args*)))}
   test-all    {:doc  "Run all tests."
                :task (clojure (str "-M:test unit " (str/join " " *command-line-args*)))}
-  update-days {:doc  "Update the 'days.clj' file with the currently implemented days."
-               :task (exec 'tasks/update-days-file)}}}
+  format      {:doc "Format all the code in src and test."
+               :task (shell "clojure-lsp format --raw")}
+  clean-ns    {:doc "Optimize and standarize the ns forms across src and test."
+               :task (shell "clojure-lsp clean-ns --raw")}
+  diagnostics {:doc "Analyze the code base for warnings or other problems."
+               :task (shell "clojure-lsp diagnostics --raw")}
+  splint      {:doc  "Identify common idiomatic code issues with splint."
+               :task (clojure "-M:splint")}
+  checkin     {:doc "Code checks to do before checking into the repo."
+               :depends [format clean-ns diagnostics splint test]}}}
