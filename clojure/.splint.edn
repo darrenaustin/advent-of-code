@@ -21,4 +21,4 @@
 
  ;; Diagnostics count: 9
  ;; Prefer `zero?` to `(= x 0)`.
- style/eq-zero {:enabled false}}
+ style/eq-zero {:enabled true :excludes ["glob:test/**"]}}
