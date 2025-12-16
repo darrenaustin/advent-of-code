@@ -6,6 +6,5 @@
   :unresolved-symbol            {:exclude [(clojure.core.logic/run*)
                                            (clojure.core.logic/run)
                                            lvar]}
-  :unsorted-required-namespaces {:level :warning}
-  :unused-binding               {:exclude-destructured-as true}}
+  :unsorted-required-namespaces {:level :warning}}
  :hooks {:analyze-call {aoc.util.memoize/letfn-mem hooks.aoc.util.memoize/letfn-mem}}}

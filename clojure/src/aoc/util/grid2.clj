@@ -58,6 +58,7 @@
                       (for [x (range (width grid))]
                         (or (cell grid [x y]) empty-value))))))))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn grid->str
   ([grid] (grid->str grid \space ""))
   ([grid empty-value separator]

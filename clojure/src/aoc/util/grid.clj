@@ -3,6 +3,9 @@
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
+;; TODO: Clean up and make consistent with grid2, until
+;;   then we suppress these public var warnings
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn parse-grid
   ([input] (parse-grid input identity))
   ([input value-fn]
@@ -44,6 +47,7 @@
   (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
     [(- max-x min-x) (- max-y min-y)]))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn width [grid]
   (let [[[min-x _] [max-x _]] (bounds grid)]
     (- max-x min-x)))
@@ -52,14 +56,17 @@
   (let [[[_ min-y] [_ max-y]] (bounds grid)]
     (- max-y min-y)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn top [grid]
   (let [[[_ min-y] _] (bounds grid)]
     min-y))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn bottom [grid]
   (let [[_ [_ max-y]] (bounds grid)]
     max-y))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn sub-grid [grid bounds]
   (into {} (filter #(in-bounds? bounds (first %))) grid))
 
@@ -74,6 +81,7 @@
                         (for [x (range min-x (inc max-x))]
                           (grid [x y] empty-value)))))))))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn grid->str
   ([grid] (grid->str grid \space ""))
   ([grid empty-value separator]

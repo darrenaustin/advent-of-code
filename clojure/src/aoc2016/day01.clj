@@ -38,5 +38,3 @@
         (if already-seen
           (m/manhattan-distance [0 0] already-seen)
           (recur current' (apply conj visited path) (rest moves)))))))
-
-(def t "R5, L5, R5, R3")

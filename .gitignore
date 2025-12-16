@@ -1,6 +1,1 @@
-.lsp/
-.clj-kondo/.cache/
-.clj-kondo/imports/
-.idea/
-*.iml
 .session

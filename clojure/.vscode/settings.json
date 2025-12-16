@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        ".calva/*": true,
+        ".clj-kondo/imports*": true,
+        "*.code-workspace": true,
+        ".vscode": true,
+        ".lsp": true
+    }
+}

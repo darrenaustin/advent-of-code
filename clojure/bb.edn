@@ -17,13 +17,15 @@
   old-day     {:doc  "Setup new day and immediately fetch the input for it."
                :depends [new-day fetch-day]}
   checkin     {:doc "Code checks to do before checking into the repo."
-               :depends [format clean-ns splint test]}
-  splint      {:doc  "Identify common idiomatic code issues with splint."
-               :task (clojure "-M:splint")}
+               :depends [format clean-ns diagnostics splint test]}
   format      {:doc "Format all the code in src and test."
-               :task (shell "cljfmt fix src test")}
+               :task (shell "clojure-lsp format")}
   clean-ns    {:doc "Optimize and standarize the ns forms across src and test."
                :task (shell "clojure-lsp clean-ns")}
+  diagnostics {:doc "Analyze the code base for warnings or other problems."
+               :task (shell "clojure-lsp diagnostics")}
+  splint      {:doc  "Identify common idiomatic code issues with splint."
+               :task (clojure "-M:splint")}
   test        {:doc  "Run test suite, skipping those with ':slow' metadata keyword."
                :task (clojure (str "-M:test unit --skip-meta :slow " (str/join " " *command-line-args*)))}
   test-all    {:doc  "Run all tests."

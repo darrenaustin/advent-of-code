@@ -24,7 +24,7 @@
 (defn- button-mask [button mask-bits]
   (m/sum (map #(bit-shift-left 1 (- (dec mask-bits) %)) button)))
 
-(defn min-presses-for-lights [{:keys [lights buttons] :as machine}]
+(defn min-presses-for-lights [{:keys [lights buttons]}]
   (let [goal (read-string (str "2r" (str/join (mapv #(if (= \# %) 1 0) lights))))
         button-masks (mapv #(button-mask % (count lights)) buttons)]
     (loop [open (conj PersistentQueue/EMPTY [0 0]), visited #{0}]
@@ -41,7 +41,7 @@
                         button-masks)]
             (recur open' visited')))))))
 
-(defn min-presses-for-joltage [{:keys [buttons joltages] :as machine}]
+(defn min-presses-for-joltage [{:keys [buttons joltages]}]
   (let [buttons (mapv set buttons)
         objective (vec (repeat (count buttons) 1))
         constraints (map-indexed (fn [i goal]

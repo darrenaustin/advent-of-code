@@ -2,6 +2,7 @@
   (:require
    [clj-kondo.hooks-api :as api]))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn letfn-mem [{:keys [node]}]
   (let [[bindings & body] (rest (:children node))
         [fn-name fn-def]  (:children bindings)]

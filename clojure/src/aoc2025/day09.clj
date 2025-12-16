@@ -31,7 +31,7 @@
 
 (defn map-coords [[x-map y-map] [x y]] [(x-map x) (y-map y)])
 
-(defn draw-line [grid [[lx1 ly1 :as l1] [lx2 ly2 :as l2] :as line] value]
+(defn draw-line [grid [[lx1 ly1] [lx2 ly2]] value]
   (reduce (fn [g p] (g/set-cell g p value))
           grid
           (for [x (range (min lx1 lx2) (inc (max lx1 lx2)))

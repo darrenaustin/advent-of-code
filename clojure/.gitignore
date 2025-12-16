@@ -9,15 +9,8 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 /.prepl-port
-.hgignore
-.hg/
 .cpcache/
-.lsp/
 .calva/
-.vscode/
 .clj-kondo/.cache/
 .clj-kondo/imports/
-*.iml
-.idea/
-.session
-hs_err_pid*.log
+.lsp/.cache

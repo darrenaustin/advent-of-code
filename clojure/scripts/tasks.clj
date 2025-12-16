@@ -113,6 +113,7 @@
                  {:dates dates}
                  :overwrite true)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn new-day [& _]
   (doseq [date (or (seq (map parse-day-spec *command-line-args*))
                    [today])]
@@ -125,6 +126,7 @@
 
     (update-days-file)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn fetch-day [& _]
   (if (not= 1 (count *command-line-args*))
     (println "Can only fetch one day specified with YYYY.DD")
