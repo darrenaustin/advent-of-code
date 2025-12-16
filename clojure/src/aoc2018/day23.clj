@@ -37,7 +37,7 @@
     (if (zero? side)
       [[box-min (mapv inc box-min)]]
       (for [d [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
-            :let [box-min' (p/pos+ box-min (p/pos*n side d))
+            :let [box-min' (p/pos+ box-min (p/pos* side d))
                   box-max' (p/pos+ box-min' [side side side])]]
         [box-min' box-max']))))
 

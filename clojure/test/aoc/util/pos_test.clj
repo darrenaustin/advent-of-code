@@ -19,10 +19,18 @@
   (testing "variadic"
     (is (= [-4 -5] (p/pos- [1 2] [2 3] [3 4])))))
 
-(deftest pos*n-test
-  (is (= [3 6] (p/pos*n 3 [1 2])))
-  (is (= [0 0] (p/pos*n 0 [1 2])))
-  (is (= [-2 -4] (p/pos*n -2 [1 2]))))
+(deftest pos*-test
+  (testing "scalar multiplication"
+    (is (= [3 6] (p/pos* 3 [1 2])))
+    (is (= [3 6] (p/pos* [1 2] 3)))
+    (is (= [0 0] (p/pos* 0 [1 2])))
+    (is (= [-2 -4] (p/pos* -2 [1 2])))))
+
+(deftest dot-test
+  (testing "dot product of two vectors"
+    (is (= 32 (p/dot [1 2 3] [4 5 6])))
+    (is (zero? (p/dot [1 0] [0 1])))
+    (is (= 14 (p/dot [1 2 3] [1 2 3])))))
 
 (deftest orthogonal-test
   (testing "dirs"

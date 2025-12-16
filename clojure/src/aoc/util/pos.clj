@@ -15,10 +15,19 @@
   ([a b] (mapv - a b))
   ([a b & more] (reduce pos- (mapv - a b) more)))
 
-(defn pos*n
-  "Multiplies a position vector `p` by a scalar `n`."
-  [n p]
-  (mapv (partial * n) p))
+(defn pos*
+  "Multiplies a position vector by a scalar.
+   Supports commutative multiplication: (pos* n v) or (pos* v n)."
+  [x y]
+  (cond
+    (and (number? x) (sequential? y)) (mapv (partial * x) y)
+    (and (sequential? x) (number? y)) (mapv (partial * y) x)
+    :else (throw (IllegalArgumentException. "Arguments must be a number and a vector."))))
+
+(defn dot
+  "Calculates the dot product of two vectors."
+  [x y]
+  (reduce + (map * x y)))
 
 (def origin [0 0])
 

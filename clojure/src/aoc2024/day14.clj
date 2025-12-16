@@ -16,7 +16,7 @@
 
 (defn simulate [robots velocities bounds seconds]
   (map (fn [r v]
-         (mapv mod (p/pos+ r (p/pos*n seconds v)) bounds))
+         (mapv mod (p/pos+ r (p/pos* seconds v)) bounds))
        robots velocities))
 
 (defn seconds-until-tree [[robots velocities] bounds]
