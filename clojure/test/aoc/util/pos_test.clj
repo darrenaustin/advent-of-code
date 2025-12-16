@@ -29,7 +29,7 @@
 (deftest dot-test
   (testing "dot product of two vectors"
     (is (= 32 (p/dot [1 2 3] [4 5 6])))
-    (is (zero? (p/dot [1 0] [0 1])))
+    (is (= 0 (p/dot [1 0] [0 1])))
     (is (= 14 (p/dot [1 2 3] [1 2 3])))))
 
 (deftest orthogonal-test

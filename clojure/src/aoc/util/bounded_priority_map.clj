@@ -109,5 +109,7 @@
       (BoundedPriorityMap. (into (empty pm) (take bound pm)) bound)
       (BoundedPriorityMap. pm bound))))
 
-(defmethod print-method BoundedPriorityMap [o ^java.io.Writer w]
+(defmethod print-method BoundedPriorityMap
+  print-method-bounded-priority-map
+  [o w]
   (java.io.Writer/.write w (str o)))

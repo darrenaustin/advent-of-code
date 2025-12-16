@@ -16,7 +16,7 @@ p=<-2,0,0>, v=< 1,0,0>, a=< 0,0,0>
 p=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>")
 
 (deftest part1-example
-  (is (zero? (d/part1 example1))))
+  (is (= 0 (d/part1 example1))))
 
 (deftest part2-example
   (is (= 1 (d/part2 example2))))

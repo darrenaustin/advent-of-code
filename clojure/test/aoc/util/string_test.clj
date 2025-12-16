@@ -49,7 +49,7 @@
 (deftest digit-test
   (testing "digit converts char to int"
     (is (= 1 (s/digit \1)))
-    (is (zero? (s/digit \0)))
+    (is (= 0 (s/digit \0)))
     (is (= 9 (s/digit \9)))))
 
 (deftest digits-test

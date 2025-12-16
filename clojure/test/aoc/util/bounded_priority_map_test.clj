@@ -55,9 +55,9 @@
 
   (testing "map operations"
     (let [bpm (bounded-priority-map 2 :a 1 :b 2)]
-      (is (= 1 (get bpm :a)))
-      (is (= 2 (get bpm :b)))
-      (is (nil? (get bpm :c)))
+      (is (= 1 (:a bpm)))
+      (is (= 2 (:b bpm)))
+      (is (nil? (:c bpm)))
       (is (contains? bpm :a))
       (is (= 1 (count (dissoc bpm :a))))
       (is (empty? (empty bpm)))

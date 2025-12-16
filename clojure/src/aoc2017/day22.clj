@@ -38,7 +38,7 @@
     {:grid             (assoc grid virus-loc cell')
      :virus-loc        (p/pos+ virus-loc virus-dir')
      :virus-dir        virus-dir'
-     :blast-infections (+ blast-infections (if (#{\#} cell') 1 0))}))
+     :blast-infections (+ blast-infections (if (= \# cell') 1 0))}))
 
 (defn solve [input cell-map iterations]
   (:blast-infections (nth (iterate (partial blast cell-map)

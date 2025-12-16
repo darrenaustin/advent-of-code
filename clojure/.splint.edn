@@ -1,0 +1,24 @@
+;; Splint configuration auto-generated on 2025-12-15.
+;; All failing rules have been disabled and can be enabled as time allows.
+
+;; TODO: Look into these
+{;; Diagnostics count: 221
+ ;; Always set *warn-on-reflection* to avoid reflection in interop.
+ lint/warn-on-reflection {:enabled false}
+
+ ;; Diagnostics count: 47
+ ;; Avoid functions longer than 10 lines of code (default).
+ ;; :supported-styles [:body :defn]
+ metrics/fn-length {:enabled false}
+
+ ;; Diagnostics count: 10
+ ;; Avoid calling assoc with multiple pairs.
+ performance/assoc-many {:enabled false}
+
+ ;; Diagnostics count: 44
+ ;; Rely on `.equals` when comparing against string literals.
+ performance/dot-equals {:enabled false}
+
+ ;; Diagnostics count: 9
+ ;; Prefer `zero?` to `(= x 0)`.
+ style/eq-zero {:enabled false}}
