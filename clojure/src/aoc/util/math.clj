@@ -26,6 +26,18 @@
 (defn manhattan-distance [pos-a pos-b]
   (sum (map distance pos-a pos-b)))
 
+;; Blatantly stolen from `tschady`'s excellent aoc repo:
+;;
+;; https://github.com/tschady/advent-of-code/blob/main/src/aoc/coll_util.clj
+;;
+;; This clever and elegant implementation is based on their observation:
+;;
+;; The trick here is realizing that `(B + C + D) - (A + B + C) = D - A`.
+(defn intervals
+  "Returns the seq of intervals between each element of `xs`, step `n` (default 1)"
+  ([xs] (intervals 1 xs))
+  ([n xs] (map - (drop n xs) xs)))
+
 (defn mins-by [n-fn coll]
   (reduce (fn [[mn mins] e]
             (let [n (n-fn e)]

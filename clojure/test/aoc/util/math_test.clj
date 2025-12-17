@@ -3,6 +3,15 @@
    [aoc.util.math :as m]
    [clojure.test :refer :all]))
 
+(deftest intervals-test
+  (is (= [1 0 -5 7 1] (m/intervals [1 2 2 -3 4 5])))
+  (is (= [2 2 2 2] (m/intervals [0 2 4 6 8])))
+  (is (= [1 2 3] (m/intervals [0 1 3 6])))
+  (is (= [] (m/intervals [1])))
+  (is (= [] (m/intervals [])))
+  (is (= [2 0 -2] (m/intervals 2 [1 2 3 2 1])))
+  (is (= [1 -1] (m/intervals 3 [1 2 3 2 1]))))
+
 (deftest indexed-min-test
   (is (= [2 1] (m/indexed-min [3 5 1 7 2])))
   (is (= [0 -5] (m/indexed-min [-5 3 1 0])))
