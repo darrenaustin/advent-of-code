@@ -57,6 +57,19 @@
     (is (= [1 2 3] (s/digits 123)))
     (is (= [1 2 3] (s/digits "123")))))
 
+(deftest re-seq-overlapping-test
+  (testing "re-seq-overlapping finds overlapping matches"
+    (is (= ["one" "eight"] (s/re-seq-overlapping #"one|eight" "oneight")))
+    (is (= ["ana" "ana"] (s/re-seq-overlapping #"ana" "banana")))
+    (is (= ["foo" "bar"] (s/re-seq-overlapping #"foo|bar|foob" "foobar"))
+        "Eager alternation limitation: 'foob' is skipped because 'foo' matches first"))
+  (testing "re-seq-overlapping handles no matches"
+    (is (= [] (s/re-seq-overlapping #"foo" "bar"))))
+  (testing "re-seq-overlapping handles single match"
+    (is (= ["foo"] (s/re-seq-overlapping #"foo" "foo"))))
+  (testing "re-seq-overlapping handles multiple non-overlapping matches"
+    (is (= ["foo" "foo"] (s/re-seq-overlapping #"foo" "foofoo")))))
+
 (deftest to-hex-test
   (testing "to-hex converts numbers to hex strings"
     (is (= "ff" (s/to-hex 255)))

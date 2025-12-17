@@ -65,6 +65,24 @@
   [n]
   (mapv digit (str n)))
 
+(defn re-seq-overlapping
+  "Returns a lazy sequence of all overlapping matches of the regex `re` in string `s`.
+   Uses a lookahead assertion to find matches without consuming characters.
+
+   Example:
+   (re-seq-overlapping #\"one|eight\" \"oneight\")
+   ;; => (\"one\" \"eight\")
+
+   Note: Regex alternation is eager. If multiple alternatives match at the same
+   position, only the first one in the regex will be returned.
+
+   Example of limitation:
+   (re-seq-overlapping #\"foo|bar|foob\" \"foobar\")
+   ;; => (\"foo\" \"bar\")
+   ;; \"foob\" is not returned because \"foo\" matches first at index 0."
+  [re s]
+  (map second (re-seq (re-pattern (str "(?=(" re "))")) s)))
+
 (defn to-hex
   "Converts a number to its hexadecimal string representation.
    Supports optional minimum padding width and padding character (default '0')."
