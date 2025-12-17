@@ -1,0 +1,14 @@
+# Project Instructions
+
+## Running Tests
+To run tests, use `bb test`.
+- To focus on a specific namespace: `bb test --focus <namespace>`
+- To run all tests: `bb test`
+
+## Writing unit tests
+- The tests for a given function or macro should live in a file under the `test` directory.
+- The folder structure under `test` should mirror the function's file path under `src`.
+- The test filename should match the source filename with `_test` appended (e.g. `day01.clj` -> `day01_test.clj`).
+- The test namespace should match the source namespace with `-test` appended.
+- If the needed test file or directories don't exist, please create them.
+- The order of the test functions should be exactly the same order as the functions in the original `src` file.
