@@ -22,6 +22,7 @@
        ((juxt first last))
        str/join
        s/int))
+
 (defn word-calibration-value [line]
   (->> (s/re-seq-overlapping word-digit-regex line)
        ((juxt first last))
