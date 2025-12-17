@@ -60,6 +60,17 @@
       (when more
         (recur (inc idx) more)))))
 
+(defn first-duplicate
+  "Returns the first element in the collection that has appeared previously.
+   Returns nil if no duplicates are found.
+   Example: (first-duplicate [1 2 3 2 4]) => 2"
+  [coll]
+  (loop [[x & xs] coll, seen #{}]
+    (when x
+      (if (seen x)
+        x
+        (recur xs (conj seen x))))))
+
 (defn pairs
   "Returns a lazy sequence of all unique pairs (combinations of size 2) from the collection.
    Example: (pairs [1 2 3]) => ([1 2] [1 3] [2 3])"

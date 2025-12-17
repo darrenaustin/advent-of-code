@@ -75,6 +75,15 @@
     (is (nil? (c/index [] :a)))
     (is (= 1 (c/index [1 2 3 2 1] 2)))))
 
+(deftest first-duplicate-test
+  (testing "first-duplicate returns the first element that appears more than once"
+    (is (= 2 (c/first-duplicate [1 2 3 2 4])))
+    (is (= :a (c/first-duplicate [:a :b :c :a])))
+    (is (nil? (c/first-duplicate [1 2 3 4])))
+    (is (nil? (c/first-duplicate [])))
+    (is (= 1 (c/first-duplicate [1 1])))
+    (is (= 3 (c/first-duplicate [1 2 3 4 3 2 1])))))
+
 (deftest pairs-test
   (testing "pairs returns all unique combinations of size 2"
     (is (= [[1 2] [1 3] [2 3]] (c/pairs [1 2 3])))
