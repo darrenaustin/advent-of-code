@@ -2,6 +2,7 @@
 (ns aoc2016.day01
   (:require
    [aoc.day :as d]
+   [aoc.util.collection :as c]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
@@ -9,32 +10,33 @@
 
 (defn input [] (d/day-input 2016 1))
 
-(def dirs {\R p/turn-right, \L p/turn-left})
+(def turns {\R p/turn-right, \L p/turn-left})
 
-(defn parse-directions [input]
-  (map (fn [dn] [(dirs (first dn)) (s/int dn)])
+(defn parse-moves [input]
+  (map (fn [dn] [(turns (first dn)) (s/int dn)])
        (str/split input #", ")))
 
 (defn move [[pos dir] [turn dist]]
   (let [new-dir (turn dir)]
     [(p/pos+ pos (p/pos* dist new-dir)) new-dir]))
 
-(defn move-path [[pos dir] [turn dist]]
-  (let [new-dir (turn dir)
-        path (take dist (rest (iterate (partial p/pos+ new-dir) pos)))]
-    [[(last path) new-dir] path]))
+(defn moves->path [moves start]
+  (map first (reductions move start moves)))
+
+(defn moves->steps [moves [pos dir]]
+  (let [[turns dists] (c/transpose moves)
+        dirs (rest (reductions (fn [d turn] (turn d)) dir turns))
+        deltas (mapcat repeat dists dirs)]
+    (rest (reductions p/pos+ pos deltas))))
 
 (defn part1 [input]
-  (->> (parse-directions input)
-       (reduce move [[0 0] p/dir-up])
-       first
-       (m/manhattan-distance [0 0])))
+  (-> (parse-moves input)
+      (moves->path [p/origin p/dir-n])
+      last
+      (m/manhattan-distance p/origin)))
 
 (defn part2 [input]
-  (loop [current [[0 0] p/dir-up], visited #{} moves (parse-directions input)]
-    (when-let [move (first moves)]
-      (let [[current' path] (move-path current move)
-            already-seen (first (filter visited path))]
-        (if already-seen
-          (m/manhattan-distance [0 0] already-seen)
-          (recur current' (apply conj visited path) (rest moves)))))))
+  (-> (parse-moves input)
+      (moves->steps [p/origin p/dir-n])
+      c/first-duplicate
+      (m/manhattan-distance p/origin)))
