@@ -65,3 +65,12 @@
       (print "  part 2: ")
       (result (:return p2) (:answer2 answers) (:time p2)))
     (println)))
+
+(defn stars [year day-num]
+  (let [input   (or ((day-val year day-num "input")) "")
+        {:keys [answer1 answer2]} (day-answers year day-num)
+        part1   (day-var year day-num "part1")
+        part2   (day-var year day-num "part2")
+        star1?   (and answer1 (= answer1 (part1 input)))
+        star2?   (and answer2 (= answer2 (part2 input)))]
+    (+ (if star1? 1 0) (if star2? 1 0))))

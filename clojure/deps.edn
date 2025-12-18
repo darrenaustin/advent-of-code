@@ -6,7 +6,8 @@
            org.clojure/data.priority-map    {:mvn/version "1.2.0"}
            criterium/criterium              {:mvn/version "0.4.6"}
            org.apache.commons/commons-math3 {:mvn/version "3.6.1"}
-           pandect/pandect                  {:mvn/version "1.0.2"}}
+           pandect/pandect                  {:mvn/version "1.0.2"}
+           cheshire/cheshire                {:mvn/version "6.1.0"}}
  :aliases {:dev     {:extra-paths ["test"]}
            :test    {:extra-paths ["test"]
                      :extra-deps  {lambdaisland/kaocha {:mvn/version "1.91.1392"}}
