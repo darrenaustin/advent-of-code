@@ -17,15 +17,15 @@
   ([start finish devices] (count-paths start finish nil devices))
   ([start finish mandatory devices]
    (letfn-mem
-    [num-paths (fn [start seen]
-                 (if (= start finish)
-                   (if mandatory
-                     (if (= seen mandatory) 1 0)
-                     1)
-                   (let [seen' (when mandatory
-                                 (if (mandatory start) (conj seen start) seen))
-                         result (mapv #(num-paths % seen') (devices start))]
-                     (m/sum result))))]
+    [(num-paths [start seen]
+                (if (= start finish)
+                  (if mandatory
+                    (if (= seen mandatory) 1 0)
+                    1)
+                  (let [seen' (when mandatory
+                                (if (mandatory start) (conj seen start) seen))
+                        result (mapv #(num-paths % seen') (devices start))]
+                    (m/sum result))))]
     (num-paths start (when mandatory #{})))))
 
 (defn part1 [input]

@@ -17,16 +17,16 @@
 
 (defn erosion-for [depth target]
   (letfn-mem
-   [erosion (fn [[x y :as loc]]
-              (mod (+ depth
-                      (cond
-                        (= loc [0 0]) 0
-                        (= loc target) 0
-                        (zero? y) (* x 16807)
-                        (zero? x) (* y 48271)
-                        :else (* (erosion [(dec x) y])
-                                 (erosion [x (dec y)]))))
-                   20183))]
+   [(erosion [[x y :as loc]]
+             (mod (+ depth
+                     (cond
+                       (= loc [0 0]) 0
+                       (= loc target) 0
+                       (zero? y) (* x 16807)
+                       (zero? x) (* y 48271)
+                       :else (* (erosion [(dec x) y])
+                                (erosion [x (dec y)]))))
+                  20183))]
    erosion))
 
 (defn region-for [depth target]
