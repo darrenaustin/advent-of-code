@@ -1,5 +1,7 @@
 # Project Instructions
 
+This is a Clojure project. All code unless otherwise indicated should be in Clojure.
+
 ## Running Tests
 To run tests, use `bb test`.
 - To focus on a specific namespace: `bb test --focus <namespace>`
