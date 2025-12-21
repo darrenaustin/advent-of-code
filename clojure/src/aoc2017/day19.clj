@@ -3,12 +3,11 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
-   [aoc.util.grid :as g]
-   [aoc.util.pos :as p]))
+   [aoc.util.grid-vec :as g]
+   [aoc.util.pos :as p]
+   [aoc.util.string :as s]))
 
-;; Need to ensure the input isn't trimmed as
-;; it will remove important spacing in the grid.
-(defn input [] (d/day-input 2017 19 false))
+(defn input [] (d/day-input 2017 19 :trim? false))
 
 (def turn-dirs
   {p/dir-down  [p/dir-left p/dir-right]
@@ -23,9 +22,9 @@
   (and cell (not= cell \space)))
 
 (defn walk-routes [input]
-  (let [grid  (g/parse-grid input)
+  (let [grid  (g/rows->grid-vec (s/lines input))
         start (first (first-where (fn [[[_ y] c]] (and (zero? y) (= c \|))) grid))]
-    (loop [pos start dir p/dir-down path "" steps 1]
+    (loop [pos start, dir p/dir-down, path "", steps 1]
       (let [cell  (grid pos)
             path' (if (path-letter? cell) (str path cell) path)
             pos'  (p/pos+ pos dir)

@@ -7,16 +7,13 @@
    [clojure.test :refer :all]))
 
 (def example
-  ;; Editor stripped ending spaces on lines,
-  ;; so use "." and convert them to spaces
-  ;; for the solutions.
-  (str/replace
-   ".....|..........
-.....|..+--+....
-.....A..|..C....
-.F---|----E|--+.
-.....|..|..|..D.
-.....+B-+..+--+." "." " "))
+  (str/join "\n"
+            ["     |          "
+             "     |  +--+    "
+             "     A  |  C    "
+             " F---|----E|--+ "
+             "     |  |  |  D "
+             "     +B-+  +--+ "]))
 
 (deftest part1-example
   (is (= "ABCDEF" (d/part1 example))))

@@ -6,9 +6,7 @@
    [aoc.util.pos :as p]
    [clojure.string :as str]))
 
-;; Need to ensure the input isn't trimmed as
-;; it will remove important spacing in the grid.
-(defn input [] (d/day-input 2018 13 false))
+(defn input [] (d/day-input 2018 13 :trim? false))
 
 (def cart-dir {\^ p/dir-up, \> p/dir-right, \v p/dir-down, \< p/dir-left})
 
