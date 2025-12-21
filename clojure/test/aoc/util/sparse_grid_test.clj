@@ -131,6 +131,7 @@
       (is (= [[0 0] [2 1]] (sg/bounds grid)))
       (is (= 3 (sg/width grid)))
       (is (= 2 (sg/height grid)))
+      (is (= [3 2] (sg/size grid)))
       (is (= [0 0] (sg/top-left grid)))
       (is (= [2 0] (sg/top-right grid)))
       (is (= [2 1] (sg/bottom-right grid)))

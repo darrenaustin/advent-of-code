@@ -24,6 +24,7 @@
 (def bounds b/bounds)
 (def width b/width)
 (def height b/height)
+(def size b/size)
 (def top-left b/top-left)
 (def top-right b/top-right)
 (def bottom-right b/bottom-right)

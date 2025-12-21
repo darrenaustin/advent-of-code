@@ -2,14 +2,15 @@
 (ns aoc2017.day22
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
-   [aoc.util.pos :as p]))
+   [aoc.util.pos :as p]
+   [aoc.util.sparse-grid :as sg]
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2017 22))
 
 (defn parse [input]
-  (let [grid (g/parse-grid input)
-        [width height] (g/size grid)]
+  (let [grid (sg/rows->sparse-grid (s/lines input))
+        [width height] (sg/size grid)]
     {:grid             grid
      :virus-loc        [(quot width 2) (quot height 2)]
      :virus-dir        p/dir-up

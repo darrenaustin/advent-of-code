@@ -6,6 +6,10 @@
   (width [this] "Returns the width (number of columns) of the grid.")
   (height [this] "Returns the height (number of rows) of the grid."))
 
+(defn size
+  "Returns the [width height] of the grid."
+  [grid] [(width grid) (height grid)])
+
 (defn top-left "Returns the [x y] coordinate of the top-left corner."
   [grid] (first (bounds grid)))
 

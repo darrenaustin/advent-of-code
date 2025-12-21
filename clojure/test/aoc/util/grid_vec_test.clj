@@ -9,6 +9,7 @@
     (let [grid (g/make-grid-vec 3 2 :init)]
       (is (= 3 (g/width grid)))
       (is (= 2 (g/height grid)))
+      (is (= [3 2] (g/size grid)))
       (is (= :init (get grid [0 0])))
       (is (= :init (get grid [2 1])))))
 
