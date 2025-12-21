@@ -2,6 +2,7 @@
   (:require
    [aoc.util.bounded :as b]
    [aoc.util.sparse-grid :as sg]
+   [clojure.string :as str]
    [clojure.test :refer [deftest is testing]]))
 
 (deftest sparse-grid-creation-test
@@ -156,3 +157,16 @@
       (is (= \e (get grid [1 1])))
       (is (nil? (get grid [1 0])))
       (is (= [[0 0] [2 1]] (sg/bounds grid))))))
+
+(deftest format-grid-test
+  (testing "format-grid"
+    (let [grid (sg/map->sparse-grid {[0 0] \a [2 1] \b})]
+      (is (= "a..\n..b" (sg/format-grid grid)))
+      (is (= "a..\n..b" (sg/format-grid grid :default \.)))
+      (is (= "aXX\nXXb" (sg/format-grid grid :default \X)))
+      (is (= "A..\n..B" (sg/format-grid grid :value-fn #(str/upper-case (str %)))))
+      (is (= "a,.,.\n.,.,b" (sg/format-grid grid :col-sep ",")))
+      (is (= "a..|..b" (sg/format-grid grid :row-sep "|")))))
+  (testing "format-grid empty"
+    (let [grid (sg/make-sparse-grid)]
+      (is (= "" (sg/format-grid grid))))))

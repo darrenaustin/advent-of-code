@@ -198,3 +198,21 @@
        (when-let [v (value-fn val)]
          (assoc! grid [x y] v)))
      (persistent! grid))))
+
+(defn format-grid
+  "Formats the grid as a string.
+   Options:
+   - `:value-fn`: Function to transform cell values before printing (default: identity).
+   - `:col-sep`: Separator string between columns (default: \"\").
+   - `:row-sep`: Separator string between rows (default: \"\\n\").
+   - `:default`: Value to use for missing cells (default: \\.)."
+  [grid & {:keys [value-fn col-sep row-sep default]
+           :or {value-fn identity col-sep "" row-sep "\n" default \.}}]
+  (if-let [b (bounds grid)]
+    (let [[[min-x min-y] [max-x max-y]] b]
+      (str/join row-sep
+                (for [y (range min-y (inc max-y))]
+                  (str/join col-sep
+                            (for [x (range min-x (inc max-x))]
+                              (value-fn (get grid [x y] default)))))))
+    ""))
