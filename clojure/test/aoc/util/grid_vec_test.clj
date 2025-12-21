@@ -110,3 +110,46 @@
       (let [g3 (into grid {[0 0] \Y [1 1] \Z})]
         (is (= \Y (get g3 [0 0])))
         (is (= \Z (get g3 [1 1])))))))
+
+(deftest metadata-test
+  (let [grid (g/make-grid-vec 2 2)
+        m {:a 1}
+        grid-with-meta (with-meta grid m)]
+    (is (= m (meta grid-with-meta)))
+    (is (= grid grid-with-meta) "Metadata should not affect equality")
+    (is (= m (meta (assoc grid-with-meta [0 0] :val))) "Metadata should be preserved after assoc")))
+
+(deftest transient-test
+  (let [grid (g/make-grid-vec 2 2 0)]
+    (testing "transient assoc!"
+      (let [t (transient grid)
+            _ (assoc! t [0 0] 1)
+            _ (assoc! t [1 1] 2)
+            p (persistent! t)]
+        (is (= 1 (get p [0 0])))
+        (is (= 2 (get p [1 1])))
+        (is (= 0 (get p [0 1])) "Unchanged cells should remain default")))
+
+    (testing "transient conj!"
+      (let [t (transient grid)
+            _ (conj! t [[0 0] 5])
+            _ (conj! t {[1 0] 6 [0 1] 7})
+            p (persistent! t)]
+        (is (= 5 (get p [0 0])))
+        (is (= 6 (get p [1 0])))
+        (is (= 7 (get p [0 1])))))
+
+    (testing "transient count"
+      (is (= 4 (count (transient grid)))))
+
+    (testing "transient lookup"
+      (let [t (transient grid)
+            _ (assoc! t [0 0] :x)]
+        (is (= :x (get t [0 0])))
+        (is (= 0 (get t [1 1])))))
+
+    (testing "transient dissoc! is a no-op"
+      (let [t (transient grid)
+            _ (assoc! t [0 0] :x)
+            _ (dissoc! t [0 0])]
+        (is (= :x (get t [0 0])) "dissoc! should be a no-op")))))

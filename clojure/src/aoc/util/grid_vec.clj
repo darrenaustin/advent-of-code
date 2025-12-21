@@ -1,7 +1,8 @@
 (ns aoc.util.grid-vec
   "An immutable 2D grid implementation backed by a flat vector.
    Supports efficient random access, updates, and sequence operations.
-   Implements standard Clojure collection interfaces (Associative, Counted, Seqable, IFn)."
+   Implements standard Clojure collection interfaces (Associative, Counted, Seqable, IFn).
+   Supports transients for efficient bulk updates."
   (:refer-clojure :exclude [format])
   (:require
    [clojure.string :as str])
@@ -10,7 +11,12 @@
     Associative
     Counted
     IFn
+    IEditableCollection
+    IObj
     IPersistentCollection
+    IPersistentMap
+    ITransientAssociative2
+    ITransientMap
     MapEntry
     Seqable]))
 
@@ -28,7 +34,43 @@
 (definterface IKeyIndexed
   (^long key_index [key]))
 
-(deftype GridVec [cells ^long width ^long height]
+(declare ->GridVec)
+
+(deftype TransientGridVec [^:unsynchronized-mutable cells ^long width ^long height]
+  ITransientMap
+  (assoc [this k v]
+    (let [[x y] k]
+      (if (and (< -1 x width) (< -1 y height))
+        (let [idx (+ (* y width) x)]
+          (set! cells (assoc! cells idx v))
+          this)
+        this)))
+  (conj [this o]
+    (if (map? o)
+      (reduce (fn [^ITransientMap g [k v]] (.assoc g k v)) this o)
+      (if-let [[k v] (seq o)]
+        (.assoc this k v)
+        this)))
+  (without [this _]
+    ;; dissoc! is a no-op as the grid is a fixed size and coordinates cannot be removed.
+    this)
+  (persistent [_]
+    (->GridVec (persistent! cells) width height nil))
+  (valAt [this k]
+    (.valAt this k nil))
+  (valAt [_ k default]
+    (let [[x y] k]
+      (if (and (< -1 x width) (< -1 y height))
+        (nth cells (+ (* y width) x))
+        default)))
+  (count [_] (count cells))
+
+  ITransientAssociative2
+  (containsKey [_ k]
+    (let [[x y] k]
+      (and (< -1 x width) (< -1 y height)))))
+
+(deftype GridVec [cells ^long width ^long height _meta]
   Bounded
   (bounds [_] [[0 0] [(dec width) (dec height)]])
   (width [_] width)
@@ -42,6 +84,20 @@
   IKeyIndexed
   (key_index [_ [x y]] (+ (* y width) x))
 
+  IObj
+  (meta [_] _meta)
+  (withMeta [_ m] (GridVec. cells width height m))
+
+  IEditableCollection
+  (asTransient [_]
+    (TransientGridVec. (transient cells) width height))
+
+  IPersistentMap
+  (without [this _]
+    ;; dissoc! is a no-op as the grid is a fixed size and coordinates cannot be removed.
+    this)
+  (assocEx [this k v] (.assoc this k v))
+
   IPersistentCollection
   (cons [this o]
     (if (map? o)
@@ -49,7 +105,7 @@
       (if-let [[k v] (seq o)]
         (.assoc this k v)
         this)))
-  (empty [_] (GridVec. [] 0 0))
+  (empty [_] (GridVec. [] 0 0 nil))
   (equiv [_ o]
     (and (instance? GridVec o)
          (= width (.width ^GridVec o))
@@ -67,7 +123,9 @@
     (when (.containsKey this k)
       (MapEntry. k (nth cells (.key-index this k)))))
   (assoc [this k v]
-    (GridVec. (assoc cells (.key-index this k) v) width height))
+    (if (.containsKey this k)
+      (GridVec. (assoc cells (.key-index this k) v) width height _meta)
+      this))
   (valAt [this k]
     (.valAt this k nil))
   (valAt [this k default]
@@ -96,7 +154,7 @@
   "Creates a new GridVec of the specified dimensions, initialized with `default-value` (default nil)."
   ([width height] (make-grid-vec width height nil))
   ([width height default-value]
-   (GridVec. (vec (repeat (* width height) default-value)) width height)))
+   (GridVec. (vec (repeat (* width height) default-value)) width height nil)))
 
 (defn rows->grid-vec
   "Creates a GridVec from a sequence of rows (strings or sequences).
@@ -107,14 +165,14 @@
    (let [height (count lines)
          width (count (first lines))]
      (assert (every? #(= width (count %)) lines))
-     (GridVec. (vec (mapcat #(map value-fn %) lines)) width height))))
+     (GridVec. (vec (mapcat #(map value-fn %) lines)) width height nil))))
 
 (defn update-grid
   "Returns a new GridVec with `entry-fn` applied to every cell.
    `entry-fn` receives a MapEntry of `[[x y] value]` and should return the new value
    for the entry."
   [grid ^GridVec entry-fn]
-  (GridVec. (vec (map entry-fn grid)) (width grid) (height grid)))
+  (GridVec. (vec (map entry-fn grid)) (width grid) (height grid) (meta grid)))
 
 (defn format-grid
   "Formats the grid as a string.
