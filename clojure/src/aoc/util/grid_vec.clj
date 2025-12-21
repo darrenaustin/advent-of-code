@@ -10,8 +10,8 @@
    [clojure.lang
     Associative
     Counted
-    IFn
     IEditableCollection
+    IFn
     IObj
     IPersistentCollection
     IPersistentMap
@@ -24,12 +24,28 @@
   "Protocol for 2D spatial bounds and dimensions."
   (bounds [this] "Returns a pair of [[min-x min-y] [max-x max-y]] coordinates.")
   (width [this] "Returns the width (number of columns) of the grid.")
-  (height [this] "Returns the height (number of rows) of the grid.")
-  (top-left [this] "Returns the [x y] coordinate of the top-left corner.")
-  (top-right [this] "Returns the [x y] coordinate of the top-right corner.")
-  (bottom-right [this] "Returns the [x y] coordinate of the bottom-right corner.")
-  (bottom-left [this] "Returns the [x y] coordinate of the bottom-left corner.")
-  (corners [this] "Returns a sequence of the four corner coordinates."))
+  (height [this] "Returns the height (number of rows) of the grid."))
+
+(defn top-left "Returns the [x y] coordinate of the top-left corner."
+  [grid] (first (bounds grid)))
+
+(defn top-right "Returns the [x y] coordinate of the top-right corner."
+  [grid]
+  (let [[[_ min-y] [max-x _]] (bounds grid)]
+    [max-x min-y]))
+
+(defn bottom-right "Returns the [x y] coordinate of the bottom-right corner."
+  [grid] (second (bounds grid)))
+
+(defn bottom-left "Returns the [x y] coordinate of the bottom-left corner."
+  [grid]
+  (let [[[min-x _] [_ max-y]] (bounds grid)]
+    [min-x max-y]))
+
+(defn corners "Returns a sequence of the four corner coordinates."
+  [grid]
+  (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
+    [[min-x min-y] [max-x min-y] [max-x max-y] [min-x max-y]]))
 
 (definterface IKeyIndexed
   (^long key_index [key]))
@@ -75,11 +91,6 @@
   (bounds [_] [[0 0] [(dec width) (dec height)]])
   (width [_] width)
   (height [_] height)
-  (top-left [_] [0 0])
-  (top-right [_] [(dec width) 0])
-  (bottom-right [_] [(dec width) (dec height)])
-  (bottom-left [_] [0 (dec height)])
-  (corners [_] [[0 0] [(dec width) 0] [(dec width) (dec height)] [0 (dec height)]])
 
   IKeyIndexed
   (key_index [_ [x y]] (+ (* y width) x))
@@ -167,12 +178,102 @@
      (assert (every? #(= width (count %)) lines))
      (GridVec. (vec (mapcat #(map value-fn %) lines)) width height nil))))
 
+(defn column "Returns a vector of the values in the column at x."
+  [^GridVec grid x]
+  (let [w (.width grid)
+        cells (.cells grid)]
+    (mapv #(nth cells (+ (* % w) x)) (range (.height grid)))))
+
+(defn row "Returns a vector the of values in the row at y."
+  [^GridVec grid y]
+  (let [w (.width grid)
+        start (* y w)]
+    (subvec (.cells grid) start (+ start w))))
+
+(defn top-row "Returns the top row of the grid."
+  [^GridVec grid] (row grid 0))
+
+(defn bottom-row "Returns the bottom row of the grid."
+  [^GridVec grid] (row grid (dec (.height grid))))
+
+(defn left-column "Returns the left-most column of the grid."
+  [^GridVec grid] (column grid 0))
+
+(defn right-column "Returns the right-most column of the grid."
+  [^GridVec grid] (column grid (dec (.width grid))))
+
 (defn update-grid
   "Returns a new GridVec with `entry-fn` applied to every cell.
    `entry-fn` receives a MapEntry of `[[x y] value]` and should return the new value
    for the entry."
-  [grid ^GridVec entry-fn]
+  [^GridVec grid entry-fn]
   (GridVec. (vec (map entry-fn grid)) (width grid) (height grid) (meta grid)))
+
+(defn rotate-clockwise
+  "Returns a new grid rotated 90 degrees clockwise."
+  [^GridVec grid]
+  (let [w (.width grid)
+        h (.height grid)
+        cells (.cells grid)]
+    (GridVec. (vec (for [x (range w)
+                         y (range (dec h) -1 -1)]
+                     (nth cells (+ (* y w) x))))
+              h w (meta grid))))
+
+(defn flip-horizontal
+  "Returns a new grid flipped horizontally (across the y-axis)."
+  [^GridVec grid]
+  (let [w (.width grid)
+        h (.height grid)
+        cells (.cells grid)]
+    (GridVec. (vec (mapcat reverse (partition w cells))) w h (meta grid))))
+
+(defn flip-vertical
+  "Returns a new grid flipped vertically (across the x-axis)."
+  [^GridVec grid]
+  (let [w (.width grid)
+        h (.height grid)
+        cells (.cells grid)]
+    (GridVec. (vec (mapcat identity (reverse (partition w cells)))) w h (meta grid))))
+
+(defn sub-grid
+  "Returns a new grid containing the rectangular region defined by top-left and bottom-right coordinates (inclusive)."
+  [^GridVec grid [min-x min-y] [max-x max-y]]
+  (let [w (.width grid)
+        new-w (inc (- max-x min-x))
+        new-h (inc (- max-y min-y))
+        cells (.cells grid)
+        new-cells (vec (mapcat (fn [y]
+                                 (let [start (+ (* y w) min-x)]
+                                   (subvec cells start (+ start new-w))))
+                               (range min-y (inc max-y))))]
+    (GridVec. new-cells new-w new-h (meta grid))))
+
+(defn set-sub-grid
+  "Returns a new grid with the `sub-grid` pasted at `top-left` coordinates.
+   Parts of the sub-grid that fall outside the bounds of the base grid are ignored."
+  [^GridVec grid [start-x start-y] ^GridVec sub-grid]
+  (let [w (.width grid)
+        h (.height grid)
+        sub-w (.width sub-grid)
+        sub-h (.height sub-grid)
+        sub-cells (.cells sub-grid)]
+    (loop [y 0
+           cells (transient (.cells grid))]
+      (if (= y sub-h)
+        (GridVec. (persistent! cells) w h (meta grid))
+        (let [target-y (+ start-y y)]
+          (if-not (< -1 target-y h)
+            (recur (inc y) cells)
+            (recur (inc y)
+                   (reduce (fn [c x]
+                             (let [target-x (+ start-x x)]
+                               (if-not (< -1 target-x w)
+                                 c
+                                 (assoc! c (+ (* target-y w) target-x)
+                                         (nth sub-cells (+ (* y sub-w) x))))))
+                           cells
+                           (range sub-w)))))))))
 
 (defn format-grid
   "Formats the grid as a string.
@@ -180,7 +281,7 @@
    - `:value-fn`: Function to transform cell values before printing (default: identity).
    - `:col-sep`: Separator string between columns (default: \"\").
    - `:row-sep`: Separator string between rows (default: \"\\n\")."
-  [grid ^GridVec & {:keys [value-fn col-sep row-sep] :as _options}]
+  [^GridVec grid & {:keys [value-fn col-sep row-sep] :as _options}]
   (let [value-fn (or value-fn identity)
         col-sep (or col-sep "")
         row-sep (or row-sep "\n")]

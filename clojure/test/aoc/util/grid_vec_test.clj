@@ -153,3 +153,73 @@
             _ (assoc! t [0 0] :x)
             _ (dissoc! t [0 0])]
         (is (= :x (get t [0 0])) "dissoc! should be a no-op")))))
+
+(deftest transformation-test
+  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+    (testing "rotate-clockwise"
+      (let [rotated (g/rotate-clockwise grid)]
+        (is (= 2 (g/width rotated)))
+        (is (= 2 (g/height rotated)))
+        (is (= \c (get rotated [0 0])))
+        (is (= \a (get rotated [1 0])))
+        (is (= \d (get rotated [0 1])))
+        (is (= \b (get rotated [1 1])))))
+
+    (testing "flip-horizontal"
+      (let [flipped (g/flip-horizontal grid)]
+        (is (= \b (get flipped [0 0])))
+        (is (= \a (get flipped [1 0])))
+        (is (= \d (get flipped [0 1])))
+        (is (= \c (get flipped [1 1])))))
+
+    (testing "flip-vertical"
+      (let [flipped (g/flip-vertical grid)]
+        (is (= \c (get flipped [0 0])))
+        (is (= \d (get flipped [1 0])))
+        (is (= \a (get flipped [0 1])))
+        (is (= \b (get flipped [1 1])))))))
+
+(deftest sub-grid-test
+  (let [grid (g/rows->grid-vec ["abc" "def" "ghi"])]
+    (testing "sub-grid extraction"
+      (let [sub (g/sub-grid grid [1 1] [2 2])]
+        (is (= 2 (g/width sub)))
+        (is (= 2 (g/height sub)))
+        (is (= \e (get sub [0 0])))
+        (is (= \f (get sub [1 0])))
+        (is (= \h (get sub [0 1])))
+        (is (= \i (get sub [1 1])))))
+
+    (testing "set-sub-grid"
+      (let [sub (g/rows->grid-vec ["XY" "Z!"])
+            updated (g/set-sub-grid grid [1 1] sub)]
+        (is (= \a (get updated [0 0])))
+        (is (= \X (get updated [1 1])))
+        (is (= \Y (get updated [2 1])))
+        (is (= \Z (get updated [1 2])))
+        (is (= \! (get updated [2 2])))))
+
+    (testing "set-sub-grid clipping"
+      (let [sub (g/rows->grid-vec ["XY" "Z!"])
+            updated (g/set-sub-grid grid [2 2] sub)]
+        (is (= \X (get updated [2 2])))
+        (is (= 3 (g/width updated)))
+        (is (= 3 (g/height updated)))))))
+
+(deftest row-col-access-test
+  (let [grid (g/rows->grid-vec ["abc" "def" "ghi"])]
+    (testing "row access"
+      (is (= [\a \b \c] (g/row grid 0)))
+      (is (= [\d \e \f] (g/row grid 1)))
+      (is (= [\g \h \i] (g/row grid 2))))
+
+    (testing "column access"
+      (is (= [\a \d \g] (g/column grid 0)))
+      (is (= [\b \e \h] (g/column grid 1)))
+      (is (= [\c \f \i] (g/column grid 2))))
+
+    (testing "convenience accessors"
+      (is (= [\a \b \c] (g/top-row grid)))
+      (is (= [\g \h \i] (g/bottom-row grid)))
+      (is (= [\a \d \g] (g/left-column grid)))
+      (is (= [\c \f \i] (g/right-column grid))))))

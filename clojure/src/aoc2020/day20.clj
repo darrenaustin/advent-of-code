@@ -2,7 +2,7 @@
  (ns aoc2020.day20
    (:require
     [aoc.day :as d]
-    [aoc.util.grid2 :as g]
+    [aoc.util.grid-vec :as g]
     [aoc.util.string :as s]
     [clojure.math :as math]
     [clojure.string :as str]))
@@ -14,7 +14,7 @@
     (mapv (fn [block]
             (let [[header & grid-rows] (s/lines block)
                   id (s/int header)
-                  grid (g/parse-grid grid-rows)]
+                  grid (g/rows->grid-vec grid-rows #(when (= % \#) true))]
               {:id   id
                :grid grid}))
           tile-blocks)))
@@ -51,17 +51,15 @@
    (if (empty? positions-left)
      arrangement
      (let [pos (first positions-left)]
-       (loop [tile-ids available-tile-ids]
-         (when-let [tile-id (first tile-ids)]
-           (if-let [valid-permutations (seq (filter #(tile-fits? arrangement @% pos) (tile-permutations-map tile-id)))]
-             (if-let [result (first (keep #(arrange-tiles tile-permutations-map
-                                                          (assoc arrangement pos {:id tile-id :grid @%})
-                                                          (disj available-tile-ids tile-id)
-                                                          (rest positions-left))
-                                          valid-permutations))]
-               result
-               (recur (rest tile-ids)))
-             (recur (rest tile-ids)))))))))
+       (some (fn [tile-id]
+               (some (fn [perm]
+                       (when (tile-fits? arrangement @perm pos)
+                         (arrange-tiles tile-permutations-map
+                                        (assoc arrangement pos {:id tile-id :grid @perm})
+                                        (disj available-tile-ids tile-id)
+                                        (rest positions-left))))
+                     (tile-permutations-map tile-id)))
+             available-tile-ids)))))
 
 (defn part1 [input]
   (let [arrangement (-> input parse-grid-tiles tile-permutations arrange-tiles)
@@ -79,28 +77,23 @@
   (let [width-in-tiles (int (math/sqrt (count tile-arrangement)))
         tile-size (- (g/width (get-in tile-arrangement [[0 0] :grid])) 2)
         image-size (* width-in-tiles tile-size)]
-    (loop [grid (g/make-grid image-size image-size)
-           positions (keys tile-arrangement)]
-      (if (empty? positions)
-        grid
-        (let [[tile-row tile-col] (first positions)
-              tile-grid (remove-borders (get-in tile-arrangement [[tile-row tile-col] :grid]))]
-          (recur (g/set-sub-grid grid [(* tile-col tile-size) (* tile-row tile-size)] tile-grid)
-                 (rest positions)))))))
+    (reduce (fn [grid [[tile-row tile-col] tile-info]]
+              (let [tile-grid (remove-borders (:grid tile-info))]
+                (g/set-sub-grid grid [(* tile-col tile-size) (* tile-row tile-size)] tile-grid)))
+            (g/make-grid-vec image-size image-size)
+            tile-arrangement)))
 
-(defn sub-grid-matches-at [grid sub-grid pos]
-  (let [[start-x start-y] pos
-        [sub-width sub-height] [(g/width sub-grid) (g/height sub-grid)]]
+(defn sub-grid-matches-at [grid sub-grid [start-x start-y]]
+  (let [sub-w (g/width sub-grid)
+        sub-h (g/height sub-grid)]
     (loop [x 0 y 0]
       (cond
-        (= y sub-height) true
-        (= x sub-width) (recur 0 (inc y))
-        :else (let [grid-cell     (g/cell grid [(+ start-x x) (+ start-y y)])
-                    sub-grid-cell (g/cell sub-grid [x y])]
-                ;; (println [x y] grid-cell sub-grid-cell [(+ start-x x) (+ start-y y)])
-                (if (and sub-grid-cell (not= sub-grid-cell grid-cell))
-                  false
-                  (recur (inc x) y)))))))
+        (= y sub-h) true
+        (= x sub-w) (recur 0 (inc y))
+        :else (if (and (sub-grid [x y])
+                       (not (grid [(+ start-x x) (+ start-y y)])))
+                false
+                (recur (inc x) y))))))
 
 (defn sub-grid-matches [grid sub-grid]
   (for [y (range (- (g/height grid) (g/height sub-grid) 1))
@@ -109,17 +102,15 @@
     [x y]))
 
 (def sea-monster
-  (g/parse-grid
-   "..................#.
-#....##....##....###
-.#..#..#..#..#..#..."
-   #(when (not= % \.) %)))
-
-(defn filled? [cell] (= cell \#))
+  (g/rows->grid-vec
+   ["..................#."
+    "#....##....##....###"
+    ".#..#..#..#..#..#..."]
+   #(when (= % \#) true)))
 
 (defn part2 [input]
   (let [image (-> input parse-grid-tiles tile-permutations arrange-tiles assemble-image)
         permutations (grid-permutations image)
         sea-monsters-found (count (first (keep #(seq (sub-grid-matches @% sea-monster)) permutations)))]
-    (- (count (g/locations-where image filled?))
-       (* sea-monsters-found (count (g/locations-where sea-monster filled?))))))
+    (- (count (filter true? (vals image)))
+       (* sea-monsters-found (count (filter true? (vals sea-monster)))))))
