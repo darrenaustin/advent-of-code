@@ -1,33 +1,45 @@
 ;; https://adventofcode.com/2018/day/10
-(ns aoc2018.day10
-  (:require
-   [aoc.day :as d]
-   [aoc.util.collection :as c]
-   [aoc.util.grid :as g]
-   [aoc.util.pos :as p]
-   [aoc.util.string :as s]))
+ (ns aoc2018.day10
+   (:require
+    [aoc.day :as d]
+    [aoc.util.pos :as p]
+    [aoc.util.sparse-grid :as sg]
+    [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 10))
 
-(defn parse [input]
-  (map #(partition 2 %) (partition 4 (s/ints input))))
+(defn parse-stars [input]
+  (map #(let [[x y vx vy] (s/ints %)]
+          [[x y] [vx vy]])
+       (s/lines input)))
 
-(defn advance [[p v]]
-  [(p/pos+ p v) v])
+(defn advance-stars
+  ([stars] (advance-stars stars 1))
+  ([stars time] (map (fn [[p v]] [(p/pos+ p (p/pos* time v)) v]) stars)))
 
-(defn light-grid [lights]
-  (into {} (map (fn [l] [(vec (first l)) \#]) lights)))
+(defn star-grid [stars]
+  (into (sg/make-sparse-grid) (map (fn [[p _]] [p \#]) stars)))
 
-;; Manually inspected the output and found that the text
-;; was only 9 lights high, so we can just search for that.
+;; The stars are all moving at a constant velocity. Assuming every
+;; star makes up part of the message, they would have to local minimum
+;; height at the point of the message. This calculates how much
+;; time it will take to reach that minimum based on the relative
+;; heights of the first two grids.
+(defn time-to-message [stars]
+  (let [height (dec (sg/height (star-grid stars)))
+        height' (dec (sg/height (star-grid (advance-stars stars))))
+        delta (- height height')]
+    (int (/ height delta))))
+
 (defn message [input]
-  (c/first-where
-   (fn [[_ grid]] (= 9 (g/height grid)))
-   (c/indexed (map light-grid
-                   (iterate #(map advance %) (parse input))))))
+  (let [stars (parse-stars input)
+        time (time-to-message stars)]
+    (sg/format-grid (star-grid (advance-stars stars time)) :default " ")))
 
-(defn part1 [_]
-  ;(grid->str (second (message input))))
+(defn part1 [input]
+  ;; TODO: need some ascii ocr for this
+  (message input)
+  ;; Manual inspection for now
   "RRANZLAC")
 
-(defn part2 [input] (first (message input)))
+(defn part2 [input] (time-to-message (parse-stars input)))
