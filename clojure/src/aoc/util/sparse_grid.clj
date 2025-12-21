@@ -184,3 +184,16 @@
   "Creates a SparseGrid from a map of {[x y] value}."
   [m]
   (SparseGrid. m (calc-bounds m) nil))
+
+(defn rows->sparse-grid
+  "Creates a SparseGrid from a sequence of rows (strings or sequences).
+   Optionally takes a `value-fn` that will be mapped over each element.
+   If `value-fn` returns nil, the cell is not added to the grid."
+  ([lines] (rows->sparse-grid lines identity))
+  ([lines value-fn]
+   (let [grid (transient (make-sparse-grid))]
+     (doseq [[y row] (map-indexed vector lines)
+             [x val] (map-indexed vector row)]
+       (when-let [v (value-fn val)]
+         (assoc! grid [x y] v)))
+     (persistent! grid))))

@@ -136,3 +136,22 @@
       (is (= [2 1] (sg/bottom-right grid)))
       (is (= [0 1] (sg/bottom-left grid)))
       (is (= [[0 0] [2 0] [2 1] [0 1]] (sg/corners grid))))))
+
+(deftest rows->sparse-grid-test
+  (testing "basic creation"
+    (let [lines ["abc" "def"]
+          grid (sg/rows->sparse-grid lines)]
+      (is (= 6 (count grid)))
+      (is (= \a (get grid [0 0])))
+      (is (= \f (get grid [2 1])))
+      (is (= [[0 0] [2 1]] (sg/bounds grid)))))
+
+  (testing "with value-fn filtering"
+    (let [lines ["a.c" ".e."]
+          grid (sg/rows->sparse-grid lines #(when (not= \. %) %))]
+      (is (= 3 (count grid)))
+      (is (= \a (get grid [0 0])))
+      (is (= \c (get grid [2 0])))
+      (is (= \e (get grid [1 1])))
+      (is (nil? (get grid [1 0])))
+      (is (= [[0 0] [2 1]] (sg/bounds grid))))))
