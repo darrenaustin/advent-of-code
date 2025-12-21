@@ -31,17 +31,6 @@
       (is (= 1 (get grid [0 0])))
       (is (= 4 (get grid [1 1]))))))
 
-(deftest bounded-protocol-test
-  (let [grid (g/rows->grid-vec ["abc" "def"])]
-    (is (= 3 (g/width grid)))
-    (is (= 2 (g/height grid)))
-    (is (= [[0 0] [2 1]] (g/bounds grid)))
-    (is (= [0 0] (g/top-left grid)))
-    (is (= [2 0] (g/top-right grid)))
-    (is (= [2 1] (g/bottom-right grid)))
-    (is (= [0 1] (g/bottom-left grid)))
-    (is (= [[0 0] [2 0] [2 1] [0 1]] (g/corners grid)))))
-
 (deftest associative-test
   (let [grid (g/rows->grid-vec ["abc" "def"])]
     (testing "get / valAt"
@@ -223,3 +212,15 @@
       (is (= [\g \h \i] (g/bottom-row grid)))
       (is (= [\a \d \g] (g/left-column grid)))
       (is (= [\c \f \i] (g/right-column grid))))))
+
+(deftest exported-bounded-fns-test
+  (testing "exported bounded functions work via g alias"
+    (let [grid (g/rows->grid-vec ["abc" "def"])]
+      (is (= 3 (g/width grid)))
+      (is (= 2 (g/height grid)))
+      (is (= [[0 0] [2 1]] (g/bounds grid)))
+      (is (= [0 0] (g/top-left grid)))
+      (is (= [2 0] (g/top-right grid)))
+      (is (= [2 1] (g/bottom-right grid)))
+      (is (= [0 1] (g/bottom-left grid)))
+      (is (= [[0 0] [2 0] [2 1] [0 1]] (g/corners grid))))))

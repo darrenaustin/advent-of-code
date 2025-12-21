@@ -28,4 +28,5 @@
  ;; For files that have deftypes in them this is an unnecessary
  ;; warning that makes the code harder to read.
  lint/prefer-method-values {:excludes ["src/aoc/util/bounded_priority_map.clj"
-                                       "src/aoc/util/grid_vec.clj"]}}
+                                       "src/aoc/util/grid_vec.clj"
+                                       "src/aoc/util/sparse_grid.clj"]}}

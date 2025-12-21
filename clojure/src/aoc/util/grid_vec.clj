@@ -5,6 +5,7 @@
    Supports transients for efficient bulk updates."
   (:refer-clojure :exclude [format])
   (:require
+   [aoc.util.bounded :as b]
    [clojure.string :as str])
   (:import
    [clojure.lang
@@ -20,32 +21,14 @@
     MapEntry
     Seqable]))
 
-(defprotocol Bounded
-  "Protocol for 2D spatial bounds and dimensions."
-  (bounds [this] "Returns a pair of [[min-x min-y] [max-x max-y]] coordinates.")
-  (width [this] "Returns the width (number of columns) of the grid.")
-  (height [this] "Returns the height (number of rows) of the grid."))
-
-(defn top-left "Returns the [x y] coordinate of the top-left corner."
-  [grid] (first (bounds grid)))
-
-(defn top-right "Returns the [x y] coordinate of the top-right corner."
-  [grid]
-  (let [[[_ min-y] [max-x _]] (bounds grid)]
-    [max-x min-y]))
-
-(defn bottom-right "Returns the [x y] coordinate of the bottom-right corner."
-  [grid] (second (bounds grid)))
-
-(defn bottom-left "Returns the [x y] coordinate of the bottom-left corner."
-  [grid]
-  (let [[[min-x _] [_ max-y]] (bounds grid)]
-    [min-x max-y]))
-
-(defn corners "Returns a sequence of the four corner coordinates."
-  [grid]
-  (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
-    [[min-x min-y] [max-x min-y] [max-x max-y] [min-x max-y]]))
+(def bounds b/bounds)
+(def width b/width)
+(def height b/height)
+(def top-left b/top-left)
+(def top-right b/top-right)
+(def bottom-right b/bottom-right)
+(def bottom-left b/bottom-left)
+(def corners b/corners)
 
 (definterface IKeyIndexed
   (^long key_index [key]))
@@ -87,7 +70,7 @@
       (and (< -1 x width) (< -1 y height)))))
 
 (deftype GridVec [cells ^long width ^long height _meta]
-  Bounded
+  b/Bounded
   (bounds [_] [[0 0] [(dec width) (dec height)]])
   (width [_] width)
   (height [_] height)
