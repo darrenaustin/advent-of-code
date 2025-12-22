@@ -59,7 +59,7 @@
    - `:on`: Character representing an 'on' pixel (default: \\#).
    - Any other character is considered an 'off' pixel."
   [ascii-word & {:keys [on] :or {on \#}}]
-  (let [normalized (map (fn [row] (apply str (map #(if (= % on) \# \space) row))) ascii-word)
+  (let [normalized (map (fn [row] (str/join (map #(if (= % on) \# \space) row))) ascii-word)
         trimmed (trim-vertical normalized)
         height (count trimmed)
         glyphs (word->glyphs trimmed)]

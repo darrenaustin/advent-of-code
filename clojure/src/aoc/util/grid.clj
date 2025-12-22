@@ -43,6 +43,7 @@
   (and (< min-x x max-x)
        (< min-y y max-y)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn size [grid]
   (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
     [(- max-x min-x) (- max-y min-y)]))
@@ -52,6 +53,7 @@
   (let [[[min-x _] [max-x _]] (bounds grid)]
     (- max-x min-x)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn height [grid]
   (let [[[_ min-y] [_ max-y]] (bounds grid)]
     (- max-y min-y)))

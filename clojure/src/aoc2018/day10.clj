@@ -26,7 +26,7 @@
 ;; height at the point of the message. This calculates how much
 ;; time it will take to reach that minimum based on the relative
 ;; heights of the first two grids.
-(defn time-to-message [stars]
+(defn time-for-message [stars]
   (let [height (dec (sg/height (star-grid stars)))
         height' (dec (sg/height (star-grid (advance-stars stars))))
         delta (- height height')]
@@ -34,10 +34,10 @@
 
 (defn message [input]
   (let [stars (parse-stars input)
-        time (time-to-message stars)]
+        time (time-for-message stars)]
     (sg/format-rows (star-grid (advance-stars stars time)))))
 
 (defn part1 [input]
   (ascii-art/ocr (message input)))
 
-(defn part2 [input] (time-to-message (parse-stars input)))
+(defn part2 [input] (time-for-message (parse-stars input)))
