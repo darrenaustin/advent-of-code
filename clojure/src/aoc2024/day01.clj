@@ -2,14 +2,14 @@
 (ns aoc2024.day01
   (:require
    [aoc.day :as d]
-   [aoc.util.collection :as c]
    [aoc.util.math :as m]
+   [aoc.util.matrix :as mat]
    [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2024 1))
 
 (defn parse-locations [input]
-  (c/transpose (partition 2 (s/ints input))))
+  (mat/transpose (partition 2 (s/ints input))))
 
 (defn part1 [input]
   (let [[left right] (map sort (parse-locations input))]

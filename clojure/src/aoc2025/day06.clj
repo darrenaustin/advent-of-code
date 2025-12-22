@@ -4,6 +4,7 @@
     [aoc.day :as d]
     [aoc.util.collection :as c]
     [aoc.util.math :as m]
+    [aoc.util.matrix :as mat]
     [aoc.util.string :as s]
     [clojure.string :as str]))
 
@@ -15,7 +16,7 @@
 (defn part1 [input]
   (let [lines (s/lines input)
         operators (remove #{\space} (last lines))
-        numbers (c/transpose (map s/ints (drop-last lines)))]
+        numbers (mat/transpose (map s/ints (drop-last lines)))]
     (m/sum (map calculate operators numbers))))
 
 (defn part2 [input]
@@ -23,5 +24,5 @@
         operators (remove #{\space} (last lines))
         numbers (c/split nil?
                          (map #(s/int (str/join %))
-                              (c/transpose (drop-last lines))))]
+                              (mat/transpose (drop-last lines))))]
     (m/sum (map calculate operators numbers))))

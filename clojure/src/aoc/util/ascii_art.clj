@@ -1,6 +1,7 @@
 (ns aoc.util.ascii-art
   (:require
    [aoc.util.collection :as c]
+   [aoc.util.matrix :as mat]
    [clojure.string :as str]))
 
 (defn- blank-row? [row]
@@ -15,10 +16,10 @@
   (let [height (count word)
         spaces (repeat height \space)]
     (->> word
-         c/transpose
+         mat/transpose
          (c/split #{spaces})
          (map (partial remove #{spaces}))
-         (map c/transpose)
+         (map mat/transpose)
          (mapv (partial map str/join)))))
 
 (defn- make-font [alphabet ascii-alphabet]

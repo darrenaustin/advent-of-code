@@ -2,7 +2,8 @@
 (ns aoc2024.day25
   (:require
    [aoc.day :as d]
-   [aoc.util.collection :refer [count-where transpose]]
+   [aoc.util.collection :refer [count-where]]
+   [aoc.util.matrix :refer [transpose]]
    [aoc.util.string :as s]
    [clojure.string :as str]))
 

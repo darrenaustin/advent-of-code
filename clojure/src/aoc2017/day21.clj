@@ -3,6 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
+   [aoc.util.matrix :as mat]
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
@@ -12,8 +13,8 @@
   (map vec (str/split image #"/")))
 
 (defn permutations [grid]
-  (let [rotations (take 4 (iterate c/rotate-right grid))]
-    (distinct (concat (map c/flip-horizontal rotations) rotations))))
+  (let [rotations (take 4 (iterate mat/rotate-right grid))]
+    (distinct (concat (map mat/flip-horizontal rotations) rotations))))
 
 (defn expand-rule [rules [pattern replacement]]
   (into rules (for [p (permutations pattern)] [p replacement])))
@@ -29,11 +30,11 @@
 
 (defn sub-divide [grid]
   (let [sub-size (if (even? (count grid)) 2 3)]
-    (map #(map c/transpose (partition sub-size (c/transpose %)))
+    (map #(map mat/transpose (partition sub-size (mat/transpose %)))
          (partition sub-size grid))))
 
 (defn super-grid [grid]
-  (mapcat #(map flatten (c/transpose %)) grid))
+  (mapcat #(map flatten (mat/transpose %)) grid))
 
 (defn enhance [rules grid]
   (if (#{2 3} (count grid))

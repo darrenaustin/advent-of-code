@@ -71,6 +71,19 @@
         x
         (recur xs (conj seen x))))))
 
+(defn rotate-left
+  "Returns a seq with the elements of the collection rotated to the
+   left by n places, wrapping around to the beginning."
+  [n xs]
+  (let [split-at (mod n (count xs))]
+    (concat (drop split-at xs) (take split-at xs))))
+
+(defn rotate-right
+  "Returns a seq with the elements of the collection rotated to the
+  right by n places, wrapping around to the end."
+  [n xs]
+  (rotate-left (- n) xs))
+
 (defn pairs
   "Returns a lazy sequence of all unique pairs (combinations of size 2) from the collection.
    Example: (pairs [1 2 3]) => ([1 2] [1 3] [2 3])"
@@ -115,24 +128,6 @@
             cycled-iter (+ offset (rem (- iteration offset) period))]
         (first (first-where (fn [[_ v]] (= v cycled-iter)) seen)))
       (recur (f x) (inc iter) (assoc seen x iter)))))
-
-(defn transpose
-  "Transposes a 2D collection (swaps rows and columns).
-   Example: (transpose [[1 2] [3 4]]) => [[1 3] [2 4]]"
-  [coll]
-  (apply mapv vector coll))
-
-(defn flip-horizontal
-  "Flips a 2D collection horizontally (reverses each row).
-   Example: (flip-horizontal [[1 2] [3 4]]) => [[2 1] [4 3]]"
-  [coll]
-  (mapv (comp vec reverse) coll))
-
-(defn rotate-right
-  "Rotates a 2D collection 90 degrees clockwise.
-   Example: (rotate-right [[1 2] [3 4]]) => [[3 1] [4 2]]"
-  [coll]
-  ((comp flip-horizontal transpose) coll))
 
 ;; Allow (sort (by :surname asc :age desc) coll)
 ;;

@@ -4,6 +4,7 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
+   [aoc.util.matrix :as mat]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
    [clojure.string :as str]))
@@ -24,7 +25,7 @@
   (map first (reductions move start moves)))
 
 (defn moves->steps [moves [pos dir]]
-  (let [[turns dists] (c/transpose moves)
+  (let [[turns dists] (mat/transpose moves)
         dirs (rest (reductions (fn [d turn] (turn d)) dir turns))
         deltas (mapcat repeat dists dirs)]
     (rest (reductions p/pos+ pos deltas))))

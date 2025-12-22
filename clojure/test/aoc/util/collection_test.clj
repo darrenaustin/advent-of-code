@@ -84,6 +84,20 @@
     (is (= 1 (c/first-duplicate [1 1])))
     (is (= 3 (c/first-duplicate [1 2 3 4 3 2 1])))))
 
+(deftest rotate-left-test
+  (testing "rotate-left rotates the elements of the collection by n to the left, wrapping"
+    (is (= [2 3 4 5 0 1] (c/rotate-left 2 [0 1 2 3 4 5])))
+    (is (= [0 1 2 3 4 5] (c/rotate-left 0 [0 1 2 3 4 5])))
+    (is (= [4 5 0 1 2 3] (c/rotate-left 10 [0 1 2 3 4 5])))
+    (is (= [1] (c/rotate-left 3 [1])))))
+
+(deftest rotate-right-test
+  (testing "rotate-right rotates the elements of the collection by n to the right, wrapping"
+    (is (= [4 5 0 1 2 3] (c/rotate-right 2 [0 1 2 3 4 5])))
+    (is (= [0 1 2 3 4 5] (c/rotate-right 0 [0 1 2 3 4 5])))
+    (is (= [2 3 4 5 0 1] (c/rotate-right 10 [0 1 2 3 4 5])))
+    (is (= [1] (c/rotate-right 3 [1])))))
+
 (deftest pairs-test
   (testing "pairs returns all unique combinations of size 2"
     (is (= [[1 2] [1 3] [2 3]] (c/pairs [1 2 3])))
@@ -126,32 +140,6 @@
 
     ; Fixed point
     (is (= 5 (c/iteration-with-cycle 100 identity 5)))))
-
-(deftest transpose-test
-  (testing "transpose swaps rows and columns"
-    (is (= [[1 3] [2 4]]
-           (c/transpose [[1 2] [3 4]])))
-    (is (= [[1 4 7] [2 5 8] [3 6 9]]
-           (c/transpose [[1 2 3] [4 5 6] [7 8 9]])))
-    (is (= [[1] [2] [3]]
-           (c/transpose [[1 2 3]])))))
-
-(deftest flip-horizontal-test
-  (testing "flip-horizontal reverses each row"
-    (is (= [[2 1] [4 3]]
-           (c/flip-horizontal [[1 2] [3 4]])))
-    (is (= [[3 2 1] [6 5 4]]
-           (c/flip-horizontal [[1 2 3] [4 5 6]])))
-    (is (= [] (c/flip-horizontal [])))
-    (is (= [[1]] (c/flip-horizontal [[1]])))))
-
-(deftest rotate-right-test
-  (testing "rotate-right rotates 90 degrees clockwise"
-    (is (= [[3 1] [4 2]]
-           (c/rotate-right [[1 2] [3 4]])))
-    (is (= [[7 4 1] [8 5 2] [9 6 3]]
-           (c/rotate-right [[1 2 3] [4 5 6] [7 8 9]])))
-    (is (= [[1]] (c/rotate-right [[1]])))))
 
 (deftest asc-desc-test
   (testing "asc and desc comparison functions"
