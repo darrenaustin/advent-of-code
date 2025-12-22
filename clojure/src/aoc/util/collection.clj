@@ -19,17 +19,17 @@
    result. Empty segments are omitted.
 
    Example:
-     (split [1 2 0 3 4] zero?) => ((1 2) (3 4))
-     (split [1 2 0 0 3 4] zero?) => ((1 2) (3 4))
-     (split [1 2 0 0 3 4] odd?) => ((2 0 0) (4))"
-  [coll seperator-fn]
+     (split zero? [1 2 0 3 4]) => ((1 2) (3 4))
+     (split zero? [1 2 0 0 3 4]) => ((1 2) (3 4))
+     (split odd? [1 2 0 0 3 4]) => ((2 0 0) (4))"
+  [seperator-fn coll]
   (let [coll (drop-while seperator-fn coll)]
     (when (seq coll)
       (let [not-seperator-fn (complement seperator-fn)
             chunk (take-while not-seperator-fn coll)
             remaining (drop-while not-seperator-fn coll)]
         (lazy-seq
-         (cons chunk (split remaining seperator-fn)))))))
+         (cons chunk (split seperator-fn remaining)))))))
 
 (defn group-by-value
   "Groups keys by their values in a map.

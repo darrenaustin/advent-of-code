@@ -21,18 +21,18 @@
 
 (deftest split-test
   (testing "split divides a collection based on a separator predicate"
-    (is (= [[1 2] [3 4]] (c/split [1 2 0 3 4] zero?)))
-    (is (= [[1 2] [3 4]] (c/split [1 2 0 0 3 4] zero?)))
-    (is (= [[2 0 0] [4]] (c/split [1 2 0 0 3 4] odd?)))
-    (is (= [[1 2] [3 4]] (c/split [0 1 2 0 3 4 0] zero?)))
-    (is (= [[1 2 3]] (c/split [1 2 3] zero?)))
-    (is (nil? (c/split [] zero?)))
-    (is (nil? (c/split [0 0 0] zero?)))
-    (is (= [[1] [2] [3]] (c/split [1 0 2 0 3] zero?))))
+    (is (= [[1 2] [3 4]] (c/split zero? [1 2 0 3 4])))
+    (is (= [[1 2] [3 4]] (c/split zero? [1 2 0 0 3 4])))
+    (is (= [[2 0 0] [4]] (c/split odd? [1 2 0 0 3 4])))
+    (is (= [[1 2] [3 4]] (c/split zero? [0 1 2 0 3 4 0])))
+    (is (= [[1 2 3]] (c/split zero? [1 2 3])))
+    (is (nil? (c/split zero? [])))
+    (is (nil? (c/split zero? [0 0 0])))
+    (is (= [[1] [2] [3]] (c/split zero? [1 0 2 0 3]))))
 
   (testing "split returns a lazy sequence"
     (let [infinite-ints (iterate inc 1) ; 1 2 3 ...
-          split-lazy (c/split infinite-ints #(zero? (mod % 3)))] ; split on multiples of 3
+          split-lazy (c/split #(zero? (mod % 3)) infinite-ints)] ; split on multiples of 3
       (is (= [[1 2] [4 5] [7 8]] (take 3 split-lazy))))))
 
 (deftest group-by-value-test

@@ -21,7 +21,7 @@
 (defn part2 [input]
   (let [lines (s/lines input)
         operators (remove #{\space} (last lines))
-        numbers (c/split (map #(s/int (str/join %))
-                              (c/transpose (drop-last lines)))
-                         nil?)]
+        numbers (c/split nil?
+                         (map #(s/int (str/join %))
+                              (c/transpose (drop-last lines))))]
     (m/sum (map calculate operators numbers))))
