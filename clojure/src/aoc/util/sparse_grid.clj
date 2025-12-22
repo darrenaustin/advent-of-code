@@ -199,6 +199,22 @@
          (assoc! grid [x y] v)))
      (persistent! grid))))
 
+(defn format-rows
+  "Formats the grid as a vector of strings, one for each row.
+   Options:
+   - `:value-fn`: Function to transform cell values before printing (default: identity).
+   - `:col-sep`: Separator string between columns (default: \"\").
+   - `:default`: Value to use for missing cells (default: \\.)."
+  [grid & {:keys [value-fn col-sep default]
+           :or {value-fn identity col-sep "" default \.}}]
+  (if-let [b (bounds grid)]
+    (let [[[min-x min-y] [max-x max-y]] b]
+      (vec (for [y (range min-y (inc max-y))]
+             (str/join col-sep
+                       (for [x (range min-x (inc max-x))]
+                         (value-fn (get grid [x y] default)))))))
+    []))
+
 (defn format-grid
   "Formats the grid as a string.
    Options:
@@ -206,13 +222,5 @@
    - `:col-sep`: Separator string between columns (default: \"\").
    - `:row-sep`: Separator string between rows (default: \"\\n\").
    - `:default`: Value to use for missing cells (default: \\.)."
-  [grid & {:keys [value-fn col-sep row-sep default]
-           :or {value-fn identity col-sep "" row-sep "\n" default \.}}]
-  (if-let [b (bounds grid)]
-    (let [[[min-x min-y] [max-x max-y]] b]
-      (str/join row-sep
-                (for [y (range min-y (inc max-y))]
-                  (str/join col-sep
-                            (for [x (range min-x (inc max-x))]
-                              (value-fn (get grid [x y] default)))))))
-    ""))
+  [grid & {:keys [row-sep] :or {row-sep "\n"} :as options}]
+  (str/join row-sep (apply format-rows grid (mapcat identity options))))

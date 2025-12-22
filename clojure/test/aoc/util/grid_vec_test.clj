@@ -80,6 +80,12 @@
     (is (= 2 (get g2 [0 0])))
     (is (= 5 (get g2 [1 1])))))
 
+(deftest format-rows-test
+  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+    (is (= ["ab" "cd"] (g/format-rows grid)))
+    (is (= ["a|b" "c|d"] (g/format-rows grid :col-sep "|")))
+    (is (= ["A B" "C D"] (g/format-rows grid :col-sep " " :value-fn #(str/upper-case (str %)))))))
+
 (deftest format-grid-test
   (let [grid (g/rows->grid-vec ["ab" "cd"])]
     (is (= "ab\ncd" (g/format-grid grid)))

@@ -158,6 +158,18 @@
       (is (nil? (get grid [1 0])))
       (is (= [[0 0] [2 1]] (sg/bounds grid))))))
 
+(deftest format-rows-test
+  (testing "format-rows"
+    (let [grid (sg/map->sparse-grid {[0 0] \a [2 1] \b})]
+      (is (= ["a.." "..b"] (sg/format-rows grid)))
+      (is (= ["a.." "..b"] (sg/format-rows grid :default \.)))
+      (is (= ["aXX" "XXb"] (sg/format-rows grid :default \X)))
+      (is (= ["A.." "..B"] (sg/format-rows grid :value-fn #(str/upper-case (str %)))))
+      (is (= ["a,.,." ".,.,b"] (sg/format-rows grid :col-sep ",")))))
+  (testing "format-rows empty"
+    (let [grid (sg/make-sparse-grid)]
+      (is (= [] (sg/format-rows grid))))))
+
 (deftest format-grid-test
   (testing "format-grid"
     (let [grid (sg/map->sparse-grid {[0 0] \a [2 1] \b})]

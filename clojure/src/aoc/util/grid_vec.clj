@@ -259,17 +259,23 @@
                            cells
                            (range sub-w)))))))))
 
+(defn format-rows
+  "Formats the grid as a vector of strings, one for each row.
+   Options:
+   - `:value-fn`: Function to transform cell values before printing (default: identity).
+   - `:col-sep`: Separator string between columns (default: \"\")."
+  [^GridVec grid & {:keys [value-fn col-sep] :as _options}]
+  (let [value-fn (or value-fn identity)
+        col-sep (or col-sep "")]
+    (vec (for [y (range (height grid))]
+           (str/join col-sep
+                     (for [x (range (width grid))] (value-fn (grid [x y]))))))))
+
 (defn format-grid
   "Formats the grid as a string.
    Options:
    - `:value-fn`: Function to transform cell values before printing (default: identity).
    - `:col-sep`: Separator string between columns (default: \"\").
    - `:row-sep`: Separator string between rows (default: \"\\n\")."
-  [^GridVec grid & {:keys [value-fn col-sep row-sep] :as _options}]
-  (let [value-fn (or value-fn identity)
-        col-sep (or col-sep "")
-        row-sep (or row-sep "\n")]
-    (str/join row-sep
-              (for [y (range (height grid))]
-                (str/join col-sep
-                          (for [x (range (width grid))] (value-fn (grid [x y]))))))))
+  [^GridVec grid & {:keys [row-sep] :or {row-sep "\n"} :as options}]
+  (str/join row-sep (apply format-rows grid (mapcat identity options))))
