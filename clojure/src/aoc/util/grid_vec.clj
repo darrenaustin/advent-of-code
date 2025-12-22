@@ -168,11 +168,46 @@
         cells (.cells grid)]
     (mapv #(nth cells (+ (* % w) x)) (range (.height grid)))))
 
+(defn set-column
+  "Sets the values of column `x` to `values`.
+   If `values` is shorter than the height, only those cells are updated.
+   If `values` is longer, the extra values are ignored."
+  [^GridVec grid x values]
+  (let [w (.width grid)
+        h (.height grid)]
+    (if (or (neg? x) (>= x w))
+      grid
+      (let [cells (reduce (fn [c [y v]]
+                            (if (< y h)
+                              (assoc! c (+ (* y w) x) v)
+                              c))
+                          (transient (.cells grid))
+                          (map-indexed vector values))]
+        (GridVec. (persistent! cells) w h (meta grid))))))
+
 (defn row "Returns a vector the of values in the row at y."
   [^GridVec grid y]
   (let [w (.width grid)
         start (* y w)]
     (subvec (.cells grid) start (+ start w))))
+
+(defn set-row
+  "Sets the values of row `y` to `values`.
+   If `values` is shorter than the width, only those cells are updated.
+   If `values` is longer, the extra values are ignored."
+  [^GridVec grid y values]
+  (let [w (.width grid)
+        h (.height grid)]
+    (if (or (neg? y) (>= y h))
+      grid
+      (let [start-idx (* y w)
+            cells (reduce (fn [c [x v]]
+                            (if (< x w)
+                              (assoc! c (+ start-idx x) v)
+                              c))
+                          (transient (.cells grid))
+                          (map-indexed vector values))]
+        (GridVec. (persistent! cells) w h (meta grid))))))
 
 (defn top-row "Returns the top row of the grid."
   [^GridVec grid] (row grid 0))

@@ -204,15 +204,38 @@
 
 (deftest row-col-access-test
   (let [grid (g/rows->grid-vec ["abc" "def" "ghi"])]
+    (testing "column access"
+      (is (= [\a \d \g] (g/column grid 0)))
+      (is (= [\b \e \h] (g/column grid 1)))
+      (is (= [\c \f \i] (g/column grid 2))))
+
+    (testing "set-column"
+      (let [g2 (g/set-column grid 0 [\1 \2])]
+        (is (= \1 (get g2 [0 0])))
+        (is (= \2 (get g2 [0 1])))
+        (is (= \g (get g2 [0 2])))
+        (is (= \b (get g2 [1 0]))))
+      (let [g3 (g/set-column grid 1 [\X])]
+        (is (= \X (get g3 [1 0])))
+        (is (= \e (get g3 [1 1]))))
+      (let [g4 (g/set-column grid 0 [\1 \2 \3 \4])]
+        (is (= \1 (get g4 [0 0])))
+        (is (= \2 (get g4 [0 1])))
+        (is (= \3 (get g4 [0 2])))))
+
     (testing "row access"
       (is (= [\a \b \c] (g/row grid 0)))
       (is (= [\d \e \f] (g/row grid 1)))
       (is (= [\g \h \i] (g/row grid 2))))
 
-    (testing "column access"
-      (is (= [\a \d \g] (g/column grid 0)))
-      (is (= [\b \e \h] (g/column grid 1)))
-      (is (= [\c \f \i] (g/column grid 2))))
+    (testing "set-row"
+      (let [g2 (g/set-row grid 0 [\1 \2 \3])]
+        (is (= "123" (first (g/format-rows g2))))
+        (is (= "def" (second (g/format-rows g2)))))
+      (let [g3 (g/set-row grid 1 [\X])]
+        (is (= "Xef" (second (g/format-rows g3)))))
+      (let [g4 (g/set-row grid 0 [\1 \2 \3 \4])]
+        (is (= "123" (first (g/format-rows g4))))))
 
     (testing "convenience accessors"
       (is (= [\a \b \c] (g/top-row grid)))
