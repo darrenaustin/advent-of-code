@@ -2,6 +2,7 @@
  (ns aoc2018.day10
    (:require
     [aoc.day :as d]
+    [aoc.util.ascii-art :as ascii-art]
     [aoc.util.pos :as p]
     [aoc.util.sparse-grid :as sg]
     [aoc.util.string :as s]))
@@ -34,12 +35,9 @@
 (defn message [input]
   (let [stars (parse-stars input)
         time (time-to-message stars)]
-    (sg/format-grid (star-grid (advance-stars stars time)) :default " ")))
+    (sg/format-rows (star-grid (advance-stars stars time)))))
 
 (defn part1 [input]
-  ;; TODO: need some ascii ocr for this
-  (message input)
-  ;; Manual inspection for now
-  "RRANZLAC")
+  (ascii-art/ocr (message input)))
 
 (defn part2 [input] (time-to-message (parse-stars input)))
