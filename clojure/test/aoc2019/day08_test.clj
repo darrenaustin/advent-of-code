@@ -9,7 +9,7 @@
   "123456789012")
 
 (deftest part1-example
-  (is (= 1 (d/part1 example))))
+  (is (= 1 (d/part1 example 3 2))))
 
 (def answers (delay (day-answers 2019 8)))
 (def input (delay (d/input)))
