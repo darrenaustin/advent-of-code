@@ -61,6 +61,7 @@
    [aoc2018.day25]
    [aoc2019.day02]
    [aoc2019.day05]
+   [aoc2019.day08]
    [aoc2019.day09]
    [aoc2019.day11]
    [aoc2019.day14]
