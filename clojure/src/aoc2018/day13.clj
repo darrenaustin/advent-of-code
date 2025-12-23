@@ -2,8 +2,10 @@
 (ns aoc2018.day13
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :as c]
+   [aoc.util.grid-vec :as g]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2018 13 :trim? false))
@@ -27,9 +29,9 @@
    [\\ p/dir-left]  p/dir-up})
 
 (defn parse [input]
-  (let [grid  (g/parse-grid input)
+  (let [grid  (g/rows->grid-vec (s/lines input))
         carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing p/turn-left})
-                   (g/locs-where grid #{\^ \> \v \<}))]
+                   (c/keys-when-val #{\^ \> \v \<} grid))]
     {:carts  carts
      :tracks (reduce (fn [ts {:keys [loc dir]}] (assoc ts loc (cart-track dir)))
                      (into {} (remove #(#{\space} (second %)) grid))

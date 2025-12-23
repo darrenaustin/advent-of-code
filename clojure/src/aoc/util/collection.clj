@@ -43,6 +43,9 @@
   [m]
   (into {} (for [[k v] m] [v k])))
 
+(defn keys-when-val [pred m]
+  (map first (filter (fn [[_ val]] (pred val)) m)))
+
 (defn indexed
   "Returns a sequence of [index value] pairs from the collection.
    Example: (indexed [:a :b :c]) => ([0 :a] [1 :b] [2 :c])"
