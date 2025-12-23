@@ -4,8 +4,7 @@
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
    [aoc.util.grid-vec :as g]
-   [aoc.util.pos :as p]
-   [aoc.util.string :as s]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2017 19 :trim? false))
 
@@ -22,7 +21,7 @@
   (and cell (not= cell \space)))
 
 (defn walk-routes [input]
-  (let [grid  (g/rows->grid-vec (s/lines input))
+  (let [grid  (g/str->grid-vec input)
         start (first (first-where (fn [[[_ y] c]] (and (zero? y) (= c \|))) grid))]
     (loop [pos start, dir p/dir-down, path "", steps 1]
       (let [cell  (grid pos)

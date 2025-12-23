@@ -6,6 +6,7 @@
   (:refer-clojure :exclude [format])
   (:require
    [aoc.util.bounded :as b]
+   [aoc.util.string :as s]
    [clojure.string :as str])
   (:import
    [clojure.lang
@@ -161,6 +162,10 @@
          width (count (first lines))]
      (assert (every? #(= width (count %)) lines))
      (GridVec. (vec (mapcat #(map value-fn %) lines)) width height nil))))
+
+(defn str->grid-vec
+  ([s] (str->grid-vec s identity))
+  ([s value-fn] (rows->grid-vec (s/lines s) value-fn)))
 
 (defn column "Returns a vector of the values in the column at x."
   [^GridVec grid x]
