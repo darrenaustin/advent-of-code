@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]
    [aoc2019.intcode :as i]
@@ -24,7 +24,7 @@
    [p/dir-left p/dir-up]    \R})
 
 (defn parse [input]
-  (let [grid      (g/str->grid-vec (str/join (map char (:output (i/run (i/parse input))))))
+  (let [grid      (g/str->grid (str/join (map char (:output (i/run (i/parse input))))))
         robot-loc (first (c/keys-when-val #{\^ \v \< \>} grid))
         robot-dir (dirs (grid robot-loc))]
     {:grid  (assoc grid robot-dir \#)

@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.pos :as p]
    [clojure.string :as str]))
 
@@ -28,7 +28,7 @@
    [\\ p/dir-left]  p/dir-up})
 
 (defn parse [input]
-  (let [grid  (g/str->grid-vec input)
+  (let [grid  (g/str->grid input)
         carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing p/turn-left})
                    (c/keys-when-val #{\^ \> \v \<} grid))]
     {:carts  carts

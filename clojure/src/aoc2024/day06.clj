@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [count-where keys-when-val]]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 6))
@@ -43,7 +43,7 @@
   (first (keys-when-val (partial = \^) grid)))
 
 (defn part1 [input]
-  (let [grid  (g/str->grid-vec input)
+  (let [grid  (g/str->grid input)
         guard (guard-location grid)]
     (count (walk-guard grid guard))))
 
@@ -53,7 +53,7 @@
 ;; Only need to put obstacles in the path from part 1 as the guard
 ;; won't run into the others.
 (defn part2 [input]
-  (let [grid       (g/str->grid-vec input)
+  (let [grid       (g/str->grid input)
         guard      (guard-location grid)
         guard-path (disj (walk-guard grid guard) guard)]
     (count-where #(looping-guard? (place-obstruction grid %) guard)

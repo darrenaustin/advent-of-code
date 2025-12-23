@@ -3,13 +3,13 @@
    (:require
     [aoc.day :as d]
     [aoc.util.collection :as c]
-    [aoc.util.grid-vec :as g]
+    [aoc.util.grid :as g]
     [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2015 18))
 
 (defn parse-grid [input]
-  (g/str->grid-vec input {\. false \# true}))
+  (g/str->grid input {\. false \# true}))
 
 (defn neighbors-on [grid pos]
   (count (filter grid (p/adjacent-to pos))))

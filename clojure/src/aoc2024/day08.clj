@@ -2,7 +2,7 @@
   (ns aoc2024.day08
     (:require
      [aoc.day :as d]
-     [aoc.util.grid-vec :as g]
+     [aoc.util.grid :as g]
      [aoc.util.pos :as p]
      [clojure.math.combinatorics :as combo]))
 
@@ -27,7 +27,7 @@
   (mapcat finder-fn (combo/combinations locs 2)))
 
 (defn num-antinodes [input antinode-fn]
-  (let [grid            (g/str->grid-vec input)
+  (let [grid            (g/str->grid input)
         valid-loc?      (partial contains? grid)
         antennas        (antennas grid)
         antinode-finder (partial antinode-fn valid-loc?)]

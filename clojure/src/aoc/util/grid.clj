@@ -1,4 +1,4 @@
-(ns aoc.util.grid-vec
+(ns aoc.util.grid
   "An immutable 2D grid implementation backed by a flat vector.
    Supports efficient random access, updates, and sequence operations.
    Implements standard Clojure collection interfaces (Associative, Counted, Seqable, IFn).
@@ -35,9 +35,9 @@
 (definterface IKeyIndexed
   (^long key_index [key]))
 
-(declare ->GridVec)
+(declare ->Grid)
 
-(deftype TransientGridVec [^:unsynchronized-mutable cells ^long width ^long height]
+(deftype TransientGrid [^:unsynchronized-mutable cells ^long width ^long height]
   ITransientMap
   (assoc [this k v]
     (let [[x y] k]
@@ -56,7 +56,7 @@
     ;; dissoc! is a no-op as the grid is a fixed size and coordinates cannot be removed.
     this)
   (persistent [_]
-    (->GridVec (persistent! cells) width height nil))
+    (->Grid (persistent! cells) width height nil))
   (valAt [this k]
     (.valAt this k nil))
   (valAt [_ k default]
@@ -71,7 +71,7 @@
     (let [[x y] k]
       (and (< -1 x width) (< -1 y height)))))
 
-(deftype GridVec [cells ^long width ^long height _meta]
+(deftype Grid [cells ^long width ^long height _meta]
   b/Bounded
   (bounds [_] [[0 0] [(dec width) (dec height)]])
   (width [_] width)
@@ -82,11 +82,11 @@
 
   IObj
   (meta [_] _meta)
-  (withMeta [_ m] (GridVec. cells width height m))
+  (withMeta [_ m] (Grid. cells width height m))
 
   IEditableCollection
   (asTransient [_]
-    (TransientGridVec. (transient cells) width height))
+    (TransientGrid. (transient cells) width height))
 
   IPersistentMap
   (without [this _]
@@ -101,12 +101,12 @@
       (if-let [[k v] (seq o)]
         (.assoc this k v)
         this)))
-  (empty [_] (GridVec. [] 0 0 nil))
+  (empty [_] (Grid. [] 0 0 nil))
   (equiv [_ o]
-    (and (instance? GridVec o)
-         (= width (.width ^GridVec o))
-         (= height (.height ^GridVec o))
-         (= cells (.cells ^GridVec o))))
+    (and (instance? Grid o)
+         (= width (.width ^Grid o))
+         (= height (.height ^Grid o))
+         (= cells (.cells ^Grid o))))
 
   Counted
   (count [_] (count cells))
@@ -120,7 +120,7 @@
       (MapEntry. k (nth cells (.key-index this k)))))
   (assoc [this k v]
     (if (.containsKey this k)
-      (GridVec. (assoc cells (.key-index this k) v) width height _meta)
+      (Grid. (assoc cells (.key-index this k) v) width height _meta)
       this))
   (valAt [this k]
     (.valAt this k nil))
@@ -146,29 +146,29 @@
   (equals [this o] (.equiv this o))
   (hashCode [_] (hash [cells width height])))
 
-(defn make-grid-vec
-  "Creates a new GridVec of the specified dimensions, initialized with `default-value` (default nil)."
-  ([width height] (make-grid-vec width height nil))
+(defn make-grid
+  "Creates a new Grid of the specified dimensions, initialized with `default-value` (default nil)."
+  ([width height] (make-grid width height nil))
   ([width height default-value]
-   (GridVec. (vec (repeat (* width height) default-value)) width height nil)))
+   (Grid. (vec (repeat (* width height) default-value)) width height nil)))
 
-(defn rows->grid-vec
-  "Creates a GridVec from a sequence of rows (strings or sequences).
+(defn rows->grid
+  "Creates a Grid from a sequence of rows (strings or sequences).
    Optionally takes a `value-fn` that will be mapped over each element
    before it is put into the grid. Assumes all rows have the same length."
-  ([lines] (rows->grid-vec lines identity))
+  ([lines] (rows->grid lines identity))
   ([lines value-fn]
    (let [height (count lines)
          width (count (first lines))]
      (assert (every? #(= width (count %)) lines))
-     (GridVec. (vec (mapcat #(map value-fn %) lines)) width height nil))))
+     (Grid. (vec (mapcat #(map value-fn %) lines)) width height nil))))
 
-(defn str->grid-vec
-  ([s] (str->grid-vec s identity))
-  ([s value-fn] (rows->grid-vec (s/lines s) value-fn)))
+(defn str->grid
+  ([s] (str->grid s identity))
+  ([s value-fn] (rows->grid (s/lines s) value-fn)))
 
 (defn column "Returns a vector of the values in the column at x."
-  [^GridVec grid x]
+  [^Grid grid x]
   (let [w (.width grid)
         cells (.cells grid)]
     (mapv #(nth cells (+ (* % w) x)) (range (.height grid)))))
@@ -177,7 +177,7 @@
   "Sets the values of column `x` to `values`.
    If `values` is shorter than the height, only those cells are updated.
    If `values` is longer, the extra values are ignored."
-  [^GridVec grid x values]
+  [^Grid grid x values]
   (let [w (.width grid)
         h (.height grid)]
     (if (or (neg? x) (>= x w))
@@ -188,10 +188,10 @@
                               c))
                           (transient (.cells grid))
                           (map-indexed vector values))]
-        (GridVec. (persistent! cells) w h (meta grid))))))
+        (Grid. (persistent! cells) w h (meta grid))))))
 
 (defn row "Returns a vector the of values in the row at y."
-  [^GridVec grid y]
+  [^Grid grid y]
   (let [w (.width grid)
         start (* y w)]
     (subvec (.cells grid) start (+ start w))))
@@ -200,7 +200,7 @@
   "Sets the values of row `y` to `values`.
    If `values` is shorter than the width, only those cells are updated.
    If `values` is longer, the extra values are ignored."
-  [^GridVec grid y values]
+  [^Grid grid y values]
   (let [w (.width grid)
         h (.height grid)]
     (if (or (neg? y) (>= y h))
@@ -212,57 +212,57 @@
                               c))
                           (transient (.cells grid))
                           (map-indexed vector values))]
-        (GridVec. (persistent! cells) w h (meta grid))))))
+        (Grid. (persistent! cells) w h (meta grid))))))
 
 (defn top-row "Returns the top row of the grid."
-  [^GridVec grid] (row grid 0))
+  [^Grid grid] (row grid 0))
 
 (defn bottom-row "Returns the bottom row of the grid."
-  [^GridVec grid] (row grid (dec (.height grid))))
+  [^Grid grid] (row grid (dec (.height grid))))
 
 (defn left-column "Returns the left-most column of the grid."
-  [^GridVec grid] (column grid 0))
+  [^Grid grid] (column grid 0))
 
 (defn right-column "Returns the right-most column of the grid."
-  [^GridVec grid] (column grid (dec (.width grid))))
+  [^Grid grid] (column grid (dec (.width grid))))
 
 (defn update-grid
-  "Returns a new GridVec with `entry-fn` applied to every cell.
+  "Returns a new Grid with `entry-fn` applied to every cell.
    `entry-fn` receives a MapEntry of `[[x y] value]` and should return the new value
    for the entry."
-  [^GridVec grid entry-fn]
-  (GridVec. (vec (map entry-fn grid)) (width grid) (height grid) (meta grid)))
+  [^Grid grid entry-fn]
+  (Grid. (vec (map entry-fn grid)) (width grid) (height grid) (meta grid)))
 
 (defn rotate-clockwise
   "Returns a new grid rotated 90 degrees clockwise."
-  [^GridVec grid]
+  [^Grid grid]
   (let [w (.width grid)
         h (.height grid)
         cells (.cells grid)]
-    (GridVec. (vec (for [x (range w)
-                         y (range (dec h) -1 -1)]
-                     (nth cells (+ (* y w) x))))
-              h w (meta grid))))
+    (Grid. (vec (for [x (range w)
+                      y (range (dec h) -1 -1)]
+                  (nth cells (+ (* y w) x))))
+           h w (meta grid))))
 
 (defn flip-horizontal
   "Returns a new grid flipped horizontally (across the y-axis)."
-  [^GridVec grid]
+  [^Grid grid]
   (let [w (.width grid)
         h (.height grid)
         cells (.cells grid)]
-    (GridVec. (vec (mapcat reverse (partition w cells))) w h (meta grid))))
+    (Grid. (vec (mapcat reverse (partition w cells))) w h (meta grid))))
 
 (defn flip-vertical
   "Returns a new grid flipped vertically (across the x-axis)."
-  [^GridVec grid]
+  [^Grid grid]
   (let [w (.width grid)
         h (.height grid)
         cells (.cells grid)]
-    (GridVec. (vec (mapcat identity (reverse (partition w cells)))) w h (meta grid))))
+    (Grid. (vec (mapcat identity (reverse (partition w cells)))) w h (meta grid))))
 
 (defn sub-grid
   "Returns a new grid containing the rectangular region defined by top-left and bottom-right coordinates (inclusive)."
-  [^GridVec grid [min-x min-y] [max-x max-y]]
+  [^Grid grid [min-x min-y] [max-x max-y]]
   (let [w (.width grid)
         new-w (inc (- max-x min-x))
         new-h (inc (- max-y min-y))
@@ -271,12 +271,12 @@
                                  (let [start (+ (* y w) min-x)]
                                    (subvec cells start (+ start new-w))))
                                (range min-y (inc max-y))))]
-    (GridVec. new-cells new-w new-h (meta grid))))
+    (Grid. new-cells new-w new-h (meta grid))))
 
 (defn set-sub-grid
   "Returns a new grid with the `sub-grid` pasted at `top-left` coordinates.
    Parts of the sub-grid that fall outside the bounds of the base grid are ignored."
-  [^GridVec grid [start-x start-y] ^GridVec sub-grid]
+  [^Grid grid [start-x start-y] ^Grid sub-grid]
   (let [w (.width grid)
         h (.height grid)
         sub-w (.width sub-grid)
@@ -285,7 +285,7 @@
     (loop [y 0
            cells (transient (.cells grid))]
       (if (= y sub-h)
-        (GridVec. (persistent! cells) w h (meta grid))
+        (Grid. (persistent! cells) w h (meta grid))
         (let [target-y (+ start-y y)]
           (if-not (< -1 target-y h)
             (recur (inc y) cells)
@@ -304,7 +304,7 @@
    Options:
    - `:value-fn`: Function to transform cell values before printing (default: identity).
    - `:col-sep`: Separator string between columns (default: \"\")."
-  [^GridVec grid & {:keys [value-fn col-sep] :as _options}]
+  [^Grid grid & {:keys [value-fn col-sep] :as _options}]
   (let [value-fn (or value-fn identity)
         col-sep (or col-sep "")]
     (vec (for [y (range (height grid))]
@@ -317,5 +317,5 @@
    - `:value-fn`: Function to transform cell values before printing (default: identity).
    - `:col-sep`: Separator string between columns (default: \"\").
    - `:row-sep`: Separator string between rows (default: \"\\n\")."
-  [^GridVec grid & {:keys [row-sep] :or {row-sep "\n"} :as options}]
+  [^Grid grid & {:keys [row-sep] :or {row-sep "\n"} :as options}]
   (str/join row-sep (apply format-rows grid (mapcat identity options))))

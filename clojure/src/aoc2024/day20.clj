@@ -3,12 +3,12 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where keys-when-val]]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p])) (defn input [] (d/day-input 2024 20))
 
 (defn parse-track [input]
-  (let [grid  (g/str->grid-vec input)
+  (let [grid  (g/str->grid input)
         start (first (keys-when-val #{\S} grid))
         end   (first (keys-when-val #{\E} grid))]
     {:grid  (assoc grid start \. end \.)

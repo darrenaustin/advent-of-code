@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
@@ -19,7 +19,7 @@
 
 (defn parse [input grid-fn]
   (let [[grid-data instructions] (s/blocks input)
-        grid (g/str->grid-vec (grid-fn grid-data))
+        grid (g/str->grid (grid-fn grid-data))
         dirs (map robot-dirs (str/replace instructions #"\s" ""))]
     [grid dirs]))
 

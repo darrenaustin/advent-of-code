@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as pf]
    [aoc.util.pos :as p]))
@@ -33,7 +33,7 @@
       (only-one-unit-type-left? field)))
 
 (defn parse [input]
-  (let [grid  (g/str->grid-vec input)
+  (let [grid  (g/str->grid input)
         units (c/keys-when-val #{\E \G} grid)]
     {:grid           grid
      :rounds         0

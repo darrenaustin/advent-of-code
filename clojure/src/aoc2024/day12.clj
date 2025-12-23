@@ -2,7 +2,7 @@
 (ns aoc2024.day12
   (:require
    [aoc.day :as d]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]))
 
@@ -71,7 +71,7 @@
 
 (defn solve [input cost-fn]
   (->> input
-       g/str->grid-vec
+       g/str->grid
        regions
        (map cost-fn)
        m/sum))

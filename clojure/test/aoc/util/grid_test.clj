@@ -1,12 +1,12 @@
-(ns aoc.util.grid-vec-test
+(ns aoc.util.grid-test
   (:require
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [clojure.string :as str]
    [clojure.test :refer [deftest is testing]]))
 
 (deftest grid-creation-test
   (testing "make-grid-vec"
-    (let [grid (g/make-grid-vec 3 2 :init)]
+    (let [grid (g/make-grid 3 2 :init)]
       (is (= 3 (g/width grid)))
       (is (= 2 (g/height grid)))
       (is (= [3 2] (g/size grid)))
@@ -14,26 +14,26 @@
       (is (= :init (get grid [2 1])))))
 
   (testing "rows->grid-vec with strings"
-    (let [grid (g/rows->grid-vec ["abc" "def"])]
+    (let [grid (g/rows->grid ["abc" "def"])]
       (is (= 3 (g/width grid)))
       (is (= 2 (g/height grid)))
       (is (= \a (get grid [0 0])))
       (is (= \f (get grid [2 1])))))
 
   (testing "rows->grid-vec with vectors"
-    (let [grid (g/rows->grid-vec [[1 2] [3 4]])]
+    (let [grid (g/rows->grid [[1 2] [3 4]])]
       (is (= 2 (g/width grid)))
       (is (= 2 (g/height grid)))
       (is (= 1 (get grid [0 0])))
       (is (= 4 (get grid [1 1])))))
 
   (testing "rows->grid-vec with value-fn"
-    (let [grid (g/rows->grid-vec ["12" "34"] #(Long/parseLong (str %)))]
+    (let [grid (g/rows->grid ["12" "34"] #(Long/parseLong (str %)))]
       (is (= 1 (get grid [0 0])))
       (is (= 4 (get grid [1 1]))))))
 
 (deftest associative-test
-  (let [grid (g/rows->grid-vec ["abc" "def"])]
+  (let [grid (g/rows->grid ["abc" "def"])]
     (testing "get / valAt"
       (is (= \a (get grid [0 0])))
       (is (= \e (get grid [1 1])))
@@ -53,47 +53,47 @@
         (is (= \b (get g2 [1 0])) "Other cells should remain unchanged")))))
 
 (deftest counted-test
-  (let [grid (g/rows->grid-vec ["abc" "def"])]
+  (let [grid (g/rows->grid ["abc" "def"])]
     (is (= 6 (count grid)))))
 
 (deftest seqable-test
-  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+  (let [grid (g/rows->grid ["ab" "cd"])]
     (is (= [[[0 0] \a] [[1 0] \b] [[0 1] \c] [[1 1] \d]]
            (seq grid)))))
 
 (deftest ifn-test
-  (let [grid (g/rows->grid-vec ["abc"])]
+  (let [grid (g/rows->grid ["abc"])]
     (is (= \a (grid [0 0])))
     (is (= :default (grid [5 5] :default)))))
 
 (deftest equality-test
-  (let [g1 (g/rows->grid-vec ["abc"])
-        g2 (g/rows->grid-vec ["abc"])
-        g3 (g/rows->grid-vec ["abd"])]
+  (let [g1 (g/rows->grid ["abc"])
+        g2 (g/rows->grid ["abc"])
+        g3 (g/rows->grid ["abd"])]
     (is (= g1 g2))
     (is (not= g1 g3))
     (is (= (hash g1) (hash g2)))))
 
 (deftest update-grid-test
-  (let [grid (g/rows->grid-vec ["12" "34"] #(Long/parseLong (str %)))
+  (let [grid (g/rows->grid ["12" "34"] #(Long/parseLong (str %)))
         g2 (g/update-grid grid (fn [[_ v]] (inc v)))]
     (is (= 2 (get g2 [0 0])))
     (is (= 5 (get g2 [1 1])))))
 
 (deftest format-rows-test
-  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+  (let [grid (g/rows->grid ["ab" "cd"])]
     (is (= ["ab" "cd"] (g/format-rows grid)))
     (is (= ["a|b" "c|d"] (g/format-rows grid :col-sep "|")))
     (is (= ["A B" "C D"] (g/format-rows grid :col-sep " " :value-fn #(str/upper-case (str %)))))))
 
 (deftest format-grid-test
-  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+  (let [grid (g/rows->grid ["ab" "cd"])]
     (is (= "ab\ncd" (g/format-grid grid)))
     (is (= "a|b\nc|d" (g/format-grid grid :col-sep "|")))
     (is (= "A B\nC D" (g/format-grid grid :col-sep " " :value-fn #(str/upper-case (str %)))))))
 
 (deftest collection-test
-  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+  (let [grid (g/rows->grid ["ab" "cd"])]
     (testing "empty"
       (let [e (empty grid)]
         (is (= 0 (count e)))
@@ -108,7 +108,7 @@
         (is (= \Z (get g3 [1 1])))))))
 
 (deftest metadata-test
-  (let [grid (g/make-grid-vec 2 2)
+  (let [grid (g/make-grid 2 2)
         m {:a 1}
         grid-with-meta (with-meta grid m)]
     (is (= m (meta grid-with-meta)))
@@ -116,7 +116,7 @@
     (is (= m (meta (assoc grid-with-meta [0 0] :val))) "Metadata should be preserved after assoc")))
 
 (deftest transient-test
-  (let [grid (g/make-grid-vec 2 2 0)]
+  (let [grid (g/make-grid 2 2 0)]
     (testing "transient assoc!"
       (let [t (transient grid)
             _ (assoc! t [0 0] 1)
@@ -151,7 +151,7 @@
         (is (= :x (get t [0 0])) "dissoc! should be a no-op")))))
 
 (deftest transformation-test
-  (let [grid (g/rows->grid-vec ["ab" "cd"])]
+  (let [grid (g/rows->grid ["ab" "cd"])]
     (testing "rotate-clockwise"
       (let [rotated (g/rotate-clockwise grid)]
         (is (= 2 (g/width rotated)))
@@ -176,7 +176,7 @@
         (is (= \b (get flipped [1 1])))))))
 
 (deftest sub-grid-test
-  (let [grid (g/rows->grid-vec ["abc" "def" "ghi"])]
+  (let [grid (g/rows->grid ["abc" "def" "ghi"])]
     (testing "sub-grid extraction"
       (let [sub (g/sub-grid grid [1 1] [2 2])]
         (is (= 2 (g/width sub)))
@@ -187,7 +187,7 @@
         (is (= \i (get sub [1 1])))))
 
     (testing "set-sub-grid"
-      (let [sub (g/rows->grid-vec ["XY" "Z!"])
+      (let [sub (g/rows->grid ["XY" "Z!"])
             updated (g/set-sub-grid grid [1 1] sub)]
         (is (= \a (get updated [0 0])))
         (is (= \X (get updated [1 1])))
@@ -196,14 +196,14 @@
         (is (= \! (get updated [2 2])))))
 
     (testing "set-sub-grid clipping"
-      (let [sub (g/rows->grid-vec ["XY" "Z!"])
+      (let [sub (g/rows->grid ["XY" "Z!"])
             updated (g/set-sub-grid grid [2 2] sub)]
         (is (= \X (get updated [2 2])))
         (is (= 3 (g/width updated)))
         (is (= 3 (g/height updated)))))))
 
 (deftest row-col-access-test
-  (let [grid (g/rows->grid-vec ["abc" "def" "ghi"])]
+  (let [grid (g/rows->grid ["abc" "def" "ghi"])]
     (testing "column access"
       (is (= [\a \d \g] (g/column grid 0)))
       (is (= [\b \e \h] (g/column grid 1)))
@@ -245,7 +245,7 @@
 
 (deftest exported-bounded-fns-test
   (testing "exported bounded functions work via g alias"
-    (let [grid (g/rows->grid-vec ["abc" "def"])]
+    (let [grid (g/rows->grid ["abc" "def"])]
       (is (= 3 (g/width grid)))
       (is (= 2 (g/height grid)))
       (is (= [[0 0] [2 1]] (g/bounds grid)))

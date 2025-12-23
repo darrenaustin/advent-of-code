@@ -3,14 +3,14 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid-vec :as g]
+   [aoc.util.grid :as g]
    [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 16))
 
 (defn parse [input]
-  (let [grid  (g/str->grid-vec input)
+  (let [grid  (g/str->grid input)
         start (first (c/keys-when-val #{\S} grid))
         goal  (first (c/keys-when-val #{\E} grid))]
     {:grid (assoc grid goal \.) :start start :goal goal}))
