@@ -29,7 +29,7 @@
 ;; Snagged the ascii alphabets from:
 ;; https://github.com/mstksg/advent-of-code-ocr/blob/main/src/Advent/OCR/LetterMap.hs
 
-(def fonts
+(def ^:private fonts
   {6 (make-font "ABCEFGHIJKLOPRSUYZ"
                 [" ##  ###   ##  #### ####  ##  #  # ###   ## #  # #     ##  ###  ###   ### #  # #   # ####"
                  "#  # #  # #  # #    #    #  # #  #  #     # # #  #    #  # #  # #  # #    #  # #   #    #"
