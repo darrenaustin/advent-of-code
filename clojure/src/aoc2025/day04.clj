@@ -2,15 +2,16 @@
 (ns aoc2025.day04
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
-   [aoc.util.pos :as p]))
+   [aoc.util.collection :as c]
+   [aoc.util.pos :as p]
+   [aoc.util.sparse-grid :as sg]))
 
 (defn input [] (d/day-input 2025 4))
 
 (def roll? #{\@})
 
 (defn roll-locations
-  ([grid] (g/locs-where grid roll?))
+  ([grid] (c/keys-when-val roll? grid))
   ([grid candidate-locs] (filter #(roll? (grid %)) candidate-locs)))
 
 (defn removeable-rolls [grid]
@@ -21,13 +22,12 @@
   (apply dissoc grid locs))
 
 (defn part1 [input]
-  (-> input
-      g/parse-grid
+  (-> (sg/str->sparse-grid input)
       removeable-rolls
       count))
 
 (defn part2 [input]
-  (let [grid (g/parse-grid input)]
+  (let [grid (sg/str->sparse-grid input)]
     (loop [grid' grid]
       (let [rolls (removeable-rolls grid')]
         (if (zero? (count rolls))

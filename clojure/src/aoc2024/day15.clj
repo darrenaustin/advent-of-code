@@ -2,9 +2,11 @@
 (ns aoc2024.day15
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :as c]
+   [aoc.util.grid-vec :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]
+   [aoc.util.string :as s]
    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2024 15))
@@ -16,8 +18,8 @@
    \> p/dir-right})
 
 (defn parse [input grid-fn]
-  (let [[grid-data instructions] (str/split input #"\n\n")
-        grid (g/parse-grid (grid-fn grid-data))
+  (let [[grid-data instructions] (s/blocks input)
+        grid (g/str->grid-vec (grid-fn grid-data))
         dirs (map robot-dirs (str/replace instructions #"\s" ""))]
     [grid dirs]))
 
@@ -55,7 +57,7 @@
       blocks)))
 
 (defn move-robot [grid dir]
-  (let [robot (g/loc-where grid #{\@})]
+  (let [robot (first (c/keys-when-val #{\@} grid))]
     (if-let [blocks (moveable-in-dir grid robot dir)]
       (move-cells grid blocks dir)
       grid)))
@@ -64,8 +66,8 @@
   (let [[grid dirs] (parse input grid-fn)]
     (m/sum
      (map (fn [[x y]] (+ (* 100 y) x))
-          (g/locs-where (reduce (fn [g d] (move-robot g d)) grid dirs)
-                        #{box})))))
+          (c/keys-when-val #{box}
+                           (reduce (fn [g d] (move-robot g d)) grid dirs))))))
 
 ;; TODO: speed up
 (defn part1 [input] (solve input \O identity))

@@ -2,7 +2,7 @@
 (ns aoc2024.day12
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.grid-vec :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]))
 
@@ -37,7 +37,7 @@
                col) 2))
 
 (defn sides [region]
-  (let [[[min-x min-y] [max-x max-y]] (g/area-bounds region)]
+  (let [[[min-x min-y] [max-x max-y]] (p/pos-bounds region)]
     (apply + (concat (map #(horiz-sides-for region (for [x (range min-x (inc max-x))] [x %]))
                           (range min-y (inc max-y)))
                      (map #(vert-sides-for region (for [y (range min-y (inc max-y))] [% y]))
@@ -71,7 +71,7 @@
 
 (defn solve [input cost-fn]
   (->> input
-       g/parse-grid
+       g/str->grid-vec
        regions
        (map cost-fn)
        m/sum))

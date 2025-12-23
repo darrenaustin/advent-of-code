@@ -3,7 +3,6 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid :as g]
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as pf]
    [aoc.util.pos :as p]
@@ -25,7 +24,8 @@
   (map p/pos- (rest vs) vs))
 
 (defn neighbors [key-map]
-  (fn [loc] (g/init-grid (filter key-map (p/orthogonal-to loc)) 1)))
+  (fn [loc]
+    (into {} (map (fn [p] [p 1]) (filter key-map (p/orthogonal-to loc))))))
 
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]

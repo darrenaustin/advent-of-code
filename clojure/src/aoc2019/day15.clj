@@ -2,7 +2,7 @@
 (ns aoc2019.day15
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :as c]
    [aoc.util.pathfinding :as pf]
    [aoc.util.pos :as p]
    [aoc2019.intcode :as i])
@@ -45,7 +45,7 @@
 
 (defn part2 [input]
   (loop [time 0, grid (generate-grid input)]
-    (let [vacuum (g/locs-where grid #{\.})]
+    (let [vacuum (c/keys-when-val #{\.} grid)]
       (if (empty? vacuum)
         time
         (recur (inc time)

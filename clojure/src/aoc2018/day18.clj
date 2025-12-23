@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid :as g]
+   [aoc.util.grid-vec :as g]
    [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2018 18))
@@ -20,19 +20,17 @@
              [l (update-acre a (keep area (p/adjacent-to l)))])))
 
 (defn resource-value [area]
-  (* (count (g/locs-where area #{\|}))
-     (count (g/locs-where area #{\#}))))
+  (* (count (c/keys-when-val #{\|} area))
+     (count (c/keys-when-val #{\#} area))))
 
 (defn part1 [input]
-  (->> input
-       g/parse-grid
+  (->> (g/str->grid-vec input)
        (iterate update-area)
        (drop 10)
        first
        resource-value))
 
 (defn part2 [input]
-  (->> input
-       g/parse-grid
+  (->> (g/str->grid-vec input)
        (c/iteration-with-cycle 1000000000 update-area)
        resource-value))

@@ -3,7 +3,7 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.grid :as g]
+   [aoc.util.grid-vec :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]))
@@ -19,7 +19,8 @@
             (filter #(= target (grid %)) (p/orthogonal-to loc)))))
 
 (defn summits-reachable-map [grid]
-  (let [num-locs (c/group-by-value grid)]
+  ;; TODO: need to add iterator support to grid-vec?
+  (let [num-locs (c/group-by-value (seq grid))]
     (reduce (fn [summits n]
               (reduce (partial update-summits-from grid)
                       summits
@@ -28,9 +29,9 @@
             (range 9 0 -1))))
 
 (defn count-trails [input coll-fn]
-  (let [grid              (g/parse-grid input s/digit)
+  (let [grid              (g/str->grid-vec input s/digit)
         summits-reachable (summits-reachable-map grid)
-        trailheads        (g/locs-where grid #{0})]
+        trailheads        (c/keys-when-val #{0} grid)]
     (m/sum (map (comp count coll-fn summits-reachable) trailheads))))
 
 (defn part1 [input]

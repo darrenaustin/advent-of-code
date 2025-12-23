@@ -2,21 +2,21 @@
 (ns aoc2024.day20
   (:require
    [aoc.day :as d]
-   [aoc.util.collection :refer [first-where]]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :refer [first-where keys-when-val]]
+   [aoc.util.grid-vec :as g]
    [aoc.util.math :as m]
    [aoc.util.pos :as p])) (defn input [] (d/day-input 2024 20))
 
 (defn parse-track [input]
-  (let [grid  (g/parse-grid input)
-        start (g/loc-where grid #{\S})
-        end   (g/loc-where grid #{\E})]
+  (let [grid  (g/str->grid-vec input)
+        start (first (keys-when-val #{\S} grid))
+        end   (first (keys-when-val #{\E} grid))]
     {:grid  (assoc grid start \. end \.)
      :start start
      :end   end}))
 
 (defn distance-map [{:keys [grid start end]}]
-  (let [path (set (g/locs-where grid #{\.}))]
+  (let [path (set (keys-when-val #{\.} grid))]
     (loop [head start dist 1 dists {start 0}]
       (if (= head end)
         dists
@@ -36,7 +36,7 @@
             (keys dists))))
 
 (defn solve [input min-radius max-radius]
-  (count (num-cheats input #(g/diamond-around min-radius max-radius %) 100)))
+  (count (num-cheats input #(p/diamond-around min-radius max-radius %) 100)))
 
 (defn part1 [input] (solve input 2 2))
 

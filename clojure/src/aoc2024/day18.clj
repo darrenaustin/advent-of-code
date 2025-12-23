@@ -2,7 +2,6 @@
 (ns aoc2024.day18
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
    [aoc.util.pathfinding :as pf]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
@@ -16,9 +15,8 @@
 
 (defn neighbors [grid]
   (fn [loc]
-    (g/init-grid
-     (filter grid (p/orthogonal-to loc))
-     1)))
+    (into {} (map (fn [p] [p 1])
+                  (filter grid (p/orthogonal-to loc))))))
 
 (defn min-distance [grid bytes goal]
   (let [grid' (set/difference grid (set bytes))]
@@ -37,9 +35,9 @@
 (defn part2
   ([input] (part2 input 1024 [70 70]))
   ([input bytes goal]
-   (let [grid  (set (for [x (range (inc (first goal)))
-                          y (range (inc (second goal)))]
-                      [x y]))
+   (let [grid (set (for [x (range (inc (first goal)))
+                         y (range (inc (second goal)))]
+                     [x y]))
          drops (parse input)]
      (loop [low bytes high (inc (count drops))]
        (if (< low high)

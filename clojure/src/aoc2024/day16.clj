@@ -2,16 +2,17 @@
 (ns aoc2024.day16
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :as c]
+   [aoc.util.grid-vec :as g]
    [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 16))
 
 (defn parse [input]
-  (let [grid  (g/parse-grid input)
-        start (g/loc-where grid #{\S})
-        goal  (g/loc-where grid #{\E})]
+  (let [grid  (g/str->grid-vec input)
+        start (first (c/keys-when-val #{\S} grid))
+        goal  (first (c/keys-when-val #{\E} grid))]
     {:grid (assoc grid goal \.) :start start :goal goal}))
 
 (defn cost-from [from-dir to-dir]

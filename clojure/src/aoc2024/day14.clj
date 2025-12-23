@@ -3,7 +3,6 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [first-where]]
-   [aoc.util.grid :as g]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]))
 
@@ -35,7 +34,7 @@
      [[mx my] [bx by]]]))
 
 (defn robot-quadrant [robot quadrants]
-  (first-where (fn [quadrant] (g/in-bounds? quadrant robot)) quadrants))
+  (first-where (fn [quadrant] (p/in-region? quadrant robot)) quadrants))
 
 (defn safety [robots quadrants]
   (apply * (vals (frequencies (keep #(robot-quadrant % quadrants) robots)))))

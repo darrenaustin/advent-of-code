@@ -2,8 +2,9 @@
 (ns aoc2018.day17
   (:require
    [aoc.day :as d]
-   [aoc.util.grid :as g]
+   [aoc.util.collection :as c]
    [aoc.util.pos :as p]
+   [aoc.util.sparse-grid :as sg]
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
@@ -16,7 +17,8 @@
       (into {} (for [x (range start (inc end))] [[x axis] \#])))))
 
 (defn parse [input]
-  (reduce merge (map parse-line (s/lines input))))
+  (into (sg/make-sparse-grid)
+        (reduce merge (map parse-line (s/lines input)))))
 
 (defn fill-rect [grid [from-x from-y] [to-x to-y] value]
   (into grid (for [x (range from-x (inc to-x)) y (range from-y (inc to-y))]
@@ -42,7 +44,7 @@
                      (iterate #(p/pos+ dir %) start))))
 
 (defn drop-water [grid]
-  (let [[[_ top] [_ bottom]] (g/bounds grid)]
+  (let [[[_ top] [_ bottom]] (sg/bounds grid)]
     (loop [grid grid, drops #{[500 top]}]
       (if (empty? drops)
         grid
@@ -69,7 +71,7 @@
                 :else (recur grid' (conj drops' right-floor))))))))))
 
 (defn part1 [input]
-  (count (g/locs-where (drop-water (parse input)) #{\| \~})))
+  (count (c/keys-when-val #{\| \~} (drop-water (parse input)))))
 
 (defn part2 [input]
-  (count (g/locs-where (drop-water (parse input)) #{\~})))
+  (count (c/keys-when-val #{\~} (drop-water (parse input)))))

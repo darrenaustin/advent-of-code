@@ -2,7 +2,6 @@
  (ns aoc2018.day22
    (:require
     [aoc.day :as d]
-    [aoc.util.grid :as g]
     [aoc.util.math :as m]
     [aoc.util.memoize :refer [letfn-mem]]
     [aoc.util.pathfinding :as pf]
@@ -67,7 +66,7 @@
 (defn part1 [input]
   (let [[depth target] (parse input)
         region (region-for depth target)]
-    (m/sum (map region (g/area-locs [0 0] target)))))
+    (m/sum (map region (p/region-pos [0 0] target)))))
 
 (defn part2 [input]
   (let [[depth target] (parse input)

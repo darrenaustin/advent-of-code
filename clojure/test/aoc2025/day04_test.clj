@@ -29,5 +29,5 @@
 (deftest part1-correct
   (is (= (:answer1 @answers) (d/part1 @input))))
 
-(deftest part2-correct
+(deftest ^:slow part2-correct
   (is (= (:answer2 @answers) (d/part2 @input))))

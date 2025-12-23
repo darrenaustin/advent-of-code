@@ -5,6 +5,7 @@
   (:refer-clojure :exclude [format])
   (:require
    [aoc.util.bounded :as b]
+   [aoc.util.string :as s]
    [clojure.string :as str])
   (:import
    [clojure.lang
@@ -198,6 +199,10 @@
        (when-let [v (value-fn val)]
          (assoc! grid [x y] v)))
      (persistent! grid))))
+
+(defn str->sparse-grid
+  ([s] (str->sparse-grid s identity))
+  ([s value-fn] (rows->sparse-grid (s/lines s) value-fn)))
 
 (defn format-rows
   "Formats the grid as a vector of strings, one for each row.

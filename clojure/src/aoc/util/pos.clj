@@ -92,3 +92,30 @@
 (def turn-right
   "Map for turning right 90 degrees."
   (into {} (map (comp vec reverse) turn-left)))
+
+(defn region-pos [[start-x start-y] [end-x end-y]]
+  (for [y (range start-y (inc end-y))
+        x (range start-x (inc end-x))]
+    [x y]))
+
+(defn pos-bounds [positions]
+  (let [[xs ys] (apply mapv vector positions)]
+    [[(apply min xs) (apply min ys)]
+     [(apply max xs) (apply max ys)]]))
+
+(defn in-region? [[[min-x min-y] [max-x max-y]] [x y]]
+  (and (< min-x x max-x) (< min-y y max-y)))
+
+(defn diamond-around [min-radius max-radius [x y]]
+  (for [radius (range min-radius (inc max-radius))
+        ry     (range (inc radius))
+        :let [rx (- radius ry)]
+        n      (cond
+                 (= 0 rx ry) [[x y]]
+                 (zero? rx) [[x (+ y ry)] [x (- y ry)]]
+                 (zero? ry) [[(+ x rx) y] [(- x rx) y]]
+                 :else [[(+ x rx) (+ y ry)]
+                        [(+ x rx) (- y ry)]
+                        [(- x rx) (+ y ry)]
+                        [(- x rx) (- y ry)]])]
+    n))

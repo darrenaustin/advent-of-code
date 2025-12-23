@@ -2,7 +2,7 @@
 (ns aoc2024.day20-test
   (:require
    [aoc.day :refer [day-answers]]
-   [aoc.util.grid :as g]
+   [aoc.util.pos :as p]
    [aoc2024.day20 :as d]
    [clojure.test :refer :all]))
 
@@ -36,7 +36,7 @@
       76 [[1 3] [3 7]])))
 
 (deftest num-cheats-examples1
-  (let [cheats (frequencies (d/num-cheats example #(g/diamond-around 2 2 %) 0))]
+  (let [cheats (frequencies (d/num-cheats example #(p/diamond-around 2 2 %) 0))]
     (are [expected num]
          (= expected (cheats num))
       14 2
@@ -52,7 +52,7 @@
       1 64)))
 
 (deftest num-cheats-examples2
-  (let [cheats (frequencies (d/num-cheats example #(g/diamond-around 2 20 %) 50))]
+  (let [cheats (frequencies (d/num-cheats example #(p/diamond-around 2 20 %) 50))]
     (are [expected num]
          (= expected (cheats num))
       32 50
