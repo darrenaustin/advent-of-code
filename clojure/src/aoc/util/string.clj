@@ -2,7 +2,9 @@
   (:refer-clojure :exclude [int ints])
   (:require
    [clojure.pprint :refer [cl-format]]
-   [clojure.string :as str]))
+   [clojure.string :as str])
+  (:import
+   [java.util.regex Matcher]))
 
 (def alphabet "abcdefghijklmnopqrstuvwxyz")
 
@@ -86,8 +88,8 @@
 (defn re-indices [pattern s]
   (let [m (re-matcher (re-pattern pattern) s)]
     ((fn step []
-       (when (. m find)
-         (cons [(. m start) (. m end)]
+       (when (Matcher/.find m)
+         (cons [(Matcher/.start m) (Matcher/.end m)]
                (lazy-seq (step))))))))
 
 (defn substring-replace [s [start end] replacement]

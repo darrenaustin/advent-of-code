@@ -35,5 +35,4 @@
 (defn part2 [input]
   (min-steps (last (s/lines input))
              "e"
-             (->> (parse-rules input)
-                  (sort-by (comp count second) >))))
+             (sort-by (comp count second) > (parse-rules input))))

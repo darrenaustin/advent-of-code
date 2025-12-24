@@ -82,8 +82,10 @@
 (defn eq-pos-int? [x] (and (== (int x) x) (pos? x)))
 
 (defn divisors [n]
-  ;; TODO: this is slow, probably should have a prime factorization instead.
-  (filter (partial div? n) (range 1 (inc n))))
+  (->> (range 1 (inc (math/sqrt n)))
+       (filter (fn [d] (div? n d)))
+       (mapcat (fn [d] [d (/ n d)]))
+       sort))
 
 (defn- extended-gcd [a b]
   (loop [old-r a, r b
