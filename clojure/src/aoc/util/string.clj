@@ -83,6 +83,16 @@
   [re s]
   (map second (re-seq (re-pattern (str "(?=(" re "))")) s)))
 
+(defn re-indices [pattern s]
+  (let [m (re-matcher (re-pattern pattern) s)]
+    ((fn step []
+       (when (. m find)
+         (cons [(. m start) (. m end)]
+               (lazy-seq (step))))))))
+
+(defn substring-replace [s [start end] replacement]
+  (str (subs s 0 start) replacement (subs s end)))
+
 (defn to-hex
   "Converts a number to its hexadecimal string representation.
    Supports optional minimum padding width and padding character (default '0')."
