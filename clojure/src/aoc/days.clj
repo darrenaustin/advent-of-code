@@ -29,6 +29,7 @@
    [aoc2015.day22]
    [aoc2015.day23]
    [aoc2015.day24]
+   [aoc2015.day25]
    [aoc2016.day01]
    [aoc2016.day08]
    [aoc2017.day10]
