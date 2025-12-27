@@ -90,6 +90,46 @@
           "day": 17,
           "path": "day17.clj",
           "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
+        },
+        {
+          "day": 19,
+          "path": "day19.clj",
+          "stars": 2
+        },
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
         }
       ]
     },
@@ -100,6 +140,11 @@
         {
           "day": 1,
           "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
           "stars": 2
         }
       ]
@@ -301,8 +346,18 @@
           "stars": 2
         },
         {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
           "day": 9,
           "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
           "stars": 2
         },
         {
@@ -376,6 +431,11 @@
           "day": 1,
           "path": "day01.clj",
           "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
         }
       ]
     },
@@ -386,6 +446,11 @@
         {
           "day": 1,
           "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
           "stars": 2
         }
       ]
