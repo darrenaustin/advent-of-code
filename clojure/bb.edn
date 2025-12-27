@@ -31,4 +31,6 @@
   checkin     {:doc "Code checks to do before checking into the repo."
                :depends [format clean-ns diagnostics splint test]}
   update-stats {:doc "Update the stats.json file with all the days that have been solved. WARNING: very slow!"
-                :task (clojure (str "-M -m aoc.stats " (str/join " " *command-line-args*)))}}}
+                :task (clojure (str "-M -m aoc.stats " (str/join " " *command-line-args*)))}
+  update-stars {:doc "Update the stars.md scorecard with all the data from the stats.md file."
+                :task (clojure (str "-M -m aoc.stars " (str/join " " *command-line-args*)))}}}
