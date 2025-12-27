@@ -45,6 +45,18 @@
 (def dir-left dir-w)
 (def dir-right dir-e)
 
+(def dir->offset
+  "Common letter mappings to direction offsets."
+  {\U dir-up
+   \D dir-down
+   \L dir-left
+   \R dir-right
+
+   \^ dir-up
+   \v dir-down
+   \< dir-left
+   \> dir-right})
+
 (def orthogonal-dirs
   "List of orthogonal direction vectors (up, right, down, left)."
   [dir-up dir-right dir-down dir-left])
