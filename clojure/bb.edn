@@ -6,7 +6,7 @@
 
   clean       {:doc  "Clean all generated build artifacts."
                :task (shell "rm -rf .cpcache target")}
-  day         {:doc  "Execute the given day(s)."
+  aoc         {:doc  "Execute the given day(s)."
                :task (clojure (str "-M -m aoc.core " (str/join " " *command-line-args*)))}
   new-day     {:doc  "Create skeleton src, test, input, and answer files for the given day."
                :task (exec 'tasks/new-day)}
