@@ -11,7 +11,7 @@
           (map name)
           (map #(re-find #"aoc(\d+).day(\d+)$" %))
           (remove nil?)
-          (map (fn [[_ ys ds]] [(Integer/parseInt ys) (Integer/parseInt ds)])))
+          (map (fn [[_ ys ds]] [(Integer/parseInt ys 10) (Integer/parseInt ds 10)])))
     conj
     (all-ns))))
 
@@ -30,8 +30,8 @@
 
 (defn parse-day-specs [s]
   (if-let [[_ year _ day-num] (re-find #"(\d+)(\.(\d+))?" s)]
-    [(when year (read-string year))
-     (when day-num (read-string day-num))]
+    [(when year (Integer/parseInt year 10))
+     (when day-num (Integer/parseInt day-num 10))]
     (throw (Exception. (format "Invalid year.day argument: %s" s)))))
 
 (defn -main [& args]
