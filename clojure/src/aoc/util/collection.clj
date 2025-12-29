@@ -46,6 +46,11 @@
 (defn keys-when-val [pred m]
   (map first (filter (fn [[_ val]] (pred val)) m)))
 
+(defn dissoc-in [m [k & ks]]
+  (if ks
+    (update m k dissoc-in ks)
+    (dissoc m k)))
+
 (defn indexed
   "Returns a sequence of [index value] pairs from the collection.
    Example: (indexed [:a :b :c]) => ([0 :a] [1 :b] [2 :c])"
