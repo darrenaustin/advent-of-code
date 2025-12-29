@@ -176,6 +176,11 @@
           "day": 8,
           "path": "day08.clj",
           "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
         }
       ]
     },
