@@ -11,8 +11,8 @@
    (let [x 10
          y (dbg \"y:\" (* x 2))] ;; prints \"y: 20\"
      (+ x y))                  ;; returns 30"
-  ([o] (pprint o) o)
-  ([msg o] (print msg (with-out-str (pprint o))) o))
+  ([o] (pprint o) (flush) o)
+  ([msg o] (print msg (with-out-str (pprint o))) (flush) o))
 
 (defmacro dbg->
   "Threads x through form as the first parameter, printing the result.
