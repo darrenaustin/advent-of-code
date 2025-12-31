@@ -68,6 +68,12 @@
       (when more
         (recur (inc idx) more)))))
 
+(defn indexes-by [f coll]
+  (->> coll
+       (map-indexed vector)
+       (filter (comp f second))
+       (map first)))
+
 (defn first-duplicate
   "Returns the first element in the collection that has appeared previously.
    Returns nil if no duplicates are found.
