@@ -4,7 +4,8 @@
    [babashka.fs :as fs]
    [cheshire.core :as json]
    [clojure.string :as str]
-   [selmer.parser :refer [render-file]]))
+   [selmer.parser :refer [render-file]])
+  (:import [org.jsoup.parser Parser]))
 
 (def now (java.time.LocalDate/now))
 (def current-year (.getYear now))
@@ -30,6 +31,9 @@
 (defn- answer-path [y d] (format "%s/%02d_answer.json" (input-dir y) d))
 
 (def days-file "src/aoc/days.clj")
+
+(defn- html-unescape [s]
+  (Parser/unescapeEntities s false))
 
 (defn load-session []
   (try
@@ -85,7 +89,7 @@
                        {})
         response     (curl/get (problem-url year day) headers)
         body         (:body (curl/get (problem-url year day) headers))
-        name         (second (re-find #"--- Day \d+: (.*) ---" body))]
+        name         (html-unescape (second (re-find #"--- Day \d+: (.*) ---" body)))]
     (if (= (:status response) 200)
       (do
         (fs/create-dirs (input-dir year))
