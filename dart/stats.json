@@ -1,0 +1,915 @@
+{
+    "language": "Dart",
+    "path": "dart",
+    "years": [
+        {
+            "year": 2015,
+            "path": "packages/aoc2015/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 19,
+                    "path": "day19.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 20,
+                    "path": "day20.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 21,
+                    "path": "day21.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 22,
+                    "path": "day22.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 23,
+                    "path": "day23.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 24,
+                    "path": "day24.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 25,
+                    "path": "day25.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2016,
+            "path": "packages/aoc2016/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 19,
+                    "path": "day19.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 20,
+                    "path": "day20.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 21,
+                    "path": "day21.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 22,
+                    "path": "day22.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 23,
+                    "path": "day23.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 24,
+                    "path": "day24.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 25,
+                    "path": "day25.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2017,
+            "path": "packages/aoc2017/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2018,
+            "path": "packages/aoc2018/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2019,
+            "path": "packages/aoc2019/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2020,
+            "path": "packages/aoc2020/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 19,
+                    "path": "day19.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2021,
+            "path": "packages/aoc2021/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 20,
+                    "path": "day20.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 21,
+                    "path": "day21.dart",
+                    "stars": 1
+                },
+                {
+                    "day": 23,
+                    "path": "day23.dart",
+                    "stars": 1
+                },
+                {
+                    "day": 25,
+                    "path": "day25.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2022,
+            "path": "packages/aoc2022/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 19,
+                    "path": "day19.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 20,
+                    "path": "day20.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 21,
+                    "path": "day21.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 22,
+                    "path": "day22.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 23,
+                    "path": "day23.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 24,
+                    "path": "day24.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 25,
+                    "path": "day25.dart",
+                    "stars": 2
+                }
+            ]
+        },
+        {
+            "year": 2023,
+            "path": "packages/aoc2023/lib/src",
+            "days": [
+                {
+                    "day": 1,
+                    "path": "day01.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 2,
+                    "path": "day02.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 3,
+                    "path": "day03.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 4,
+                    "path": "day04.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 5,
+                    "path": "day05.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 6,
+                    "path": "day06.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 7,
+                    "path": "day07.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 8,
+                    "path": "day08.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 9,
+                    "path": "day09.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 10,
+                    "path": "day10.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 11,
+                    "path": "day11.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 12,
+                    "path": "day12.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 13,
+                    "path": "day13.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 14,
+                    "path": "day14.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 15,
+                    "path": "day15.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 16,
+                    "path": "day16.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 17,
+                    "path": "day17.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 18,
+                    "path": "day18.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 19,
+                    "path": "day19.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 20,
+                    "path": "day20.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 21,
+                    "path": "day21.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 22,
+                    "path": "day22.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 23,
+                    "path": "day23.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 24,
+                    "path": "day24.dart",
+                    "stars": 2
+                },
+                {
+                    "day": 25,
+                    "path": "day25.dart",
+                    "stars": 2
+                }
+            ]
+        }
+    ]
+}

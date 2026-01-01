@@ -35,6 +35,17 @@ abstract class AdventDay {
     print('');
   }
 
+  Future<int> stars() async {
+    int part(int partNum) {
+      final inputText = input();
+      final answer = partNum == 1 ? part1(inputText) : part2(inputText);
+      final expected = partNum == 1 ? answer1 : answer2;
+      return (expected != null && (answer == expected)) ? 1 : 0;
+    }
+
+    return part(1) + part(2);
+  }
+
   void testPart1() {
     final result = part1(input());
     if (answer1 == null) {
@@ -57,8 +68,8 @@ abstract class AdventDay {
 
   static const lastStarSolution = '🎄 Got em all! 🎉';
 
-  static final inputRepoBase = String.fromEnvironment('INPUT_REPO',
-      defaultValue: '../../../inputs');
+  static final inputRepoBase =
+      String.fromEnvironment('INPUT_REPO', defaultValue: '../../../inputs');
 
   String get _inputFileName =>
       '$inputRepoBase/$year/${day.toString().padLeft(2, '0')}_input.txt';
