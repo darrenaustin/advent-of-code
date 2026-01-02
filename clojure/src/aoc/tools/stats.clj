@@ -1,4 +1,4 @@
-(ns aoc.stats
+(ns aoc.tools.stats
   (:require
    [aoc.core :as core]
    [aoc.day :as day]

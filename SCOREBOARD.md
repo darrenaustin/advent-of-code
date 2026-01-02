@@ -3,7 +3,7 @@
 <summary> Solutions for 2015 </summary>
 </br>
 
-|                      2015                      | Title                                  |                  Clojure                   |                          Dart                          |
+|                      2015                      | Title                                  |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2015/day/1)  | Not Quite Lisp                         | [day01.clj](clojure/src/aoc2015/day01.clj) | [day01.dart](dart/packages/aoc2015/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2015/day/2)  | I Was Told There Would Be No Math      | [day02.clj](clojure/src/aoc2015/day02.clj) | [day02.dart](dart/packages/aoc2015/lib/src/day02.dart) |
@@ -37,7 +37,7 @@
 <summary> Solutions for 2016 </summary>
 </br>
 
-|                      2016                      | Title                                  |                  Clojure                   |                          Dart                          |
+|                      2016                      | Title                                  |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2016/day/1)  | No Time for a Taxicab                  | [day01.clj](clojure/src/aoc2016/day01.clj) | [day01.dart](dart/packages/aoc2016/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2016/day/2)  | Bathroom Security                      | [day02.clj](clojure/src/aoc2016/day02.clj) | [day02.dart](dart/packages/aoc2016/lib/src/day02.dart) |
@@ -71,7 +71,7 @@
 <summary> Solutions for 2017 </summary>
 </br>
 
-|                      2017                      | Title                                   |                  Clojure                   |                          Dart                          |
+|                      2017                      | Title                                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :-------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2017/day/1)  | Inverse Captcha                         |                     -                      | [day01.dart](dart/packages/aoc2017/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2017/day/2)  | Corruption Checksum                     |                     -                      | [day02.dart](dart/packages/aoc2017/lib/src/day02.dart) |
@@ -105,7 +105,7 @@
 <summary> Solutions for 2018 </summary>
 </br>
 
-|                      2018                      | Title                                |                  Clojure                   |                          Dart                          |
+|                      2018                      | Title                                |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :----------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2018/day/1)  | Chronal Calibration                  |                     -                      | [day01.dart](dart/packages/aoc2018/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2018/day/2)  | Inventory Management System          |                     -                      | [day02.dart](dart/packages/aoc2018/lib/src/day02.dart) |
@@ -139,7 +139,7 @@
 <summary> Solutions for 2019 </summary>
 </br>
 
-|                      2019                      | Title                              |                  Clojure                   |                          Dart                          |
+|                      2019                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :--------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2019/day/1)  | The Tyranny of the Rocket Equation |                     -                      | [day01.dart](dart/packages/aoc2019/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2019/day/2)  | 1202 Program Alarm                 | [day02.clj](clojure/src/aoc2019/day02.clj) | [day02.dart](dart/packages/aoc2019/lib/src/day02.dart) |
@@ -173,7 +173,7 @@
 <summary> Solutions for 2020 </summary>
 </br>
 
-|                      2020                      | Title                   |                  Clojure                   |                          Dart                          |
+|                      2020                      | Title                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :---------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2020/day/1)  | Report Repair           |                     -                      | [day01.dart](dart/packages/aoc2020/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2020/day/2)  | Password Philosophy     |                     -                      | [day02.dart](dart/packages/aoc2020/lib/src/day02.dart) |
@@ -207,7 +207,7 @@
 <summary> Solutions for 2021 </summary>
 </br>
 
-|                      2021                      | Title                   |                  Clojure                   |                          Dart                          |
+|                      2021                      | Title                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :---------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2021/day/1)  | Sonar Sweep             | [day01.clj](clojure/src/aoc2021/day01.clj) | [day01.dart](dart/packages/aoc2021/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2021/day/2)  | Dive!                   |                     -                      | [day02.dart](dart/packages/aoc2021/lib/src/day02.dart) |
@@ -241,7 +241,7 @@
 <summary> Solutions for 2022 </summary>
 </br>
 
-|                      2022                      | Title                    |                  Clojure                   |                          Dart                          |
+|                      2022                      | Title                    |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :----------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2022/day/1)  | Calorie Counting         | [day01.clj](clojure/src/aoc2022/day01.clj) | [day01.dart](dart/packages/aoc2022/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2022/day/2)  | Rock Paper Scissors      |                     -                      | [day02.dart](dart/packages/aoc2022/lib/src/day02.dart) |
@@ -275,7 +275,7 @@
 <summary> Solutions for 2023 </summary>
 </br>
 
-|                      2023                      | Title                           |                  Clojure                   |                          Dart                          |
+|                      2023                      | Title                           |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------ | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2023/day/1)  | Trebuchet?!                     | [day01.clj](clojure/src/aoc2023/day01.clj) | [day01.dart](dart/packages/aoc2023/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2023/day/2)  | Cube Conundrum                  |                     -                      | [day02.dart](dart/packages/aoc2023/lib/src/day02.dart) |
@@ -309,33 +309,33 @@
 <summary> Solutions for 2024 </summary>
 </br>
 
-|                      2024                      | Title                  |                  Clojure                   | Dart  |
-| :--------------------------------------------: | :--------------------- | :----------------------------------------: | :---: |
-| [Day 01](https://adventofcode.com/2024/day/1)  | Historian Hysteria     | [day01.clj](clojure/src/aoc2024/day01.clj) |   -   |
-| [Day 02](https://adventofcode.com/2024/day/2)  | Red-Nosed Reports      | [day02.clj](clojure/src/aoc2024/day02.clj) |   -   |
-| [Day 03](https://adventofcode.com/2024/day/3)  | Mull It Over           | [day03.clj](clojure/src/aoc2024/day03.clj) |   -   |
-| [Day 04](https://adventofcode.com/2024/day/4)  | Ceres Search           | [day04.clj](clojure/src/aoc2024/day04.clj) |   -   |
-| [Day 05](https://adventofcode.com/2024/day/5)  | Print Queue            | [day05.clj](clojure/src/aoc2024/day05.clj) |   -   |
-| [Day 06](https://adventofcode.com/2024/day/6)  | Guard Gallivant        | [day06.clj](clojure/src/aoc2024/day06.clj) |   -   |
-| [Day 07](https://adventofcode.com/2024/day/7)  | Bridge Repair          | [day07.clj](clojure/src/aoc2024/day07.clj) |   -   |
-| [Day 08](https://adventofcode.com/2024/day/8)  | Resonant Collinearity  | [day08.clj](clojure/src/aoc2024/day08.clj) |   -   |
-| [Day 09](https://adventofcode.com/2024/day/9)  | Disk Fragmenter        | [day09.clj](clojure/src/aoc2024/day09.clj) |   -   |
-| [Day 10](https://adventofcode.com/2024/day/10) | Hoof It                | [day10.clj](clojure/src/aoc2024/day10.clj) |   -   |
-| [Day 11](https://adventofcode.com/2024/day/11) | Plutonian Pebbles      | [day11.clj](clojure/src/aoc2024/day11.clj) |   -   |
-| [Day 12](https://adventofcode.com/2024/day/12) | Garden Groups          | [day12.clj](clojure/src/aoc2024/day12.clj) |   -   |
-| [Day 13](https://adventofcode.com/2024/day/13) | Claw Contraption       | [day13.clj](clojure/src/aoc2024/day13.clj) |   -   |
-| [Day 14](https://adventofcode.com/2024/day/14) | Restroom Redoubt       | [day14.clj](clojure/src/aoc2024/day14.clj) |   -   |
-| [Day 15](https://adventofcode.com/2024/day/15) | Warehouse Woes         | [day15.clj](clojure/src/aoc2024/day15.clj) |   -   |
-| [Day 16](https://adventofcode.com/2024/day/16) | Reindeer Maze          | [day16.clj](clojure/src/aoc2024/day16.clj) |   -   |
-| [Day 17](https://adventofcode.com/2024/day/17) | Chronospatial Computer | [day17.clj](clojure/src/aoc2024/day17.clj) |   -   |
-| [Day 18](https://adventofcode.com/2024/day/18) | RAM Run                | [day18.clj](clojure/src/aoc2024/day18.clj) |   -   |
-| [Day 19](https://adventofcode.com/2024/day/19) | Linen Layout           | [day19.clj](clojure/src/aoc2024/day19.clj) |   -   |
-| [Day 20](https://adventofcode.com/2024/day/20) | Race Condition         | [day20.clj](clojure/src/aoc2024/day20.clj) |   -   |
-| [Day 21](https://adventofcode.com/2024/day/21) | Keypad Conundrum       | [day21.clj](clojure/src/aoc2024/day21.clj) |   -   |
-| [Day 22](https://adventofcode.com/2024/day/22) | Monkey Market          | [day22.clj](clojure/src/aoc2024/day22.clj) |   -   |
-| [Day 23](https://adventofcode.com/2024/day/23) | LAN Party              | [day23.clj](clojure/src/aoc2024/day23.clj) |   -   |
-| [Day 24](https://adventofcode.com/2024/day/24) | Crossed Wires          | [day24.clj](clojure/src/aoc2024/day24.clj) |   -   |
-| [Day 25](https://adventofcode.com/2024/day/25) | Code Chronicle         | [day25.clj](clojure/src/aoc2024/day25.clj) |   -   |
+|                      2024                      | Title                  |        [Clojure](clojure/README.md)        | [Dart](dart/README.md) |
+| :--------------------------------------------: | :--------------------- | :----------------------------------------: | :--------------------: |
+| [Day 01](https://adventofcode.com/2024/day/1)  | Historian Hysteria     | [day01.clj](clojure/src/aoc2024/day01.clj) |           -            |
+| [Day 02](https://adventofcode.com/2024/day/2)  | Red-Nosed Reports      | [day02.clj](clojure/src/aoc2024/day02.clj) |           -            |
+| [Day 03](https://adventofcode.com/2024/day/3)  | Mull It Over           | [day03.clj](clojure/src/aoc2024/day03.clj) |           -            |
+| [Day 04](https://adventofcode.com/2024/day/4)  | Ceres Search           | [day04.clj](clojure/src/aoc2024/day04.clj) |           -            |
+| [Day 05](https://adventofcode.com/2024/day/5)  | Print Queue            | [day05.clj](clojure/src/aoc2024/day05.clj) |           -            |
+| [Day 06](https://adventofcode.com/2024/day/6)  | Guard Gallivant        | [day06.clj](clojure/src/aoc2024/day06.clj) |           -            |
+| [Day 07](https://adventofcode.com/2024/day/7)  | Bridge Repair          | [day07.clj](clojure/src/aoc2024/day07.clj) |           -            |
+| [Day 08](https://adventofcode.com/2024/day/8)  | Resonant Collinearity  | [day08.clj](clojure/src/aoc2024/day08.clj) |           -            |
+| [Day 09](https://adventofcode.com/2024/day/9)  | Disk Fragmenter        | [day09.clj](clojure/src/aoc2024/day09.clj) |           -            |
+| [Day 10](https://adventofcode.com/2024/day/10) | Hoof It                | [day10.clj](clojure/src/aoc2024/day10.clj) |           -            |
+| [Day 11](https://adventofcode.com/2024/day/11) | Plutonian Pebbles      | [day11.clj](clojure/src/aoc2024/day11.clj) |           -            |
+| [Day 12](https://adventofcode.com/2024/day/12) | Garden Groups          | [day12.clj](clojure/src/aoc2024/day12.clj) |           -            |
+| [Day 13](https://adventofcode.com/2024/day/13) | Claw Contraption       | [day13.clj](clojure/src/aoc2024/day13.clj) |           -            |
+| [Day 14](https://adventofcode.com/2024/day/14) | Restroom Redoubt       | [day14.clj](clojure/src/aoc2024/day14.clj) |           -            |
+| [Day 15](https://adventofcode.com/2024/day/15) | Warehouse Woes         | [day15.clj](clojure/src/aoc2024/day15.clj) |           -            |
+| [Day 16](https://adventofcode.com/2024/day/16) | Reindeer Maze          | [day16.clj](clojure/src/aoc2024/day16.clj) |           -            |
+| [Day 17](https://adventofcode.com/2024/day/17) | Chronospatial Computer | [day17.clj](clojure/src/aoc2024/day17.clj) |           -            |
+| [Day 18](https://adventofcode.com/2024/day/18) | RAM Run                | [day18.clj](clojure/src/aoc2024/day18.clj) |           -            |
+| [Day 19](https://adventofcode.com/2024/day/19) | Linen Layout           | [day19.clj](clojure/src/aoc2024/day19.clj) |           -            |
+| [Day 20](https://adventofcode.com/2024/day/20) | Race Condition         | [day20.clj](clojure/src/aoc2024/day20.clj) |           -            |
+| [Day 21](https://adventofcode.com/2024/day/21) | Keypad Conundrum       | [day21.clj](clojure/src/aoc2024/day21.clj) |           -            |
+| [Day 22](https://adventofcode.com/2024/day/22) | Monkey Market          | [day22.clj](clojure/src/aoc2024/day22.clj) |           -            |
+| [Day 23](https://adventofcode.com/2024/day/23) | LAN Party              | [day23.clj](clojure/src/aoc2024/day23.clj) |           -            |
+| [Day 24](https://adventofcode.com/2024/day/24) | Crossed Wires          | [day24.clj](clojure/src/aoc2024/day24.clj) |           -            |
+| [Day 25](https://adventofcode.com/2024/day/25) | Code Chronicle         | [day25.clj](clojure/src/aoc2024/day25.clj) |           -            |
 
  </details>
 
@@ -343,20 +343,20 @@
 <summary> Solutions for 2025 </summary>
 </br>
 
-|                      2025                      | Title               |                  Clojure                   | Dart  |
-| :--------------------------------------------: | :------------------ | :----------------------------------------: | :---: |
-| [Day 01](https://adventofcode.com/2025/day/1)  | Secret Entrance     | [day01.clj](clojure/src/aoc2025/day01.clj) |   -   |
-| [Day 02](https://adventofcode.com/2025/day/2)  | Gift Shop           | [day02.clj](clojure/src/aoc2025/day02.clj) |   -   |
-| [Day 03](https://adventofcode.com/2025/day/3)  | Lobby               | [day03.clj](clojure/src/aoc2025/day03.clj) |   -   |
-| [Day 04](https://adventofcode.com/2025/day/4)  | Printing Department | [day04.clj](clojure/src/aoc2025/day04.clj) |   -   |
-| [Day 05](https://adventofcode.com/2025/day/5)  | Cafeteria           | [day05.clj](clojure/src/aoc2025/day05.clj) |   -   |
-| [Day 06](https://adventofcode.com/2025/day/6)  | Trash Compactor     | [day06.clj](clojure/src/aoc2025/day06.clj) |   -   |
-| [Day 07](https://adventofcode.com/2025/day/7)  | Laboratories        | [day07.clj](clojure/src/aoc2025/day07.clj) |   -   |
-| [Day 08](https://adventofcode.com/2025/day/8)  | Playground          | [day08.clj](clojure/src/aoc2025/day08.clj) |   -   |
-| [Day 09](https://adventofcode.com/2025/day/9)  | Movie Theater       | [day09.clj](clojure/src/aoc2025/day09.clj) |   -   |
-| [Day 10](https://adventofcode.com/2025/day/10) | Factory             | [day10.clj](clojure/src/aoc2025/day10.clj) |   -   |
-| [Day 11](https://adventofcode.com/2025/day/11) | Reactor             | [day11.clj](clojure/src/aoc2025/day11.clj) |   -   |
-| [Day 12](https://adventofcode.com/2025/day/12) | Christmas Tree Farm | [day12.clj](clojure/src/aoc2025/day12.clj) |   -   |
+|                      2025                      | Title               |        [Clojure](clojure/README.md)        | [Dart](dart/README.md) |
+| :--------------------------------------------: | :------------------ | :----------------------------------------: | :--------------------: |
+| [Day 01](https://adventofcode.com/2025/day/1)  | Secret Entrance     | [day01.clj](clojure/src/aoc2025/day01.clj) |           -            |
+| [Day 02](https://adventofcode.com/2025/day/2)  | Gift Shop           | [day02.clj](clojure/src/aoc2025/day02.clj) |           -            |
+| [Day 03](https://adventofcode.com/2025/day/3)  | Lobby               | [day03.clj](clojure/src/aoc2025/day03.clj) |           -            |
+| [Day 04](https://adventofcode.com/2025/day/4)  | Printing Department | [day04.clj](clojure/src/aoc2025/day04.clj) |           -            |
+| [Day 05](https://adventofcode.com/2025/day/5)  | Cafeteria           | [day05.clj](clojure/src/aoc2025/day05.clj) |           -            |
+| [Day 06](https://adventofcode.com/2025/day/6)  | Trash Compactor     | [day06.clj](clojure/src/aoc2025/day06.clj) |           -            |
+| [Day 07](https://adventofcode.com/2025/day/7)  | Laboratories        | [day07.clj](clojure/src/aoc2025/day07.clj) |           -            |
+| [Day 08](https://adventofcode.com/2025/day/8)  | Playground          | [day08.clj](clojure/src/aoc2025/day08.clj) |           -            |
+| [Day 09](https://adventofcode.com/2025/day/9)  | Movie Theater       | [day09.clj](clojure/src/aoc2025/day09.clj) |           -            |
+| [Day 10](https://adventofcode.com/2025/day/10) | Factory             | [day10.clj](clojure/src/aoc2025/day10.clj) |           -            |
+| [Day 11](https://adventofcode.com/2025/day/11) | Reactor             | [day11.clj](clojure/src/aoc2025/day11.clj) |           -            |
+| [Day 12](https://adventofcode.com/2025/day/12) | Christmas Tree Farm | [day12.clj](clojure/src/aoc2025/day12.clj) |           -            |
 
  </details>
 

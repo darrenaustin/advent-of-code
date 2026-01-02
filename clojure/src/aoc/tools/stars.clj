@@ -1,4 +1,4 @@
-(ns aoc.stars
+(ns aoc.tools.stars
   (:require
    [aoc.util.collection :as c]
    [cheshire.core :as json]
@@ -23,6 +23,10 @@
            "-"))
        year-stats year-paths))
 
+(defn language-names [stats]
+  (map (fn [l]
+         (str "[" (:language l) "](" (:path l) "/README.md)")) stats))
+
 (defn table-for-year [year stats names]
   (let [year-stats (map #(get-in % [:years year]) stats)
         year-paths (map (fn [l] (str/join "/" [(:path l) (get-in l [:years year :path])])) stats)]
@@ -30,7 +34,7 @@
     (println "<summary> Solutions for" year "</summary>")
     (println "</br>")
     (println)
-    (println "|" year "| Title |" (str/join "|" (map :language stats)) "|")
+    (println "|" year "| Title |" (str/join "|" (language-names stats)) "|")
     (println "| :----: | :---- |" (str/join "|" (repeat (count stats) ":----:")) "|")
 
     (doseq [day (range 1 (inc (days-per-year year)))]
