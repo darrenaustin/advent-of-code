@@ -1,4 +1,4 @@
-#🎄⭐️ Star Scoreboard ⭐️🎄
+# 🎄⭐️ Star Scoreboard ⭐️🎄
 <details>
 <summary> Solutions for 2015 </summary>
 </br>
