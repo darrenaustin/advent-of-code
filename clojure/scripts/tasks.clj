@@ -5,7 +5,8 @@
    [cheshire.core :as json]
    [clojure.string :as str]
    [selmer.parser :refer [render-file]])
-  (:import [org.jsoup.parser Parser]))
+  (:import
+   [org.jsoup.parser Parser]))
 
 (def now (java.time.LocalDate/now))
 (def current-year (.getYear now))

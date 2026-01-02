@@ -56,6 +56,26 @@
       (is (= 1 (count result)))
       (is (contains? #{:a :b} (get result 1))))))
 
+(deftest keys-when-val-test
+  (testing "keys-when-val returns keys where value matches predicate"
+    (is (= [:a :c] (sort (c/keys-when-val odd? {:a 1 :b 2 :c 3}))))
+    (is (empty? (c/keys-when-val neg? {:a 1 :b 2})))
+    (is (= [:b] (c/keys-when-val #{2} {:a 1 :b 2})))))
+
+(deftest map-by-test
+  (testing "map-by creates a map keyed by function result"
+    (is (= {1 {:id 1 :val "a"} 2 {:id 2 :val "b"}}
+           (c/map-by :id [{:id 1 :val "a"} {:id 2 :val "b"}])))
+    (is (= {1 "a" 3 "abc"} (c/map-by count ["a" "abc"])))))
+
+(deftest dissoc-in-test
+  (testing "dissoc-in removes nested keys"
+    (is (= {:a {:b 2}} (c/dissoc-in {:a {:b 2 :c 3}} [:a :c])))
+    (is (= {:a {}} (c/dissoc-in {:a {:b 2}} [:a :b])))
+    (is (= {} (c/dissoc-in {:a 1} [:a])))
+    (is (= {:a 1} (c/dissoc-in {:a 1} [:b])))
+    (is (= {:a {:b 1}} (c/dissoc-in {:a {:b 1}} [:a :c])))))
+
 (deftest indexed-test
   (testing "indexed creates index-value pairs"
     (is (= [[0 :a] [1 :b] [2 :c]]
@@ -74,6 +94,11 @@
     (is (nil? (c/index [:a :b :c] :d)))
     (is (nil? (c/index [] :a)))
     (is (= 1 (c/index [1 2 3 2 1] 2)))))
+
+(deftest indexes-by-test
+  (testing "indexes-by returns indices matching predicate"
+    (is (= [0 2] (c/indexes-by odd? [1 2 3 4])))
+    (is (empty? (c/indexes-by neg? [1 2 3])))))
 
 (deftest first-duplicate-test
   (testing "first-duplicate returns the first element that appears more than once"

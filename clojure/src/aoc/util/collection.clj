@@ -1,6 +1,5 @@
 (ns aoc.util.collection
-  (:import
-   (clojure.lang Util)))
+  "Utility functions for working with collections, including sequences and maps.")
 
 (defn first-where
   "Returns the first element in the collection that satisfies the predicate.
@@ -43,19 +42,21 @@
   [m]
   (into {} (for [[k v] m] [v k])))
 
-(defn keys-when-val [pred m]
-  (map first (filter (fn [[_ val]] (pred val)) m)))
+(defn keys-when-val
+  "Returns a sequence of keys in map `m` where the value satisfies `pred`."
+  [pred m]
+  (keep (fn [[k v]] (when (pred v) k)) m))
 
-(defn map-by [f coll]
+(defn map-by
+  "Returns a map where the keys are the result of applying `f` to each element of `coll`,
+   and the values are the elements themselves."
+  [f coll]
   (into {} (map (fn [e] [(f e) e])) coll))
 
-(defn map-vals [f m]
-  (into {} (map (fn [[k v]] [k (f v)]) m)))
-
-(defn map-keys [f m]
-  (into {} (map (fn [[k v]] [(f k) v]) m)))
-
-(defn dissoc-in [m [k & ks]]
+(defn dissoc-in
+  "Dissociates a value in a nested map structure, similar to `assoc-in` but for removal.
+   If the path doesn't exist, the map is returned unchanged."
+  [m [k & ks]]
   (if ks
     (update m k dissoc-in ks)
     (dissoc m k)))
@@ -71,17 +72,12 @@
    Returns nil if not found.
    Example: (index [:a :b :c] :b) => 1"
   [coll value]
-  (loop [idx 0 [e & more] coll]
-    (if (= e value)
-      idx
-      (when more
-        (recur (inc idx) more)))))
+  (first (keep-indexed (fn [i x] (when (= x value) i)) coll)))
 
-(defn indexes-by [f coll]
-  (->> coll
-       (map-indexed vector)
-       (filter (comp f second))
-       (map first)))
+(defn indexes-by
+  "Returns a sequence of indices of elements in `coll` that satisfy the predicate `f`."
+  [f coll]
+  (keep-indexed (fn [i x] (when (f x) i)) coll))
 
 (defn first-duplicate
   "Returns the first element in the collection that has appeared previously.
@@ -145,12 +141,13 @@
    detecting cycles to avoid computing all intermediate values.
    Useful for problems involving large iteration counts with repeating patterns."
   [iteration f x]
-  (loop [x x, iter 0, seen {}]
-    (if (contains? seen x)
-      (let [offset (seen x), period (- iter offset)
-            cycled-iter (+ offset (rem (- iteration offset) period))]
-        (first (first-where (fn [[_ v]] (= v cycled-iter)) seen)))
-      (recur (f x) (inc iter) (assoc seen x iter)))))
+  (loop [x x, iter 0, seen {}, history []]
+    (if-let [offset (seen x)]
+      (let [period (- iter offset)
+            remaining (- iteration offset)
+            cycled-iter (+ offset (mod remaining period))]
+        (nth history cycled-iter))
+      (recur (f x) (inc iter) (assoc seen x iter) (conj history x)))))
 
 ;; Allow (sort (by :surname asc :age desc) coll)
 ;;
@@ -159,13 +156,13 @@
   "Ascending comparison function for use with sort and by.
    Returns negative, zero, or positive based on comparison of a and b."
   [a b]
-  (Util/compare a b))
+  (compare a b))
 
 (defn desc
   "Descending comparison function for use with sort and by.
    Returns positive, zero, or negative based on comparison of a and b."
   [a b]
-  (Util/compare b a))
+  (compare b a))
 
 (defn by
   "Creates a comparator function for multi-key sorting.
