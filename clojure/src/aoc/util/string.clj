@@ -43,7 +43,8 @@
   "Returns a vector of all integers found in the string `s`.
    Handles negative numbers."
   [s]
-  (mapv read-int (re-seq #"-?\d+" s)))
+  (when (seq s)
+    (mapv read-int (re-seq #"-?\d+" s))))
 
 (defn int
   "Returns the first integer found in the string `s`.

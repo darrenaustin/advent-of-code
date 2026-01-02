@@ -50,7 +50,7 @@
 | [Day 09](https://adventofcode.com/2016/day/9)  | Explosives in Cyberspace               | [day09.clj](clojure/src/aoc2016/day09.clj) | [day09.dart](dart/packages/aoc2016/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2016/day/10) | Balance Bots                           | [day10.clj](clojure/src/aoc2016/day10.clj) | [day10.dart](dart/packages/aoc2016/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2016/day/11) | Radioisotope Thermoelectric Generators | [day11.clj](clojure/src/aoc2016/day11.clj) | [day11.dart](dart/packages/aoc2016/lib/src/day11.dart) |
-| [Day 12](https://adventofcode.com/2016/day/12) | Leonardo's Monorail                    |                     -                      | [day12.dart](dart/packages/aoc2016/lib/src/day12.dart) |
+| [Day 12](https://adventofcode.com/2016/day/12) | Leonardo's Monorail                    | [day12.clj](clojure/src/aoc2016/day12.clj) | [day12.dart](dart/packages/aoc2016/lib/src/day12.dart) |
 | [Day 13](https://adventofcode.com/2016/day/13) | A Maze of Twisty Little Cubicles       |                     -                      | [day13.dart](dart/packages/aoc2016/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2016/day/14) | One-Time Pad                           |                     -                      | [day14.dart](dart/packages/aoc2016/lib/src/day14.dart) |
 | [Day 15](https://adventofcode.com/2016/day/15) | Timing is Everything                   |                     -                      | [day15.dart](dart/packages/aoc2016/lib/src/day15.dart) |
@@ -61,9 +61,9 @@
 | [Day 20](https://adventofcode.com/2016/day/20) | Firewall Rules                         |                     -                      | [day20.dart](dart/packages/aoc2016/lib/src/day20.dart) |
 | [Day 21](https://adventofcode.com/2016/day/21) | Scrambled Letters and Hash             |                     -                      | [day21.dart](dart/packages/aoc2016/lib/src/day21.dart) |
 | [Day 22](https://adventofcode.com/2016/day/22) | Grid Computing                         |                     -                      | [day22.dart](dart/packages/aoc2016/lib/src/day22.dart) |
-| [Day 23](https://adventofcode.com/2016/day/23) | Safe Cracking                          |                     -                      | [day23.dart](dart/packages/aoc2016/lib/src/day23.dart) |
+| [Day 23](https://adventofcode.com/2016/day/23) | Safe Cracking                          | [day23.clj](clojure/src/aoc2016/day23.clj) | [day23.dart](dart/packages/aoc2016/lib/src/day23.dart) |
 | [Day 24](https://adventofcode.com/2016/day/24) | Air Duct Spelunking                    |                     -                      | [day24.dart](dart/packages/aoc2016/lib/src/day24.dart) |
-| [Day 25](https://adventofcode.com/2016/day/25) | Clock Signal                           |                     -                      | [day25.dart](dart/packages/aoc2016/lib/src/day25.dart) |
+| [Day 25](https://adventofcode.com/2016/day/25) | Clock Signal                           | [day25.clj](clojure/src/aoc2016/day25.clj) | [day25.dart](dart/packages/aoc2016/lib/src/day25.dart) |
 
  </details>
 

@@ -1,561 +1,727 @@
 {
-  "language" : "Clojure",
-  "path" : "clojure",
-  "years" : [ {
-    "year" : 2015,
-    "path" : "src/aoc2015",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 2,
-      "path" : "day02.clj",
-      "stars" : 2
-    }, {
-      "day" : 3,
-      "path" : "day03.clj",
-      "stars" : 2
-    }, {
-      "day" : 4,
-      "path" : "day04.clj",
-      "stars" : 2
-    }, {
-      "day" : 5,
-      "path" : "day05.clj",
-      "stars" : 2
-    }, {
-      "day" : 6,
-      "path" : "day06.clj",
-      "stars" : 2
-    }, {
-      "day" : 7,
-      "path" : "day07.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    }, {
-      "day" : 12,
-      "path" : "day12.clj",
-      "stars" : 2
-    }, {
-      "day" : 13,
-      "path" : "day13.clj",
-      "stars" : 2
-    }, {
-      "day" : 14,
-      "path" : "day14.clj",
-      "stars" : 2
-    }, {
-      "day" : 15,
-      "path" : "day15.clj",
-      "stars" : 2
-    }, {
-      "day" : 16,
-      "path" : "day16.clj",
-      "stars" : 2
-    }, {
-      "day" : 17,
-      "path" : "day17.clj",
-      "stars" : 2
-    }, {
-      "day" : 18,
-      "path" : "day18.clj",
-      "stars" : 2
-    }, {
-      "day" : 19,
-      "path" : "day19.clj",
-      "stars" : 2
-    }, {
-      "day" : 20,
-      "path" : "day20.clj",
-      "stars" : 2
-    }, {
-      "day" : 21,
-      "path" : "day21.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    }, {
-      "day" : 23,
-      "path" : "day23.clj",
-      "stars" : 2
-    }, {
-      "day" : 24,
-      "path" : "day24.clj",
-      "stars" : 2
-    }, {
-      "day" : 25,
-      "path" : "day25.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2016,
-    "path" : "src/aoc2016",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 2,
-      "path" : "day02.clj",
-      "stars" : 2
-    }, {
-      "day" : 3,
-      "path" : "day03.clj",
-      "stars" : 2
-    }, {
-      "day" : 4,
-      "path" : "day04.clj",
-      "stars" : 2
-    }, {
-      "day" : 5,
-      "path" : "day05.clj",
-      "stars" : 2
-    }, {
-      "day" : 6,
-      "path" : "day06.clj",
-      "stars" : 2
-    }, {
-      "day" : 7,
-      "path" : "day07.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2017,
-    "path" : "src/aoc2017",
-    "days" : [ {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 13,
-      "path" : "day13.clj",
-      "stars" : 2
-    }, {
-      "day" : 14,
-      "path" : "day14.clj",
-      "stars" : 2
-    }, {
-      "day" : 15,
-      "path" : "day15.clj",
-      "stars" : 2
-    }, {
-      "day" : 16,
-      "path" : "day16.clj",
-      "stars" : 2
-    }, {
-      "day" : 17,
-      "path" : "day17.clj",
-      "stars" : 2
-    }, {
-      "day" : 18,
-      "path" : "day18.clj",
-      "stars" : 2
-    }, {
-      "day" : 19,
-      "path" : "day19.clj",
-      "stars" : 2
-    }, {
-      "day" : 20,
-      "path" : "day20.clj",
-      "stars" : 2
-    }, {
-      "day" : 21,
-      "path" : "day21.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    }, {
-      "day" : 23,
-      "path" : "day23.clj",
-      "stars" : 2
-    }, {
-      "day" : 24,
-      "path" : "day24.clj",
-      "stars" : 2
-    }, {
-      "day" : 25,
-      "path" : "day25.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2018,
-    "path" : "src/aoc2018",
-    "days" : [ {
-      "day" : 6,
-      "path" : "day06.clj",
-      "stars" : 2
-    }, {
-      "day" : 7,
-      "path" : "day07.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    }, {
-      "day" : 12,
-      "path" : "day12.clj",
-      "stars" : 2
-    }, {
-      "day" : 13,
-      "path" : "day13.clj",
-      "stars" : 2
-    }, {
-      "day" : 14,
-      "path" : "day14.clj",
-      "stars" : 2
-    }, {
-      "day" : 15,
-      "path" : "day15.clj",
-      "stars" : 2
-    }, {
-      "day" : 16,
-      "path" : "day16.clj",
-      "stars" : 2
-    }, {
-      "day" : 17,
-      "path" : "day17.clj",
-      "stars" : 2
-    }, {
-      "day" : 18,
-      "path" : "day18.clj",
-      "stars" : 2
-    }, {
-      "day" : 19,
-      "path" : "day19.clj",
-      "stars" : 2
-    }, {
-      "day" : 20,
-      "path" : "day20.clj",
-      "stars" : 2
-    }, {
-      "day" : 21,
-      "path" : "day21.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    }, {
-      "day" : 23,
-      "path" : "day23.clj",
-      "stars" : 2
-    }, {
-      "day" : 24,
-      "path" : "day24.clj",
-      "stars" : 2
-    }, {
-      "day" : 25,
-      "path" : "day25.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2019,
-    "path" : "src/aoc2019",
-    "days" : [ {
-      "day" : 2,
-      "path" : "day02.clj",
-      "stars" : 2
-    }, {
-      "day" : 5,
-      "path" : "day05.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    }, {
-      "day" : 14,
-      "path" : "day14.clj",
-      "stars" : 2
-    }, {
-      "day" : 15,
-      "path" : "day15.clj",
-      "stars" : 2
-    }, {
-      "day" : 16,
-      "path" : "day16.clj",
-      "stars" : 2
-    }, {
-      "day" : 17,
-      "path" : "day17.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2020,
-    "path" : "src/aoc2020",
-    "days" : [ {
-      "day" : 20,
-      "path" : "day20.clj",
-      "stars" : 2
-    }, {
-      "day" : 21,
-      "path" : "day21.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    }, {
-      "day" : 23,
-      "path" : "day23.clj",
-      "stars" : 2
-    }, {
-      "day" : 24,
-      "path" : "day24.clj",
-      "stars" : 2
-    }, {
-      "day" : 25,
-      "path" : "day25.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2021,
-    "path" : "src/aoc2021",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 13,
-      "path" : "day13.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2022,
-    "path" : "src/aoc2022",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2023,
-    "path" : "src/aoc2023",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2024,
-    "path" : "src/aoc2024",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 2,
-      "path" : "day02.clj",
-      "stars" : 2
-    }, {
-      "day" : 3,
-      "path" : "day03.clj",
-      "stars" : 2
-    }, {
-      "day" : 4,
-      "path" : "day04.clj",
-      "stars" : 2
-    }, {
-      "day" : 5,
-      "path" : "day05.clj",
-      "stars" : 2
-    }, {
-      "day" : 6,
-      "path" : "day06.clj",
-      "stars" : 2
-    }, {
-      "day" : 7,
-      "path" : "day07.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    }, {
-      "day" : 12,
-      "path" : "day12.clj",
-      "stars" : 2
-    }, {
-      "day" : 13,
-      "path" : "day13.clj",
-      "stars" : 2
-    }, {
-      "day" : 14,
-      "path" : "day14.clj",
-      "stars" : 2
-    }, {
-      "day" : 15,
-      "path" : "day15.clj",
-      "stars" : 2
-    }, {
-      "day" : 16,
-      "path" : "day16.clj",
-      "stars" : 2
-    }, {
-      "day" : 17,
-      "path" : "day17.clj",
-      "stars" : 2
-    }, {
-      "day" : 18,
-      "path" : "day18.clj",
-      "stars" : 2
-    }, {
-      "day" : 19,
-      "path" : "day19.clj",
-      "stars" : 2
-    }, {
-      "day" : 20,
-      "path" : "day20.clj",
-      "stars" : 2
-    }, {
-      "day" : 21,
-      "path" : "day21.clj",
-      "stars" : 2
-    }, {
-      "day" : 22,
-      "path" : "day22.clj",
-      "stars" : 2
-    }, {
-      "day" : 23,
-      "path" : "day23.clj",
-      "stars" : 2
-    }, {
-      "day" : 24,
-      "path" : "day24.clj",
-      "stars" : 2
-    }, {
-      "day" : 25,
-      "path" : "day25.clj",
-      "stars" : 2
-    } ]
-  }, {
-    "year" : 2025,
-    "path" : "src/aoc2025",
-    "days" : [ {
-      "day" : 1,
-      "path" : "day01.clj",
-      "stars" : 2
-    }, {
-      "day" : 2,
-      "path" : "day02.clj",
-      "stars" : 2
-    }, {
-      "day" : 3,
-      "path" : "day03.clj",
-      "stars" : 2
-    }, {
-      "day" : 4,
-      "path" : "day04.clj",
-      "stars" : 2
-    }, {
-      "day" : 5,
-      "path" : "day05.clj",
-      "stars" : 2
-    }, {
-      "day" : 6,
-      "path" : "day06.clj",
-      "stars" : 2
-    }, {
-      "day" : 7,
-      "path" : "day07.clj",
-      "stars" : 2
-    }, {
-      "day" : 8,
-      "path" : "day08.clj",
-      "stars" : 2
-    }, {
-      "day" : 9,
-      "path" : "day09.clj",
-      "stars" : 2
-    }, {
-      "day" : 10,
-      "path" : "day10.clj",
-      "stars" : 2
-    }, {
-      "day" : 11,
-      "path" : "day11.clj",
-      "stars" : 2
-    }, {
-      "day" : 12,
-      "path" : "day12.clj",
-      "stars" : 2
-    } ]
-  } ]
+  "language": "Clojure",
+  "path": "clojure",
+  "years": [
+    {
+      "year": 2015,
+      "path": "src/aoc2015",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 2,
+          "path": "day02.clj",
+          "stars": 2
+        },
+        {
+          "day": 3,
+          "path": "day03.clj",
+          "stars": 2
+        },
+        {
+          "day": 4,
+          "path": "day04.clj",
+          "stars": 2
+        },
+        {
+          "day": 5,
+          "path": "day05.clj",
+          "stars": 2
+        },
+        {
+          "day": 6,
+          "path": "day06.clj",
+          "stars": 2
+        },
+        {
+          "day": 7,
+          "path": "day07.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 12,
+          "path": "day12.clj",
+          "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
+        },
+        {
+          "day": 14,
+          "path": "day14.clj",
+          "stars": 2
+        },
+        {
+          "day": 15,
+          "path": "day15.clj",
+          "stars": 2
+        },
+        {
+          "day": 16,
+          "path": "day16.clj",
+          "stars": 2
+        },
+        {
+          "day": 17,
+          "path": "day17.clj",
+          "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
+        },
+        {
+          "day": 19,
+          "path": "day19.clj",
+          "stars": 2
+        },
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "path": "src/aoc2016",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 2,
+          "path": "day02.clj",
+          "stars": 2
+        },
+        {
+          "day": 3,
+          "path": "day03.clj",
+          "stars": 2
+        },
+        {
+          "day": 4,
+          "path": "day04.clj",
+          "stars": 2
+        },
+        {
+          "day": 5,
+          "path": "day05.clj",
+          "stars": 2
+        },
+        {
+          "day": 6,
+          "path": "day06.clj",
+          "stars": 2
+        },
+        {
+          "day": 7,
+          "path": "day07.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 12,
+          "path": "day12.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "path": "src/aoc2017",
+      "days": [
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
+        },
+        {
+          "day": 14,
+          "path": "day14.clj",
+          "stars": 2
+        },
+        {
+          "day": 15,
+          "path": "day15.clj",
+          "stars": 2
+        },
+        {
+          "day": 16,
+          "path": "day16.clj",
+          "stars": 2
+        },
+        {
+          "day": 17,
+          "path": "day17.clj",
+          "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
+        },
+        {
+          "day": 19,
+          "path": "day19.clj",
+          "stars": 2
+        },
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "path": "src/aoc2018",
+      "days": [
+        {
+          "day": 6,
+          "path": "day06.clj",
+          "stars": 2
+        },
+        {
+          "day": 7,
+          "path": "day07.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 12,
+          "path": "day12.clj",
+          "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
+        },
+        {
+          "day": 14,
+          "path": "day14.clj",
+          "stars": 2
+        },
+        {
+          "day": 15,
+          "path": "day15.clj",
+          "stars": 2
+        },
+        {
+          "day": 16,
+          "path": "day16.clj",
+          "stars": 2
+        },
+        {
+          "day": 17,
+          "path": "day17.clj",
+          "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
+        },
+        {
+          "day": 19,
+          "path": "day19.clj",
+          "stars": 2
+        },
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "path": "src/aoc2019",
+      "days": [
+        {
+          "day": 2,
+          "path": "day02.clj",
+          "stars": 2
+        },
+        {
+          "day": 5,
+          "path": "day05.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 14,
+          "path": "day14.clj",
+          "stars": 2
+        },
+        {
+          "day": 15,
+          "path": "day15.clj",
+          "stars": 2
+        },
+        {
+          "day": 16,
+          "path": "day16.clj",
+          "stars": 2
+        },
+        {
+          "day": 17,
+          "path": "day17.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "path": "src/aoc2020",
+      "days": [
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "path": "src/aoc2021",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "path": "src/aoc2022",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "path": "src/aoc2023",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "path": "src/aoc2024",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 2,
+          "path": "day02.clj",
+          "stars": 2
+        },
+        {
+          "day": 3,
+          "path": "day03.clj",
+          "stars": 2
+        },
+        {
+          "day": 4,
+          "path": "day04.clj",
+          "stars": 2
+        },
+        {
+          "day": 5,
+          "path": "day05.clj",
+          "stars": 2
+        },
+        {
+          "day": 6,
+          "path": "day06.clj",
+          "stars": 2
+        },
+        {
+          "day": 7,
+          "path": "day07.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 12,
+          "path": "day12.clj",
+          "stars": 2
+        },
+        {
+          "day": 13,
+          "path": "day13.clj",
+          "stars": 2
+        },
+        {
+          "day": 14,
+          "path": "day14.clj",
+          "stars": 2
+        },
+        {
+          "day": 15,
+          "path": "day15.clj",
+          "stars": 2
+        },
+        {
+          "day": 16,
+          "path": "day16.clj",
+          "stars": 2
+        },
+        {
+          "day": 17,
+          "path": "day17.clj",
+          "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
+        },
+        {
+          "day": 19,
+          "path": "day19.clj",
+          "stars": 2
+        },
+        {
+          "day": 20,
+          "path": "day20.clj",
+          "stars": 2
+        },
+        {
+          "day": 21,
+          "path": "day21.clj",
+          "stars": 2
+        },
+        {
+          "day": 22,
+          "path": "day22.clj",
+          "stars": 2
+        },
+        {
+          "day": 23,
+          "path": "day23.clj",
+          "stars": 2
+        },
+        {
+          "day": 24,
+          "path": "day24.clj",
+          "stars": 2
+        },
+        {
+          "day": 25,
+          "path": "day25.clj",
+          "stars": 2
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "path": "src/aoc2025",
+      "days": [
+        {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
+          "day": 2,
+          "path": "day02.clj",
+          "stars": 2
+        },
+        {
+          "day": 3,
+          "path": "day03.clj",
+          "stars": 2
+        },
+        {
+          "day": 4,
+          "path": "day04.clj",
+          "stars": 2
+        },
+        {
+          "day": 5,
+          "path": "day05.clj",
+          "stars": 2
+        },
+        {
+          "day": 6,
+          "path": "day06.clj",
+          "stars": 2
+        },
+        {
+          "day": 7,
+          "path": "day07.clj",
+          "stars": 2
+        },
+        {
+          "day": 8,
+          "path": "day08.clj",
+          "stars": 2
+        },
+        {
+          "day": 9,
+          "path": "day09.clj",
+          "stars": 2
+        },
+        {
+          "day": 10,
+          "path": "day10.clj",
+          "stars": 2
+        },
+        {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
+          "day": 12,
+          "path": "day12.clj",
+          "stars": 2
+        }
+      ]
+    }
+  ]
 }
