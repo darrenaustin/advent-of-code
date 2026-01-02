@@ -9,7 +9,8 @@
 (defn input [] (d/day-input 2016 10))
 
 (defn- parse-locations [line]
-  (->> (re-seq #"(bot|output) (\d+)" line)
+  (->> line
+       (re-seq #"(bot|output) (\d+)")
        (map (fn [[_ type num]] [(keyword type) (s/int num)]))))
 
 (defn- parse-factory [input]

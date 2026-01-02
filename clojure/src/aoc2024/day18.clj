@@ -2,7 +2,8 @@
 (ns aoc2024.day18
   (:require
    [aoc.day :as d]
-   [aoc.util.pathfinding :as pf]
+   [aoc.util.math :as m]
+   [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
    [clojure.set :as set]
@@ -15,14 +16,14 @@
 
 (defn neighbors [grid]
   (fn [loc]
-    (into {} (map (fn [p] [p 1])
-                  (filter grid (p/orthogonal-to loc))))))
+    (filter grid (p/orthogonal-to loc))))
 
 (defn min-distance [grid bytes goal]
   (let [grid' (set/difference grid (set bytes))]
-    (pf/dijkstra-distance [0 0]
-                          (neighbors grid')
-                          #{goal})))
+    (path/a-star-cost [0 0]
+                      (neighbors grid')
+                      #{goal}
+                      :heuristic #(m/manhattan-distance % goal))))
 
 (defn part1
   ([input] (part1 input 1024 [70 70]))

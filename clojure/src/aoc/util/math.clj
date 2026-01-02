@@ -38,6 +38,7 @@
   ([xs] (intervals 1 xs))
   ([n xs] (map - (drop n xs) xs)))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn mins-by [n-fn coll]
   (reduce (fn [[mn mins] e]
             (let [n (n-fn e)]

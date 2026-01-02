@@ -3,7 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.pathfinding :as pf]
+   [aoc.util.math :as m]
+   [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]
    [aoc2019.intcode :as i])
   (:import
@@ -35,13 +36,14 @@
 
 (defn neighbors [grid]
   (fn [loc]
-    (into {} (map (fn [l] [l 1])
-                  (filter #(#{\O \.} (grid %))
-                          (p/orthogonal-to loc))))))
+    (filter #(#{\O \.} (grid %))
+            (p/orthogonal-to loc))))
 
 (defn part1 [input]
-  (let [grid (generate-grid input)]
-    (pf/dijkstra-distance [0 0] (neighbors grid) #(= \O (grid %)))))
+  (let [grid (generate-grid input)
+        goal (some (fn [[k v]] (when (= v \O) k)) grid)
+        heuristic (fn [loc] (m/manhattan-distance loc goal))]
+    (path/a-star-cost [0 0] (neighbors grid) #(= \O (grid %)) :heuristic heuristic)))
 
 (defn part2 [input]
   (loop [time 0, grid (generate-grid input)]

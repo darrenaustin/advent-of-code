@@ -3,10 +3,9 @@
    (:require
     [aoc.day :as d]
     [aoc.util.collection :as c]
+    [aoc.util.pathfinding :as path]
     [aoc.util.string :as s]
-    [clojure.data.priority-map :refer [priority-map]]
-    [clojure.math.combinatorics :as combo]
-    [clojure.set :refer [intersection]]))
+    [clojure.math.combinatorics :as combo]))
 
 (defn input [] (d/day-input 2016 11))
 
@@ -37,46 +36,54 @@
                     vec)]
      [0 pairs])))
 
-(defn- distance [[elevator pairs]]
-  (reduce #(+ %1 (- 3 %2)) (- 3 elevator) (flatten pairs)))
+(defn- distance [[_ pairs]]
+  (let [sum (reduce (fn [s [g c]] (+ s (- 3 g) (- 3 c))) 0 pairs)]
+    (/ sum 2)))
 
 (defn- goal? [[elevator pairs]]
   (and (= elevator 3)
-       (= #{[3 3]} (set pairs))))
+       (every? #(= [3 3] %) pairs)))
 
-(defn valid-pairs? [pairs]
-  (let [gens  (set (keep first pairs))
-        chips (set (keep second (filter #(apply not= %) pairs)))]
-    (empty? (intersection gens chips))))
+(defn- valid-pairs? [pairs]
+  (loop [ps pairs, gen-mask 0, chip-mask 0]
+    (if-let [[g c] (first ps)]
+      (recur (rest ps)
+             (bit-set gen-mask g)
+             (if (not= g c) (bit-set chip-mask c) chip-mask))
+      (zero? (bit-and gen-mask chip-mask)))))
+
+(defn- floor-items [floor pairs]
+  (->> pairs
+       (keep-indexed (fn [idx [g c]]
+                       (cond-> []
+                         (= g floor) (conj [idx 0])
+                         (= c floor) (conj [idx 1]))))
+       (apply concat)))
+
+(defn- move-items [floor pairs move]
+  (reduce (fn [ps [p-idx type]]
+            (update-in ps [p-idx type] (constantly floor)))
+          pairs
+          move))
 
 (defn next-steps [[floor pairs]]
-  (let [positions   (vec (flatten pairs))
-        lower-bound (apply min positions)
-        places      (c/indexes-by #(= % floor) positions)
-        moving      (concat (combo/combinations places 2) (map list places))]
-    (for [move moving
+  (let [items (floor-items floor pairs)
+        moves (concat (combo/combinations items 2) (map list items))
+        min-floor (reduce (fn [m [g c]] (min m g c)) 4 pairs)]
+    (for [move moves
           dir [1 -1]
-          :let  [floor' (+ floor dir)]
-          :when (<= lower-bound floor' 3)
-          :let  [pairs' (->> (reduce #(assoc %1 %2 floor') positions move)
-                             (partition 2)
-                             (map vec)
-                             sort)]
-          :when (valid-pairs? pairs')]
+          :let [floor' (+ floor dir)]
+          :when (<= min-floor floor' 3)
+          :let [pairs' (move-items floor' pairs move)]
+          :when (valid-pairs? pairs')
+          :let [pairs' (vec (sort pairs'))]]
       [floor' pairs'])))
 
 (defn min-steps [start]
-  (loop [states (priority-map [start 0] (distance start)), visited? #{}]
-    (when-let [[[building steps] _] (peek states)]
-      (if (goal? building)
-        steps
-        (let [next-states (mapcat (fn [[[building steps] _]]
-                                    (->> (next-steps building)
-                                         (remove visited?)
-                                         (map (fn [b] [b (inc steps)]))))
-                                  states)]
-          (recur (into (priority-map) (map (fn [s] [s (distance (first s))]) next-states))
-                 (apply conj visited? (map first next-states))))))))
+  (path/a-star-cost start
+                    next-steps
+                    goal?
+                    :heuristic distance))
 
 (defn part1 [input] (min-steps (parse-building input)))
 

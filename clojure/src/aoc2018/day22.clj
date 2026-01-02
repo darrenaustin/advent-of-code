@@ -4,7 +4,7 @@
     [aoc.day :as d]
     [aoc.util.math :as m]
     [aoc.util.memoize :refer [letfn-mem]]
-    [aoc.util.pathfinding :as pf]
+    [aoc.util.pathfinding :as path]
     [aoc.util.pos :as p]
     [aoc.util.string :as s]))
 
@@ -70,5 +70,8 @@
 
 (defn part2 [input]
   (let [[depth target] (parse input)
-        neighbors (neighbors-for (region-for depth target) target)]
-    (pf/dijkstra-distance [[0 0] :torch] neighbors #{[target :torch]})))
+        neighbors-map-fn (neighbors-for (region-for depth target) target)
+        neighbors (fn [state] (keys (neighbors-map-fn state)))
+        cost (fn [state next-state] (get (neighbors-map-fn state) next-state))
+        heuristic (fn [[loc _]] (m/manhattan-distance loc target))]
+    (path/a-star-cost [[0 0] :torch] neighbors #{[target :torch]} :cost cost :heuristic heuristic)))

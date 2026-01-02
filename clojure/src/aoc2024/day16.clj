@@ -4,6 +4,7 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.grid :as g]
+   [aoc.util.math :as m]
    [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]))
 
@@ -33,14 +34,18 @@
   (fn [[loc _]] (= loc goal)))
 
 (defn solve [input path-fn]
-  (let [{:keys [grid start goal]} (parse input)]
-    (path-fn [start p/dir-e] (neighbors-fn grid) (goal? goal))))
+  (let [{:keys [grid start goal]} (parse input)
+        nbrs-map-fn (neighbors-fn grid)
+        neighbors (fn [state] (keys (nbrs-map-fn state)))
+        cost (fn [state next-state] (get (nbrs-map-fn state) next-state))
+        heuristic (fn [[loc _]] (m/manhattan-distance loc goal))]
+    (path-fn [start p/dir-e] neighbors (goal? goal) :cost cost :heuristic heuristic)))
 
 (defn part1 [input]
-  (solve input path/dijkstra-distance))
+  (solve input path/a-star-cost))
 
 (defn part2 [input]
-  (->> (solve input path/dijkstra-paths)
+  (->> (solve input path/dijkstra-all-paths)
        (mapcat #(mapv first %))
        (into #{})
        count))

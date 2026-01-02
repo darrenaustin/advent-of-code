@@ -4,7 +4,7 @@
    [aoc.day :as d]
    [aoc.util.collection :as c]
    [aoc.util.math :as m]
-   [aoc.util.pathfinding :as pf]
+   [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]
    [aoc.util.string :as s]
    [clojure.string :as str]))
@@ -25,15 +25,15 @@
 
 (defn neighbors [key-map]
   (fn [loc]
-    (into {} (map (fn [p] [p 1]) (filter key-map (p/orthogonal-to loc))))))
+    (filter key-map (p/orthogonal-to loc))))
 
 (defn paths-map [coord-map key-map]
   (into {} (for [a (keys coord-map) b (keys coord-map)]
              [[a b]
               (mapv (fn [p] (str/join (map dir->arrow (vec-diffs p))))
-                    (pf/dijkstra-paths (coord-map a)
-                                       (neighbors key-map)
-                                       #{(coord-map b)}))])))
+                    (path/dijkstra-all-paths (coord-map a)
+                                             (neighbors key-map)
+                                             #{(coord-map b)}))])))
 
 (def num-pad
   {\A [2 3]
