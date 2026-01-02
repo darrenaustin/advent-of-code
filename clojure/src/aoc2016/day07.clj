@@ -7,28 +7,28 @@
 
 (defn input [] (d/day-input 2016 7))
 
-(defn parse-ip [s]
+(defn- parse-ip [s]
   (let [{supernet false, hypernet true}
         (group-by #(str/starts-with? % "[") (re-seq #"\w+|\[\w+\]" s))]
     {:supernet supernet
      :hypernet (map #(subs % 1 (dec (count %))) hypernet)}))
 
-(defn abba [s] (re-seq #"(\w)(?!\1)(\w)(\2)(\1)" s))
-(defn aba [s] (re-seq #"(?=((\w)(?!\2)(\w)(\2)))" s))
-(defn bab [s [_ _ a b]] (str/includes? s (str b a b)))
+(defn- abba [s] (re-seq #"(\w)(?!\1)(\w)(\2)(\1)" s))
 
-(defn tls? [{:keys [supernet hypernet]}]
+(defn- aba [s]
+  (map (fn [[_ _ a b]] [a b])
+       (re-seq #"(?=((\w)(?!\2)(\w)(\2)))" s)))
+
+(defn- tls? [{:keys [supernet hypernet]}]
   (and (some abba supernet)
        (not-any? abba hypernet)))
 
-(defn ssl? [{:keys [supernet hypernet]}]
-  (let [abas (mapcat aba supernet)]
-    (and abas
-         (some identity
-               (for [h hypernet, aba abas]
-                 (bab h aba))))))
+(defn- ssl? [{:keys [supernet hypernet]}]
+  (let [super-abas (set (mapcat aba supernet))
+        hyper-abas (set (mapcat aba hypernet))]
+    (some (fn [[a b]] (hyper-abas [b a])) super-abas)))
 
-(defn num-ips [input pred]
+(defn- num-ips [input pred]
   (->> (s/lines input)
        (map parse-ip)
        (filter pred)
