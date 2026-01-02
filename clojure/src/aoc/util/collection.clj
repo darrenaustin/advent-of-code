@@ -46,6 +46,15 @@
 (defn keys-when-val [pred m]
   (map first (filter (fn [[_ val]] (pred val)) m)))
 
+(defn map-by [f coll]
+  (into {} (map (fn [e] [(f e) e])) coll))
+
+(defn map-vals [f m]
+  (into {} (map (fn [[k v]] [k (f v)]) m)))
+
+(defn map-keys [f m]
+  (into {} (map (fn [[k v]] [(f k) v]) m)))
+
 (defn dissoc-in [m [k & ks]]
   (if ks
     (update m k dissoc-in ks)
