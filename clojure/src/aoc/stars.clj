@@ -81,6 +81,6 @@
         names (read-names)]
     (spit (str/join "/" [project-root "SCOREBOARD.md"])
           (with-out-str
-            (println " #🎄⭐️ Star Scoreboard ⭐️🎄 ")
+            (println "#🎄⭐️ Star Scoreboard ⭐️🎄")
             (doseq [year active-years]
               (table-for-year year stats names))))))
