@@ -12,7 +12,7 @@
 (defn year-data [year days]
   (print "Generating stats for" year "")
   (let [data {:year year
-              :path (str "aoc" year)
+              :path (str "src/aoc" year)
               :days (vec (for [[y d] days]
                            {:day d
                             :path (format "day%02d.clj" d)
