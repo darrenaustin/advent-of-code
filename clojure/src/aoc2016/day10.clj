@@ -9,9 +9,8 @@
 (defn input [] (d/day-input 2016 10))
 
 (defn- parse-locations [line]
-  (->> (re-seq #"((bot|output) (\d+))" line)
-       (map (partial take-last 2))
-       (map (fn [[name num]] [(keyword name) (s/int num)]))))
+  (->> (re-seq #"(bot|output) (\d+)" line)
+       (map (fn [[_ type num]] [(keyword type) (s/int num)]))))
 
 (defn- parse-factory [input]
   (reduce (fn [factory line]
@@ -21,46 +20,48 @@
                 (update-in factory (first locs) conj (s/int line))
 
                 (str/starts-with? line "bot")
-                (assoc-in factory [:rules (second (first locs))] locs))))
+                (assoc-in factory [:rules (second (first locs))] (rest locs)))))
           {:rules {}}
           (s/lines input)))
 
-(defn- apply-rule [factory [from low high]]
-  (let [chips (get-in factory from)]
+(defn- apply-rule [factory [bot low high]]
+  (let [chips (sort (get-in factory [:bot bot]))]
     (-> factory
-        (c/dissoc-in from)
-        (update-in low conj (apply min chips))
-        (update-in high conj (apply max chips)))))
+        (update-in [:bot bot] empty)
+        (update-in low conj (first chips))
+        (update-in high conj (second chips)))))
 
 (defn- full-bots [factory]
   (->> (:bot factory)
        (filter #(= 2 (count (val %))))
-       (map first)))
+       (map key)))
 
 (defn- step [factory]
-  (let [rules (map #(get-in factory [:rules %]) (full-bots factory))]
-    (reduce apply-rule factory rules)))
+  (let [bots (full-bots factory)]
+    (reduce (fn [f bot]
+              (apply-rule f (cons bot (get-in f [:rules bot]))))
+            factory
+            bots)))
 
 (defn- bot-holding [chips factory]
-  (->> (:bot factory)
-       (filter #(= (set (val %)) (set chips)))
-       ffirst))
+  (some->> (:bot factory)
+           (c/first-where #(= (set (val %)) chips))
+           key))
 
 (defn part1
   ([input] (part1 input #{61 17}))
   ([input chips]
    (->> (parse-factory input)
         (iterate step)
-        (keep (partial bot-holding chips))
-        first)))
+        (some (partial bot-holding chips)))))
 
 (defn part2 [input]
-  (let [outputs #{0 1 2}]
+  (let [targets #{0 1 2}]
     (->> (parse-factory input)
          (iterate step)
          (map :output)
-         (drop-while #(or (empty? %) (not-every? % outputs)))
-         first
-         (filter #(contains? outputs (key %)))
-         (map (comp first val))
+         (c/first-where (fn [outputs] (and outputs (every? outputs targets))))
+         (filter (comp targets key))
+         vals
+         flatten
          (reduce *))))
