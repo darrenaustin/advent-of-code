@@ -7,14 +7,20 @@
 
 (defn input [] (d/day-input 2016 6))
 
-(defn most-common [xs]
-  (ffirst (sort-by second > (frequencies xs))))
+(defn- most-common [xs]
+  (key (apply max-key val (frequencies xs))))
 
-(defn least-common [xs]
-  (ffirst (sort-by second (frequencies xs))))
+(defn- least-common [xs]
+  (key (apply min-key val (frequencies xs))))
+
+(defn- error-corrected [f input]
+  (->> (s/lines input)
+       (apply map vector)
+       (map f)
+       str/join))
 
 (defn part1 [input]
-  (str/join (map most-common (apply map vector (s/lines input)))))
+  (error-corrected most-common input))
 
 (defn part2 [input]
-  (str/join (map least-common (apply map vector (s/lines input)))))
+  (error-corrected least-common input))
