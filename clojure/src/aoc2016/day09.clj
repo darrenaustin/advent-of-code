@@ -7,15 +7,15 @@
 (defn input [] (d/day-input 2016 9))
 
 (defn- parse-marker [s]
-  (when-let [[_ prefix chrs times suffix] (re-find #"(.*?)\((\d+)x(\d+)\)(.*)" s)]
-    [prefix (s/int chrs) (s/int times) suffix]))
+  (when-let [[match prefix chrs times] (re-find #"(.*?)\((\d+)x(\d+)\)" s)]
+    [prefix (s/int chrs) (s/int times) (subs s (count match))]))
 
 (defn- length-v1 [compressed]
-  (if-let [[prefix chrs times suffix] (parse-marker compressed)]
-    (+ (count prefix)
-       (* chrs times)
-       (length-v1 (subs suffix chrs)))
-    (count compressed)))
+  (loop [s compressed, result 0]
+    (if-let [[prefix chrs times suffix] (parse-marker s)]
+      (recur (subs suffix chrs)
+             (+ result (count prefix) (* chrs times)))
+      (+ result (count s)))))
 
 (defn- length-v2 [compressed]
   (if-let [[prefix chrs times suffix] (parse-marker compressed)]
