@@ -54,7 +54,7 @@
 | [Day 13](https://adventofcode.com/2016/day/13) | A Maze of Twisty Little Cubicles | [day13.clj](clojure/src/aoc2016/day13.clj) | [day13.dart](dart/packages/aoc2016/lib/src/day13.dart)  | 
 | [Day 14](https://adventofcode.com/2016/day/14) | One-Time Pad | [day14.clj](clojure/src/aoc2016/day14.clj) | [day14.dart](dart/packages/aoc2016/lib/src/day14.dart)  | 
 | [Day 15](https://adventofcode.com/2016/day/15) | Timing is Everything | [day15.clj](clojure/src/aoc2016/day15.clj) | [day15.dart](dart/packages/aoc2016/lib/src/day15.dart)  | 
-| [Day 16](https://adventofcode.com/2016/day/16) | Dragon Checksum | - | [day16.dart](dart/packages/aoc2016/lib/src/day16.dart)  | 
+| [Day 16](https://adventofcode.com/2016/day/16) | Dragon Checksum | [day16.clj](clojure/src/aoc2016/day16.clj) | [day16.dart](dart/packages/aoc2016/lib/src/day16.dart)  | 
 | [Day 17](https://adventofcode.com/2016/day/17) | Two Steps Forward | - | [day17.dart](dart/packages/aoc2016/lib/src/day17.dart)  | 
 | [Day 18](https://adventofcode.com/2016/day/18) | Like a Rogue | - | [day18.dart](dart/packages/aoc2016/lib/src/day18.dart)  | 
 | [Day 19](https://adventofcode.com/2016/day/19) | An Elephant Named Joseph | - | [day19.dart](dart/packages/aoc2016/lib/src/day19.dart)  | 
