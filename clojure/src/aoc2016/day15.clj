@@ -6,24 +6,26 @@
 
 (defn input [] (d/day-input 2016 15))
 
-(defn- parse-discs [input]
-  (mapv #(let [[depth positions _ offset] (s/ints %)]
-           {:depth depth, :positions positions, :offset offset})
-        (s/lines input)))
+(defn- parse-disc [line]
+  (let [[depth positions _ offset] (s/ints line)]
+    [depth positions offset]))
 
-(defn- open? [disc time]
-  (let [{:keys [depth positions offset]} disc]
-    (zero? (mod (+ time depth offset) positions))))
+(defn- parse-discs [input]
+  (mapv parse-disc (s/lines input)))
+
+(defn- open? [discs time]
+  (every?
+   (fn [[depth positions offset]]
+     (zero? (mod (+ time depth offset) positions)))
+   discs))
 
 (defn- drop-time [discs]
-  (first (filter (fn [t] (every? #(open? % t) discs)) (range))))
+  (first (filter (partial open? discs) (range))))
 
 (defn part1 [input]
   (drop-time (parse-discs input)))
 
 (defn part2 [input]
   (let [discs (parse-discs input)
-        extra-disc {:depth (inc (count discs))
-                    :positions 11
-                    :offset 0}]
+        extra-disc [(inc (count discs)) 11 0]]
     (drop-time (conj discs extra-disc))))
