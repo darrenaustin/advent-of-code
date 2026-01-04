@@ -51,7 +51,7 @@
 | [Day 15](https://adventofcode.com/2016/day/15) | Timing is Everything                   | [day15.clj](clojure/src/aoc2016/day15.clj) | [day15.dart](dart/packages/aoc2016/lib/src/day15.dart) |
 | [Day 16](https://adventofcode.com/2016/day/16) | Dragon Checksum                        | [day16.clj](clojure/src/aoc2016/day16.clj) | [day16.dart](dart/packages/aoc2016/lib/src/day16.dart) |
 | [Day 17](https://adventofcode.com/2016/day/17) | Two Steps Forward                      | [day17.clj](clojure/src/aoc2016/day17.clj) | [day17.dart](dart/packages/aoc2016/lib/src/day17.dart) |
-| [Day 18](https://adventofcode.com/2016/day/18) | Like a Rogue                           |                     -                      | [day18.dart](dart/packages/aoc2016/lib/src/day18.dart) |
+| [Day 18](https://adventofcode.com/2016/day/18) | Like a Rogue                           | [day18.clj](clojure/src/aoc2016/day18.clj) | [day18.dart](dart/packages/aoc2016/lib/src/day18.dart) |
 | [Day 19](https://adventofcode.com/2016/day/19) | An Elephant Named Joseph               |                     -                      | [day19.dart](dart/packages/aoc2016/lib/src/day19.dart) |
 | [Day 20](https://adventofcode.com/2016/day/20) | Firewall Rules                         |                     -                      | [day20.dart](dart/packages/aoc2016/lib/src/day20.dart) |
 | [Day 21](https://adventofcode.com/2016/day/21) | Scrambled Letters and Hash             |                     -                      | [day21.dart](dart/packages/aoc2016/lib/src/day21.dart) |
