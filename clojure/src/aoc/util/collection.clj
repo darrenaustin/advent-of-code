@@ -1,5 +1,9 @@
 (ns aoc.util.collection
-  "Utility functions for working with collections, including sequences and maps.")
+  "Utility functions for working with collections, including sequences and maps."
+  (:import
+   [clojure.lang PersistentQueue]))
+
+(def empty-queue PersistentQueue/EMPTY)
 
 (defn first-where
   "Returns the first element in the collection that satisfies the predicate.

@@ -46,6 +46,7 @@
    [aoc2016.day14]
    [aoc2016.day15]
    [aoc2016.day16]
+   [aoc2016.day17]
    [aoc2016.day23]
    [aoc2016.day25]
    [aoc2017.day10]
