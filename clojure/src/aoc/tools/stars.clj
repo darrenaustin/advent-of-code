@@ -30,18 +30,12 @@
 (defn table-for-year [year stats names]
   (let [year-stats (map #(get-in % [:years year]) stats)
         year-paths (map (fn [l] (str/join "/" [(:path l) (get-in l [:years year :path])])) stats)]
-    (println "<details>")
-    (println "<summary> Solutions for" year "</summary>")
-    (println "</br>")
+    (println "## Solutions for" year)
     (println)
     (println "|" year "| Title |" (str/join "|" (language-names stats)) "|")
     (println "| :----: | :---- |" (str/join "|" (repeat (count stats) ":----:")) "|")
-
     (doseq [day (range 1 (inc (days-per-year year)))]
       (println "|" (aoc-day year day) "|" (or (get-in names [year day]) "-") "|" (str/join " | " (day-solutions year-stats year-paths day)) " | "))
-
-    (println)
-    (println " </details> ")
     (println)))
 
 (defn read-stats []
@@ -86,5 +80,6 @@
     (spit (str/join "/" [project-root "SCOREBOARD.md"])
           (with-out-str
             (println "# 🎄⭐️ Star Scoreboard ⭐️🎄")
+            (println)
             (doseq [year active-years]
               (table-for-year year stats names))))))

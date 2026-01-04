@@ -1,7 +1,6 @@
 # 🎄⭐️ Star Scoreboard ⭐️🎄
-<details>
-<summary> Solutions for 2015 </summary>
-</br>
+
+## Solutions for 2015
 
 |                      2015                      | Title                                  |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -31,11 +30,7 @@
 | [Day 24](https://adventofcode.com/2015/day/24) | It Hangs in the Balance                | [day24.clj](clojure/src/aoc2015/day24.clj) | [day24.dart](dart/packages/aoc2015/lib/src/day24.dart) |
 | [Day 25](https://adventofcode.com/2015/day/25) | Let It Snow                            | [day25.clj](clojure/src/aoc2015/day25.clj) | [day25.dart](dart/packages/aoc2015/lib/src/day25.dart) |
 
- </details>
-
-<details>
-<summary> Solutions for 2016 </summary>
-</br>
+## Solutions for 2016
 
 |                      2016                      | Title                                  |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -65,11 +60,7 @@
 | [Day 24](https://adventofcode.com/2016/day/24) | Air Duct Spelunking                    |                     -                      | [day24.dart](dart/packages/aoc2016/lib/src/day24.dart) |
 | [Day 25](https://adventofcode.com/2016/day/25) | Clock Signal                           | [day25.clj](clojure/src/aoc2016/day25.clj) | [day25.dart](dart/packages/aoc2016/lib/src/day25.dart) |
 
- </details>
-
-<details>
-<summary> Solutions for 2017 </summary>
-</br>
+## Solutions for 2017
 
 |                      2017                      | Title                                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :-------------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -99,11 +90,7 @@
 | [Day 24](https://adventofcode.com/2017/day/24) | Electromagnetic Moat                    | [day24.clj](clojure/src/aoc2017/day24.clj) |                           -                            |
 | [Day 25](https://adventofcode.com/2017/day/25) | The Halting Problem                     | [day25.clj](clojure/src/aoc2017/day25.clj) |                           -                            |
 
- </details>
-
-<details>
-<summary> Solutions for 2018 </summary>
-</br>
+## Solutions for 2018
 
 |                      2018                      | Title                                |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :----------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -133,11 +120,7 @@
 | [Day 24](https://adventofcode.com/2018/day/24) | Immune System Simulator 20XX         | [day24.clj](clojure/src/aoc2018/day24.clj) |                           -                            |
 | [Day 25](https://adventofcode.com/2018/day/25) | Four-Dimensional Adventure           | [day25.clj](clojure/src/aoc2018/day25.clj) |                           -                            |
 
- </details>
-
-<details>
-<summary> Solutions for 2019 </summary>
-</br>
+## Solutions for 2019
 
 |                      2019                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :--------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -167,11 +150,7 @@
 | [Day 24](https://adventofcode.com/2019/day/24) | -                                  |                     -                      |                           -                            |
 | [Day 25](https://adventofcode.com/2019/day/25) | -                                  |                     -                      |                           -                            |
 
- </details>
-
-<details>
-<summary> Solutions for 2020 </summary>
-</br>
+## Solutions for 2020
 
 |                      2020                      | Title                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :---------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -201,11 +180,7 @@
 | [Day 24](https://adventofcode.com/2020/day/24) | Lobby Layout            | [day24.clj](clojure/src/aoc2020/day24.clj) |                           -                            |
 | [Day 25](https://adventofcode.com/2020/day/25) | Combo Breaker           | [day25.clj](clojure/src/aoc2020/day25.clj) |                           -                            |
 
- </details>
-
-<details>
-<summary> Solutions for 2021 </summary>
-</br>
+## Solutions for 2021
 
 |                      2021                      | Title                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :---------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -235,11 +210,7 @@
 | [Day 24](https://adventofcode.com/2021/day/24) | -                       |                     -                      |                           -                            |
 | [Day 25](https://adventofcode.com/2021/day/25) | Sea Cucumber            |                     -                      | [day25.dart](dart/packages/aoc2021/lib/src/day25.dart) |
 
- </details>
-
-<details>
-<summary> Solutions for 2022 </summary>
-</br>
+## Solutions for 2022
 
 |                      2022                      | Title                    |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :----------------------- | :----------------------------------------: | :----------------------------------------------------: |
@@ -269,11 +240,7 @@
 | [Day 24](https://adventofcode.com/2022/day/24) | Blizzard Basin           |                     -                      | [day24.dart](dart/packages/aoc2022/lib/src/day24.dart) |
 | [Day 25](https://adventofcode.com/2022/day/25) | Full of Hot Air          |                     -                      | [day25.dart](dart/packages/aoc2022/lib/src/day25.dart) |
 
- </details>
-
-<details>
-<summary> Solutions for 2023 </summary>
-</br>
+## Solutions for 2023
 
 |                      2023                      | Title                           |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------ | :----------------------------------------: | :----------------------------------------------------: |
@@ -303,11 +270,7 @@
 | [Day 24](https://adventofcode.com/2023/day/24) | Never Tell Me The Odds          |                     -                      | [day24.dart](dart/packages/aoc2023/lib/src/day24.dart) |
 | [Day 25](https://adventofcode.com/2023/day/25) | Snowverload                     |                     -                      | [day25.dart](dart/packages/aoc2023/lib/src/day25.dart) |
 
- </details>
-
-<details>
-<summary> Solutions for 2024 </summary>
-</br>
+## Solutions for 2024
 
 |                      2024                      | Title                  |        [Clojure](clojure/README.md)        | [Dart](dart/README.md) |
 | :--------------------------------------------: | :--------------------- | :----------------------------------------: | :--------------------: |
@@ -337,11 +300,7 @@
 | [Day 24](https://adventofcode.com/2024/day/24) | Crossed Wires          | [day24.clj](clojure/src/aoc2024/day24.clj) |           -            |
 | [Day 25](https://adventofcode.com/2024/day/25) | Code Chronicle         | [day25.clj](clojure/src/aoc2024/day25.clj) |           -            |
 
- </details>
-
-<details>
-<summary> Solutions for 2025 </summary>
-</br>
+## Solutions for 2025
 
 |                      2025                      | Title               |        [Clojure](clojure/README.md)        | [Dart](dart/README.md) |
 | :--------------------------------------------: | :------------------ | :----------------------------------------: | :--------------------: |
@@ -357,6 +316,4 @@
 | [Day 10](https://adventofcode.com/2025/day/10) | Factory             | [day10.clj](clojure/src/aoc2025/day10.clj) |           -            |
 | [Day 11](https://adventofcode.com/2025/day/11) | Reactor             | [day11.clj](clojure/src/aoc2025/day11.clj) |           -            |
 | [Day 12](https://adventofcode.com/2025/day/12) | Christmas Tree Farm | [day12.clj](clojure/src/aoc2025/day12.clj) |           -            |
-
- </details>
 
