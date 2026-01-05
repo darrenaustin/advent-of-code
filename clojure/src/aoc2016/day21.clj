@@ -43,7 +43,7 @@
     (str (subs removed 0 y) chr (subs removed y))))
 
 (defn- apply-operation [s operation]
-  (condp (fn [prefix op] (str/starts-with? op prefix)) operation
+  (condp (fn [pre s] (str/starts-with? s pre)) operation
     "swap position" (apply swap-pos s (s/ints operation))
     "swap letter"   (apply swap-letter s (letter-params operation))
     "rotate left"   (apply rotate-left s (s/ints operation))
@@ -53,7 +53,7 @@
     "move"          (apply move-pos s (s/ints operation))))
 
 (defn- reverse-operation [s operation]
-  (condp (fn [prefix op] (str/starts-with? op prefix)) operation
+  (condp (fn [pre s] (str/starts-with? s pre)) operation
     "swap position" (apply swap-pos s (s/ints operation))
     "swap letter"   (apply swap-letter s (letter-params operation))
     "rotate left"   (apply rotate-right s (s/ints operation))

@@ -15,15 +15,15 @@
    after the shuffles."
   [initial-coefficients shuffles deck-size]
   (reduce (fn [[a b] shuffle]
-            (cond
-              (= shuffle "deal into new stack")
+            (condp (fn [pre s] (str/starts-with? s pre)) shuffle
+              "deal into new stack"
               [(- a) (- deck-size b 1)]
 
-              (str/starts-with? shuffle "cut ")
+              "cut"
               (let [n (s/int shuffle)]
                 [a (mod (+ b n) deck-size)])
 
-              (str/starts-with? shuffle "deal with increment ")
+              "deal with increment"
               (let [n (s/int shuffle)
                     n-inv (m/mod-inverse n deck-size)]
                 [(mod (* a n-inv) deck-size)

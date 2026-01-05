@@ -19,11 +19,11 @@
 (defn- rotate-row [grid [row by]]
   (g/set-row grid row (c/rotate-right by (g/row grid row))))
 
-(defn- apply-instruction [g i]
-  (cond
-    (str/starts-with? i "rect") (rect g (s/ints i))
-    (str/starts-with? i "rotate column") (rotate-column g (s/ints i))
-    (str/starts-with? i "rotate row") (rotate-row g (s/ints i))))
+(defn- apply-instruction [g instr]
+  (condp (fn [pre s] (str/starts-with? s pre)) instr
+    "rect"          (rect g (s/ints instr))
+    "rotate column" (rotate-column g (s/ints instr))
+    "rotate row"    (rotate-row g (s/ints instr))))
 
 (defn- message [input [w h]]
   (reduce apply-instruction

@@ -14,16 +14,14 @@
        (map (fn [[_ type num]] [(keyword type) (s/int num)]))))
 
 (defn- parse-factory [input]
-  (reduce (fn [factory line]
-            (let [locs (parse-locations line)]
-              (cond
-                (str/starts-with? line "value")
-                (update-in factory (first locs) conj (s/int line))
-
-                (str/starts-with? line "bot")
-                (assoc-in factory [:rules (second (first locs))] (rest locs)))))
-          {:rules {}}
-          (s/lines input)))
+  (reduce
+   (fn [factory line]
+     (let [locs (parse-locations line)]
+       (condp (fn [pre s] (str/starts-with? s pre)) line
+         "value" (update-in factory (first locs) conj (s/int line))
+         "bot"   (assoc-in factory [:rules (second (first locs))] (rest locs)))))
+   {:rules {}}
+   (s/lines input)))
 
 (defn- apply-rule [factory [bot low high]]
   (let [chips (sort (get-in factory [:bot bot]))]
