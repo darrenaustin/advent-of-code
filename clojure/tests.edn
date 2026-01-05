@@ -14,6 +14,7 @@
           {:id :2023 :test-paths ["test/aoc2023"]}
           {:id :2024 :test-paths ["test/aoc2024"]}
           {:id :2025 :test-paths ["test/aoc2025"]}]
-  :plugins [:kaocha.plugin/print-invocations]
+  :plugins [:kaocha.plugin/print-invocations
+            :kaocha-plugins.timing/report-slow]
   :capture-output? true
   :color? true}

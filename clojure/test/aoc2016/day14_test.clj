@@ -8,10 +8,10 @@
 (def example
   "abc")
 
-(deftest part1-example
+(deftest ^:slow part1-example
   (is (= 22728 (d/part1 example))))
 
-(deftest part2-example
+(deftest ^:slow part2-example
   (is (= 22551 (d/part2 example))))
 
 (def answers (delay (day-answers 2016 14)))

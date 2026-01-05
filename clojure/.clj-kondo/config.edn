@@ -1,4 +1,4 @@
-{:output {:exclude-files [".clj-kondo/imports"]}
+{:output {:exclude-files [".clj-kondo/imports" "test/kaocha_plugins"]}
  :linters
  {:missing-docstring            {:level :off}
   :refer-all                    {:exclude [clojure.test
