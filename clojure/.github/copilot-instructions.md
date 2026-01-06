@@ -34,6 +34,12 @@ The project has the following folder structure:
 └── tests.edn       - Configuration for the test runner.
 ```
 
+### Input files
+The input files used in the problems can be found in:
+
+`../input/YYYY/DD_input.txt` for each problem, where
+YYYY is the year and DD is the two digit day number.
+
 ## Running Tests
 - To run all tests: `bb test`
 - To focus on a specific namespace: `bb test --focus <namespace>`

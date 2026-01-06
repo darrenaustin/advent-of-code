@@ -53,6 +53,7 @@
    [aoc2016.day21]
    [aoc2016.day22]
    [aoc2016.day23]
+   [aoc2016.day24]
    [aoc2016.day25]
    [aoc2017.day10]
    [aoc2017.day13]
