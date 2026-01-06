@@ -269,6 +269,11 @@
       "path": "src/aoc2017",
       "days": [
         {
+          "day": 1,
+          "path": "day01.clj",
+          "stars": 2
+        },
+        {
           "day": 10,
           "path": "day10.clj",
           "stars": 2
