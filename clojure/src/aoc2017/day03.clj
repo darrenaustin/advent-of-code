@@ -8,10 +8,13 @@
 
 (defn input [] (d/day-input 2017 3))
 
+;; This elegant lazy sequence of dirs was taken from:
+;;
+;; https://github.com/tschady/advent-of-code/blob/main/src/aoc/2017/d03.clj
 (defn- spiral-dirs []
-  (let [ring (mapcat #(repeat 2 %) (map inc (range)))
-        dir (cycle [p/dir-right p/dir-up p/dir-left p/dir-down])]
-    (mapcat repeat ring dir)))
+  (let [steps (mapcat #(repeat 2 %) (map inc (range)))
+        dirs (cycle [p/dir-right p/dir-up p/dir-left p/dir-down])]
+    (mapcat repeat steps dirs)))
 
 (defn- spiral-positions []
   (reductions p/pos+ p/origin (spiral-dirs)))
@@ -30,8 +33,7 @@
    (rest (spiral-positions))))
 
 (defn part1 [input]
-  (->> (s/int input)
-       dec
+  (->> (dec (s/int input))
        (nth (spiral-positions))
        (m/manhattan-distance p/origin)))
 
