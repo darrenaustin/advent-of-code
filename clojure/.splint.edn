@@ -29,4 +29,6 @@
  ;; warning that makes the code harder to read.
  lint/prefer-method-values {:excludes ["src/aoc/util/bounded_priority_map.clj"
                                        "src/aoc/util/grid.clj"
-                                       "src/aoc/util/sparse_grid.clj"]}}
+                                       "src/aoc/util/sparse_grid.clj"]}
+
+ naming/conversion-functions {:enabled false}}
