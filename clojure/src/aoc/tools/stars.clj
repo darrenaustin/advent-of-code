@@ -24,18 +24,18 @@
        year-stats year-paths))
 
 (defn language-names [stats]
-  (map (fn [l]
-         (str "[" (:language l) "](" (:path l) "/README.md)")) stats))
+  (map #(str "[" (:language %) "](" (:path %) "/README.md)") stats))
 
-(defn table-for-year [year stats names]
+(defn table-for-year [year stats answers]
   (let [year-stats (map #(get-in % [:years year]) stats)
-        year-paths (map (fn [l] (str/join "/" [(:path l) (get-in l [:years year :path])])) stats)]
-    (println "## Solutions for" year)
+        year-paths (map (fn [l] (str/join "/" [(:path l) (get-in l [:years year :path])])) stats)
+        year-stars (reduce + (map :stars (vals (answers year))))]
+    (println "## " year)
     (println)
-    (println "|" year "| Title |" (str/join "|" (language-names stats)) "|")
+    (println "|" (if-not (zero? year-stars) (str year-stars " ⭐️") "-") "| Title |" (str/join "|" (language-names stats)) "|")
     (println "| :----: | :---- |" (str/join "|" (repeat (count stats) ":----:")) "|")
     (doseq [day (range 1 (inc (days-per-year year)))]
-      (println "|" (aoc-day year day) "|" (or (get-in names [year day]) "-") "|" (str/join " | " (day-solutions year-stats year-paths day)) " | "))
+      (println "|" (aoc-day year day) "|" (or (get-in answers [year day :name]) "-") "|" (str/join " | " (day-solutions year-stats year-paths day)) " | "))
     (println)))
 
 (defn read-stats []
@@ -55,7 +55,7 @@
                             (update year :days (partial c/map-by :day)))
                           %))))
 
-(defn read-names []
+(defn read-answers []
   (let [input-dir (io/file project-root "inputs")]
     (->> (file-seq input-dir)
          (filter #(re-matches #"\d{4}" (File/.getName %)))
@@ -67,19 +67,19 @@
                    (into {}
                          (map (fn [f]
                                 (let [day (Integer/parseInt (subs (File/.getName f) 0 2) 10)
-                                      name (-> (slurp f)
-                                               (json/parse-string true)
-                                               :name)]
-                                  [day name]))
+                                      {:keys [name answer1 answer2]}
+                                      (json/parse-string (slurp f) true)]
+                                  [day {:name name
+                                        :stars (count (keep identity [answer1 answer2]))}]))
                               day-files))])))
          (into {}))))
 
 (defn -main []
   (let [stats (map convert-stats (read-stats))
-        names (read-names)]
+        answers (read-answers)]
     (spit (str/join "/" [project-root "SCOREBOARD.md"])
           (with-out-str
-            (println "# 🎄⭐️ Star Scoreboard ⭐️🎄")
+            (println "# 🎄 &nbsp; Scoreboard &nbsp; 🎄")
             (println)
             (doseq [year active-years]
-              (table-for-year year stats names))))))
+              (table-for-year year stats answers))))))
