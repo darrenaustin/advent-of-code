@@ -71,7 +71,7 @@
 | [Day 05](https://adventofcode.com/2017/day/5)  | A Maze of Twisty Trampolines, All Alike | [day05.clj](clojure/src/aoc2017/day05.clj) | [day05.dart](dart/packages/aoc2017/lib/src/day05.dart) |
 | [Day 06](https://adventofcode.com/2017/day/6)  | Memory Reallocation                     | [day06.clj](clojure/src/aoc2017/day06.clj) | [day06.dart](dart/packages/aoc2017/lib/src/day06.dart) |
 | [Day 07](https://adventofcode.com/2017/day/7)  | Recursive Circus                        | [day07.clj](clojure/src/aoc2017/day07.clj) | [day07.dart](dart/packages/aoc2017/lib/src/day07.dart) |
-| [Day 08](https://adventofcode.com/2017/day/8)  | I Heard You Like Registers              |                     -                      | [day08.dart](dart/packages/aoc2017/lib/src/day08.dart) |
+| [Day 08](https://adventofcode.com/2017/day/8)  | I Heard You Like Registers              | [day08.clj](clojure/src/aoc2017/day08.clj) | [day08.dart](dart/packages/aoc2017/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2017/day/9)  | Stream Processing                       |                     -                      | [day09.dart](dart/packages/aoc2017/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2017/day/10) | Knot Hash                               | [day10.clj](clojure/src/aoc2017/day10.clj) | [day10.dart](dart/packages/aoc2017/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2017/day/11) | Hex Ed                                  |                     -                      | [day11.dart](dart/packages/aoc2017/lib/src/day11.dart) |
