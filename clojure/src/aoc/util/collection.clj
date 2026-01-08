@@ -88,11 +88,12 @@
    Returns nil if no duplicates are found.
    Example: (first-duplicate [1 2 3 2 4]) => 2"
   [coll]
-  (loop [[x & xs] coll, seen #{}]
-    (when x
-      (if (seen x)
-        x
-        (recur xs (conj seen x))))))
+  (loop [s (seq coll), seen #{}]
+    (when s
+      (let [x (first s)]
+        (if (seen x)
+          x
+          (recur (next s) (conj seen x)))))))
 
 (defn rotate-left
   "Returns a seq with the elements of the collection rotated to the

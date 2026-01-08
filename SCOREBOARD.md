@@ -94,7 +94,7 @@
 
 |                      50 ⭐️                      | Title                                |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :----------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
-| [Day 01](https://adventofcode.com/2018/day/1)  | Chronal Calibration                  |                     -                      | [day01.dart](dart/packages/aoc2018/lib/src/day01.dart) |
+| [Day 01](https://adventofcode.com/2018/day/1)  | Chronal Calibration                  | [day01.clj](clojure/src/aoc2018/day01.clj) | [day01.dart](dart/packages/aoc2018/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2018/day/2)  | Inventory Management System          |                     -                      | [day02.dart](dart/packages/aoc2018/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2018/day/3)  | No Matter How You Slice It           |                     -                      | [day03.dart](dart/packages/aoc2018/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2018/day/4)  | Repose Record                        |                     -                      | [day04.dart](dart/packages/aoc2018/lib/src/day04.dart) |
