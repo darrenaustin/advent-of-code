@@ -74,7 +74,7 @@
 | [Day 08](https://adventofcode.com/2017/day/8)  | I Heard You Like Registers              | [day08.clj](clojure/src/aoc2017/day08.clj) | [day08.dart](dart/packages/aoc2017/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2017/day/9)  | Stream Processing                       | [day09.clj](clojure/src/aoc2017/day09.clj) | [day09.dart](dart/packages/aoc2017/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2017/day/10) | Knot Hash                               | [day10.clj](clojure/src/aoc2017/day10.clj) | [day10.dart](dart/packages/aoc2017/lib/src/day10.dart) |
-| [Day 11](https://adventofcode.com/2017/day/11) | Hex Ed                                  |                     -                      | [day11.dart](dart/packages/aoc2017/lib/src/day11.dart) |
+| [Day 11](https://adventofcode.com/2017/day/11) | Hex Ed                                  | [day11.clj](clojure/src/aoc2017/day11.clj) | [day11.dart](dart/packages/aoc2017/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2017/day/12) | Digital Plumber                         |                     -                      | [day12.dart](dart/packages/aoc2017/lib/src/day12.dart) |
 | [Day 13](https://adventofcode.com/2017/day/13) | Packet Scanners                         | [day13.clj](clojure/src/aoc2017/day13.clj) |                           -                            |
 | [Day 14](https://adventofcode.com/2017/day/14) | Disk Defragmentation                    | [day14.clj](clojure/src/aoc2017/day14.clj) |                           -                            |
