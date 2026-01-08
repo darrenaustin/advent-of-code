@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day05.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 05', () {
     final exampleInput = '''
 0,9 -> 5,9

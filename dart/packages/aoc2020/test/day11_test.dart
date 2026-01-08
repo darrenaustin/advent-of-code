@@ -1,7 +1,7 @@
 import 'package:aoc2020/src/day11.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2020 Day 11', () {
     final exampleInput = '''
 L.LL.LL.LL

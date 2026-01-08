@@ -1,3 +1,3 @@
-library aoc;
+library;
 
 export 'src/day.dart';

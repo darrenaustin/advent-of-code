@@ -2,7 +2,7 @@ import 'package:aoc2020/src/day04.dart';
 import 'package:collection/collection.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2020 Day 04', () {
     group('part 1', () {
       test('example', () {

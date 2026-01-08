@@ -1,7 +1,7 @@
 import 'package:aoc2017/src/day07.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2017 Day 07', () {
     final exampleInput = '''
 pbga (66)

@@ -1,7 +1,7 @@
 import 'package:aoc2023/src/day18.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2023 Day 18', () {
     final exampleInput = '''
 R 6 (#70c710)

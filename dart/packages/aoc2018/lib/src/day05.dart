@@ -6,7 +6,7 @@ import 'package:aoc/aoc.dart';
 import 'package:aoc/util/math.dart';
 import 'package:aoc/util/string.dart';
 
-main() => Day05().solve();
+void main() => Day05().solve();
 
 class Day05 extends AdventDay {
   Day05() : super(2018, 5);

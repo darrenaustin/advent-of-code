@@ -5,7 +5,7 @@ import 'package:aoc/util/combinatorics.dart';
 import 'package:aoc/util/string.dart';
 import 'package:collection/collection.dart';
 
-main() => Day13().solve();
+void main() => Day13().solve();
 
 typedef Rules = Map<String, Map<String, int>>;
 

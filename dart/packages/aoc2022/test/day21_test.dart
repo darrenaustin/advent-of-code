@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day21.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2022 Day 21', () {
     final exampleInput = '''
 root: pppw + sjmn

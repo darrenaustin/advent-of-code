@@ -1,7 +1,7 @@
 import 'package:aoc2015/src/day09.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2015 Day 09', () {
     final exampleRoutes = '''
 London to Dublin = 464

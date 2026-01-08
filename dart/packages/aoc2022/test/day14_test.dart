@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day14.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2022 Day 14', () {
     final exampleInput = '''
 498,4 -> 498,6 -> 496,6

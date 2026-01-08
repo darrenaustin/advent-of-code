@@ -2,7 +2,7 @@ import 'package:aoc/util/string.dart';
 import 'package:aoc2015/src/day14.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2015 Day 14', () {
     final exampleInput = '''
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.

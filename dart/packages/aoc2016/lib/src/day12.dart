@@ -5,7 +5,7 @@ import 'package:aoc/util/string.dart';
 
 import 'assembunny.dart';
 
-main() => Day12().solve();
+void main() => Day12().solve();
 
 class Day12 extends AdventDay {
   Day12() : super(2016, 12);

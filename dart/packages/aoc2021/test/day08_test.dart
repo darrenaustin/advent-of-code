@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day08.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 08', () {
     final exampleInput = '''
 be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe

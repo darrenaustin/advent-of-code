@@ -1,7 +1,7 @@
 import 'package:aoc2015/src/day15.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2015 Day 15', () {
     final exampleInput = '''
 Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8

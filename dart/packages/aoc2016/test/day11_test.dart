@@ -1,7 +1,7 @@
 import 'package:aoc2016/src/day11.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2016 Day 11', () {
     final exampleInput = '''
 The first floor contains a hydrogen-compatible microchip and a lithium-compatible microchip.

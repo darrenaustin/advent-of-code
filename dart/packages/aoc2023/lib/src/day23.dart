@@ -5,7 +5,7 @@ import 'package:aoc/util/grid.dart';
 import 'package:aoc/util/vec.dart';
 import 'package:collection/collection.dart';
 
-main() => Day23().solve();
+void main() => Day23().solve();
 
 typedef DistanceGraph = Map<Vec, List<(Vec, int)>>;
 

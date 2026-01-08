@@ -1,7 +1,7 @@
 import 'package:aoc2015/src/day18.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2015 Day 18', () {
     final exampleInput = '''
 .#.#.#

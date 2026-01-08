@@ -1,7 +1,7 @@
 import 'package:aoc/util/math.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   test('divisors', () {
     expect(divisors(1), {1});
     expect(divisors(2), {1, 2});

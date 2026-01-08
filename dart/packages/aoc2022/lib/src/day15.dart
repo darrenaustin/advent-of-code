@@ -7,7 +7,7 @@ import 'package:aoc/util/range.dart';
 import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec.dart';
 
-main() => Day15().solve();
+void main() => Day15().solve();
 
 class Day15 extends AdventDay {
   Day15() : super(2022, 15);
@@ -87,7 +87,6 @@ class Sensor {
   final Vec beacon;
   late final int distance;
 }
-
 
 // https://adventofcode.com/2022/day/15
 //

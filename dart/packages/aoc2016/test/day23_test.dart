@@ -3,7 +3,7 @@ import 'package:aoc2016/src/assembunny.dart';
 import 'package:aoc2016/src/day23.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2016 Day 23', () {
     group('part 1', () {
       test('example', () {

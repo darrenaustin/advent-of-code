@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:aoc/aoc.dart';
 import 'package:crypto/crypto.dart';
 
-main() => Day05().solve();
+void main() => Day05().solve();
 
 class Day05 extends AdventDay {
   Day05() : super(2016, 5);

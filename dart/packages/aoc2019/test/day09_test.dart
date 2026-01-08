@@ -2,7 +2,7 @@ import 'package:aoc2019/src/day09.dart';
 import 'package:aoc2019/src/intcode.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2019 Day 09', () {
     group('part 1', () {
       test('example1', () {

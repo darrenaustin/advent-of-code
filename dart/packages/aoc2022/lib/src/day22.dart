@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 // This solution is hand crafted to my input.
 // A more general solution would be a lot more work.
 
-main() => Day22().solve();
+void main() => Day22().solve();
 
 class Day22 extends AdventDay {
   Day22() : super(2022, 22);

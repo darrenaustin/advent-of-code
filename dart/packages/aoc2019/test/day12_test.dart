@@ -1,7 +1,7 @@
 import 'package:aoc2019/src/day12.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2019 Day 12', () {
     final exampleInput1 = '''
 <x=-1, y=0, z=2>

@@ -1,7 +1,7 @@
 import 'package:aoc2016/src/day21.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   final exampleInput = '''
 swap position 4 with position 0
 swap letter d with letter b

@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day16.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2022 Day 16', () {
     final exampleInput = '''
 Valve AA has flow rate=0; tunnels lead to valves DD, II, BB

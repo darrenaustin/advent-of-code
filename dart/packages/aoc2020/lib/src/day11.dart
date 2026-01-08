@@ -6,7 +6,7 @@ import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec.dart';
 import 'package:collection/collection.dart';
 
-main() => Day11().solve();
+void main() => Day11().solve();
 
 typedef SeatRules = Grid<String> Function(Grid<String>);
 

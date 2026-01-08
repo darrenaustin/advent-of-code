@@ -1,7 +1,7 @@
 import 'package:aoc/util/range.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('range', () {
     test('with just end', () {
       expect(range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);

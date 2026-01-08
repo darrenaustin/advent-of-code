@@ -1,7 +1,7 @@
 import 'package:aoc2018/src/day03.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2018 Day 03', () {
     final exampleInput = '''
 #1 @ 1,3: 4x4

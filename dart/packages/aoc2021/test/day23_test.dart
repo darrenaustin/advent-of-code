@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day23.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 23', () {
     group('part 1', () {
       // test('examples', () {

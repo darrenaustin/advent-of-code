@@ -1,7 +1,7 @@
 import 'package:aoc2020/src/day07.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2020 Day 07', () {
     final exampleInput1 = '''
 light red bags contain 1 bright white bag, 2 muted yellow bags.

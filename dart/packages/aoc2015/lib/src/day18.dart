@@ -6,7 +6,7 @@ import 'package:aoc/util/grid.dart';
 import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec.dart';
 
-main() => Day18().solve();
+void main() => Day18().solve();
 
 class Day18 extends AdventDay {
   Day18() : super(2015, 18);

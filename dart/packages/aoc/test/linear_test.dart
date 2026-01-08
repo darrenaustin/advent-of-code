@@ -1,7 +1,7 @@
 import 'package:aoc/util/linear.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   test('solveLinearSystem', () {
     expect(
         solveLinearSystem([

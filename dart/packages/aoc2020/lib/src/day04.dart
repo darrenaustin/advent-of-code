@@ -2,7 +2,7 @@
 
 import 'package:aoc/aoc.dart';
 
-main() => Day04().solve();
+void main() => Day04().solve();
 
 typedef FieldValidator = bool Function(String);
 

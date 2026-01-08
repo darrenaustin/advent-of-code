@@ -3,7 +3,7 @@ import 'package:aoc/util/collection.dart';
 import 'package:aoc/util/math.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('Binary int extension', () {
     test('bits', () {
       expect(0.bits, [0]);

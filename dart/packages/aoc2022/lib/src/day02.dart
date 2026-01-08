@@ -3,7 +3,7 @@
 import 'package:aoc/aoc.dart';
 import 'package:aoc/util/string.dart';
 
-main() => Day02().solve();
+void main() => Day02().solve();
 
 // This is probably overkill for this problem, but I wanted
 // to play with the new enum features.

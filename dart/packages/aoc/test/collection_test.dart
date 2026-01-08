@@ -1,7 +1,7 @@
 import 'package:aoc/util/collection.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('Iterable extensions', () {
     test('firstDifference', () {
       expect([].onlyDifference(), isNull);

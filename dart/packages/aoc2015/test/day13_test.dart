@@ -1,7 +1,7 @@
 import 'package:aoc2015/src/day13.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2015 Day 13', () {
     final exampleInput = '''
 Alice would gain 54 happiness units by sitting next to Bob.

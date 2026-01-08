@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day17.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 17', () {
     final exampleInput = 'target area: x=20..30, y=-10..-5';
 

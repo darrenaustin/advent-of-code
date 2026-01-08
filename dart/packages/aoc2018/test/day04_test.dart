@@ -1,7 +1,7 @@
 import 'package:aoc2018/src/day04.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2018 Day 04', () {
     final exampleInput = '''
 [1518-11-01 00:00] Guard #10 begins shift

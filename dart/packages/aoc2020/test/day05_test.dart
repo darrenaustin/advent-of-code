@@ -2,7 +2,7 @@ import 'package:aoc/util/string.dart';
 import 'package:aoc2020/src/day05.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2020 Day 05', () {
     group('Seat ID', () {
       test('row', () {

@@ -1,7 +1,7 @@
 import 'package:aoc2017/src/day08.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2017 Day 08', () {
     final exampleInput = '''
 b inc 5 if a > 1

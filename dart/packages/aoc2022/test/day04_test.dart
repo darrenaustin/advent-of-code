@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day04.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   final exampleInput = '''
 2-4,6-8
 2-3,4-5

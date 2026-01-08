@@ -1,7 +1,7 @@
 import 'package:aoc2020/src/day10.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   final exampleInput1 = '''
 16
 10

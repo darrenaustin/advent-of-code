@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day15.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2022 Day 15', () {
     final exampleInput = '''
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15

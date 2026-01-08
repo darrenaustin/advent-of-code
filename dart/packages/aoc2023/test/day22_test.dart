@@ -1,7 +1,7 @@
 import 'package:aoc2023/src/day22.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2023 Day 22', () {
     final exampleInput = '''
 1,0,1~1,2,1

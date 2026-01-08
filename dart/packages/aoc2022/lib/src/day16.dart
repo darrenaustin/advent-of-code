@@ -21,7 +21,7 @@ import 'package:collection/collection.dart';
 //
 // Very smart folks, thx!
 
-main() => Day16().solve();
+void main() => Day16().solve();
 
 class Day16 extends AdventDay {
   Day16() : super(2022, 16);

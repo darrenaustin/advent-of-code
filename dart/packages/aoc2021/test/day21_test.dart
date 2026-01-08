@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day21.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 21', () {
     final exampleInput = '''
 Player 1 starting position: 4

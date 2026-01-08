@@ -1,7 +1,7 @@
 import 'package:aoc2023/src/day25.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2023 Day 25', () {
     final exampleInput = '''
 jqt: rhn xhk nvd

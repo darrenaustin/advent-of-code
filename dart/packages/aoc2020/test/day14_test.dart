@@ -1,7 +1,7 @@
 import 'package:aoc2020/src/day14.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   final exampleInput1 = '''
 mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
 mem[8] = 11

@@ -1,7 +1,7 @@
 import 'package:aoc2023/src/day04.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2023 Day 04', () {
     final String exampleInput = '''
 Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53

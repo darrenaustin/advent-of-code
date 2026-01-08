@@ -1,7 +1,7 @@
 import 'package:aoc2018/src/day05.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2018 Day 05', () {
     group('part 1', () {
       test('example', () {

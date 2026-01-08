@@ -1,7 +1,7 @@
 import 'package:aoc2020/src/day18.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2020 Day 18', () {
     group('part 1', () {
       test('examples', () {

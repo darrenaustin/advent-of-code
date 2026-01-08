@@ -9,7 +9,7 @@ import 'package:aoc/util/vec.dart';
 import 'package:collection/collection.dart';
 import 'package:crypto/crypto.dart';
 
-main() => Day17().solve();
+void main() => Day17().solve();
 
 class Day17 extends AdventDay {
   Day17() : super(2016, 17);

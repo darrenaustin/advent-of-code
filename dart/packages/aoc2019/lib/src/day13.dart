@@ -6,7 +6,7 @@ import 'package:collection/collection.dart';
 
 import 'intcode.dart';
 
-main() => Day13().solve();
+void main() => Day13().solve();
 
 const int empty = 0;
 const int wall = 1;

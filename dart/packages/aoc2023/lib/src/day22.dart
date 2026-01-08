@@ -5,7 +5,7 @@ import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec3.dart';
 import 'package:collection/collection.dart';
 
-main() => Day22().solve();
+void main() => Day22().solve();
 
 class Day22 extends AdventDay {
   Day22() : super(2023, 22);
@@ -27,7 +27,7 @@ class Day22 extends AdventDay {
 }
 
 class Brick {
-  factory Brick(id, String input) {
+  factory Brick(int id, String input) {
     final ns = input.numbers();
     var start = Vec3(ns[0], ns[1], ns[2]);
     var end = Vec3(ns[3], ns[4], ns[5]);

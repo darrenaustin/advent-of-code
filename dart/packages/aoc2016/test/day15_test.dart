@@ -1,7 +1,7 @@
 import 'package:aoc2016/src/day15.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2016 Day 15', () {
     final exampleInput = '''
 Disc #1 has 5 positions; at time=0, it is at position 4.

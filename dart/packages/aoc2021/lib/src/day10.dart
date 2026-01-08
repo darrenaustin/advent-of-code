@@ -4,7 +4,7 @@ import 'package:aoc/aoc.dart';
 import 'package:aoc/util/string.dart';
 import 'package:collection/collection.dart';
 
-main() => Day10().solve();
+void main() => Day10().solve();
 
 class Day10 extends AdventDay {
   Day10() : super(2021, 10);
@@ -17,13 +17,11 @@ class Day10 extends AdventDay {
   };
 
   @override
-  dynamic part1(String input) =>
-      input.lines.map(corruptedScore).nonNulls.sum;
+  dynamic part1(String input) => input.lines.map(corruptedScore).nonNulls.sum;
 
   @override
   dynamic part2(String input) {
-    final scores = input.lines.map(incompleteScore).nonNulls.toList()
-      ..sort();
+    final scores = input.lines.map(incompleteScore).nonNulls.toList()..sort();
     return scores[scores.length ~/ 2];
   }
 

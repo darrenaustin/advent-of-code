@@ -1,7 +1,7 @@
 import 'package:aoc2016/src/day16.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2016 Day 16', () {
     group('Dragon Curve', () {
       test('sequence', () {

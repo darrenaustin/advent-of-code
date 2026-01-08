@@ -1,7 +1,7 @@
 import 'package:aoc2021/src/day25.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2021 Day 25', () {
     final exampleInput = '''
 v...>>.vv>

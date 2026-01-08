@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day05.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   final exampleInput = '''
     [D]
 [N] [C]

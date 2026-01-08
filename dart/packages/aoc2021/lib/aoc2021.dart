@@ -1,4 +1,4 @@
-library aoc2021;
+library;
 
 import 'package:aoc/aoc.dart';
 import 'src/day01.dart' show Day01;

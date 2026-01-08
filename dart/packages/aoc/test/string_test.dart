@@ -1,7 +1,7 @@
 import 'package:aoc/util/string.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('String extensions', () {
     test('chars', () {
       expect('123abc'.chars, ['1', '2', '3', 'a', 'b', 'c']);

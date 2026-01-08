@@ -1,7 +1,7 @@
 import 'package:aoc2022/src/day24.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2022 Day 24', () {
     final exampleInput = '''
 #.######

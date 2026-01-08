@@ -6,7 +6,7 @@ import 'package:aoc/util/pathfinding.dart';
 import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec.dart';
 
-main() => Day15().solve();
+void main() => Day15().solve();
 
 class Day15 extends AdventDay {
   Day15() : super(2021, 15);

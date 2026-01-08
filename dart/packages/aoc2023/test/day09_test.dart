@@ -1,7 +1,7 @@
 import 'package:aoc2023/src/day09.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('2023 Day 09', () {
     final String exampleInput = '''
 0 3 6 9 12 15

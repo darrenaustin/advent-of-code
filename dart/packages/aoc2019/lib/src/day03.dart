@@ -6,7 +6,7 @@ import 'package:aoc/util/string.dart';
 import 'package:aoc/util/vec.dart';
 import 'package:collection/collection.dart';
 
-main() => Day03().solve();
+void main() => Day03().solve();
 
 class Day03 extends AdventDay {
   Day03() : super(2019, 3);
@@ -20,8 +20,7 @@ class Day03 extends AdventDay {
 
     final intersections = <Vec>{};
     for (final s1 in wire1) {
-      intersections
-          .addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
+      intersections.addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
     }
     intersections.remove(origin);
     return intersections.map((v) => v.manhattanDistanceTo(origin)).min.toInt();
@@ -36,8 +35,7 @@ class Day03 extends AdventDay {
 
     final intersections = <Vec>{};
     for (final s1 in wire1) {
-      intersections
-          .addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
+      intersections.addAll(wire2.map((s2) => s1.intersection(s2)).nonNulls);
     }
     intersections.remove(origin);
     return intersections

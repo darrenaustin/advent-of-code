@@ -2,7 +2,7 @@ import 'package:aoc/util/line.dart';
 import 'package:aoc/util/vec.dart';
 import 'package:test/test.dart';
 
-main() {
+void main() {
   group('Line', () {
     test('discretePointAlong orthogonal', () {
       final horizontalLine = Line(Vec(0, 9), Vec(5, 9));
