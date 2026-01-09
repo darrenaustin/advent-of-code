@@ -34,6 +34,12 @@
         (lazy-seq
          (cons chunk (split seperator-fn remaining)))))))
 
+(defn partition-starting [pred coll]
+  (let [indices (rest (reductions (fn [n x] (if (pred x) (inc n) n)) 0 coll))]
+    (->> (map vector indices coll)
+         (partition-by first)
+         (mapv (partial mapv second)))))
+
 (defn group-by-value
   "Groups keys by their values in a map.
    Example: (group-by-value {:a 1 :b 2 :c 1}) => {1 [:a :c], 2 [:b]}"
