@@ -98,7 +98,7 @@
 | [Day 02](https://adventofcode.com/2018/day/2)  | Inventory Management System          | [day02.clj](clojure/src/aoc2018/day02.clj) | [day02.dart](dart/packages/aoc2018/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2018/day/3)  | No Matter How You Slice It           | [day03.clj](clojure/src/aoc2018/day03.clj) | [day03.dart](dart/packages/aoc2018/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2018/day/4)  | Repose Record                        | [day04.clj](clojure/src/aoc2018/day04.clj) | [day04.dart](dart/packages/aoc2018/lib/src/day04.dart) |
-| [Day 05](https://adventofcode.com/2018/day/5)  | Alchemical Reduction                 |                     -                      | [day05.dart](dart/packages/aoc2018/lib/src/day05.dart) |
+| [Day 05](https://adventofcode.com/2018/day/5)  | Alchemical Reduction                 | [day05.clj](clojure/src/aoc2018/day05.clj) | [day05.dart](dart/packages/aoc2018/lib/src/day05.dart) |
 | [Day 06](https://adventofcode.com/2018/day/6)  | Chronal Coordinates                  | [day06.clj](clojure/src/aoc2018/day06.clj) |                           -                            |
 | [Day 07](https://adventofcode.com/2018/day/7)  | The Sum of Its Parts                 | [day07.clj](clojure/src/aoc2018/day07.clj) |                           -                            |
 | [Day 08](https://adventofcode.com/2018/day/8)  | Memory Maneuver                      | [day08.clj](clojure/src/aoc2018/day08.clj) |                           -                            |
