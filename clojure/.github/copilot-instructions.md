@@ -11,7 +11,8 @@ This project is where I solve the yearly Advent of Code puzzles in clojure.
 - I prefer readable, concise, idiomattic, performant and elegant code. In that order.
 
 ## Project Structure
-This is a Clojure project. All code unless otherwise indicated should be in Clojure.
+This is a Clojure project. All code unless otherwise indicated should be in Clojure 1.12.0. Please
+use any prefered "modern clojure" techniques.
 
 The project has the following folder structure:
 
