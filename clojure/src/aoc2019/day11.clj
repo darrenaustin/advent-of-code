@@ -9,8 +9,8 @@
 
 (defn input [] (d/day-input 2019 11))
 
-(def black 0)
-(def white 1)
+(def ^:private black 0)
+(def ^:private white 1)
 
 (defn- turn-dir [turn dir]
   (case turn
@@ -18,17 +18,16 @@
     1 (p/turn-right dir)))
 
 (defn- hull-painting [input starting-color]
-  (let [program (ic/parse input)
+  (let [program (ic/parse-program input)
         grid (assoc (sg/make-sparse-grid) p/origin starting-color)
         machine (ic/run program [starting-color] [])]
     (loop [m machine, g grid, pos p/origin, dir p/dir-up]
-      (let [{:keys [status output]} m
-            [color turn] output
-            g' (assoc g pos color)
-            dir' (turn-dir turn dir)
-            pos' (p/pos+ pos dir')]
-        (if (= status :halted)
-          g'
+      (if (= (:status m) :halted)
+        g
+        (let [[color turn] (:output m)
+              g'   (assoc g pos color)
+              dir' (turn-dir turn dir)
+              pos' (p/pos+ pos dir')]
           (recur (ic/execute (ic/update-io m [(g' pos' black)] []))
                  g' pos' dir'))))))
 

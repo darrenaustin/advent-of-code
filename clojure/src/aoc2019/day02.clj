@@ -2,18 +2,18 @@
 (ns aoc2019.day02
   (:require
    [aoc.day :as d]
-   [aoc2019.intcode :as i]))
+   [aoc2019.intcode :as ic]))
 
 (defn input [] (d/day-input 2019 2))
 
 (defn result [program & inputs]
-  ((:mem (i/run (apply assoc program inputs))) 0))
+  ((:mem (ic/run (apply assoc program inputs))) 0))
 
 (defn part1 [input]
-  (result (i/parse input) 1 12, 2 2))
+  (result (ic/parse-program input) 1 12, 2 2))
 
 (defn part2 [input]
-  (let [program (i/parse input)
+  (let [program (ic/parse-program input)
         [noun verb] (first
                      (for [noun (range 100) verb (range 100)
                            :when (= 19690720 (result program 1 noun, 2 verb))]

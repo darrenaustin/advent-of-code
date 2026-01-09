@@ -6,24 +6,22 @@
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]
-   [aoc2019.intcode :as i])
-  (:import
-   (clojure.lang PersistentQueue)))
+   [aoc2019.intcode :as ic]))
 
 (defn input [] (d/day-input 2019 15))
 
-(def dirs {1 p/dir-n, 2 p/dir-s, 3 p/dir-w, 4 p/dir-e})
+(def ^:private dirs {1 p/dir-n, 2 p/dir-s, 3 p/dir-w, 4 p/dir-e})
 
-(defn generate-grid [input]
-  (let [machine (i/init-machine (i/parse input))
-        queue   (into PersistentQueue/EMPTY
+(defn- generate-grid [input]
+  (let [machine (ic/init-machine (ic/parse-program input))
+        queue   (into c/empty-queue
                       (for [dir [1 2 3 4]] [machine dir [0 0]]))]
     (loop [queue queue, grid {[0 0] \.}]
       (if-let [[machine dir loc] (peek queue)]
         (let [loc' (p/pos+ loc (dirs dir))]
           (if (grid loc')
             (recur (pop queue) grid)
-            (let [machine' (-> machine (i/update-io [dir] []) (i/execute))
+            (let [machine' (-> machine (ic/update-io [dir] []) (ic/execute))
                   response (first (:output machine'))
                   cell     ({0 \#, 1 \., 2 \O} response)
                   grid'    (assoc grid loc' cell)]
@@ -34,7 +32,7 @@
                        grid')))))
         grid))))
 
-(defn neighbors [grid]
+(defn- neighbors [grid]
   (fn [loc]
     (filter #(#{\O \.} (grid %))
             (p/orthogonal-to loc))))

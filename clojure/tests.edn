@@ -8,6 +8,13 @@
           {:id :2017 :test-paths ["test/aoc2017"]}
           {:id :2018 :test-paths ["test/aoc2018"]}
           {:id :2019 :test-paths ["test/aoc2019"]}
+          {:id :intcode :test-paths ["test/aoc2019/intcode_test.clj"
+                                     "test/aoc2019/day02_test.clj"
+                                     "test/aoc2019/day05_test.clj"
+                                     "test/aoc2019/day09_test.clj"
+                                     "test/aoc2019/day11_test.clj"
+                                     "test/aoc2019/day15_test.clj"
+                                     "test/aoc2019/day17_test.clj"]}
           {:id :2020 :test-paths ["test/aoc2020"]}
           {:id :2021 :test-paths ["test/aoc2021"]}
           {:id :2022 :test-paths ["test/aoc2022"]}

@@ -2,12 +2,16 @@
 (ns aoc2019.day09
   (:require
    [aoc.day :as d]
-   [aoc2019.intcode :as i]))
+   [aoc2019.intcode :as ic]))
 
 (defn input [] (d/day-input 2019 9))
 
-(defn part1 [input]
-  (first (:output (i/run (i/parse input) '(1) []))))
+(defn- run [program input]
+  (-> (ic/parse-program program)
+      (ic/run [input] [])
+      :output
+      first))
 
-(defn part2 [input]
-  (first (:output (i/run (i/parse input) '(2) []))))
+(defn part1 [input] (run input 1))
+
+(defn part2 [input] (run input 2))
