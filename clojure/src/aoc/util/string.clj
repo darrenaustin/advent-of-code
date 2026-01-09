@@ -6,7 +6,8 @@
   (:import
    [java.util.regex Matcher]))
 
-(def alphabet "abcdefghijklmnopqrstuvwxyz")
+(def alphabet-lower "abcdefghijklmnopqrstuvwxyz")
+(def alphabet-upper "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 (defn blocks
   "Splits a string into blocks separated by double newlines (blank lines)."

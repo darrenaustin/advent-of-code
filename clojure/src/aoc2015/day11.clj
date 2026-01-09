@@ -7,7 +7,7 @@
 
 (defn input [] (d/day-input 2015 11))
 
-(def valid-letters (remove #{\i \o \l} s/alphabet))
+(def valid-letters (remove #{\i \o \l} s/alphabet-lower))
 
 (def inc-letter
   (into {} (map vec (partition 2 1 valid-letters))))

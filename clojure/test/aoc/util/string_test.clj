@@ -1,7 +1,12 @@
 (ns aoc.util.string-test
   (:require
    [aoc.util.string :as s]
+   [clojure.string :as str]
    [clojure.test :refer :all]))
+
+(deftest alphabet-test
+  (testing "alphabets match"
+    (is (= s/alphabet-upper (str/upper-case s/alphabet-lower)))))
 
 (deftest blocks-test
   (testing "blocks splits on double newlines"
