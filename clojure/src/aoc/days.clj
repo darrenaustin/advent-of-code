@@ -105,6 +105,7 @@
    [aoc2018.day23]
    [aoc2018.day24]
    [aoc2018.day25]
+   [aoc2019.day01]
    [aoc2019.day02]
    [aoc2019.day05]
    [aoc2019.day08]

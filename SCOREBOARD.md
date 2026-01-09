@@ -124,7 +124,7 @@
 
 |                      36 ⭐️                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :--------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
-| [Day 01](https://adventofcode.com/2019/day/1)  | The Tyranny of the Rocket Equation |                     -                      | [day01.dart](dart/packages/aoc2019/lib/src/day01.dart) |
+| [Day 01](https://adventofcode.com/2019/day/1)  | The Tyranny of the Rocket Equation | [day01.clj](clojure/src/aoc2019/day01.clj) | [day01.dart](dart/packages/aoc2019/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2019/day/2)  | 1202 Program Alarm                 | [day02.clj](clojure/src/aoc2019/day02.clj) | [day02.dart](dart/packages/aoc2019/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2019/day/3)  | Crossed Wires                      |                     -                      | [day03.dart](dart/packages/aoc2019/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2019/day/4)  | Secure Container                   |                     -                      | [day04.dart](dart/packages/aoc2019/lib/src/day04.dart) |
