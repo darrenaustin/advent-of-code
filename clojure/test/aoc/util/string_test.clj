@@ -53,14 +53,14 @@
 
 (deftest digit-test
   (testing "digit converts char to int"
-    (is (= 1 (s/digit \1)))
-    (is (= 0 (s/digit \0)))
-    (is (= 9 (s/digit \9)))))
+    (is (= 1 (s/char->digit \1)))
+    (is (= 0 (s/char->digit \0)))
+    (is (= 9 (s/char->digit \9)))))
 
 (deftest digits-test
-  (testing "digits converts number/string to vector of digits"
-    (is (= [1 2 3] (s/digits 123)))
-    (is (= [1 2 3] (s/digits "123")))))
+  (testing "digits converts string to vector of digits"
+    (is (= [1 2 3] (s/digits "123")))
+    (is (= [0 4 5 6] (s/digits "0456")))))
 
 (deftest re-seq-overlapping-test
   (testing "re-seq-overlapping finds overlapping matches"

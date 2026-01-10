@@ -40,7 +40,7 @@
         (recur sum' (dec n) (conj result (abs (rem sum' 10))))))))
 
 (defn part1 [input]
-  (s/int (str/join (take 8 (c/nth-iteration phase (s/digits input) 100)))))
+  (s/int (str/join (take 8 (c/nth-iteration phase (vec (s/digits input)) 100)))))
 
 ; Got stuck on this one, but used these observations:
 ; https://www.reddit.com/r/adventofcode/comments/ebai4g/comment/fb45653/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button

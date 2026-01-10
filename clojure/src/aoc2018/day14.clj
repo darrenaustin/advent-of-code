@@ -2,6 +2,7 @@
 (ns aoc2018.day14
   (:require
    [aoc.day :as d]
+   [aoc.util.math :as m]
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
@@ -15,7 +16,7 @@
         (str/join (take 10 (drop target-num recipes)))
         (let [recipe1     (recipes elf1)
               recipe2     (recipes elf2)
-              new-recipes (s/digits (+ recipe1 recipe2))
+              new-recipes (m/digits (+ recipe1 recipe2))
               recipes'    (reduce conj recipes new-recipes)
               num-recipes (count recipes')]
           (recur (mod (+ elf1 recipe1 1) num-recipes)
@@ -31,7 +32,7 @@
           search-idx
           (recur elf1 elf2 recipes (inc search-idx)))
         (let [recipe1     (recipes elf1) recipe2 (recipes elf2)
-              new-recipes (s/digits (+ recipe1 recipe2))
+              new-recipes (m/digits (+ recipe1 recipe2))
               recipes'    (reduce conj recipes new-recipes)
               num-recipes (count recipes')]
           (recur (mod (+ elf1 recipe1 1) num-recipes)

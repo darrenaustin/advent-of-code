@@ -59,15 +59,15 @@
   [s]
   (mapv read-int (re-seq #"\d+" s)))
 
-(defn digit
+(defn char->digit
   "Converts a character digit to its integer value."
   [chr]
   (^[char] Character/getNumericValue chr))
 
 (defn digits
-  "Returns a vector of digits from a number or string."
-  [n]
-  (mapv digit (str n)))
+  "Returns a sequence of digits from a string."
+  [s]
+  (map char->digit (str s)))
 
 (defn re-seq-overlapping
   "Returns a lazy sequence of all overlapping matches of the regex `re` in string `s`.

@@ -29,7 +29,7 @@
             (range 9 0 -1))))
 
 (defn count-trails [input coll-fn]
-  (let [grid              (g/str->grid input s/digit)
+  (let [grid              (g/str->grid input s/char->digit)
         summits-reachable (summits-reachable-map grid)
         trailheads        (c/keys-when-val #{0} grid)]
     (m/sum (map (comp count coll-fn summits-reachable) trailheads))))

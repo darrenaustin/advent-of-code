@@ -11,7 +11,7 @@
     (->> input
          (keep-indexed
           (fn [i n] (when (= n (nth input (mod (+ i step) size)))
-                      (s/digit n))))
+                      (s/char->digit n))))
          (reduce +))))
 
 (defn part1 [input] (captcha input 1))

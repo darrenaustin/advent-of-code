@@ -7,7 +7,16 @@
 
 (def min-int Integer/MIN_VALUE)
 
-(defn num-digits [n] (count (str n)))
+(defn num-digits [n]
+  (if (zero? n)
+    1
+    (long (inc (math/log10 (abs n))))))
+
+(defn digits [n]
+  (loop [ds '(), n (abs n)]
+    (if (< n 10)
+      (conj ds (int n))
+      (recur (conj ds (int (rem n 10))) (quot n 10)))))
 
 (defn div? [n d]
   (zero? (rem n d)))
