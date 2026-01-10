@@ -23,8 +23,10 @@
 (defn distance [x y]
   (abs (- x y)))
 
-(defn manhattan-distance [pos-a pos-b]
-  (sum (map distance pos-a pos-b)))
+(defn manhattan-distance
+  ([pos-a] (manhattan-distance pos-a (repeat (count pos-a) 0)))
+  ([pos-a pos-b]
+   (sum (map distance pos-a pos-b))))
 
 ;; Blatantly stolen from `tschady`'s excellent aoc repo:
 ;;
