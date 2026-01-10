@@ -37,6 +37,12 @@
   ([pos-a pos-b]
    (sum (map distance pos-a pos-b))))
 
+(defn range-inc
+  ([] (range))
+  ([end] (range (inc end)))
+  ([start end] (range start (inc end)))
+  ([start end step] (range start (inc end) step)))
+
 ;; Blatantly stolen from `tschady`'s excellent aoc repo:
 ;;
 ;; https://github.com/tschady/advent-of-code/blob/main/src/aoc/coll_util.clj
