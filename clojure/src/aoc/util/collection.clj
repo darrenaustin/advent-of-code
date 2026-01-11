@@ -160,9 +160,6 @@
       (recur (f x) (inc i))
       x)))
 
-;; Allow (sort (by :surname asc :age desc) coll)
-;;
-;; from: https://www.reddit.com/r/Clojure/comments/ufa8e0/comment/i6s7zt5
 (defn iteration-with-cycle
   "Efficiently computes the result of applying function f to x for a given iteration number,
    detecting cycles to avoid computing all intermediate values.
@@ -176,6 +173,9 @@
         (nth history cycled-iter))
       (recur (f x) (inc iter) (assoc seen x iter) (conj history x)))))
 
+;; Allow (sort (by :surname asc :age desc) coll)
+;;
+;; from: https://www.reddit.com/r/Clojure/comments/ufa8e0/comment/i6s7zt5
 (defn asc
   "Ascending comparison function for use with sort and by.
    Returns negative, zero, or positive based on comparison of a and b."
