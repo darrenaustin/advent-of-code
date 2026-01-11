@@ -130,7 +130,7 @@
 | [Day 04](https://adventofcode.com/2019/day/4)  | Secure Container                   | [day04.clj](clojure/src/aoc2019/day04.clj) | [day04.dart](dart/packages/aoc2019/lib/src/day04.dart) |
 | [Day 05](https://adventofcode.com/2019/day/5)  | Sunny with a Chance of Asteroids   | [day05.clj](clojure/src/aoc2019/day05.clj) | [day05.dart](dart/packages/aoc2019/lib/src/day05.dart) |
 | [Day 06](https://adventofcode.com/2019/day/6)  | Universal Orbit Map                | [day06.clj](clojure/src/aoc2019/day06.clj) | [day06.dart](dart/packages/aoc2019/lib/src/day06.dart) |
-| [Day 07](https://adventofcode.com/2019/day/7)  | Amplification Circuit              |                     -                      | [day07.dart](dart/packages/aoc2019/lib/src/day07.dart) |
+| [Day 07](https://adventofcode.com/2019/day/7)  | Amplification Circuit              | [day07.clj](clojure/src/aoc2019/day07.clj) | [day07.dart](dart/packages/aoc2019/lib/src/day07.dart) |
 | [Day 08](https://adventofcode.com/2019/day/8)  | Space Image Format                 | [day08.clj](clojure/src/aoc2019/day08.clj) | [day08.dart](dart/packages/aoc2019/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2019/day/9)  | Sensor Boost                       | [day09.clj](clojure/src/aoc2019/day09.clj) | [day09.dart](dart/packages/aoc2019/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2019/day/10) | Monitoring Station                 |                     -                      | [day10.dart](dart/packages/aoc2019/lib/src/day10.dart) |

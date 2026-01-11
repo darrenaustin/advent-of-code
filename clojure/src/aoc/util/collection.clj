@@ -63,6 +63,19 @@
   [f coll]
   (into {} (map (fn [e] [(f e) e])) coll))
 
+(defn map-accum
+  "Applies a function f to an accumulator and the elements of a collection.
+   f should be a function of [acc x] returning [new-acc new-x].
+   Returns a vector [final-acc result-coll].
+
+   The result-coll is realized eagerly."
+  [f init coll]
+  (reduce (fn [[acc result] x]
+            (let [[new-acc new-x] (f acc x)]
+              [new-acc (conj result new-x)]))
+          [init []]
+          coll))
+
 (defn dissoc-in
   "Dissociates a value in a nested map structure, similar to `assoc-in` but for removal.
    If the path doesn't exist, the map is returned unchanged."
@@ -147,6 +160,9 @@
       (recur (f x) (inc i))
       x)))
 
+;; Allow (sort (by :surname asc :age desc) coll)
+;;
+;; from: https://www.reddit.com/r/Clojure/comments/ufa8e0/comment/i6s7zt5
 (defn iteration-with-cycle
   "Efficiently computes the result of applying function f to x for a given iteration number,
    detecting cycles to avoid computing all intermediate values.
@@ -160,9 +176,6 @@
         (nth history cycled-iter))
       (recur (f x) (inc iter) (assoc seen x iter) (conj history x)))))
 
-;; Allow (sort (by :surname asc :age desc) coll)
-;;
-;; from: https://www.reddit.com/r/Clojure/comments/ufa8e0/comment/i6s7zt5
 (defn asc
   "Ascending comparison function for use with sort and by.
    Returns negative, zero, or positive based on comparison of a and b."

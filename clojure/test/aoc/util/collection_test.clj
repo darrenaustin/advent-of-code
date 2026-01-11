@@ -68,6 +68,16 @@
            (c/map-by :id [{:id 1 :val "a"} {:id 2 :val "b"}])))
     (is (= {1 "a" 3 "abc"} (c/map-by count ["a" "abc"])))))
 
+(deftest map-accum-test
+  (testing "map-accum accumulates state and returns mapped sequence"
+    (let [f (fn [acc x] [(+ acc x) (+ acc x)])]
+      (is (= [6 [1 3 6]] (c/map-accum f 0 [1 2 3])))))
+  (testing "map-accum threads state correctly"
+    (let [f (fn [sum x]
+              (let [new-sum (+ sum x)]
+                [new-sum (* new-sum 2)]))]
+      (is (= [6 [2 6 12]] (c/map-accum f 0 [1 2 3]))))))
+
 (deftest dissoc-in-test
   (testing "dissoc-in removes nested keys"
     (is (= {:a {:b 2}} (c/dissoc-in {:a {:b 2 :c 3}} [:a :c])))
