@@ -110,6 +110,7 @@
    [aoc2019.day03]
    [aoc2019.day04]
    [aoc2019.day05]
+   [aoc2019.day06]
    [aoc2019.day08]
    [aoc2019.day09]
    [aoc2019.day11]
