@@ -87,3 +87,11 @@
     (is (= p/dir-down  (p/turn-right p/dir-right)))
     (is (= p/dir-left  (p/turn-right p/dir-down)))
     (is (= p/dir-up    (p/turn-right p/dir-left)))))
+
+(deftest angle-test
+  (testing "Calculates angle between points in degrees [0, 360)"
+    (is (= 0.0 (p/angle [0 0] [1 0])))   ;; Right (0 deg)
+    (is (= 90.0 (p/angle [0 0] [0 1])))  ;; Down (90 deg)
+    (is (= 180.0 (p/angle [0 0] [-1 0]))) ;; Left (180 deg)
+    (is (= 270.0 (p/angle [0 0] [0 -1]))) ;; Up (270 deg)
+    (is (= 45.0 (p/angle [0 0] [1 1]))))) ;; Down-Right

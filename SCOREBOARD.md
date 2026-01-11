@@ -133,7 +133,7 @@
 | [Day 07](https://adventofcode.com/2019/day/7)  | Amplification Circuit              | [day07.clj](clojure/src/aoc2019/day07.clj) | [day07.dart](dart/packages/aoc2019/lib/src/day07.dart) |
 | [Day 08](https://adventofcode.com/2019/day/8)  | Space Image Format                 | [day08.clj](clojure/src/aoc2019/day08.clj) | [day08.dart](dart/packages/aoc2019/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2019/day/9)  | Sensor Boost                       | [day09.clj](clojure/src/aoc2019/day09.clj) | [day09.dart](dart/packages/aoc2019/lib/src/day09.dart) |
-| [Day 10](https://adventofcode.com/2019/day/10) | Monitoring Station                 |                     -                      | [day10.dart](dart/packages/aoc2019/lib/src/day10.dart) |
+| [Day 10](https://adventofcode.com/2019/day/10) | Monitoring Station                 | [day10.clj](clojure/src/aoc2019/day10.clj) | [day10.dart](dart/packages/aoc2019/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2019/day/11) | Space Police                       | [day11.clj](clojure/src/aoc2019/day11.clj) | [day11.dart](dart/packages/aoc2019/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2019/day/12) | The N-Body Problem                 |                     -                      | [day12.dart](dart/packages/aoc2019/lib/src/day12.dart) |
 | [Day 13](https://adventofcode.com/2019/day/13) | Care Package                       |                     -                      | [day13.dart](dart/packages/aoc2019/lib/src/day13.dart) |

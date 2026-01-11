@@ -7,6 +7,11 @@
 
 (def min-int Integer/MIN_VALUE)
 
+(def min-long Long/MIN_VALUE)
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(def max-long Long/MAX_VALUE)
+
 (defn num-digits [n]
   (if (zero? n)
     1
@@ -75,6 +80,20 @@
                 1 [mx maxes])))
           [min-int []]
           coll))
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(defn min-of [f coll]
+  (transduce (map f) min max-long coll))
+
+(defn max-of [f coll]
+  (transduce (map f) max min-long coll))
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(defn min-by [f coll]
+  (apply min-key f coll))
+
+(defn max-by [f coll]
+  (apply max-key f coll))
 
 (defn indexed-min [coll]
   (reduce (fn [[mi mv] [i v]] (if (< v mv) [i v] [mi mv]))

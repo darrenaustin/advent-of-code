@@ -1,7 +1,9 @@
 (ns aoc.util.pos
   "Utilities for 2D position arithmetic and grid navigation.
    Includes vector addition/subtraction, direction constants, neighbor generation,
-   and rotation helpers.")
+   and rotation helpers."
+  (:require
+   [clojure.math :as math]))
 
 (defn pos+
   "Adds two or more position vectors."
@@ -28,6 +30,20 @@
   "Calculates the dot product of two vectors."
   [x y]
   (reduce + (map * x y)))
+
+(defn theta [[x y]] (math/atan2 y x))
+
+(defn angle [p1 p2]
+  (mod (math/to-degrees (theta (pos- p2 p1))) 360.0))
+
+(defn distance-sq [[x1 y1] [x2 y2]]
+  (let [dx (- x2 x1)
+        dy (- y2 y1)]
+    (+ (* dx dx) (* dy dy))))
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(defn distance [p1 p2]
+  (math/sqrt (distance-sq p1 p2)))
 
 (def origin [0 0])
 
@@ -121,7 +137,7 @@
 (defn diamond-around [min-radius max-radius [x y]]
   (for [radius (range min-radius (inc max-radius))
         ry     (range (inc radius))
-        :let [rx (- radius ry)]
+        :let   [rx (- radius ry)]
         n      (cond
                  (= 0 rx ry) [[x y]]
                  (zero? rx) [[x (+ y ry)] [x (- y ry)]]

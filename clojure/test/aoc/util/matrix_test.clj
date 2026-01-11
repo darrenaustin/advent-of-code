@@ -1,4 +1,3 @@
-(ns aoc.util.matrix-test)
 (ns aoc.util.matrix-test
   (:require
    [aoc.util.matrix :as mat]
@@ -11,7 +10,12 @@
     (is (= [[1 4 7] [2 5 8] [3 6 9]]
            (mat/transpose [[1 2 3] [4 5 6] [7 8 9]])))
     (is (= [[1] [2] [3]]
-           (mat/transpose [[1 2 3]])))))
+           (mat/transpose [[1 2 3]]))))
+
+  (testing "jagged transpose with padding"
+    (is (= [[1 4] [2 nil] [3 nil]] (mat/transpose [[1 2 3] [4]] nil)))
+    (is (= [[1 4] [2 0] [3 0]] (mat/transpose [[1 2 3] [4]] 0)))
+    (is (= [[1 4] [2 5] [3 0]] (mat/transpose [[1 2 3] [4 5]] 0)))))
 
 (deftest flip-horizontal-test
   (testing "flip-horizontal reverses each row"
