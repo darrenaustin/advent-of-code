@@ -26,6 +26,19 @@
 (defn div? [n d]
   (zero? (rem n d)))
 
+(defn gcd [a b]
+  (if (zero? b)
+    a
+    (recur b (rem a b))))
+
+(defn lcm
+  ([a b]
+   (if (or (zero? a) (zero? b))
+     0
+     (abs (/ (* a b) (gcd a b)))))
+  ([a b & more]
+   (reduce lcm (lcm a b) more)))
+
 (defn sum [l] (reduce + l))
 (defn product [l] (reduce * l))
 
