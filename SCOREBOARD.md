@@ -135,7 +135,7 @@
 | [Day 09](https://adventofcode.com/2019/day/9)  | Sensor Boost                       | [day09.clj](clojure/src/aoc2019/day09.clj) | [day09.dart](dart/packages/aoc2019/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2019/day/10) | Monitoring Station                 | [day10.clj](clojure/src/aoc2019/day10.clj) | [day10.dart](dart/packages/aoc2019/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2019/day/11) | Space Police                       | [day11.clj](clojure/src/aoc2019/day11.clj) | [day11.dart](dart/packages/aoc2019/lib/src/day11.dart) |
-| [Day 12](https://adventofcode.com/2019/day/12) | The N-Body Problem                 |                     -                      | [day12.dart](dart/packages/aoc2019/lib/src/day12.dart) |
+| [Day 12](https://adventofcode.com/2019/day/12) | The N-Body Problem                 | [day12.clj](clojure/src/aoc2019/day12.clj) | [day12.dart](dart/packages/aoc2019/lib/src/day12.dart) |
 | [Day 13](https://adventofcode.com/2019/day/13) | Care Package                       |                     -                      | [day13.dart](dart/packages/aoc2019/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2019/day/14) | Space Stoichiometry                | [day14.clj](clojure/src/aoc2019/day14.clj) |                           -                            |
 | [Day 15](https://adventofcode.com/2019/day/15) | Oxygen System                      | [day15.clj](clojure/src/aoc2019/day15.clj) |                           -                            |
