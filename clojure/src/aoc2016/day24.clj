@@ -2,6 +2,7 @@
    (ns aoc2016.day24
      (:require
       [aoc.day :as d]
+      [aoc.util.char :as char]
       [aoc.util.collection :as c]
       [aoc.util.pos :as p]
       [aoc.util.string :as s]
@@ -22,7 +23,7 @@
               (let [ducts' (update ducts :valid-pos conj pos)]
                 (cond
                   (= chr \0) (assoc ducts' :start pos)
-                  (Character/isDigit chr) (update ducts' :goals conj pos)
+                  (char/digit? chr) (update ducts' :goals conj pos)
                   :else ducts'))))
           {:goals [], :valid-pos #{}}
           (parse-grid input)))

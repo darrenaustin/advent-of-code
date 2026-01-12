@@ -2,7 +2,7 @@
 (ns aoc2017.day01
   (:require
    [aoc.day :as d]
-   [aoc.util.string :as s]))
+   [aoc.util.char :as char]))
 
 (defn input [] (d/day-input 2017 1))
 
@@ -11,7 +11,7 @@
     (->> input
          (keep-indexed
           (fn [i n] (when (= n (nth input (mod (+ i step) size)))
-                      (s/char->digit n))))
+                      (char/digit n))))
          (reduce +))))
 
 (defn part1 [input] (captcha input 1))

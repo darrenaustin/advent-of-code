@@ -1,6 +1,7 @@
 (ns aoc.util.string
   (:refer-clojure :exclude [int ints])
   (:require
+   [aoc.util.char :as char]
    [clojure.pprint :refer [cl-format]]
    [clojure.string :as str])
   (:import
@@ -59,15 +60,10 @@
   [s]
   (mapv read-int (re-seq #"\d+" s)))
 
-(defn char->digit
-  "Converts a character digit to its integer value."
-  [chr]
-  (^[char] Character/getNumericValue chr))
-
 (defn digits
   "Returns a sequence of digits from a string."
   [s]
-  (map char->digit (str s)))
+  (map char/digit (str s)))
 
 (defn re-seq-overlapping
   "Returns a lazy sequence of all overlapping matches of the regex `re` in string `s`.

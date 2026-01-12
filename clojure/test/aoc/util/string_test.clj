@@ -51,12 +51,6 @@
     (is (= [123 456] (s/pos-ints "123-456")))
     (is (= [] (s/pos-ints "no digits here")))))
 
-(deftest digit-test
-  (testing "digit converts char to int"
-    (is (= 1 (s/char->digit \1)))
-    (is (= 0 (s/char->digit \0)))
-    (is (= 9 (s/char->digit \9)))))
-
 (deftest digits-test
   (testing "digits converts string to vector of digits"
     (is (= [1 2 3] (s/digits "123")))

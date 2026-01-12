@@ -2,11 +2,11 @@
 (ns aoc2024.day10
   (:require
    [aoc.day :as d]
+   [aoc.util.char :as char]
    [aoc.util.collection :as c]
    [aoc.util.grid :as g]
    [aoc.util.math :as m]
-   [aoc.util.pos :as p]
-   [aoc.util.string :as s]))
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2024 10))
 
@@ -29,7 +29,7 @@
             (range 9 0 -1))))
 
 (defn count-trails [input coll-fn]
-  (let [grid              (g/str->grid input s/char->digit)
+  (let [grid              (g/str->grid input char/digit)
         summits-reachable (summits-reachable-map grid)
         trailheads        (c/keys-when-val #{0} grid)]
     (m/sum (map (comp count coll-fn summits-reachable) trailheads))))
