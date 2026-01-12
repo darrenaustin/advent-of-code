@@ -2,12 +2,11 @@
 (ns aoc2016.day13
   (:require
    [aoc.day :as d]
+   [aoc.util.collection :as c]
    [aoc.util.math :as m]
    [aoc.util.pathfinding :as path]
    [aoc.util.pos :as p]
-   [aoc.util.string :as s])
-  (:import
-   clojure.lang.PersistentQueue))
+   [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2016 13))
 
@@ -39,7 +38,7 @@
 
 (defn part2 [input]
   (let [neighbors (neighbors-fn (s/int input))]
-    (loop [q (conj PersistentQueue/EMPTY [[1 1] 0])
+    (loop [q (c/queue [[1 1] 0])
            visited #{[1 1]}]
       (if (empty? q)
         (count visited)

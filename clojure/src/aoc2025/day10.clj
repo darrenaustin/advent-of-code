@@ -2,12 +2,11 @@
  (ns aoc2025.day10
    (:require
     [aoc.day :as d]
+    [aoc.util.collection :as c]
     [aoc.util.lp-solver :as lp]
     [aoc.util.math :as m]
     [aoc.util.string :as s]
-    [clojure.string :as str])
-   (:import
-    [clojure.lang PersistentQueue]))
+    [clojure.string :as str]))
 
 (defn input [] (d/day-input 2025 10))
 
@@ -27,7 +26,7 @@
 (defn min-presses-for-lights [{:keys [lights buttons]}]
   (let [goal (read-string (str "2r" (str/join (mapv #(if (= \# %) 1 0) lights))))
         button-masks (mapv #(button-mask % (count lights)) buttons)]
-    (loop [open (conj PersistentQueue/EMPTY [0 0]), visited #{0}]
+    (loop [open (c/queue [0 0]), visited #{0}]
       (when-let [[state depth] (peek open)]
         (if (= state goal)
           depth

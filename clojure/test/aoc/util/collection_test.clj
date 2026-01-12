@@ -1,7 +1,21 @@
 (ns aoc.util.collection-test
   (:require
    [aoc.util.collection :as c]
-   [clojure.test :refer :all]))
+   [clojure.test :refer :all])
+  (:import
+   [clojure.lang PersistentQueue]))
+
+(deftest queue-test
+  (testing "queue creates a PersistentQueue"
+    (let [q (c/queue 1 2 3)]
+      (is (instance? PersistentQueue q))
+      (is (= [1 2 3] (seq q)))
+      (is (= 1 (peek q)))
+      (is (= 2 (peek (pop q))))))
+  (testing "queue creates an empty PersistentQueue when no args"
+    (let [q (c/queue)]
+      (is (instance? PersistentQueue q))
+      (is (empty? q)))))
 
 (deftest first-where-test
   (testing "first-where finds the first element that satisfies the predicate"

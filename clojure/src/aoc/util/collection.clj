@@ -3,7 +3,16 @@
   (:import
    [clojure.lang PersistentQueue]))
 
-(def empty-queue PersistentQueue/EMPTY)
+(def empty-queue
+  "An empty PersistentQueue instance, useful as a starting point for `conj` operations."
+  PersistentQueue/EMPTY)
+
+(defn queue
+  "Returns a PersistentQueue containing the optional items.
+   PersistentQueue supports efficient adding to the rear (conj) and removing from the front (pop/peek).
+   Example: (queue 1 2 3) => <-(1 2 3)-<"
+  [& xs]
+  (into empty-queue xs))
 
 (defn first-where
   "Returns the first element in the collection that satisfies the predicate.
