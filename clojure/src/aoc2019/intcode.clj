@@ -150,11 +150,12 @@
 (defn update-io
   "Updates the machine's I/O buffers and resets status to :running.
    Replaces the current input queue with `input` (converted to FIFO queue) and resets `output`."
-  [machine input output]
-  (assoc machine
-         :input (into c/empty-queue input)
-         :output output
-         :status :running))
+  ([machine input] (update-io machine input nil))
+  ([machine input output]
+   (assoc machine
+          :input (into c/empty-queue input)
+          :output (or output [])
+          :status :running)))
 
 (defn execute
   "Executes the machine until it halts or waits for input."

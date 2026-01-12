@@ -117,6 +117,7 @@
    [aoc2019.day10]
    [aoc2019.day11]
    [aoc2019.day12]
+   [aoc2019.day13]
    [aoc2019.day14]
    [aoc2019.day15]
    [aoc2019.day16]
