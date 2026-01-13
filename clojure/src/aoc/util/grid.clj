@@ -21,8 +21,8 @@
     ITransientMap
     MapEntry
     Seqable]
-   [java.util Iterator]
-   [java.lang Iterable]))
+   [java.lang Iterable]
+   [java.util Iterator]))
 
 (def bounds b/bounds)
 (def width b/width)

@@ -61,6 +61,7 @@
     (is (instance? Iterable grid))
     ;; Check basic iteration via into (uses iterator)
     (is (= [[[0 0] 1] [[1 0] 2] [[0 1] 3] [[1 1] 4]]
+           #_{:splint/disable [style lint/into-literal]}
            (into [] grid)))
     ;; Check transducer usage
     (is (= 10 (transduce (map val) + 0 grid)))))
