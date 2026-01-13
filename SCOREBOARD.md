@@ -122,7 +122,7 @@
 
 ##  2019
 
-|                      38 ⭐️                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
+|                      40 ⭐️                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :--------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2019/day/1)  | The Tyranny of the Rocket Equation | [day01.clj](clojure/src/aoc2019/day01.clj) | [day01.dart](dart/packages/aoc2019/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2019/day/2)  | 1202 Program Alarm                 | [day02.clj](clojure/src/aoc2019/day02.clj) | [day02.dart](dart/packages/aoc2019/lib/src/day02.dart) |
@@ -142,7 +142,7 @@
 | [Day 16](https://adventofcode.com/2019/day/16) | Flawed Frequency Transmission      | [day16.clj](clojure/src/aoc2019/day16.clj) |                           -                            |
 | [Day 17](https://adventofcode.com/2019/day/17) | Set and Forget                     | [day17.clj](clojure/src/aoc2019/day17.clj) |                           -                            |
 | [Day 18](https://adventofcode.com/2019/day/18) | Many-Worlds Interpretation         | [day18.clj](clojure/src/aoc2019/day18.clj) |                           -                            |
-| [Day 19](https://adventofcode.com/2019/day/19) | -                                  |                     -                      |                           -                            |
+| [Day 19](https://adventofcode.com/2019/day/19) | Tractor Beam                       | [day19.clj](clojure/src/aoc2019/day19.clj) |                           -                            |
 | [Day 20](https://adventofcode.com/2019/day/20) | -                                  |                     -                      |                           -                            |
 | [Day 21](https://adventofcode.com/2019/day/21) | -                                  |                     -                      |                           -                            |
 | [Day 22](https://adventofcode.com/2019/day/22) | Slam Shuffle                       | [day22.clj](clojure/src/aoc2019/day22.clj) |                           -                            |
