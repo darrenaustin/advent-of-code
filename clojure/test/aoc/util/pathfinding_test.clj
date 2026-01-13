@@ -66,6 +66,25 @@
       (is (= [0 0] (first p)))
       (is (= [2 2] (last p))))))
 
+(deftest a-star-weighted-test
+  (testing "a-star-weighted-cost"
+    (let [graph {:a {:b 1 :c 5}
+                 :b {:c 2}
+                 :c {:d 1}
+                 :d {}}
+          neighbors (fn [n] (map vec (graph n))) ;; returns seq of [next cost]
+          goal? #(= % :d)]
+      (is (= 4 (path/a-star-weighted-cost :a neighbors goal?)))))
+
+  (testing "a-star-weighted-path"
+    (let [graph {:a {:b 1 :c 5}
+                 :b {:c 2}
+                 :c {:d 1}
+                 :d {}}
+          neighbors (fn [n] (map vec (graph n)))
+          goal? #(= % :d)]
+      (is (= '(:a :b :c :d) (path/a-star-weighted-path :a neighbors goal?))))))
+
 (deftest dijkstra-test
   (testing "dijkstra-all-paths"
     (let [graph {:a [:b :c]

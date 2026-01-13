@@ -32,6 +32,32 @@
                       neighbors)]
           (recur next-q next-costs))))))
 
+(defn a-star-weighted-cost
+  "Finds the shortest path cost from start to a goal state using A* search.
+   `neighbors-fn`: function that takes a state and returns a sequence of [neighbor-state cost] pairs.
+   `goal?`: function that takes a state and returns true if it is a goal state.
+   `:heuristic`: optional function that takes a state and returns an estimated cost to the goal. Defaults to (constantly 0)."
+  [start neighbors-fn goal? & {:keys [heuristic]
+                               :or {heuristic (constantly 0)}}]
+  (loop [q (priority-map start (heuristic start))
+         costs {start 0}]
+    (when-let [[curr _] (peek q)]
+      (if (goal? curr)
+        (costs curr)
+        (let [curr-cost (costs curr)
+              q (pop q)
+              nbrs (neighbors-fn curr)
+              {next-q :q next-costs :c}
+              (reduce (fn [{:keys [q c] :as acc} [next-state step-cost]]
+                        (let [new-cost (+ curr-cost step-cost)]
+                          (if (< new-cost (get c next-state Double/POSITIVE_INFINITY))
+                            {:q (assoc q next-state (+ new-cost (heuristic next-state)))
+                             :c (assoc c next-state new-cost)}
+                            acc)))
+                      {:q q :c costs}
+                      nbrs)]
+          (recur next-q next-costs))))))
+
 (defn- reconstruct-path [came-from current]
   (loop [curr current
          path (list current)]
@@ -68,6 +94,35 @@
                             acc)))
                       {:q q :c costs :cf came-from}
                       neighbors)]
+          (recur next-q next-costs next-came-from))))))
+
+(defn a-star-weighted-path
+  "Finds a shortest path from start to a goal state using A* search.
+   Returns a sequence of states from start to goal, or nil if no path is found.
+   `neighbors-fn`: function that takes a state and returns a sequence of [neighbor-state cost] pairs.
+   `goal?`: function that takes a state and returns true if it is a goal state.
+   `:heuristic`: optional function that takes a state and returns an estimated cost to the goal. Defaults to (constantly 0)."
+  [start neighbors-fn goal? & {:keys [heuristic]
+                               :or {heuristic (constantly 0)}}]
+  (loop [q (priority-map start (heuristic start))
+         costs {start 0}
+         came-from {}]
+    (when-let [[curr _] (peek q)]
+      (if (goal? curr)
+        (reconstruct-path came-from curr)
+        (let [curr-cost (costs curr)
+              q (pop q)
+              nbrs (neighbors-fn curr)
+              {next-q :q next-costs :c next-came-from :cf}
+              (reduce (fn [{:keys [q c cf] :as acc} [next-state step-cost]]
+                        (let [new-cost (+ curr-cost step-cost)]
+                          (if (< new-cost (get c next-state Double/POSITIVE_INFINITY))
+                            {:q (assoc q next-state (+ new-cost (heuristic next-state)))
+                             :c (assoc c next-state new-cost)
+                             :cf (assoc cf next-state curr)}
+                            acc)))
+                      {:q q :c costs :cf came-from}
+                      nbrs)]
           (recur next-q next-costs next-came-from))))))
 
 (defn- min-paths [a b]
