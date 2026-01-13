@@ -12,6 +12,11 @@
 #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (def max-long Long/MAX_VALUE)
 
+(def pos-infinity Double/POSITIVE_INFINITY)
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(def neg-infinity Double/NEGATIVE_INFINITY)
+
 (defn num-digits [n]
   (if (zero? n)
     1
