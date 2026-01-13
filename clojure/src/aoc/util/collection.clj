@@ -66,6 +66,25 @@
   [pred m]
   (keep (fn [[k v]] (when (pred v) k)) m))
 
+(defn filter-map
+  "Filters a map by retaining only entries that satisfy the predicate `pred`.
+   `pred` should be a function of one argument (a MapEntry or vector [k v]).
+   Returns a new map, or a transducer if `m` is not provided."
+  ([pred] (filter pred))
+  ([pred m] (into {} (filter pred) m)))
+
+(defn filter-keys
+  "Filters a map by retaining only entries where the key satisfies the predicate `pred`.
+   Returns a new map, or a transducer if `m` is not provided."
+  ([pred] (filter (comp pred key)))
+  ([pred m] (into {} (filter (comp pred key)) m)))
+
+(defn filter-vals
+  "Filters a map by retaining only entries where the value satisfies the predicate `pred`.
+   Returns a new map, or a transducer if `m` is not provided."
+  ([pred] (filter (comp pred val)))
+  ([pred m] (into {} (filter (comp pred val)) m)))
+
 (defn map-by
   "Returns a map where the keys are the result of applying `f` to each element of `coll`,
    and the values are the elements themselves."

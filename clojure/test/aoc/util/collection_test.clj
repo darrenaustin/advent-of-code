@@ -25,6 +25,30 @@
     (is (nil? (c/first-where pos? [])))
     (is (= 1 (c/first-where pos? [1 2 3])))))
 
+(deftest filter-map-test
+  (testing "filter-map filters map entries"
+    (is (= {:a 1 :c 3} (c/filter-map (fn [[_ v]] (odd? v)) {:a 1 :b 2 :c 3})))
+    (is (= {} (c/filter-map (constantly false) {:a 1})))
+    (is (= {:a 1} (c/filter-map (constantly true) {:a 1}))))
+  (testing "filter-map transducer"
+    (is (= {:a 1 :c 3} (into {} (c/filter-map (fn [[_ v]] (odd? v))) {:a 1 :b 2 :c 3})))))
+
+(deftest filter-keys-test
+  (testing "filter-keys filters map by key"
+    (is (= {:a 1 :b 2} (c/filter-keys #{:a :b} {:a 1 :b 2 :c 3})))
+    (is (= {} (c/filter-keys #{:z} {:a 1})))
+    (is (= {:a 1} (c/filter-keys keyword? {:a 1 "b" 2}))))
+  (testing "filter-keys transducer"
+    (is (= {:a 1 :b 2} (into {} (c/filter-keys #{:a :b}) {:a 1 :b 2 :c 3})))))
+
+(deftest filter-vals-test
+  (testing "filter-vals filters map by value"
+    (is (= {:a 1 :c 3} (c/filter-vals odd? {:a 1 :b 2 :c 3})))
+    (is (= {} (c/filter-vals neg? {:a 1})))
+    (is (= {:b 2} (c/filter-vals even? {:a 1 :b 2}))))
+  (testing "filter-vals transducer"
+    (is (= {:a 1 :c 3} (into {} (c/filter-vals odd?) {:a 1 :b 2 :c 3})))))
+
 (deftest count-where-test
   (testing "count-where counts elements that satisfy the predicate"
     (is (= 3 (c/count-where even? [1 2 3 4 5 6])))
