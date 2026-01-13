@@ -20,7 +20,9 @@
     ITransientAssociative2
     ITransientMap
     MapEntry
-    Seqable]))
+    Seqable]
+   [java.util Iterator]
+   [java.lang Iterable]))
 
 (def bounds b/bounds)
 (def width b/width)
@@ -36,6 +38,18 @@
   (^long key_index [key]))
 
 (declare ->Grid)
+
+(deftype GridIterator [cells ^long width ^:unsynchronized-mutable ^long idx ^long len]
+  Iterator
+  (hasNext [_] (< idx len))
+  (next [_]
+    (if (< idx len)
+      (let [val (nth cells idx)
+            y (quot idx width)
+            x (rem idx width)]
+        (set! idx (inc idx))
+        (MapEntry. [x y] val))
+      (throw (java.util.NoSuchElementException.)))))
 
 (deftype TransientGrid [^:unsynchronized-mutable cells ^long width ^long height]
   ITransientMap
@@ -128,6 +142,10 @@
     (if (.containsKey this k)
       (nth cells (.key-index this k))
       default))
+
+  Iterable
+  (iterator [_]
+    (GridIterator. cells width 0 (count cells)))
 
   Seqable
   (seq [_]

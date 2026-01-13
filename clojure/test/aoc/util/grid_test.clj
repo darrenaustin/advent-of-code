@@ -56,6 +56,15 @@
   (let [grid (g/rows->grid ["abc" "def"])]
     (is (= 6 (count grid)))))
 
+(deftest iterable-test
+  (let [grid (g/rows->grid [[1 2] [3 4]])]
+    (is (instance? Iterable grid))
+    ;; Check basic iteration via into (uses iterator)
+    (is (= [[[0 0] 1] [[1 0] 2] [[0 1] 3] [[1 1] 4]]
+           (into [] grid)))
+    ;; Check transducer usage
+    (is (= 10 (transduce (map val) + 0 grid)))))
+
 (deftest seqable-test
   (let [grid (g/rows->grid ["ab" "cd"])]
     (is (= [[[0 0] \a] [[1 0] \b] [[0 1] \c] [[1 1] \d]]
