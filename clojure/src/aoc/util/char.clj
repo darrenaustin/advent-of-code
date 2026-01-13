@@ -36,3 +36,14 @@
   {:inline (fn [c] `(Character/getNumericValue ~c))}
   [^Character c]
   (Character/getNumericValue c))
+
+(defn digit->char
+  "Converts an integer (0-35) to its character representation using the given radix (default 10).
+   Returns the null character (\\u0000) if the value is invalid for the radix.
+   (digit->char 5) => \\5
+   (digit->char 12 16) => \\c"
+  {:inline (fn
+             ([d] `(Character/forDigit ~d 10))
+             ([d r] `(Character/forDigit ~d ~r)))}
+  ([d] (Character/forDigit d 10))
+  ([d r] (Character/forDigit d r)))

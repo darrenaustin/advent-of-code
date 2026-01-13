@@ -30,3 +30,10 @@
   (is (= 0 (c/digit \0)))
   (is (= 5 (c/digit \5)))
   (is (= 9 (c/digit \9))))
+
+(deftest digit->char-test
+  (is (= \0 (c/digit->char 0)))
+  (is (= \9 (c/digit->char 9)))
+  (is (= \a (c/digit->char 10 16)))
+  (is (= \f (c/digit->char 15 16)))
+  (is (= \z (c/digit->char 35 36))))
