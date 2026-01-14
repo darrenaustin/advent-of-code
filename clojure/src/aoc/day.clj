@@ -13,12 +13,11 @@
   (format "%s/%04d/%02d_answer.json" (input-repo-dir) year day-num))
 
 (defn day-input
-  [year day-num & {:keys [trim?] :as _options}]
-  (let [trim? (when (nil? trim?) true)]
-    (try
-      (let [content (slurp (input-file-name year day-num))]
-        (if trim? (str/trim content) content))
-      (catch Exception _ ""))))
+  [year day-num & {:keys [trim?] :or {trim? true}}]
+  (try
+    (let [content (slurp (input-file-name year day-num))]
+      (if trim? (str/trim content) content))
+    (catch Exception _ "")))
 
 (defn day-answers [year day-num]
   (try
