@@ -65,6 +65,21 @@
   [s]
   (map char/digit (str s)))
 
+(defn ascii?
+  "Returns true if n is a valid ASCII code (0-127)."
+  [n]
+  (<= 0 n 127))
+
+(defn str->ascii
+  "Converts a string to a sequence of ASCII codes."
+  [s]
+  (map clojure.core/int s))
+
+(defn ascii->str
+  "Converts a sequence of ASCII codes to a string."
+  [as]
+  (str/join (map char as)))
+
 (defn re-seq-overlapping
   "Returns a lazy sequence of all overlapping matches of the regex `re` in string `s`.
    Uses a lookahead assertion to find matches without consuming characters.

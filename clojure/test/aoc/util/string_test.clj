@@ -55,6 +55,26 @@
   (testing "digits converts string to vector of digits"
     (is (= [1 2 3] (s/digits "123")))
     (is (= [0 4 5 6] (s/digits "0456")))))
+(deftest ascii-test
+  (testing "ascii? predicates"
+    (is (true? (s/ascii? 0)))
+    (is (true? (s/ascii? 127)))
+    (is (false? (s/ascii? -1)))
+    (is (false? (s/ascii? 128))))
+
+  (testing "str->ascii conversion"
+    (is (= [97 98 99] (s/str->ascii "abc")))
+    (is (= [65 66 67] (s/str->ascii "ABC")))
+    (is (= [] (s/str->ascii ""))))
+
+  (testing "ascii->str conversion"
+    (is (= "abc" (s/ascii->str [97 98 99])))
+    (is (= "ABC" (s/ascii->str [65 66 67])))
+    (is (= "" (s/ascii->str []))))
+
+  (testing "round trip"
+    (let [input "Hello, World!"]
+      (is (= input (s/ascii->str (s/str->ascii input)))))))
 
 (deftest re-seq-overlapping-test
   (testing "re-seq-overlapping finds overlapping matches"
@@ -114,3 +134,5 @@
     (is (false? (s/string> "a" "b")))
     (is (false? (s/string> "a" "a")))
     (is (false? (s/string> "c" "a" "b")))))
+
+
