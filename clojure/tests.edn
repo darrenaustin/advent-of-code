@@ -16,7 +16,10 @@
                                      "test/aoc2019/day11_test.clj"
                                      "test/aoc2019/day13_test.clj"
                                      "test/aoc2019/day15_test.clj"
-                                     "test/aoc2019/day17_test.clj"]}
+                                     "test/aoc2019/day17_test.clj"
+                                     "test/aoc2019/day19_test.clj"
+                                     "test/aoc2019/day21_test.clj"
+                                     "test/aoc2019/day23_test.clj"]}
           {:id :2020 :test-paths ["test/aoc2020"]}
           {:id :2021 :test-paths ["test/aoc2021"]}
           {:id :2022 :test-paths ["test/aoc2022"]}
