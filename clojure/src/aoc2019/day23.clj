@@ -52,10 +52,3 @@
                    nil
                    (conj nat-ys nat-y))))
         (recur (process-packets nodes packets) nat-packet' nat-ys)))))
-
-(comment
-  (time (part1 (input)))
-  (time (part2 (input)))
-
-  ;
-  )
