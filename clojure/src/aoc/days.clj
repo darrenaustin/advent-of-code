@@ -125,6 +125,7 @@
    [aoc2019.day18]
    [aoc2019.day19]
    [aoc2019.day20]
+   [aoc2019.day21]
    [aoc2019.day22]
    [aoc2020.day20]
    [aoc2020.day21]
