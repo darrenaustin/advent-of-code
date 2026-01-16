@@ -154,7 +154,7 @@
 
 |                      50 ⭐️                      | Title                   |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :---------------------- | :----------------------------------------: | :----------------------------------------------------: |
-| [Day 01](https://adventofcode.com/2020/day/1)  | Report Repair           |                     -                      | [day01.dart](dart/packages/aoc2020/lib/src/day01.dart) |
+| [Day 01](https://adventofcode.com/2020/day/1)  | Report Repair           | [day01.clj](clojure/src/aoc2020/day01.clj) | [day01.dart](dart/packages/aoc2020/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2020/day/2)  | Password Philosophy     |                     -                      | [day02.dart](dart/packages/aoc2020/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2020/day/3)  | Toboggan Trajectory     |                     -                      | [day03.dart](dart/packages/aoc2020/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2020/day/4)  | Passport Processing     |                     -                      | [day04.dart](dart/packages/aoc2020/lib/src/day04.dart) |
