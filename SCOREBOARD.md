@@ -122,7 +122,7 @@
 
 ##  2019
 
-|                      48 ⭐️                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
+|                      50 ⭐️                      | Title                              |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :--------------------------------- | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2019/day/1)  | The Tyranny of the Rocket Equation | [day01.clj](clojure/src/aoc2019/day01.clj) | [day01.dart](dart/packages/aoc2019/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2019/day/2)  | 1202 Program Alarm                 | [day02.clj](clojure/src/aoc2019/day02.clj) | [day02.dart](dart/packages/aoc2019/lib/src/day02.dart) |
@@ -148,7 +148,7 @@
 | [Day 22](https://adventofcode.com/2019/day/22) | Slam Shuffle                       | [day22.clj](clojure/src/aoc2019/day22.clj) |                           -                            |
 | [Day 23](https://adventofcode.com/2019/day/23) | Category Six                       | [day23.clj](clojure/src/aoc2019/day23.clj) |                           -                            |
 | [Day 24](https://adventofcode.com/2019/day/24) | Planet of Discord                  | [day24.clj](clojure/src/aoc2019/day24.clj) |                           -                            |
-| [Day 25](https://adventofcode.com/2019/day/25) | -                                  |                     -                      |                           -                            |
+| [Day 25](https://adventofcode.com/2019/day/25) | Cryostasis                         | [day25.clj](clojure/src/aoc2019/day25.clj) |                           -                            |
 
 ##  2020
 
