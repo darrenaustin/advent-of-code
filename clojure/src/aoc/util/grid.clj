@@ -34,8 +34,8 @@
 (def bottom-left b/bottom-left)
 (def corners b/corners)
 
-(definterface IKeyIndexed
-  (^long key_index [key]))
+(defprotocol KeyIndexed
+  (^long key-index [this key]))
 
 (declare ->Grid)
 
@@ -91,8 +91,8 @@
   (width [_] width)
   (height [_] height)
 
-  IKeyIndexed
-  (key_index [_ [x y]] (+ (* y width) x))
+  KeyIndexed
+  (key-index [_ [x y]] (+ (* y width) x))
 
   IObj
   (meta [_] _meta)
@@ -131,16 +131,16 @@
       (and (< -1 x width) (< -1 y height))))
   (entryAt [this k]
     (when (.containsKey this k)
-      (MapEntry. k (nth cells (.key-index this k)))))
+      (MapEntry. k (nth cells (key-index this k)))))
   (assoc [this k v]
     (if (.containsKey this k)
-      (Grid. (assoc cells (.key-index this k) v) width height _meta)
+      (Grid. (assoc cells (key-index this k) v) width height _meta)
       this))
   (valAt [this k]
     (.valAt this k nil))
   (valAt [this k default]
     (if (.containsKey this k)
-      (nth cells (.key-index this k))
+      (nth cells (key-index this k))
       default))
 
   Iterable
