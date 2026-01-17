@@ -35,21 +35,30 @@
     (is (= [1 2 3] (s/ints "1, 2, 3")))
     (is (= [-1 -2 -3] (s/ints "-1 -2 -3")))
     (is (= [123 -456] (s/ints "foo 123 bar -456")))
-    (is (= [] (s/ints "no numbers here")))))
+    (is (= [] (s/ints "no numbers here"))))
+  (testing "ints supports radix"
+    (is (= [3 5] (s/ints "11 101" 2)))
+    (is (= [16 32] (s/ints "10 20" 16)))))
 
 (deftest int-test
   (testing "int extracts the first integer from a string"
     (is (= 123 (s/int "123")))
     (is (= 123 (s/int "foo 123")))
     (is (= -123 (s/int "-123")))
-    (is (nil? (s/int "no numbers here")))))
+    (is (nil? (s/int "no numbers here"))))
+  (testing "int supports radix"
+    (is (= 5 (s/int "101" 2)))
+    (is (= 16 (s/int "10" 16)))))
 
 (deftest pos-ints-test
   (testing "pos-ints extracts all sequences of digits as integers"
     (is (= [1 2 3] (s/pos-ints "1 2 3")))
     (is (= [1 2 3] (s/pos-ints "-1 -2 -3")))
     (is (= [123 456] (s/pos-ints "123-456")))
-    (is (= [] (s/pos-ints "no digits here")))))
+    (is (= [] (s/pos-ints "no digits here"))))
+  (testing "pos-ints supports radix"
+    (is (= [3 5] (s/pos-ints "11 101" 2)))
+    (is (= [16 32] (s/pos-ints "10 20" 16)))))
 
 (deftest digits-test
   (testing "digits converts string to vector of digits"

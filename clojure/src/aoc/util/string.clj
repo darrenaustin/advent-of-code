@@ -33,32 +33,40 @@
          (map (fn [block [k f]] {k (f block)})
               (blocks s) parsers)))
 
-(defn- read-int [s]
-  ;; read-string treats a leading '0' as an octal number. Sigh.
-  (read-string (cond
-                 (String/.equals s "0") s
-                 (str/starts-with? s "0") (subs s 1)
-                 (str/starts-with? s "-0") (str "-" (subs s 2))
-                 :else s)))
+(defn- read-int
+  ([s] (read-int s 10))
+  ([s radix]
+   ;; Strip leading zeros to prevent octal interpretation in base 10,
+   ;; but preserve the sign and ensure we don't strip a lone "0".
+   (let [clean-s (str/replace s #"^(-?)0+(?=\d)" "$1")]
+     (read-string (if (= 10 radix)
+                    clean-s
+                    (str radix "r" clean-s))))))
+
+(defn- extract-ints [s regex radix]
+  (when (seq s)
+    (mapv #(read-int % radix) (re-seq regex s))))
 
 (defn ints
   "Returns a vector of all integers found in the string `s`.
-   Handles negative numbers."
-  [s]
-  (when (seq s)
-    (mapv read-int (re-seq #"-?\d+" s))))
-
-(defn int
-  "Returns the first integer found in the string `s`.
-   Handles negative numbers."
-  [s]
-  (first (ints s)))
+   Handles negative numbers.
+   Optionally accepts a `radix` (base) for parsing (default 10)."
+  ([s] (extract-ints s #"-?\d+" 10))
+  ([s radix] (extract-ints s #"-?\d+" radix)))
 
 (defn pos-ints
   "Returns a vector of all positive integers found in the string `s`, parsed as integers.
-   Note that negative signs '-' are treated as seperators."
-  [s]
-  (mapv read-int (re-seq #"\d+" s)))
+   Note that negative signs '-' are treated as separators, so \"-10\" becomes [10].
+   Optionally accepts a `radix` (base) for parsing (default 10)."
+  ([s] (extract-ints s #"\d+" 10))
+  ([s radix] (extract-ints s #"\d+" radix)))
+
+(defn int
+  "Returns the first integer found in the string `s`.
+   Handles negative numbers.
+   Optionally accepts a `radix` (base) for parsing (default 10)."
+  ([s] (first (ints s)))
+  ([s radix] (first (ints s radix))))
 
 (defn digits
   "Returns a sequence of digits from a string."
