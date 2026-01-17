@@ -159,7 +159,7 @@
 | [Day 03](https://adventofcode.com/2020/day/3)  | Toboggan Trajectory     | [day03.clj](clojure/src/aoc2020/day03.clj) | [day03.dart](dart/packages/aoc2020/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2020/day/4)  | Passport Processing     | [day04.clj](clojure/src/aoc2020/day04.clj) | [day04.dart](dart/packages/aoc2020/lib/src/day04.dart) |
 | [Day 05](https://adventofcode.com/2020/day/5)  | Binary Boarding         | [day05.clj](clojure/src/aoc2020/day05.clj) | [day05.dart](dart/packages/aoc2020/lib/src/day05.dart) |
-| [Day 06](https://adventofcode.com/2020/day/6)  | Custom Customs          |                     -                      | [day06.dart](dart/packages/aoc2020/lib/src/day06.dart) |
+| [Day 06](https://adventofcode.com/2020/day/6)  | Custom Customs          | [day06.clj](clojure/src/aoc2020/day06.clj) | [day06.dart](dart/packages/aoc2020/lib/src/day06.dart) |
 | [Day 07](https://adventofcode.com/2020/day/7)  | Handy Haversacks        |                     -                      | [day07.dart](dart/packages/aoc2020/lib/src/day07.dart) |
 | [Day 08](https://adventofcode.com/2020/day/8)  | Handheld Halting        |                     -                      | [day08.dart](dart/packages/aoc2020/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2020/day/9)  | Encoding Error          |                     -                      | [day09.dart](dart/packages/aoc2020/lib/src/day09.dart) |
