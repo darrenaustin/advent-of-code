@@ -12,11 +12,13 @@
 
 (defn blocks
   "Splits a string into blocks separated by double newlines (blank lines)."
+  {:inline (fn [s] `(str/split ~s #"\n\s*\n"))}
   [s]
   (str/split s #"\n\s*\n"))
 
 (defn lines
   "Splits a string into a sequence of lines."
+  {:inline (fn [s] `(str/split-lines ~s))}
   [s]
   (str/split-lines s))
 
