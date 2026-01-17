@@ -12,16 +12,18 @@
    PersistentQueue supports efficient adding to the rear (conj) and removing from the front (pop/peek).
    Example: (queue 1 2 3) => <-(1 2 3)-<"
   [& xs]
-  (into empty-queue xs))
+  (into PersistentQueue/EMPTY xs))
 
 (defn first-where
   "Returns the first element in the collection that satisfies the predicate.
    Returns nil if no element matches."
+  {:inline (fn [pred coll] `(first (filter ~pred ~coll)))}
   [pred coll]
   (first (filter pred coll)))
 
 (defn count-where
   "Returns the number of elements in the collection that satisfy the predicate."
+  {:inline (fn [pred coll] `(count (filter ~pred ~coll)))}
   [pred coll]
   (count (filter pred coll)))
 

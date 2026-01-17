@@ -44,8 +44,13 @@
   ([a b & more]
    (reduce lcm (lcm a b) more)))
 
-(defn sum [l] (reduce + l))
-(defn product [l] (reduce * l))
+(defn sum
+  {:inline (fn [l] `(reduce + ~l))}
+  [l] (reduce + l))
+
+(defn product
+  {:inline (fn [l] `(reduce * ~l))}
+  [l] (reduce * l))
 
 (defn ceil-div [n d]
   (if (zero? (rem n d))
