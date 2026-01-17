@@ -134,6 +134,7 @@
    [aoc2020.day02]
    [aoc2020.day03]
    [aoc2020.day04]
+   [aoc2020.day05]
    [aoc2020.day20]
    [aoc2020.day21]
    [aoc2020.day22]

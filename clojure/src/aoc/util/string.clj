@@ -56,7 +56,7 @@
 
 (defn pos-ints
   "Returns a vector of all positive integers found in the string `s`, parsed as integers.
-   Note that negative signs '-' are treated as separators, so \"-10\" becomes [10].
+   Note that negative signs '-' are not treated as part of the number, so \"-10\" becomes [10].
    Optionally accepts a `radix` (base) for parsing (default 10)."
   ([s] (extract-ints s #"\d+" 10))
   ([s radix] (extract-ints s #"\d+" radix)))
