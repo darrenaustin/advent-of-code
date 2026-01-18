@@ -68,6 +68,11 @@
    \L dir-left
    \R dir-right
 
+   \N dir-n
+   \S dir-s
+   \E dir-e
+   \W dir-w
+
    \^ dir-up
    \v dir-down
    \< dir-left
