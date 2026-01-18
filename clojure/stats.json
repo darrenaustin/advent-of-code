@@ -712,6 +712,11 @@
           "stars": 2
         },
         {
+          "day": 11,
+          "path": "day11.clj",
+          "stars": 2
+        },
+        {
           "day": 20,
           "path": "day20.clj",
           "stars": 2
