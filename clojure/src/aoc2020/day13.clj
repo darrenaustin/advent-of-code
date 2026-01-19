@@ -2,7 +2,7 @@
 (ns aoc2020.day13
   (:require
    [aoc.day :as d]
-   [aoc.util.math :as m :refer [chinese-remainder min-by product]]
+   [aoc.util.math :refer [chinese-remainder min-by product]]
    [aoc.util.string :as s]
    [clojure.string :as str]))
 
