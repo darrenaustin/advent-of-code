@@ -48,3 +48,10 @@
     96 52 -217
     121 -486 217
     nil 40 2018))
+
+(deftest chinese-remainder-test
+  (is (= 23 (m/chinese-remainder [2 3 2] [3 5 7])))
+  (is (= 33 (m/chinese-remainder [3 5] [5 7])))
+  (is (= 1 (m/chinese-remainder [1] [5])))
+  (is (= 0 (m/chinese-remainder [0] [5])))
+  (is (= 39 (m/chinese-remainder [0 3 4] [3 4 5]))))

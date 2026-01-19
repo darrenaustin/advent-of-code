@@ -164,3 +164,25 @@
         [g x _] (extended-gcd a m)]
     (when (= g 1)
       (mod x m))))
+
+(defn chinese-remainder
+  "Solves a system of congruences using the Chinese Remainder Theorem.
+
+   Given a sequence of `residues` [a1, a2, ..., ak] and a sequence of pairwise coprime
+   `moduli` [n1, n2, ..., nk], returns the smallest non-negative integer x such that:
+   x ≡ a1 (mod n1)
+   x ≡ a2 (mod n2)
+   ...
+   x ≡ ak (mod nk)
+
+   The solution is unique modulo the product of the moduli."
+  [residues moduli]
+  (let [mod-product (reduce * moduli)]
+    (mod (reduce +
+                 (map (fn [residue modulus]
+                        (let [p (quot mod-product modulus)
+                              inverse (mod-inverse p modulus)]
+                          (* residue p inverse)))
+                      residues
+                      moduli))
+         mod-product)))
