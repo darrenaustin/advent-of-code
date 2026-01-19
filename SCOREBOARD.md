@@ -166,7 +166,7 @@
 | [Day 10](https://adventofcode.com/2020/day/10) | Adapter Array           | [day10.clj](clojure/src/aoc2020/day10.clj) | [day10.dart](dart/packages/aoc2020/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2020/day/11) | Seating System          | [day11.clj](clojure/src/aoc2020/day11.clj) | [day11.dart](dart/packages/aoc2020/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2020/day/12) | Rain Risk               | [day12.clj](clojure/src/aoc2020/day12.clj) | [day12.dart](dart/packages/aoc2020/lib/src/day12.dart) |
-| [Day 13](https://adventofcode.com/2020/day/13) | Shuttle Search          |                     -                      | [day13.dart](dart/packages/aoc2020/lib/src/day13.dart) |
+| [Day 13](https://adventofcode.com/2020/day/13) | Shuttle Search          | [day13.clj](clojure/src/aoc2020/day13.clj) | [day13.dart](dart/packages/aoc2020/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2020/day/14) | Docking Data            |                     -                      | [day14.dart](dart/packages/aoc2020/lib/src/day14.dart) |
 | [Day 15](https://adventofcode.com/2020/day/15) | Rambunctious Recitation |                     -                      | [day15.dart](dart/packages/aoc2020/lib/src/day15.dart) |
 | [Day 16](https://adventofcode.com/2020/day/16) | Ticket Translation      |                     -                      | [day16.dart](dart/packages/aoc2020/lib/src/day16.dart) |
