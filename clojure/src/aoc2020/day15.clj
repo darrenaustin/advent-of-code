@@ -28,4 +28,3 @@
 (defn part1 [input] (nth-spoken input 2020))
 
 (defn part2 [input] (nth-spoken input 30000000))
-
