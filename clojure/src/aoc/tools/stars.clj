@@ -3,6 +3,7 @@
    [aoc.util.collection :as c]
    [cheshire.core :as json]
    [clojure.java.io :as io]
+   [clojure.java.shell :refer [sh]]
    [clojure.string :as str])
   (:import
    java.io.File))
@@ -76,10 +77,14 @@
 
 (defn -main []
   (let [stats (map convert-stats (read-stats))
-        answers (read-answers)]
-    (spit (str/join "/" [project-root "SCOREBOARD.md"])
+        answers (read-answers)
+        scoreboard (str/join "/" [project-root "SCOREBOARD.md"])]
+    (spit scoreboard
           (with-out-str
             (println "# 🎄 &nbsp; Scoreboard &nbsp; 🎄")
             (println)
             (doseq [year active-years]
-              (table-for-year year stats answers))))))
+              (table-for-year year stats answers))))
+    (let [result (:exit (sh "prettier" "--write" scoreboard))]
+      (shutdown-agents)
+      result)))
