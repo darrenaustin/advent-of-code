@@ -14,7 +14,7 @@
   ;; so wrap the top level in a list.
   (edn/read-string (str "(" s ")")))
 
-(def ops {'+ +, '* *})
+(def ^:private ops {'+ +, '* *})
 
 (defn- equal-precedence [_ _] true)
 
