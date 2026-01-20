@@ -2,6 +2,7 @@
   (:require
    [babashka.curl :as curl]
    [babashka.fs :as fs]
+   [babashka.process :refer [shell]]
    [cheshire.core :as json]
    [clojure.string :as str]
    [selmer.parser :refer [render-file]])
@@ -59,10 +60,17 @@
 (defn- file-empty? [file]
   (or (not (fs/exists? file)) (zero? (fs/size file))))
 
+(defn- format-file [file]
+  (cond
+    (str/ends-with? file ".txt") nil
+    (str/ends-with? file  ".clj") (shell {:out :string} "cljfmt --quiet fix" file)
+    :else (shell {:out :string} "prettier --write" file)))
+
 (defn- create-file [file template args &
-                    {:keys [overwrite] :or {overwrite false}}]
+                    {:keys [overwrite format?] :or {overwrite false, format? true}}]
   (if (or overwrite (file-empty? file))
-    (spit file (render-file template args))
+    (do (spit file (render-file template args))
+        (when format? (format-file file)))
     (println (format "Create '%s' failed, file already exists." file))))
 
 (defn find-implemented-dates []
@@ -96,7 +104,8 @@
         (fs/create-dirs (input-dir year))
         (spit answers-file (str (json/generate-string (assoc answers :name name)
                                                       {:pretty true})
-                                "\n")))
+                                "\n"))
+        (format-file answers-file))
       (println "Error:" body))))
 
 (defn- days-require-str [dates]
