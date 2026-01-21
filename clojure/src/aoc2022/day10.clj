@@ -14,8 +14,8 @@
        (reductions + 1)
        vec))
 
-(defn- pixel-at [x cycle]
-  (if (<= (dec cycle) (mod x 40) (inc cycle)) \# \.))
+(defn- pixel-at [cycle-idx x-reg]
+  (if (<= (dec x-reg) (mod cycle-idx 40) (inc x-reg)) \# \.))
 
 (defn part1 [input]
   (let [xs (x-series input)]
