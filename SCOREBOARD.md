@@ -172,7 +172,7 @@
 | [Day 16](https://adventofcode.com/2020/day/16) | Ticket Translation      | [day16.clj](clojure/src/aoc2020/day16.clj) | [day16.dart](dart/packages/aoc2020/lib/src/day16.dart) |
 | [Day 17](https://adventofcode.com/2020/day/17) | Conway Cubes            | [day17.clj](clojure/src/aoc2020/day17.clj) | [day17.dart](dart/packages/aoc2020/lib/src/day17.dart) |
 | [Day 18](https://adventofcode.com/2020/day/18) | Operation Order         | [day18.clj](clojure/src/aoc2020/day18.clj) | [day18.dart](dart/packages/aoc2020/lib/src/day18.dart) |
-| [Day 19](https://adventofcode.com/2020/day/19) | Monster Messages        |                     -                      | [day19.dart](dart/packages/aoc2020/lib/src/day19.dart) |
+| [Day 19](https://adventofcode.com/2020/day/19) | Monster Messages        | [day19.clj](clojure/src/aoc2020/day19.clj) | [day19.dart](dart/packages/aoc2020/lib/src/day19.dart) |
 | [Day 20](https://adventofcode.com/2020/day/20) | Jurassic Jigsaw         | [day20.clj](clojure/src/aoc2020/day20.clj) |                           -                            |
 | [Day 21](https://adventofcode.com/2020/day/21) | Allergen Assessment     | [day21.clj](clojure/src/aoc2020/day21.clj) |                           -                            |
 | [Day 22](https://adventofcode.com/2020/day/22) | Crab Combat             | [day22.clj](clojure/src/aoc2020/day22.clj) |                           -                            |
