@@ -217,7 +217,7 @@
 | [Day 01](https://adventofcode.com/2022/day/1)  | Calorie Counting         | [day01.clj](clojure/src/aoc2022/day01.clj) | [day01.dart](dart/packages/aoc2022/lib/src/day01.dart) |
 | [Day 02](https://adventofcode.com/2022/day/2)  | Rock Paper Scissors      | [day02.clj](clojure/src/aoc2022/day02.clj) | [day02.dart](dart/packages/aoc2022/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2022/day/3)  | Rucksack Reorganization  | [day03.clj](clojure/src/aoc2022/day03.clj) | [day03.dart](dart/packages/aoc2022/lib/src/day03.dart) |
-| [Day 04](https://adventofcode.com/2022/day/4)  | Camp Cleanup             |                     -                      | [day04.dart](dart/packages/aoc2022/lib/src/day04.dart) |
+| [Day 04](https://adventofcode.com/2022/day/4)  | Camp Cleanup             | [day04.clj](clojure/src/aoc2022/day04.clj) | [day04.dart](dart/packages/aoc2022/lib/src/day04.dart) |
 | [Day 05](https://adventofcode.com/2022/day/5)  | Supply Stacks            |                     -                      | [day05.dart](dart/packages/aoc2022/lib/src/day05.dart) |
 | [Day 06](https://adventofcode.com/2022/day/6)  | Tuning Trouble           |                     -                      | [day06.dart](dart/packages/aoc2022/lib/src/day06.dart) |
 | [Day 07](https://adventofcode.com/2022/day/7)  | No Space Left On Device  |                     -                      | [day07.dart](dart/packages/aoc2022/lib/src/day07.dart) |
