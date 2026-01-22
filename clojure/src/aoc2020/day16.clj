@@ -19,7 +19,7 @@
           set)]))
 
 (defn- parse-notes [input]
-  (s/parse-blocks
+  (s/parse-blocks-map
    input
    [[:fields #(into {} (map parse-field) (s/lines %))]
     [:my-ticket s/ints]

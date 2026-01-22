@@ -21,13 +21,23 @@
     (is (= ["a" "" "b"] (s/lines "a\n\nb")))))
 
 (deftest parse-blocks-test
-  (testing "parse-blocks applies parsers to blocks"
+  (testing "parse-blocks applies parsers to blocks returning a sequence"
+    (let [input "10\n\n20"]
+      (is (= [10 20] (s/parse-blocks input [s/int s/int])))
+      (is (= [10 21] (s/parse-blocks input [s/int #(inc (s/int %))])))))
+  (testing "parse-blocks can return different types"
+    (let [input "123\n\nhello"]
+      (is (= [123 "HELLO"]
+             (s/parse-blocks input [s/int str/upper-case]))))))
+
+(deftest parse-blocks-map-test
+  (testing "parse-blocks-map applies parsers to blocks"
     (let [input "10\n\n20\n\nfoo"]
       (is (= {:a 10 :b 20 :c "foo"}
-             (s/parse-blocks input
-                             [[:a s/int]
-                              [:b s/int]
-                              [:c identity]]))))))
+             (s/parse-blocks-map input
+                                 [[:a s/int]
+                                  [:b s/int]
+                                  [:c identity]]))))))
 
 (deftest ints-test
   (testing "ints extracts all integers from a string"

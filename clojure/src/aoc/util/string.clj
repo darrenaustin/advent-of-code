@@ -25,10 +25,22 @@
 (defn parse-blocks
   "Splits a string into blocks and applies a sequence of parsers to them.
    `parsers` is a sequence of `[key parser-fn]` pairs.
+   Returns a sequence of the results in the same order as the parser-fns.
+
+   Example:
+   (parse-blocks \"1\\n\\n2\" [int #(inc int)])
+   => (1 3)"
+  [s parsers]
+  (map (fn [block parser] (parser block))
+       (blocks s) parsers))
+
+(defn parse-blocks-map
+  "Splits a string into blocks and applies a sequence of parsers to them.
+   `parsers` is a sequence of `[key parser-fn]` pairs.
    Returns a map merging the results of applying each parser to its corresponding block.
 
    Example:
-   (parse-blocks \"1\\n\\n2\" [[:a parse-int] [:b parse-int]])
+   (parse-blocks-map \"1\\n\\n2\" [[:a int] [:b int]])
    => {:a 1 :b 2}"
   [s parsers]
   (apply merge
