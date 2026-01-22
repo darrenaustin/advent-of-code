@@ -162,6 +162,7 @@
    [aoc2022.day03]
    [aoc2022.day04]
    [aoc2022.day05]
+   [aoc2022.day06]
    [aoc2022.day10]
    [aoc2023.day01]
    [aoc2024.day01]
