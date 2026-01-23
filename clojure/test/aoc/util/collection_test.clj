@@ -57,6 +57,33 @@
     (is (= 5 (c/count-where pos? [1 2 3 4 5])))
     (is (= 2 (c/count-where #(> % 10) [5 15 8 20 3])))))
 
+(deftest take-upto-test
+  (testing "take-upto includes elements as long as pred is true, plus the first false"
+    (is (= [1 2 3 4] (c/take-upto #(< % 4) [1 2 3 4 5])))
+    (is (= [1 3 2] (c/take-upto odd? [1 3 2 4]))); 1,3 (True) -> 2 (False, Stop)
+    (is (= [1 2] (c/take-upto #(<= % 5) [1 2])))
+    (is (= [1 2 6] (c/take-upto #(<= % 5) [1 2 6 7])))
+    (is (= [1] (c/take-upto even? [1 2 3])))) ; 1 is odd (False). Return [1].
+
+  (testing "take-upto returns all elements if predicate works to the end"
+    (is (= [1 2 3] (c/take-upto pos? [1 2 3]))))
+
+  (testing "take-upto transducer"
+    (is (= [1 2 3 4] (into [] (c/take-upto #(< % 4)) [1 2 3 4 5])))
+    (is (= [1 2] (into [] (c/take-upto #(<= % 5)) [1 2])))))
+
+(deftest drop-upto-test
+  (testing "drop-upto drops elements up to and including the first predicate match"
+    (is (= [4 5] (c/drop-upto #(> % 2) [1 2 3 4 5])))
+    (is (= [2 3 4] (c/drop-upto odd? [1 2 3 4])))
+    (is (= [2 3] (c/drop-upto pos? [1 2 3])))
+    (is (= [] (c/drop-upto even? []))))
+  (testing "drop-upto returns empty sequence if predicate never matches"
+    (is (= [] (c/drop-upto zero? [1 2 3]))))
+  (testing "drop-upto transducer"
+    (is (= [4 5] (into [] (c/drop-upto #(> % 2)) [1 2 3 4 5])))
+    (is (= [2 3 4] (into [] (c/drop-upto odd?) [1 2 3 4])))))
+
 (deftest split-test
   (testing "split divides a collection based on a separator predicate"
     (is (= [[1 2] [3 4]] (c/split zero? [1 2 0 3 4])))
@@ -259,4 +286,3 @@
     (is (= [1 2 3] (c/pad-left [1 2 3] 2 0)))
     (is (= [:x :x :x :a :b] (vec (c/pad-left [:a :b] 5 :x))))
     (is (= [] (vec (c/pad-left [] 0 nil))))))
-

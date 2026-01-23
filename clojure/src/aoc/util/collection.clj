@@ -27,6 +27,50 @@
   [pred coll]
   (count (filter pred coll)))
 
+;; Snagged from medley.core:
+;; https://github.com/weavejester/medley/blob/1.9.0/src/medley/core.cljc#L412
+(defn take-upto
+  "Returns a sequence of items from coll as long as (pred item) returns true.
+   Also includes the first item for which (pred item) returns false.
+   Returns a transducer when no collection is provided."
+  ([pred]
+   (fn [rf]
+     (fn
+       ([] (rf))
+       ([result] (rf result))
+       ([result input]
+        (if (pred input)
+          (rf result input)
+          (ensure-reduced (rf result input)))))))
+  ([pred coll]
+   (lazy-seq
+    (when-let [s (seq coll)]
+      (let [x (first s)]
+        (if (pred x)
+          (cons x (take-upto pred (rest s)))
+          (list x)))))))
+
+;; Snagged from medley.core:
+;; https://github.com/weavejester/medley/blob/1.9.0/src/medley/core.cljc#L432
+(defn drop-upto
+  "Returns a sequence of items starting after the first item for which
+   (pred item) returns true.
+   Returns a transducer when no collection is provided."
+  ([pred]
+   (fn [rf]
+     (let [dropping? (volatile! true)]
+       (fn
+         ([] (rf))
+         ([result] (rf result))
+         ([result input]
+          (if @dropping?
+            (if (pred input)
+              (do (vreset! dropping? false) result)
+              result)
+            (rf result input)))))))
+  ([pred coll]
+   (rest (drop-while (complement pred) coll))))
+
 (defn split
   "Splits a collection into a lazy sequence of sequences, using the predicate
    `seperator-fn` to identify delimiters. Delimiters are not included in the
