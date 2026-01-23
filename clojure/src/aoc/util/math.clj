@@ -31,6 +31,23 @@
 (defn div? [n d]
   (zero? (rem n d)))
 
+(defn sign
+  "Returns -1 if n is negative, 0 if n is zero, and 1 if n is positive."
+  [n]
+  (cond
+    (neg? n) -1
+    (zero? n) 0
+    :else     1))
+
+(defn clamp
+  "Constrains n to be between lowest and highest."
+  [n lowest highest]
+  (if (< n lowest)
+    lowest
+    (if (> n highest)
+      highest
+      n)))
+
 (defn gcd [a b]
   (if (zero? b)
     a

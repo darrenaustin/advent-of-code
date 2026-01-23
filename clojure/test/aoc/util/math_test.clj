@@ -3,6 +3,26 @@
    [aoc.util.math :as m]
    [clojure.test :refer :all]))
 
+(deftest sign-test
+  (testing "sign returns -1, 0, or 1 based on the sign of the number"
+    (is (= -1 (m/sign -5)))
+    (is (= -1 (m/sign -0.1)))
+    (is (= 0 (m/sign 0)))
+    (is (= 0 (m/sign 0.0)))
+    (is (= 1 (m/sign 5)))
+    (is (= 1 (m/sign 0.1)))))
+
+(deftest clamp-test
+  (testing "clamp constrains a number between a lower and upper bound"
+    (is (= 5 (m/clamp 0 5 10)))
+    (is (= 10 (m/clamp 15 5 10)))
+    (is (= 7 (m/clamp 7 5 10)))
+    (is (= 5 (m/clamp 5 5 10)))
+    (is (= 10 (m/clamp 10 5 10)))
+    (is (= -5 (m/clamp -10 -5 5)))
+    (is (= 5 (m/clamp 10 -5 5)))
+    (is (= 0 (m/clamp 0 -5 5)))))
+
 (deftest intervals-test
   (is (= [1 0 -5 7 1] (m/intervals [1 2 2 -3 4 5])))
   (is (= [2 2 2 2] (m/intervals [0 2 4 6 8])))
