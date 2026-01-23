@@ -221,7 +221,7 @@
 | [Day 05](https://adventofcode.com/2022/day/5)  | Supply Stacks            | [day05.clj](clojure/src/aoc2022/day05.clj) | [day05.dart](dart/packages/aoc2022/lib/src/day05.dart) |
 | [Day 06](https://adventofcode.com/2022/day/6)  | Tuning Trouble           | [day06.clj](clojure/src/aoc2022/day06.clj) | [day06.dart](dart/packages/aoc2022/lib/src/day06.dart) |
 | [Day 07](https://adventofcode.com/2022/day/7)  | No Space Left On Device  | [day07.clj](clojure/src/aoc2022/day07.clj) | [day07.dart](dart/packages/aoc2022/lib/src/day07.dart) |
-| [Day 08](https://adventofcode.com/2022/day/8)  | Treetop Tree House       |                     -                      | [day08.dart](dart/packages/aoc2022/lib/src/day08.dart) |
+| [Day 08](https://adventofcode.com/2022/day/8)  | Treetop Tree House       | [day08.clj](clojure/src/aoc2022/day08.clj) | [day08.dart](dart/packages/aoc2022/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2022/day/9)  | Rope Bridge              |                     -                      | [day09.dart](dart/packages/aoc2022/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2022/day/10) | Cathode-Ray Tube         | [day10.clj](clojure/src/aoc2022/day10.clj) | [day10.dart](dart/packages/aoc2022/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2022/day/11) | Monkey in the Middle     |                     -                      | [day11.dart](dart/packages/aoc2022/lib/src/day11.dart) |
