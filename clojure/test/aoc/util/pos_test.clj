@@ -26,6 +26,29 @@
     (is (= [0 0] (p/pos* 0 [1 2])))
     (is (= [-2 -4] (p/pos* -2 [1 2])))))
 
+(deftest unit-step?-test
+  (testing "Returns true for unit step vectors"
+    (is (p/unit-step? [0 0]))
+    (is (p/unit-step? [1 0]))
+    (is (p/unit-step? [0 1]))
+    (is (p/unit-step? [-1 0]))
+    (is (p/unit-step? [0 -1]))
+    (is (p/unit-step? [1 1]))
+    (is (p/unit-step? [-1 -1])))
+  (testing "Returns false for non-unit-step vectors"
+    (is (false? (p/unit-step? [2 0])))
+    (is (false? (p/unit-step? [0 -2])))
+    (is (false? (p/unit-step? [1 2])))))
+
+(deftest sign-test
+  (testing "Clamps vector components to [-1, 1]"
+    (is (= [0 0] (p/sign [0 0])))
+    (is (= [1 0] (p/sign [10 0])))
+    (is (= [0 -1] (p/sign [0 -5])))
+    (is (= [1 1] (p/sign [2 2])))
+    (is (= [-1 -1] (p/sign [-100 -50])))
+    (is (= [1 -1] (p/sign [5 -5])))))
+
 (deftest dot-test
   (testing "dot product of two vectors"
     (is (= 32 (p/dot [1 2 3] [4 5 6])))

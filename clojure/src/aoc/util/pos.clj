@@ -3,6 +3,7 @@
    Includes vector addition/subtraction, direction constants, neighbor generation,
    and rotation helpers."
   (:require
+   [aoc.util.math :as m]
    [clojure.math :as math]))
 
 (defn pos+
@@ -20,11 +21,21 @@
 (defn pos*
   "Multiplies a position vector by a scalar.
    Supports commutative multiplication: (pos* n v) or (pos* v n)."
-  [x y]
+  [a b]
   (cond
-    (and (number? x) (sequential? y)) (mapv (partial * x) y)
-    (and (sequential? x) (number? y)) (mapv (partial * y) x)
+    (and (number? a) (sequential? b)) (mapv (partial * a) b)
+    (and (sequential? a) (number? b)) (mapv (partial * b) a)
     :else (throw (IllegalArgumentException. "Arguments must be a number and a vector."))))
+
+(defn unit-step?
+  "Returns true if the position vector's components are all within {-1, 0, 1}."
+  [p]
+  (every? #(<= -1 % 1) p))
+
+(defn sign
+  "Returns a new position vector where each component is clamped to -1, 0, or 1."
+  [p]
+  (mapv m/sign p))
 
 (defn dot
   "Calculates the dot product of two vectors."
