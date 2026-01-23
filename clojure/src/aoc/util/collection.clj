@@ -71,6 +71,12 @@
   ([pred coll]
    (rest (drop-while (complement pred) coll))))
 
+(defn nth>>
+  "Returns the nth item of the collection. Flipped version of `nth`, useful for threading macros.
+   Example: (->> [1 2 3] (nth>> 1)) => 2"
+  [n coll]
+  (nth coll n))
+
 (defn split
   "Splits a collection into a lazy sequence of sequences, using the predicate
    `seperator-fn` to identify delimiters. Delimiters are not included in the

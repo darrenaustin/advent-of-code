@@ -84,6 +84,12 @@
     (is (= [4 5] (into [] (c/drop-upto #(> % 2)) [1 2 3 4 5])))
     (is (= [2 3 4] (into [] (c/drop-upto odd?) [1 2 3 4])))))
 
+(deftest nth>>-test
+  (testing "nth>> returns the nth element of a collection"
+    (is (= 2 (c/nth>> 1 [1 2 3])))
+    (is (= \b (c/nth>> 1 "abc")))
+    (is (= :a (->> [:a :b :c] (c/nth>> 0))))))
+
 (deftest split-test
   (testing "split divides a collection based on a separator predicate"
     (is (= [[1 2] [3 4]] (c/split zero? [1 2 0 3 4])))
