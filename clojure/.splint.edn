@@ -25,6 +25,9 @@
 
  style/minus-one {:enabled true :excludes ["glob:test/**"]}
 
+ ;; Don't care about threading one level when testing threading
+ lint/thread-macro-one-arg {:enabled true :excludes ["glob:test/**"]}
+
  ;; For files that have deftypes in them this is an unnecessary
  ;; warning that makes the code harder to read.
  lint/prefer-method-values {:excludes ["src/aoc/util/bounded_priority_map.clj"
