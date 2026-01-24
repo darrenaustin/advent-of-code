@@ -224,7 +224,7 @@
 | [Day 08](https://adventofcode.com/2022/day/8)  | Treetop Tree House       | [day08.clj](clojure/src/aoc2022/day08.clj) | [day08.dart](dart/packages/aoc2022/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2022/day/9)  | Rope Bridge              | [day09.clj](clojure/src/aoc2022/day09.clj) | [day09.dart](dart/packages/aoc2022/lib/src/day09.dart) |
 | [Day 10](https://adventofcode.com/2022/day/10) | Cathode-Ray Tube         | [day10.clj](clojure/src/aoc2022/day10.clj) | [day10.dart](dart/packages/aoc2022/lib/src/day10.dart) |
-| [Day 11](https://adventofcode.com/2022/day/11) | Monkey in the Middle     |                     -                      | [day11.dart](dart/packages/aoc2022/lib/src/day11.dart) |
+| [Day 11](https://adventofcode.com/2022/day/11) | Monkey in the Middle     | [day11.clj](clojure/src/aoc2022/day11.clj) | [day11.dart](dart/packages/aoc2022/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2022/day/12) | Hill Climbing Algorithm  |                     -                      | [day12.dart](dart/packages/aoc2022/lib/src/day12.dart) |
 | [Day 13](https://adventofcode.com/2022/day/13) | Distress Signal          |                     -                      | [day13.dart](dart/packages/aoc2022/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2022/day/14) | Regolith Reservoir       |                     -                      | [day14.dart](dart/packages/aoc2022/lib/src/day14.dart) |
