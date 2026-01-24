@@ -8,11 +8,13 @@ This project is where I solve the yearly Advent of Code puzzles in clojure.
 - I may ask you to review my solutions afterwards to see if you have any advice on how to improve the code quality.
 - I will ask for occasional advice on code style or better ways to express something in Clojure.
 - I will also ask for help developing my util libraries, their documentation and unit tests.
-- I prefer readable, concise, idiomattic, performant and elegant code. In that order.
+- I prefer readable, concise, idiomatic, performant and elegant code. In that order.
 
 ## Project Structure
 This is a Clojure project. All code unless otherwise indicated should be in Clojure 1.12.0. Please
-use any prefered "modern clojure" techniques.
+use any preferred "modern clojure" techniques. This includes preferring `transducers` over threaded
+`map`/`filter` chains where it makes sense for performance. Otherwise opt for clarity with `map`/`filter`
+chains.
 
 The project has the following folder structure:
 
@@ -31,7 +33,7 @@ The project has the following folder structure:
 │   ├── ...
 │   └── aoc2025/
 ├── bb.edn          - Useful bb commands
-├── deps.edn        - Project configuration, defining dependences.
+├── deps.edn        - Project configuration, defining dependencies.
 └── tests.edn       - Configuration for the test runner.
 ```
 
@@ -44,7 +46,11 @@ YYYY is the year and DD is the two digit day number.
 ## Running Tests
 - To run all tests: `bb test`
 - To focus on a specific namespace: `bb test --focus <namespace>`
-- It can sometimes take time for `bb` to startup, so give it a couple of seconds before assuming it has failed.
+- The test runner (`bb`) launches a JVM process which has a significant startup time (several seconds). When running tests:
+    1. Always use the `run_in_terminal` tool with `isBackground` set to `false`.
+    2. The tool will block until the test finishes; this delay is normal. Do not assume it is hung.
+    3. **Never** verify code by evaluating it in the REPL or using "Run Cell" features, as the REPL state may be stale. Validating via the terminal command `bb test --focus <namespace>` is the only source of truth.
+- `bb test --focus <namespace>` can only be used for one test. If you need to run multiple tests, do them one at a time.
 
 ## Writing unit tests
 - The tests for a given function or macro should live in a file under the `test` directory.
