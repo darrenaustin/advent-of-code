@@ -226,7 +226,7 @@
 | [Day 10](https://adventofcode.com/2022/day/10) | Cathode-Ray Tube         | [day10.clj](clojure/src/aoc2022/day10.clj) | [day10.dart](dart/packages/aoc2022/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2022/day/11) | Monkey in the Middle     | [day11.clj](clojure/src/aoc2022/day11.clj) | [day11.dart](dart/packages/aoc2022/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2022/day/12) | Hill Climbing Algorithm  | [day12.clj](clojure/src/aoc2022/day12.clj) | [day12.dart](dart/packages/aoc2022/lib/src/day12.dart) |
-| [Day 13](https://adventofcode.com/2022/day/13) | Distress Signal          |                     -                      | [day13.dart](dart/packages/aoc2022/lib/src/day13.dart) |
+| [Day 13](https://adventofcode.com/2022/day/13) | Distress Signal          | [day13.clj](clojure/src/aoc2022/day13.clj) | [day13.dart](dart/packages/aoc2022/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2022/day/14) | Regolith Reservoir       |                     -                      | [day14.dart](dart/packages/aoc2022/lib/src/day14.dart) |
 | [Day 15](https://adventofcode.com/2022/day/15) | Beacon Exclusion Zone    |                     -                      | [day15.dart](dart/packages/aoc2022/lib/src/day15.dart) |
 | [Day 16](https://adventofcode.com/2022/day/16) | Proboscidea Volcanium    |                     -                      | [day16.dart](dart/packages/aoc2022/lib/src/day16.dart) |
