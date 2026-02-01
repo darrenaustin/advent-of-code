@@ -229,7 +229,7 @@
 | [Day 13](https://adventofcode.com/2022/day/13) | Distress Signal          | [day13.clj](clojure/src/aoc2022/day13.clj) | [day13.dart](dart/packages/aoc2022/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2022/day/14) | Regolith Reservoir       | [day14.clj](clojure/src/aoc2022/day14.clj) | [day14.dart](dart/packages/aoc2022/lib/src/day14.dart) |
 | [Day 15](https://adventofcode.com/2022/day/15) | Beacon Exclusion Zone    | [day15.clj](clojure/src/aoc2022/day15.clj) | [day15.dart](dart/packages/aoc2022/lib/src/day15.dart) |
-| [Day 16](https://adventofcode.com/2022/day/16) | Proboscidea Volcanium    |                     -                      | [day16.dart](dart/packages/aoc2022/lib/src/day16.dart) |
+| [Day 16](https://adventofcode.com/2022/day/16) | Proboscidea Volcanium    | [day16.clj](clojure/src/aoc2022/day16.clj) | [day16.dart](dart/packages/aoc2022/lib/src/day16.dart) |
 | [Day 17](https://adventofcode.com/2022/day/17) | Pyroclastic Flow         |                     -                      | [day17.dart](dart/packages/aoc2022/lib/src/day17.dart) |
 | [Day 18](https://adventofcode.com/2022/day/18) | Boiling Boulders         |                     -                      | [day18.dart](dart/packages/aoc2022/lib/src/day18.dart) |
 | [Day 19](https://adventofcode.com/2022/day/19) | Not Enough Minerals      |                     -                      | [day19.dart](dart/packages/aoc2022/lib/src/day19.dart) |
