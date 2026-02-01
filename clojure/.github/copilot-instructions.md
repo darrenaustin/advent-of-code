@@ -44,13 +44,13 @@ The input files used in the problems can be found in:
 YYYY is the year and DD is the two digit day number.
 
 ## Running Tests
-- To run all tests: `bb test`
-- To focus on a specific namespace: `bb test --focus <namespace>`
+- To run all tests: `bb test-ai`
+- To focus on a specific namespace: `bb test-ai --focus <namespace>`
 - The test runner (`bb`) launches a JVM process which has a significant startup time (several seconds). When running tests:
     1. Always use the `run_in_terminal` tool with `isBackground` set to `false`.
     2. The tool will block until the test finishes; this delay is normal. Do not assume it is hung.
-    3. **Never** verify code by evaluating it in the REPL or using "Run Cell" features, as the REPL state may be stale. Validating via the terminal command `bb test --focus <namespace>` is the only source of truth.
-- `bb test --focus <namespace>` can only be used for one test. If you need to run multiple tests, do them one at a time.
+    3. **Never** verify code by evaluating it in the REPL or using "Run Cell" features, as the REPL state may be stale. Validating via the terminal command `bb test-ai --focus <namespace>` is the only source of truth.
+- `bb test-ai --focus <namespace>` can only be used for one test. If you need to run multiple tests, do them one at a time.
 
 ## Writing unit tests
 - The tests for a given function or macro should live in a file under the `test` directory.
