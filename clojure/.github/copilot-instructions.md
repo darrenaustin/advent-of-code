@@ -11,6 +11,7 @@ This project is where I solve the yearly Advent of Code puzzles in clojure.
 - I prefer readable, concise, idiomatic, performant and elegant code. In that order.
 
 ## Project Structure
+
 This is a Clojure project. All code unless otherwise indicated should be in Clojure 1.12.0. Please
 use any preferred "modern clojure" techniques. This includes preferring `transducers` over threaded
 `map`/`filter` chains where it makes sense for performance. Otherwise opt for clarity with `map`/`filter`
@@ -38,21 +39,31 @@ The project has the following folder structure:
 ```
 
 ### Input files
+
 The input files used in the problems can be found in:
 
 `../input/YYYY/DD_input.txt` for each problem, where
 YYYY is the year and DD is the two digit day number.
 
 ## Running Tests
-- To run all tests: `bb test-ai`
-- To focus on a specific namespace: `bb test-ai --focus <namespace>`
-- The test runner (`bb`) launches a JVM process which has a significant startup time (several seconds). When running tests:
-    1. Always use the `run_in_terminal` tool with `isBackground` set to `false`.
-    2. The tool will block until the test finishes; this delay is normal. Do not assume it is hung.
-    3. **Never** verify code by evaluating it in the REPL or using "Run Cell" features, as the REPL state may be stale. Validating via the terminal command `bb test-ai --focus <namespace>` is the only source of truth.
-- `bb test-ai --focus <namespace>` can only be used for one test. If you need to run multiple tests, do them one at a time.
+
+In order to run a test, please use the following command:
+
+```
+clj -M:dev -e "(require '[clojure.test :as t] '[<test-ns>]) (t/run-tests '<test-ns>)"
+```
+
+Where `<test-ns>` is the namespace for the tests in question (i.e. `aoc.util.grid`)
+
+This hopefully will deal with the startup time issues that kept you from seeing
+the output. When running tests:
+
+1. Always use the `run_in_terminal` tool with `isBackground` set to `false`.
+2. The tool will block until the test finishes; this delay is normal. Do not assume it is hung.
+3. **Never** verify code by evaluating it in the REPL or using "Run Cell" features, as the REPL state may be stale. alidating via the terminal command described above is the only source of truth.
 
 ## Writing unit tests
+
 - The tests for a given function or macro should live in a file under the `test` directory.
 - The folder structure under `test` should mirror the function's file path under `src`.
 - The test filename should match the source filename with `_test` appended (e.g. `day01.clj` -> `day01_test.clj`).
@@ -61,6 +72,7 @@ YYYY is the year and DD is the two digit day number.
 - The order of the test functions should be exactly the same order as the functions in the original `src` file.
 
 ## Investigation testing
+
 If you need to figure something out by running your own tests, feel free to create a test file at the top of the tree. You can then execute it in this project with the following command:
 
 ```

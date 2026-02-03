@@ -20,9 +20,6 @@
                :task (clojure (str "-M:test unit --skip-meta :slow " (str/join " " *command-line-args*)))}
   test-all    {:doc  "Run all tests."
                :task (clojure (str "-M:test unit " (str/join " " *command-line-args*)))}
-  test-ai     {:doc  "Run test suite for the AI that needs special output to track success."
-               :task (do (println "Starting tests...")
-                         (clojure (str "-M:test unit --skip-meta :slow --reporter kaocha.report/documentation " (str/join " " *command-line-args*))))}
   format      {:doc "Format all the code in src and test."
                :task (shell "clojure-lsp format --raw")}
   clean-ns    {:doc "Optimize and standarize the ns forms across src and test."
