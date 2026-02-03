@@ -3,7 +3,7 @@
    (:require
     [aoc.day :as d]
     [aoc.util.ascii-art :as ascii]
-    [aoc.util.sparse-grid :as sg]
+    [aoc.util.grid :as g]
     [aoc.util.string :as s]
     [clojure.string :as str]))
 
@@ -11,7 +11,7 @@
 
 (defn- parse-dots [input]
   (let [[dots _] (s/blocks input)]
-    (into (sg/make-sparse-grid)
+    (into (g/->sparse-grid)
           (map (fn [ds] [(s/ints ds) \#])
                (s/lines dots)))))
 
@@ -19,7 +19,7 @@
   (if (< n axis) n (- (* 2 axis) n)))
 
 (defn fold-at-axis [axis-idx axis grid]
-  (into (sg/make-sparse-grid)
+  (into (g/->sparse-grid)
         (map (fn [[pos v]]
                [(update pos axis-idx #(fold-axis axis %)) v])
              grid)))
@@ -36,5 +36,5 @@
 
 (defn part2 [input]
   (ascii/ocr
-   (sg/format-rows
+   (g/format-rows
     (reduce #(%2 %1) (parse-dots input) (parse-folds input)))))

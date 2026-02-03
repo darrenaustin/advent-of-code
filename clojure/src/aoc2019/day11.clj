@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.ascii-art :as ascii]
+   [aoc.util.grid :as g]
    [aoc.util.pos :as p]
-   [aoc.util.sparse-grid :as sg]
    [aoc2019.intcode :as ic]))
 
 (defn input [] (d/day-input 2019 11))
@@ -19,7 +19,7 @@
 
 (defn- hull-painting [input starting-color]
   (let [program (ic/parse-program input)
-        grid (assoc (sg/make-sparse-grid) p/origin starting-color)
+        grid (assoc (g/->sparse-grid) p/origin starting-color)
         machine (ic/run program [starting-color] [])]
     (loop [m machine, g grid, pos p/origin, dir p/dir-up]
       (if (= (:status m) :halted)
@@ -35,4 +35,4 @@
   (count (hull-painting input black)))
 
 (defn part2 [input]
-  (ascii/ocr (sg/format-rows (hull-painting input white)) :on \1))
+  (ascii/ocr (g/format-rows (hull-painting input white)) :on \1))

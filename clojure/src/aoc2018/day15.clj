@@ -33,7 +33,7 @@
       (only-one-unit-type-left? field)))
 
 (defn parse [input]
-  (let [grid  (g/str->grid input)
+  (let [grid  (g/->grid input)
         units (c/keys-when-val #{\E \G} grid)]
     {:grid           grid
      :rounds         0

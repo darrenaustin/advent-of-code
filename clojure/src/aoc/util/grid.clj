@@ -1,11 +1,12 @@
 (ns aoc.util.grid
-  "An immutable 2D grid implementation backed by a flat vector.
-   Supports efficient random access, updates, and sequence operations.
-   Implements standard Clojure collection interfaces (Associative, Counted, Seqable, IFn).
-   Supports transients for efficient bulk updates."
+  "An immutable 2D grid implementation.
+   Provides support for both dense (Vector-backed) and sparse (Map-backed) grids.
+   Both implementations support standard Clojure collection interfaces.
+
+   The dense `Grid` is efficient for fixed-size, rectangular data.
+   The `SparseGrid` is efficient for infinite or mostly-empty 2D spaces."
   (:refer-clojure :exclude [format])
   (:require
-   [aoc.util.bounded :as b]
    [aoc.util.string :as s]
    [clojure.string :as str])
   (:import
@@ -24,15 +25,56 @@
    [java.lang Iterable]
    [java.util Iterator]))
 
-(def bounds b/bounds)
-(def width b/width)
-(def height b/height)
-(def size b/size)
-(def top-left b/top-left)
-(def top-right b/top-right)
-(def bottom-right b/bottom-right)
-(def bottom-left b/bottom-left)
-(def corners b/corners)
+(defprotocol Bounded
+  "Protocol for 2D spatial bounds and dimensions."
+  (bounds [this] "Returns a pair of [[min-x min-y] [max-x max-y]] coordinates.")
+  (width [this] "Returns the width (number of columns) of the grid.")
+  (height [this] "Returns the height (number of rows) of the grid."))
+
+(defn size
+  "Returns the [width height] of the grid."
+  [grid] [(width grid) (height grid)])
+
+(defn top-left "Returns the [x y] coordinate of the top-left corner."
+  [grid] (first (bounds grid)))
+
+(defn top-right "Returns the [x y] coordinate of the top-right corner."
+  [grid]
+  (let [[[_ min-y] [max-x _]] (bounds grid)]
+    [max-x min-y]))
+
+(defn bottom-right "Returns the [x y] coordinate of the bottom-right corner."
+  [grid] (second (bounds grid)))
+
+(defn bottom-left "Returns the [x y] coordinate of the bottom-left corner."
+  [grid]
+  (let [[[min-x _] [_ max-y]] (bounds grid)]
+    [min-x max-y]))
+
+(defn top "Returns the minimum y coordinate (top edge)."
+  [grid]
+  (let [[[_ min-y] _] (bounds grid)]
+    min-y))
+
+(defn bottom "Returns the maximum y coordinate (bottom edge)."
+  [grid]
+  (let [[_ [_ max-y]] (bounds grid)]
+    max-y))
+
+(defn left "Returns the minimum x coordinate (left edge)."
+  [grid]
+  (let [[[min-x _] _] (bounds grid)]
+    min-x))
+
+(defn right "Returns the maximum x coordinate (right edge)."
+  [grid]
+  (let [[_ [max-x _]] (bounds grid)]
+    max-x))
+
+(defn corners "Returns a sequence of the four corner coordinates."
+  [grid]
+  (let [[[min-x min-y] [max-x max-y]] (bounds grid)]
+    [[min-x min-y] [max-x min-y] [max-x max-y] [min-x max-y]]))
 
 (defprotocol KeyIndexed
   (^long key-index [this key]))
@@ -86,7 +128,7 @@
       (and (< -1 x width) (< -1 y height)))))
 
 (deftype Grid [cells ^long width ^long height _meta]
-  b/Bounded
+  Bounded
   (bounds [_] [[0 0] [(dec width) (dec height)]])
   (width [_] width)
   (height [_] height)
@@ -184,6 +226,30 @@
 (defn str->grid
   ([s] (str->grid s identity))
   ([s value-fn] (rows->grid (s/lines s) value-fn)))
+
+(defn ->grid
+  "Creates a Grid from various input types:
+   - String: Creates a Grid from a string representation.
+   - Sequence: Creates a Grid from a sequence of rows.
+   - 2 integers: Creates a Grid of the specified width and height.
+
+   Optionally takes a `value-fn` (default `identity`) when creating from String or Sequence.
+   Optionally takes a `default-value` when creating with width and height."
+  ([x]
+   (cond
+     (string? x) (str->grid x)
+     (sequential? x) (rows->grid x)
+     :else (throw (IllegalArgumentException. (str "Unsupported type for ->grid: " (type x))))))
+  ([x y]
+   (cond
+     (and (integer? x) (integer? y)) (make-grid x y)
+     (string? x) (str->grid x y)
+     (sequential? x) (rows->grid x y)
+     :else (throw (IllegalArgumentException. (str "Unsupported types for ->grid: " (type x) ", " (type y))))))
+  ([w h default-value]
+   (if (and (integer? w) (integer? h))
+     (make-grid w h default-value)
+     (throw (IllegalArgumentException. "->grid expects [width height default-value]")))))
 
 (defn column "Returns a vector of the values in the column at x."
   [^Grid grid x]
@@ -317,23 +383,237 @@
                            cells
                            (range sub-w)))))))))
 
-(defn format-rows
-  "Formats the grid as a vector of strings, one for each row.
-   Options:
-   - `:value-fn`: Function to transform cell values before printing (default: identity).
-   - `:col-sep`: Separator string between columns (default: \"\")."
-  [^Grid grid & {:keys [value-fn col-sep] :as _options}]
-  (let [value-fn (or value-fn identity)
-        col-sep (or col-sep "")]
-    (vec (for [y (range (height grid))]
-           (str/join col-sep
-                     (for [x (range (width grid))] (value-fn (grid [x y]))))))))
+(declare ->SparseGrid)
 
-(defn format-grid
-  "Formats the grid as a string.
+(defn- update-bounds-assoc [bounds [x y]]
+  (if bounds
+    (let [[[min-x min-y] [max-x max-y]] bounds]
+      [[(min min-x x) (min min-y y)]
+       [(max max-x x) (max max-y y)]])
+    [[x y] [x y]]))
+
+(defn- calc-bounds [cells]
+  (when (seq cells)
+    (loop [locs (keys cells)
+           min-x Long/MAX_VALUE min-y Long/MAX_VALUE
+           max-x Long/MIN_VALUE max-y Long/MIN_VALUE]
+      (if (empty? locs)
+        [[min-x min-y] [max-x max-y]]
+        (let [[x y] (first locs)]
+          (recur (rest locs)
+                 (min min-x x) (min min-y y)
+                 (max max-x x) (max max-y y)))))))
+
+(defn- update-bounds-dissoc [bounds cells [x y]]
+  (if (and bounds (contains? cells [x y]))
+    (let [[[min-x min-y] [max-x max-y]] bounds]
+      (if (or (= x min-x) (= x max-x) (= y min-y) (= y max-y))
+        (calc-bounds (dissoc cells [x y]))
+        bounds))
+    bounds))
+
+(deftype TransientSparseGrid [^:unsynchronized-mutable cells ^:unsynchronized-mutable bounds ^:unsynchronized-mutable dirty-bounds?]
+  ITransientMap
+  (assoc [this k v]
+    (set! cells (assoc! cells k v))
+    (set! bounds (update-bounds-assoc bounds k))
+    this)
+  (conj [this o]
+    (if (map? o)
+      (reduce (fn [^ITransientMap g [k v]] (.assoc g k v)) this o)
+      (if-let [[k v] (seq o)]
+        (.assoc this k v)
+        this)))
+  (without [this k]
+    (if (contains? cells k)
+      (do
+        (set! cells (dissoc! cells k))
+        (when (and bounds (not dirty-bounds?))
+          (let [[[min-x min-y] [max-x max-y]] bounds
+                [x y] k]
+            (when (or (= x min-x) (= x max-x) (= y min-y) (= y max-y))
+              (set! dirty-bounds? true))))
+        this)
+      this))
+  (persistent [_]
+    (let [p-cells (persistent! cells)
+          final-bounds (if dirty-bounds? (calc-bounds p-cells) bounds)]
+      (->SparseGrid p-cells final-bounds nil)))
+  (valAt [this k]
+    (.valAt this k nil))
+  (valAt [_ k default]
+    (get cells k default))
+  (count [_] (count cells))
+
+  ITransientAssociative2
+  (containsKey [_ k]
+    (contains? cells k)))
+
+(deftype SparseGrid [cells bounds _meta]
+  Bounded
+  (bounds [_] bounds)
+  (width [_]
+    (if bounds
+      (let [[[min-x _] [max-x _]] bounds]
+        (inc (- max-x min-x)))
+      0))
+  (height [_]
+    (if bounds
+      (let [[[_ min-y] [_ max-y]] bounds]
+        (inc (- max-y min-y)))
+      0))
+
+  IObj
+  (meta [_] _meta)
+  (withMeta [_ m] (SparseGrid. cells bounds m))
+
+  IEditableCollection
+  (asTransient [_]
+    (TransientSparseGrid. (transient cells) bounds false))
+
+  IPersistentMap
+  (assoc [_ k v]
+    (let [new-cells (assoc cells k v)
+          new-bounds (update-bounds-assoc bounds k)]
+      (SparseGrid. new-cells new-bounds _meta)))
+  (assocEx [this k v]
+    (if (contains? cells k)
+      (throw (Exception. "Key already present"))
+      (.assoc this k v)))
+  (without [this k]
+    (if (contains? cells k)
+      (let [new-bounds (update-bounds-dissoc bounds cells k)
+            new-cells (dissoc cells k)]
+        (SparseGrid. new-cells new-bounds _meta))
+      this))
+
+  IPersistentCollection
+  (cons [this o]
+    (if (map? o)
+      (reduce (fn [g [k v]] (.assoc g k v)) this o)
+      (if-let [[k v] (seq o)]
+        (.assoc this k v)
+        this)))
+  (empty [_] (SparseGrid. {} nil _meta))
+  (equiv [_ o]
+    (and (instance? SparseGrid o)
+         (= cells (.cells ^SparseGrid o))))
+
+  Counted
+  (count [_] (count cells))
+
+  Associative
+  (containsKey [_ k] (contains? cells k))
+  (entryAt [_ k]
+    (when (contains? cells k)
+      (MapEntry. k (get cells k))))
+  (valAt [_ k] (get cells k))
+  (valAt [_ k default] (get cells k default))
+
+  Seqable
+  (seq [_] (seq cells))
+
+  IFn
+  (invoke [this k] (.valAt this k))
+  (invoke [this k default] (.valAt this k default))
+
+  Object
+  (toString [_]
+    (if bounds
+      (let [[[min-x min-y] [max-x max-y]] bounds]
+        (str/join "\n"
+                  (for [y (range min-y (inc max-y))]
+                    (str/join (for [x (range min-x (inc max-x))]
+                                (get cells [x y] \.)))))) ;; Default to . for visualization
+      ""))
+  (equals [this o] (.equiv this o))
+  (hashCode [_] (hash cells)))
+
+(defn make-sparse-grid
+  "Creates a new empty SparseGrid."
+  []
+  (SparseGrid. {} nil nil))
+
+(defn map->sparse-grid
+  "Creates a SparseGrid from a map of {[x y] value}.
+   Optionally takes a `value-fn` that will be mapped over each value.
+   If `value-fn` returns nil, the cell is not added to the grid."
+  ([m] (SparseGrid. m (calc-bounds m) nil))
+  ([m value-fn]
+   (let [new-m (reduce-kv (fn [acc k v]
+                            (if-let [new-v (value-fn v)]
+                              (assoc acc k new-v)
+                              acc))
+                          {}
+                          m)]
+     (SparseGrid. new-m (calc-bounds new-m) nil))))
+
+(defn rows->sparse-grid
+  "Creates a SparseGrid from a sequence of rows (strings or sequences).
+   Optionally takes a `value-fn` that will be mapped over each element.
+   If `value-fn` returns nil, the cell is not added to the grid."
+  ([lines] (rows->sparse-grid lines identity))
+  ([lines value-fn]
+   (let [grid (transient (make-sparse-grid))]
+     (doseq [[y row] (map-indexed vector lines)
+             [x val] (map-indexed vector row)]
+       (when-let [v (value-fn val)]
+         (assoc! grid [x y] v)))
+     (persistent! grid))))
+
+(defn str->sparse-grid
+  ([s] (str->sparse-grid s identity))
+  ([s value-fn] (rows->sparse-grid (s/lines s) value-fn)))
+
+(defn ->sparse-grid
+  "Creates a SparseGrid from various input types:
+   - No arguments: Creates an empty SparseGrid.
+   - Map: Creates a SparseGrid from a map of {[x y] value}.
+   - String: Creates a SparseGrid from a string representation.
+   - Sequence: Creates a SparseGrid from a sequence of rows.
+
+   Optionally takes a `value-fn` (default `identity`) when creating from String, Sequence, or Map."
+  ([] (make-sparse-grid))
+  ([x]
+   (cond
+     (map? x) (map->sparse-grid x)
+     (string? x) (str->sparse-grid x)
+     (sequential? x) (rows->sparse-grid x)
+     :else (throw (IllegalArgumentException. (str "Unsupported type for ->sparse-grid: " (type x))))))
+  ([x value-fn]
+   (cond
+     (map? x) (map->sparse-grid x value-fn)
+     (string? x) (str->sparse-grid x value-fn)
+     (sequential? x) (rows->sparse-grid x value-fn)
+     :else (throw (IllegalArgumentException. (str "Unsupported type for ->sparse-grid with value-fn: " (type x)))))))
+
+(defn format-rows
+  "Formats the grid as a sequence of row strings.
+
    Options:
    - `:value-fn`: Function to transform cell values before printing (default: identity).
-   - `:col-sep`: Separator string between columns (default: \"\").
-   - `:row-sep`: Separator string between rows (default: \"\\n\")."
-  [^Grid grid & {:keys [row-sep] :or {row-sep "\n"} :as options}]
-  (str/join row-sep (apply format-rows grid (mapcat identity options))))
+   - `:col-sep`: Separator string between columns (default: empty string).
+   - `:default`: Value to use for missing cells (sparse grid holes, default: \\.)."
+  [grid & {:keys [value-fn col-sep default]
+           :or   {value-fn identity col-sep "" default \.}}]
+  (let [row-formatter (fn [row-y min-x max-x val-getter]
+                        (str/join col-sep
+                                  (for [x (range min-x (inc max-x))]
+                                    (value-fn (val-getter x row-y)))))]
+    (if-let [b (bounds grid)]
+      (let [[[min-x min-y] [max-x max-y]] b]
+        (for [y (range min-y (inc max-y))]
+          (row-formatter y min-x max-x (fn [x y] (get grid [x y] default)))))
+      [])))
+
+(defn format
+  "Formats the grid (dense or sparse) as a string.
+
+   Options:
+   - `:value-fn`: Function to transform cell values before printing (default: identity).
+   - `:col-sep`: Separator string between columns (default: empty string).
+   - `:row-sep`: Separator string between rows (default: newline).
+   - `:default`: Value to use for missing cells (sparse grid holes, default: \\.)."
+  [grid & args]
+  (let [{:keys [row-sep] :or {row-sep "\n"}} (apply hash-map args)]
+    (str/join row-sep (apply format-rows grid args))))

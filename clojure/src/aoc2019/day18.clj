@@ -19,7 +19,7 @@
 (def ^:private entrance? #{\@ \0 \1 \2 \3})
 (def ^:private point-of-interest? (set/union entrance? key?))
 
-(defn- parse-grid [input] (g/str->grid input))
+(defn- parse-grid [input] (g/->grid input))
 
 (defn- parse-robot-grid [input]
   (let [grid (parse-grid input)

@@ -2,10 +2,10 @@
  (ns aoc2019.day20
    (:require
     [aoc.day :as d]
+    [aoc.util.grid :as g]
     [aoc.util.math :as m]
     [aoc.util.pathfinding :as path]
     [aoc.util.pos :as p]
-    [aoc.util.sparse-grid :as sg]
     [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2019 20 :trim? false))
@@ -24,7 +24,7 @@
 (defn- find-named [grid]
   (update-vals
    (group-by first
-             (for [y (range (sg/height grid)), x (range (sg/width grid))
+             (for [y (range (g/height grid)), x (range (g/width grid))
                    :let [named-right (named-in-dir grid [x y] p/dir-right)
                          named-down (named-in-dir grid [x y] p/dir-down)
                          named (or named-right named-down)]
@@ -36,11 +36,11 @@
   (reduce (fn [ps [e1 e2]] (assoc ps e1 e2, e2 e1)) {} (vals named)))
 
 (defn- outer-portal? [grid [x y]]
-  (or (= x 2) (= x (- (sg/width grid) 3))
-      (= y 2) (= y (- (sg/height grid) 3))))
+  (or (= x 2) (= x (- (g/width grid) 3))
+      (= y 2) (= y (- (g/height grid) 3))))
 
 (defn- parse-maze [input]
-  (let [grid     (sg/str->sparse-grid input (conj letter? \.))
+  (let [grid     (g/->sparse-grid input (conj letter? \.))
         named    (find-named grid)
         entrance (first (named "AA"))
         exit     (first (named "ZZ"))

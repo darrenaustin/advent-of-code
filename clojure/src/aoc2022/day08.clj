@@ -36,10 +36,10 @@
        product))
 
 (defn part1 [input]
-  (->> (g/str->grid input char/digit)
+  (->> (g/->grid input char/digit)
        visible-trees
        count))
 
 (defn part2 [input]
-  (let [grid (g/str->grid input char/digit)]
+  (let [grid (g/->grid input char/digit)]
     (transduce (map (partial scenic-score grid)) max 0 (keys grid))))

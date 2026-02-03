@@ -21,7 +21,7 @@
   (and cell (not= cell \space)))
 
 (defn walk-routes [input]
-  (let [grid  (g/str->grid input)
+  (let [grid  (g/->grid input)
         start (first (first-where (fn [[[_ y] c]] (and (zero? y) (= c \|))) grid))]
     (loop [pos start, dir p/dir-down, path "", steps 1]
       (let [cell  (grid pos)

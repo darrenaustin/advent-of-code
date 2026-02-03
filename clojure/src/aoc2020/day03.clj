@@ -8,7 +8,7 @@
 
 (defn input [] (d/day-input 2020 3))
 
-(defn- parse-map [input] (g/str->grid input {\. 0 \# 1}))
+(defn- parse-map [input] (g/->grid input {\. 0 \# 1}))
 
 (defn- get-repeating [grid [x y]]
   (get grid [(mod x (g/width grid)) y]))

@@ -14,7 +14,7 @@
     (mapv (fn [block]
             (let [[header & grid-rows] (s/lines block)
                   id (s/int header)
-                  grid (g/rows->grid grid-rows #(when (= % \#) true))]
+                  grid (g/->grid grid-rows #(when (= % \#) true))]
               {:id   id
                :grid grid}))
           tile-blocks)))
@@ -80,7 +80,7 @@
     (reduce (fn [grid [[tile-row tile-col] tile-info]]
               (let [tile-grid (remove-borders (:grid tile-info))]
                 (g/set-sub-grid grid [(* tile-col tile-size) (* tile-row tile-size)] tile-grid)))
-            (g/make-grid image-size image-size)
+            (g/->grid image-size image-size)
             tile-arrangement)))
 
 (defn sub-grid-matches-at [grid sub-grid [start-x start-y]]
@@ -102,7 +102,7 @@
     [x y]))
 
 (def sea-monster
-  (g/rows->grid
+  (g/->grid
    ["..................#."
     "#....##....##....###"
     ".#..#..#..#..#..#..."]

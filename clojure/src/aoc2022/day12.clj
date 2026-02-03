@@ -15,7 +15,7 @@
          {\S 0, \E 25}))
 
 (defn- parse-map [input]
-  (let [grid (g/str->grid input)]
+  (let [grid (g/->grid input)]
     {:grid  (update-vals grid chr->height)
      :start (first (keys-when-val #{\S} grid))
      :dest  (first (keys-when-val #{\E} grid))}))

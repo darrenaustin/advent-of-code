@@ -72,13 +72,13 @@
            loc))))
 
 (defn bugs-after [input mins]
-  (let [initial-bugs (set (for [[pos ch] (g/str->grid input)
+  (let [initial-bugs (set (for [[pos ch] (g/->grid input)
                                 :when (= ch \#)]
                             [0 pos]))]
     (count (c/nth-iteration step-bugs initial-bugs mins))))
 
 (defn part1 [input]
-  (->> (g/str->grid input)
+  (->> (g/->grid input)
        (iterate step-grid)
        c/first-duplicate
        biodiversity))

@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :refer [count-where]]
+   [aoc.util.grid :as g]
    [aoc.util.pos :as p]
-   [aoc.util.sparse-grid :as sg]
    [aoc2017.knot-hash :refer [knot-hash]]
    [clojure.set :as set]
    [clojure.string :as str]))
@@ -42,7 +42,7 @@
                (conj components component))))))
 
 (defn hash-grid [input]
-  (sg/rows->sparse-grid (knot-hashs input) #(when (= \1 %) true)))
+  (g/->sparse-grid (knot-hashs input) #(when (= \1 %) true)))
 
 (defn part1 [input]
   (reduce (fn [s row] (+ s (count-where #{\1} row)))

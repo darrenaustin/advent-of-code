@@ -51,7 +51,7 @@
 
 (defn build-sum-grid [grid]
   (let [w (g/width grid), h (g/height grid)
-        sum-grid (transient (g/make-grid (inc w) (inc h) 0))]
+        sum-grid (transient (g/->grid (inc w) (inc h) 0))]
     (loop [y 0, g sum-grid]
       (if (= y h)
         (persistent! g)
@@ -82,7 +82,7 @@
         verts (mapv #(map-coords raw->cmp %) tiles)
         lines (conj (map vector (drop-last verts) (drop 1 verts))
                     [(last verts) (first verts)])
-        grid (-> (g/make-grid (count x-cmp) (count y-cmp))
+        grid (-> (g/->grid (count x-cmp) (count y-cmp))
                  (draw-lines lines 0)
                  (flood-fill [0 0] 1))
         sum-grid (build-sum-grid grid)]

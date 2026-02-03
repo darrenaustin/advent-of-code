@@ -23,7 +23,7 @@
 (defn xmas-in [grid]
   (m/sum (map #(count-xmas-at grid %) (keys grid))))
 
-(defn part1 [input] (xmas-in (g/str->grid input)))
+(defn part1 [input] (xmas-in (g/->grid input)))
 
 (defn x-mas-at? [grid pos]
   ;; assumes there is an 'A' in the grid at pos.
@@ -36,4 +36,4 @@
 (defn x-mas-in [grid]
   (count-where #(x-mas-at? grid %) (keys-when-val #{\A} grid)))
 
-(defn part2 [input] (x-mas-in (g/str->grid input)))
+(defn part2 [input] (x-mas-in (g/->grid input)))

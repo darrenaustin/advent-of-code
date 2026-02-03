@@ -8,7 +8,7 @@
    [aoc.util.pos :as p])) (defn input [] (d/day-input 2024 20))
 
 (defn parse-track [input]
-  (let [grid  (g/str->grid input)
+  (let [grid  (g/->grid input)
         start (first (keys-when-val #{\S} grid))
         end   (first (keys-when-val #{\E} grid))]
     {:grid  (assoc grid start \. end \.)

@@ -28,7 +28,7 @@
    [\\ p/dir-left]  p/dir-up})
 
 (defn parse [input]
-  (let [grid  (g/str->grid input)
+  (let [grid  (g/->grid input)
         carts (map (fn [l] {:loc l :dir (cart-dir (grid l)) :crossing p/turn-left})
                    (c/keys-when-val #{\^ \> \v \<} grid))]
     {:carts  carts

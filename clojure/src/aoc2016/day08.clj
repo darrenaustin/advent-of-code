@@ -11,7 +11,7 @@
 (defn input [] (d/day-input 2016 8))
 
 (defn- rect [grid [w h]]
-  (g/set-sub-grid grid [0 0] (g/make-grid w h true)))
+  (g/set-sub-grid grid [0 0] (g/->grid w h true)))
 
 (defn- rotate-column [grid [col by]]
   (g/set-column grid col (c/rotate-right by (g/column grid col))))
@@ -27,7 +27,7 @@
 
 (defn- message [input [w h]]
   (reduce apply-instruction
-          (g/make-grid w h false)
+          (g/->grid w h false)
           (s/lines input)))
 
 (defn part1

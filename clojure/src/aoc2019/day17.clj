@@ -24,7 +24,7 @@
    [p/dir-left p/dir-up]    \R})
 
 (defn- parse [input]
-  (let [grid      (g/str->grid (str/join (map char (:output (ic/run (ic/parse-program input))))))
+  (let [grid      (g/->grid (str/join (map char (:output (ic/run (ic/parse-program input))))))
         robot-loc (first (c/keys-when-val #{\^ \v \< \>} grid))
         robot-dir (dirs (grid robot-loc))]
     {:grid  (assoc grid robot-loc \#)

@@ -3,8 +3,8 @@
    (:require
     [aoc.day :as d]
     [aoc.util.ascii-art :as ascii-art]
+    [aoc.util.grid :as g]
     [aoc.util.pos :as p]
-    [aoc.util.sparse-grid :as sg]
     [aoc.util.string :as s]))
 
 (defn input [] (d/day-input 2018 10))
@@ -19,7 +19,7 @@
   ([stars time] (map (fn [[p v]] [(p/pos+ p (p/pos* time v)) v]) stars)))
 
 (defn star-grid [stars]
-  (into (sg/make-sparse-grid) (map (fn [[p _]] [p \#]) stars)))
+  (into (g/->sparse-grid) (map (fn [[p _]] [p \#]) stars)))
 
 ;; The stars are all moving at a constant velocity. Assuming every
 ;; star makes up part of the message, they would have to local minimum
@@ -27,15 +27,15 @@
 ;; time it will take to reach that minimum based on the relative
 ;; heights of the first two grids.
 (defn time-for-message [stars]
-  (let [height (dec (sg/height (star-grid stars)))
-        height' (dec (sg/height (star-grid (advance-stars stars))))
+  (let [height (dec (g/height (star-grid stars)))
+        height' (dec (g/height (star-grid (advance-stars stars))))
         delta (- height height')]
     (int (/ height delta))))
 
 (defn message [input]
   (let [stars (parse-stars input)
         time (time-for-message stars)]
-    (sg/format-rows (star-grid (advance-stars stars time)))))
+    (g/format-rows (star-grid (advance-stars stars time)))))
 
 (defn part1 [input]
   (ascii-art/ocr (message input)))

@@ -19,7 +19,7 @@
 
 (defn parse [input grid-fn]
   (let [[grid-data instructions] (s/blocks input)
-        grid (g/str->grid (grid-fn grid-data))
+        grid (g/->grid (grid-fn grid-data))
         dirs (map robot-dirs (str/replace instructions #"\s" ""))]
     [grid dirs]))
 

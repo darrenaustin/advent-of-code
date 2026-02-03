@@ -9,7 +9,7 @@
 (defn input [] (d/day-input 2015 18))
 
 (defn parse-grid [input]
-  (g/str->grid input {\. false \# true}))
+  (g/->grid input {\. false \# true}))
 
 (defn neighbors-on [grid pos]
   (count (filter grid (p/adjacent-to pos))))

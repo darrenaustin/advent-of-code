@@ -24,13 +24,13 @@
      (count (c/keys-when-val #{\#} area))))
 
 (defn part1 [input]
-  (->> (g/str->grid input)
+  (->> (g/->grid input)
        (iterate update-area)
        (drop 10)
        first
        resource-value))
 
 (defn part2 [input]
-  (->> (g/str->grid input)
+  (->> (g/->grid input)
        (c/iteration-with-cycle 1000000000 update-area)
        resource-value))

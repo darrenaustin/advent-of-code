@@ -2,21 +2,21 @@
  (ns aoc2016.day02
    (:require
     [aoc.day :as d]
+    [aoc.util.grid :as g]
     [aoc.util.pos :as p]
-    [aoc.util.sparse-grid :as sg]
     [aoc.util.string :as s]
     [clojure.string :as str]))
 
 (defn input [] (d/day-input 2016 2))
 
 (def nine-pad
-  (sg/rows->sparse-grid
+  (g/->sparse-grid
    ["123"
     "456"
     "789"]))
 
 (def diamond-pad
-  (sg/rows->sparse-grid
+  (g/->sparse-grid
    [[nil nil "1" nil nil]
     [nil "2" "3" "4" nil]
     ["5" "6" "7" "8" "9"]

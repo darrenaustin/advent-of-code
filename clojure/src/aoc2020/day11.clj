@@ -39,7 +39,7 @@
              seats))
 
 (defn- stable-seats [input neighbor-fn crowd]
-  (let [grid (g/str->grid input)
+  (let [grid (g/->grid input)
         seats (seat-graph grid neighbor-fn)
         occupied (into #{} (keep (fn [[pos v]] (when (= v \#) pos))) grid)]
     (->> (iterate #(next-round seats crowd %) occupied)

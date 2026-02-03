@@ -16,7 +16,7 @@
 ..#####...^..")
 
 (deftest part1-example
-  (is (= 76 (d/sum-intersections (g/str->grid example1-grid)))))
+  (is (= 76 (d/sum-intersections (g/->grid example1-grid)))))
 
 (def answers (delay (day-answers 2019 17)))
 (def input (delay (d/input)))

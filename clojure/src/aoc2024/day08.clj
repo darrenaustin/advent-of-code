@@ -27,7 +27,7 @@
   (mapcat finder-fn (combo/combinations locs 2)))
 
 (defn num-antinodes [input antinode-fn]
-  (let [grid            (g/str->grid input)
+  (let [grid            (g/->grid input)
         valid-loc?      (partial contains? grid)
         antennas        (antennas grid)
         antinode-finder (partial antinode-fn valid-loc?)]

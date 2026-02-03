@@ -3,8 +3,8 @@
   (:require
    [aoc.day :as d]
    [aoc.util.collection :as c]
-   [aoc.util.pos :as p]
-   [aoc.util.sparse-grid :as sg]))
+   [aoc.util.grid :as g]
+   [aoc.util.pos :as p]))
 
 (defn input [] (d/day-input 2025 4))
 
@@ -22,12 +22,12 @@
   (apply dissoc grid locs))
 
 (defn part1 [input]
-  (-> (sg/str->sparse-grid input)
+  (-> (g/->sparse-grid input)
       removeable-rolls
       count))
 
 (defn part2 [input]
-  (let [grid (sg/str->sparse-grid input)]
+  (let [grid (g/->sparse-grid input)]
     (loop [grid' grid]
       (let [rolls (removeable-rolls grid')]
         (if (zero? (count rolls))

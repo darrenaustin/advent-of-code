@@ -71,7 +71,7 @@
 
 (defn solve [input cost-fn]
   (->> input
-       g/str->grid
+       g/->grid
        regions
        (map cost-fn)
        m/sum))
