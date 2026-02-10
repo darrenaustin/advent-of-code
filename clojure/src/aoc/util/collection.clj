@@ -164,18 +164,18 @@
     (update m k dissoc-in ks)
     (dissoc m k)))
 
+(defn index-of
+  "Returns the index of the first occurrence of `value` in `coll`.
+   Returns nil if not found.
+   Example: (index-of [:a :b :c] :b) => 1"
+  [coll value]
+  (first (keep-indexed (fn [i x] (when (= x value) i)) coll)))
+
 (defn indexed
   "Returns a sequence of [index value] pairs from the collection.
    Example: (indexed [:a :b :c]) => ([0 :a] [1 :b] [2 :c])"
   [coll]
   (map-indexed vector coll))
-
-(defn index
-  "Returns the index of the first occurrence of `value` in `coll`.
-   Returns nil if not found.
-   Example: (index [:a :b :c] :b) => 1"
-  [coll value]
-  (first (keep-indexed (fn [i x] (when (= x value) i)) coll)))
 
 (defn indexes-by
   "Returns a sequence of indices of elements in `coll` that satisfy the predicate `f`."

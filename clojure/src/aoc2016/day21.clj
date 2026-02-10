@@ -17,13 +17,13 @@
 
 (defn- swap-letter [s x y]
   (let [v (vec s)]
-    (str/join (assoc v (c/index v x) y (c/index v y) x))))
+    (str/join (assoc v (c/index-of v x) y (c/index-of v y) x))))
 
 (defn- rotate-left  [s n] (str/join (c/rotate-left n s)))
 (defn- rotate-right [s n] (str/join (c/rotate-right n s)))
 
 (defn- rotate-letter [s c]
-  (let [index (c/index s c)]
+  (let [index (c/index-of s c)]
     (rotate-right s (+ (inc index) (if (>= index 4) 1 0)))))
 
 (defn- inverse-rotate-letter [s c]

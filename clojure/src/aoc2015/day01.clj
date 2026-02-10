@@ -13,4 +13,4 @@
   (m/sum (map floor-delta input)))
 
 (defn part2 [input]
-  (inc (c/index (reductions + (map floor-delta input)) -1)))
+  (inc (c/index-of (reductions + (map floor-delta input)) -1)))

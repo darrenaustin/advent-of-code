@@ -157,6 +157,15 @@
     (is (= {:a 1} (c/dissoc-in {:a 1} [:b])))
     (is (= {:a {:b 1}} (c/dissoc-in {:a {:b 1}} [:a :c])))))
 
+(deftest index-of-test
+  (testing "index returns the index of the first occurrence of a value"
+    (is (= 1 (c/index-of [:a :b :c] :b)))
+    (is (= 0 (c/index-of [:a :b :c] :a)))
+    (is (= 2 (c/index-of [:a :b :c] :c)))
+    (is (nil? (c/index-of [:a :b :c] :d)))
+    (is (nil? (c/index-of [] :a)))
+    (is (= 1 (c/index-of [1 2 3 2 1] 2)))))
+
 (deftest indexed-test
   (testing "indexed creates index-value pairs"
     (is (= [[0 :a] [1 :b] [2 :c]]
@@ -166,15 +175,6 @@
            (c/indexed ["first" "second"])))
     (is (= [[0 1] [1 4] [2 9]]
            (c/indexed [1 4 9])))))
-
-(deftest index-test
-  (testing "index returns the index of the first occurrence of a value"
-    (is (= 1 (c/index [:a :b :c] :b)))
-    (is (= 0 (c/index [:a :b :c] :a)))
-    (is (= 2 (c/index [:a :b :c] :c)))
-    (is (nil? (c/index [:a :b :c] :d)))
-    (is (nil? (c/index [] :a)))
-    (is (= 1 (c/index [1 2 3 2 1] 2)))))
 
 (deftest indexes-by-test
   (testing "indexes-by returns indices matching predicate"
