@@ -234,7 +234,7 @@
 | [Day 18](https://adventofcode.com/2022/day/18) | Boiling Boulders         | [day18.clj](clojure/src/aoc2022/day18.clj) | [day18.dart](dart/packages/aoc2022/lib/src/day18.dart) |
 | [Day 19](https://adventofcode.com/2022/day/19) | Not Enough Minerals      | [day19.clj](clojure/src/aoc2022/day19.clj) | [day19.dart](dart/packages/aoc2022/lib/src/day19.dart) |
 | [Day 20](https://adventofcode.com/2022/day/20) | Grove Positioning System | [day20.clj](clojure/src/aoc2022/day20.clj) | [day20.dart](dart/packages/aoc2022/lib/src/day20.dart) |
-| [Day 21](https://adventofcode.com/2022/day/21) | Monkey Math              |                     -                      | [day21.dart](dart/packages/aoc2022/lib/src/day21.dart) |
+| [Day 21](https://adventofcode.com/2022/day/21) | Monkey Math              | [day21.clj](clojure/src/aoc2022/day21.clj) | [day21.dart](dart/packages/aoc2022/lib/src/day21.dart) |
 | [Day 22](https://adventofcode.com/2022/day/22) | Monkey Map               |                     -                      | [day22.dart](dart/packages/aoc2022/lib/src/day22.dart) |
 | [Day 23](https://adventofcode.com/2022/day/23) | Unstable Diffusion       |                     -                      | [day23.dart](dart/packages/aoc2022/lib/src/day23.dart) |
 | [Day 24](https://adventofcode.com/2022/day/24) | Blizzard Basin           |                     -                      | [day24.dart](dart/packages/aoc2022/lib/src/day24.dart) |
