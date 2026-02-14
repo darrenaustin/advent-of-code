@@ -237,7 +237,7 @@
 | [Day 21](https://adventofcode.com/2022/day/21) | Monkey Math              | [day21.clj](clojure/src/aoc2022/day21.clj) | [day21.dart](dart/packages/aoc2022/lib/src/day21.dart) |
 | [Day 22](https://adventofcode.com/2022/day/22) | Monkey Map               | [day22.clj](clojure/src/aoc2022/day22.clj) | [day22.dart](dart/packages/aoc2022/lib/src/day22.dart) |
 | [Day 23](https://adventofcode.com/2022/day/23) | Unstable Diffusion       | [day23.clj](clojure/src/aoc2022/day23.clj) | [day23.dart](dart/packages/aoc2022/lib/src/day23.dart) |
-| [Day 24](https://adventofcode.com/2022/day/24) | Blizzard Basin           |                     -                      | [day24.dart](dart/packages/aoc2022/lib/src/day24.dart) |
+| [Day 24](https://adventofcode.com/2022/day/24) | Blizzard Basin           | [day24.clj](clojure/src/aoc2022/day24.clj) | [day24.dart](dart/packages/aoc2022/lib/src/day24.dart) |
 | [Day 25](https://adventofcode.com/2022/day/25) | Full of Hot Air          |                     -                      | [day25.dart](dart/packages/aoc2022/lib/src/day25.dart) |
 
 ## 2023
