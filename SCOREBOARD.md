@@ -245,7 +245,7 @@
 |                     50 ⭐️                      | Title                           |        [Clojure](clojure/README.md)        |                 [Dart](dart/README.md)                 |
 | :--------------------------------------------: | :------------------------------ | :----------------------------------------: | :----------------------------------------------------: |
 | [Day 01](https://adventofcode.com/2023/day/1)  | Trebuchet?!                     | [day01.clj](clojure/src/aoc2023/day01.clj) | [day01.dart](dart/packages/aoc2023/lib/src/day01.dart) |
-| [Day 02](https://adventofcode.com/2023/day/2)  | Cube Conundrum                  |                     -                      | [day02.dart](dart/packages/aoc2023/lib/src/day02.dart) |
+| [Day 02](https://adventofcode.com/2023/day/2)  | Cube Conundrum                  | [day02.clj](clojure/src/aoc2023/day02.clj) | [day02.dart](dart/packages/aoc2023/lib/src/day02.dart) |
 | [Day 03](https://adventofcode.com/2023/day/3)  | Gear Ratios                     |                     -                      | [day03.dart](dart/packages/aoc2023/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2023/day/4)  | Scratchcards                    |                     -                      | [day04.dart](dart/packages/aoc2023/lib/src/day04.dart) |
 | [Day 05](https://adventofcode.com/2023/day/5)  | If You Give A Seed A Fertilizer |                     -                      | [day05.dart](dart/packages/aoc2023/lib/src/day05.dart) |
