@@ -74,6 +74,7 @@
   (testing "digits converts string to vector of digits"
     (is (= [1 2 3] (s/digits "123")))
     (is (= [0 4 5 6] (s/digits "0456")))))
+
 (deftest ascii-test
   (testing "ascii? predicates"
     (is (true? (s/ascii? 0)))
@@ -95,6 +96,25 @@
     (let [input "Hello, World!"]
       (is (= input (s/ascii->str (s/str->ascii input)))))))
 
+(deftest re-seq-pos-test
+  (testing "re-seq-pos finds matches with start/end indices"
+    (let [s "foo 123 bar 456"]
+      (is (= [{:start 4, :end 7, :match "123"}
+              {:start 12, :end 15, :match "456"}]
+             (s/re-seq-pos #"\d+" s)))))
+  (testing "re-seq-pos works with no matches"
+    (is (empty? (s/re-seq-pos #"\d+" "foo")))))
+
+(deftest re-indices-test
+  (testing "re-indices returns [start end] pairs"
+    (let [s "foo 123 bar 456"]
+      (is (= [[4 7] [12 15]]
+             (s/re-indices #"\d+" s)))
+      (is (= [[4 7] [12 15]]
+             (s/re-indices "\\d+" s))))) ; pattern can also be a string
+  (testing "re-indices works with no matches"
+    (is (empty? (s/re-indices #"\d+" "foo")))))
+
 (deftest re-seq-overlapping-test
   (testing "re-seq-overlapping finds overlapping matches"
     (is (= ["one" "eight"] (s/re-seq-overlapping #"one|eight" "oneight")))
@@ -107,6 +127,17 @@
     (is (= ["foo"] (s/re-seq-overlapping #"foo" "foo"))))
   (testing "re-seq-overlapping handles multiple non-overlapping matches"
     (is (= ["foo" "foo"] (s/re-seq-overlapping #"foo" "foofoo")))))
+
+(deftest substring-replace-test
+  (testing "substring-replace replaces substring with replacement string"
+    (is (= "bar" (s/substring-replace "foobar" [0 3] "")))
+    (is (= "fou" (s/substring-replace "foo" [2 3] "u")))
+    (is (= "foobarbaz" (s/substring-replace "foobaz" [3 3] "bar"))))
+  (testing "substring-replace handles empty replacements"
+    (is (= "foobaz" (s/substring-replace "foobarbaz" [3 6] ""))))
+  (testing "substring-replace handles boundaries"
+    (is (= "bar" (s/substring-replace "foo" [0 3] "bar")))
+    (is (= "foobar" (s/substring-replace "foo" [3 3] "bar")))))
 
 (deftest to-hex-test
   (testing "to-hex converts numbers to hex strings"

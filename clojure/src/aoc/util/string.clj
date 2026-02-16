@@ -102,6 +102,24 @@
   [as]
   (str/join (map char as)))
 
+(defn re-seq-pos
+  "Returns a lazy sequence of maps representing matches of `pattern` in string `s`.
+   Each map contains:
+     :start - The start index of the match.
+     :end   - The end index of the match.
+     :match - The matched string."
+  [pattern s]
+  (let [m (re-matcher (re-pattern pattern) s)]
+    ((fn step []
+       (when (Matcher/.find m)
+         (cons {:start (Matcher/.start m) :end (Matcher/.end m) :match (Matcher/.group m)}
+               (lazy-seq (step))))))))
+
+(defn re-indices
+  "Returns a lazy sequence of [start end] index pairs for all matches of `pattern` in string `s`."
+  [pattern s]
+  (map (juxt :start :end) (re-seq-pos pattern s)))
+
 (defn re-seq-overlapping
   "Returns a lazy sequence of all overlapping matches of the regex `re` in string `s`.
    Uses a lookahead assertion to find matches without consuming characters.
@@ -120,14 +138,10 @@
   [re s]
   (map second (re-seq (re-pattern (str "(?=(" re "))")) s)))
 
-(defn re-indices [pattern s]
-  (let [m (re-matcher (re-pattern pattern) s)]
-    ((fn step []
-       (when (Matcher/.find m)
-         (cons [(Matcher/.start m) (Matcher/.end m)]
-               (lazy-seq (step))))))))
-
-(defn substring-replace [s [start end] replacement]
+(defn substring-replace
+  "Replaces the substring from `start` (inclusive) to `end` (exclusive) with `replacement`.
+   The range is specified as a vector `[start end]`."
+  [s [start end] replacement]
   (str (subs s 0 start) replacement (subs s end)))
 
 (defn to-hex
