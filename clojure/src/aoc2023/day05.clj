@@ -6,68 +6,48 @@
 
 (defn input [] (d/day-input 2023 5))
 
-(defn- range-mapping [[dest-start source-start length]]
-  [source-start
-   (+ source-start length -1)
-   (- dest-start source-start)])
+(defn- parse-seeds [seed-line]
+  (map (fn [s] [s s]) (s/ints seed-line)))
 
-(defn- parse-almanac [input]
-  (let [[seeds & maps] (s/blocks input)]
-    {:seeds (s/ints seeds)
-     :maps  (->> (map s/ints maps)
-                 (map #(partition 3 %))
-                 (map #(map range-mapping %)))}))
+(defn- parse-seed-ranges [seed-line]
+  (->> (s/ints seed-line)
+       (partition 2)
+       (map (fn [[start len]] [start (+ start len -1)]))))
 
-(defn- apply-mappings-to-value [n mappings]
-  (reduce
-   (fn [n [start end offset]]
-     (if (<= start n end)
-       (reduced (+ n offset))
-       n))
-   n
-   mappings))
+(defn- parse-mappings [block]
+  (->> (s/ints block)
+       (partition 3)
+       (map (fn [[dest src len]]
+              [src (+ src len -1) (- dest src)]))))
 
-(defn- apply-maps-to-value [maps seed]
-  (reduce apply-mappings-to-value seed maps))
+(defn- clear-translated [ranges]
+  (map #(vary-meta % dissoc :translated?) ranges))
 
-(defn- range-intersect
-  [[a-start a-end] [b-start b-end]]
-  (let [start (max a-start b-start)
-        end   (min a-end b-end)]
-    (if (< end start)
-      [nil [[a-start a-end]]]
-      (let [left  (when (< a-start start) [a-start (dec start)])
-            right (when (< end a-end) [(inc end) a-end])]
-        [[start end] (filterv some? [left right])]))))
+(defn- mark-translated [x] (with-meta x {:translated? true}))
 
-(defn- apply-mappings-to-ranges [ranges mappings]
-  (loop [unmapped ranges
-         [mapping & mappings] mappings
-         translated []]
-    (if (nil? mapping)
-      (concat translated unmapped)
-      (let [[start end offset] mapping
-            {:keys [new-translated new-unmapped]}
-            (reduce (fn [acc r]
-                      (let [[inside outside] (range-intersect r [start end])]
-                        (cond-> acc
-                          inside (update :new-translated conj (mapv #(+ offset %) inside))
-                          true   (update :new-unmapped into outside))))
-                    {:new-translated [] :new-unmapped []}
-                    unmapped)]
-        (recur new-unmapped mappings (into translated new-translated))))))
+(defn- translated? [x] (:translated? (meta x)))
 
-(defn- apply-maps-to-range [maps seed-range]
-  (reduce apply-mappings-to-ranges [seed-range] maps))
+(defn- translate-range [[ms me d :as mapping] [rs re :as rng]]
+  (cond
+    (translated? rng) (list rng)
+    (< re ms)         (list rng)
+    (> rs me)         (list rng)
+    (< rs ms)         (conj (translate-range mapping [ms re]) [rs (dec ms)])
+    (> re me)         (conj (translate-range mapping [rs me]) [(inc me) re])
+    :else             (list (mark-translated [(+ rs d) (+ re d)]))))
 
-(defn part1 [input]
-  (let [{:keys [seeds maps]} (parse-almanac input)]
-    (reduce min (map #(apply-maps-to-value maps %) seeds))))
+(defn- translate-ranges [ranges mappings]
+  (clear-translated
+   (reduce (fn [ranges mapping] (mapcat (partial translate-range mapping) ranges))
+           ranges
+           mappings)))
 
-(defn part2 [input]
-  (let [{:keys [seeds maps]} (parse-almanac input)
-        seed-ranges (map (fn [[s l]] [s (+ s l -1)]) (partition 2 seeds))]
-    (->> seed-ranges
-         (mapcat #(apply-maps-to-range maps %))
-         (map first)
-         (reduce min))))
+(defn- closest-location [input seed-parser]
+  (let [[seed-line & map-blocks] (s/blocks input)
+        seeds (seed-parser seed-line)
+        maps (map parse-mappings map-blocks)]
+    (reduce min (map first (reduce translate-ranges seeds maps)))))
+
+(defn part1 [input] (closest-location input parse-seeds))
+
+(defn part2 [input] (closest-location input parse-seed-ranges))
