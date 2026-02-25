@@ -249,7 +249,7 @@
 | [Day 03](https://adventofcode.com/2023/day/3)  | Gear Ratios                     | [day03.clj](clojure/src/aoc2023/day03.clj) | [day03.dart](dart/packages/aoc2023/lib/src/day03.dart) |
 | [Day 04](https://adventofcode.com/2023/day/4)  | Scratchcards                    | [day04.clj](clojure/src/aoc2023/day04.clj) | [day04.dart](dart/packages/aoc2023/lib/src/day04.dart) |
 | [Day 05](https://adventofcode.com/2023/day/5)  | If You Give A Seed A Fertilizer | [day05.clj](clojure/src/aoc2023/day05.clj) | [day05.dart](dart/packages/aoc2023/lib/src/day05.dart) |
-| [Day 06](https://adventofcode.com/2023/day/6)  | Wait For It                     |                     -                      | [day06.dart](dart/packages/aoc2023/lib/src/day06.dart) |
+| [Day 06](https://adventofcode.com/2023/day/6)  | Wait For It                     | [day06.clj](clojure/src/aoc2023/day06.clj) | [day06.dart](dart/packages/aoc2023/lib/src/day06.dart) |
 | [Day 07](https://adventofcode.com/2023/day/7)  | Camel Cards                     |                     -                      | [day07.dart](dart/packages/aoc2023/lib/src/day07.dart) |
 | [Day 08](https://adventofcode.com/2023/day/8)  | Haunted Wasteland               |                     -                      | [day08.dart](dart/packages/aoc2023/lib/src/day08.dart) |
 | [Day 09](https://adventofcode.com/2023/day/9)  | Mirage Maintenance              |                     -                      | [day09.dart](dart/packages/aoc2023/lib/src/day09.dart) |
