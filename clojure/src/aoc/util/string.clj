@@ -23,13 +23,6 @@
   (str/split-lines s))
 
 (defn parse-blocks
-  "Splits a string into blocks and applies a sequence of parsers to them.
-   `parsers` is a sequence of `[key parser-fn]` pairs.
-   Returns a sequence of the results in the same order as the parser-fns.
-
-   Example:
-   (parse-blocks \"1\\n\\n2\" [int #(inc int)])
-   => (1 3)"
   [s parsers]
   (map (fn [block parser] (parser block))
        (blocks s) parsers))
