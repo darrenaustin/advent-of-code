@@ -13,4 +13,5 @@ pom.xml.asc
 .calva/
 .clj-kondo/.cache/
 .clj-kondo/imports/
+.clj-kondo/inline-configs/
 .lsp/.cache

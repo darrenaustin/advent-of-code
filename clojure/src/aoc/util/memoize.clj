@@ -11,6 +11,7 @@
                    n
                    (+ (fib (- n 1)) (fib (- n 2)))))]
      (fib 100))"
+  {:clj-kondo/lint-as 'clojure.core/letfn}
   [fnspecs & body]
   (let [caches (repeatedly (count fnspecs) #(gensym "cache"))
         new-specs (map (fn [spec cache]

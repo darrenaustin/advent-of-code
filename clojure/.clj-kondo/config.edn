@@ -7,6 +7,5 @@
                                            (clojure.core.logic/run)
                                            lvar]}
   :unsorted-required-namespaces {:level :warning}}
- :lint-as {aoc.util.memoize/letfn-mem clojure.core/letfn}
  :hooks {:analyze-call {aoc.util.debug/dbg->       hooks.aoc.util.debug/dbg->
                         aoc.util.debug/dbg->>      hooks.aoc.util.debug/dbg->>}}}
