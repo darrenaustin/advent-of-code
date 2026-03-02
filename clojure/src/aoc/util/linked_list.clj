@@ -2,7 +2,7 @@
   "A mutable doubly-linked list implementation, primarily designed for
    performance-critical circular buffer manipulations.
    The core type `ListNode` is mutable."
-  (:refer-clojure :exclude [format next remove]))
+  (:refer-clojure :exclude [format next]))
 
 (defprotocol DoublyLinkedNode
   "Protocol for a mutable doubly-linked list node."
