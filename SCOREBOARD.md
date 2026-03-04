@@ -256,7 +256,7 @@
 | [Day 10](https://adventofcode.com/2023/day/10) | Pipe Maze                       | [day10.clj](clojure/src/aoc2023/day10.clj) | [day10.dart](dart/packages/aoc2023/lib/src/day10.dart) |
 | [Day 11](https://adventofcode.com/2023/day/11) | Cosmic Expansion                | [day11.clj](clojure/src/aoc2023/day11.clj) | [day11.dart](dart/packages/aoc2023/lib/src/day11.dart) |
 | [Day 12](https://adventofcode.com/2023/day/12) | Hot Springs                     | [day12.clj](clojure/src/aoc2023/day12.clj) | [day12.dart](dart/packages/aoc2023/lib/src/day12.dart) |
-| [Day 13](https://adventofcode.com/2023/day/13) | Point of Incidence              |                     -                      | [day13.dart](dart/packages/aoc2023/lib/src/day13.dart) |
+| [Day 13](https://adventofcode.com/2023/day/13) | Point of Incidence              | [day13.clj](clojure/src/aoc2023/day13.clj) | [day13.dart](dart/packages/aoc2023/lib/src/day13.dart) |
 | [Day 14](https://adventofcode.com/2023/day/14) | Parabolic Reflector Dish        |                     -                      | [day14.dart](dart/packages/aoc2023/lib/src/day14.dart) |
 | [Day 15](https://adventofcode.com/2023/day/15) | Lens Library                    |                     -                      | [day15.dart](dart/packages/aoc2023/lib/src/day15.dart) |
 | [Day 16](https://adventofcode.com/2023/day/16) | The Floor Will Be Lava          |                     -                      | [day16.dart](dart/packages/aoc2023/lib/src/day16.dart) |
