@@ -245,13 +245,13 @@
    detecting cycles to avoid computing all intermediate values.
    Useful for problems involving large iteration counts with repeating patterns."
   [iteration f x]
-  (loop [x x, iter 0, seen {}, history []]
+  (loop [x x, iter 0, seen (transient {}), history []]
     (if-let [offset (seen x)]
       (let [period (- iter offset)
             remaining (- iteration offset)
             cycled-iter (+ offset (mod remaining period))]
         (nth history cycled-iter))
-      (recur (f x) (inc iter) (assoc seen x iter) (conj history x)))))
+      (recur (f x) (inc iter) (assoc! seen x iter) (conj history x)))))
 
 ;; Allow (sort (by :surname asc :age desc) coll)
 ;;
