@@ -1023,6 +1023,11 @@
           "day": 17,
           "path": "day17.clj",
           "stars": 2
+        },
+        {
+          "day": 18,
+          "path": "day18.clj",
+          "stars": 2
         }
       ]
     },
