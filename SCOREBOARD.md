@@ -262,7 +262,7 @@
 | [Day 16](https://adventofcode.com/2023/day/16) | The Floor Will Be Lava          | [day16.clj](clojure/src/aoc2023/day16.clj) | [day16.dart](dart/packages/aoc2023/lib/src/day16.dart) |
 | [Day 17](https://adventofcode.com/2023/day/17) | Clumsy Crucible                 | [day17.clj](clojure/src/aoc2023/day17.clj) | [day17.dart](dart/packages/aoc2023/lib/src/day17.dart) |
 | [Day 18](https://adventofcode.com/2023/day/18) | Lavaduct Lagoon                 | [day18.clj](clojure/src/aoc2023/day18.clj) | [day18.dart](dart/packages/aoc2023/lib/src/day18.dart) |
-| [Day 19](https://adventofcode.com/2023/day/19) | Aplenty                         |                     -                      | [day19.dart](dart/packages/aoc2023/lib/src/day19.dart) |
+| [Day 19](https://adventofcode.com/2023/day/19) | Aplenty                         | [day19.clj](clojure/src/aoc2023/day19.clj) | [day19.dart](dart/packages/aoc2023/lib/src/day19.dart) |
 | [Day 20](https://adventofcode.com/2023/day/20) | Pulse Propagation               |                     -                      | [day20.dart](dart/packages/aoc2023/lib/src/day20.dart) |
 | [Day 21](https://adventofcode.com/2023/day/21) | Step Counter                    |                     -                      | [day21.dart](dart/packages/aoc2023/lib/src/day21.dart) |
 | [Day 22](https://adventofcode.com/2023/day/22) | Sand Slabs                      |                     -                      | [day22.dart](dart/packages/aoc2023/lib/src/day22.dart) |
