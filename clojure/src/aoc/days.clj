@@ -201,6 +201,7 @@
    [aoc2023.day17]
    [aoc2023.day18]
    [aoc2023.day19]
+   [aoc2023.day20]
    [aoc2024.day01]
    [aoc2024.day02]
    [aoc2024.day03]
